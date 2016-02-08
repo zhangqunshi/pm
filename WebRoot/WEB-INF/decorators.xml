@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<decorators defaultdir="/decorators">
+	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
+	<excludes>
+		<pattern>/jsp/login.jsp*</pattern>
+		<pattern>/jsp/logout.jsp*</pattern>
+		<pattern>/jsp/checkLogin.jsp*</pattern>
+		<pattern>/jsp/showErrorMessage.jsp*</pattern>
+		<pattern>/jsp/backend/user/UserPickerBrowser.jsp*</pattern>
+		<pattern>/jsp/backend/project/user/UserPickerForOneProject.jsp*</pattern>
+		<pattern>/jsp/backend/issue/type/typeIconPicker.jsp*</pattern>
+		<pattern>/jsp/backend/issue/status/statusIconPicker.jsp*</pattern>
+		<pattern>/jsp/backend/issue/priority/priorityIconPicker.jsp*</pattern>
+		<pattern>/jsp/backend/issue/priority/colorPicker.jsp*</pattern>
+		<pattern>/jsp/frontend/user/addUser.jsp*</pattern>
+		<pattern>/jsp/frontend/user/doAddUser.jsp*</pattern>
+	</excludes>
+ 
+	<decorator name="frontendmain" page="/decorators/frontend/frontendmain.jsp">
+		<pattern>/jsp/frontend/*</pattern>
+	</decorator>
+
+	<decorator name="backendmain" page="/decorators/backend/backendmain.jsp">
+		<pattern>/jsp/backend/*</pattern>
+	</decorator>
+	<decorator name="panel" page="panel.jsp" />
+	<decorator name="printable" page="printable.jsp" />
+	<decorator name="black" page="black.jsp" />
+	<decorator name="nopanelsource" page="nopanelsource.jsp" />
+	<decorator name="badpanelsource" page="badpanelsource.jsp" />
+
+</decorators>
