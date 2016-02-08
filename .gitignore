@@ -2,3 +2,4 @@ CVS
 /.settings
 /.project
 /.classpath
+/WebRoot/WEB-INF/classes
