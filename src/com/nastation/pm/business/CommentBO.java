@@ -29,7 +29,7 @@ public class CommentBO {
 		System.out.println("=33=Sql==" + sql);
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			System.out.println("=36==");
+
 			psmt.setString(1, comment.getCommentContent());
 			psmt.setString(2, comment.getAuthor());
 			psmt.setInt(3, comment.getIssueId());
