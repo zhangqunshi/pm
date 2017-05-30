@@ -1,6 +1,6 @@
 drop database if exists projectmanagement;
 
-create database projectmanagement;
+create database projectmanagement character set utf8;
 
 use projectmanagement;
 
