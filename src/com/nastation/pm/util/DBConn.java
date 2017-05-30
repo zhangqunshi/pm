@@ -1,8 +1,8 @@
 package com.nastation.pm.util;
 
 /**
- * @author ĞíÏ£¹â
- * ×÷ÓÃ: Êı¾İ¿âÁ¬½ÓÀà
+ * @author è®¸å¸Œå…‰
+ * ä½œç”¨: æ•°æ®åº“è¿æ¥ç±»
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +12,9 @@ public class DBConn {
 	private static String className = "com.mysql.jdbc.Driver";
 	private static String url = "jdbc:mysql://localhost:3306/projectmanagement?useUnicode=true&characterEncoding=UTF-8";
 	private static String user = "root";
-	private static String passwd = "123";
+	private static String passwd = "123456";
 
-	public static Connection getConnection() { // »ñµÃÊı¾İ¿âÁ¬½Ó¶ÔÏó
+	public static Connection getConnection() { // è·å¾—æ•°æ®åº“è¿æ¥å¯¹è±¡
 		Connection conn = null;
 		try {
 			Class.forName(className);
@@ -27,7 +27,7 @@ public class DBConn {
 		return conn;
 	}
 
-	public static void closeConn(Connection conn) { // ¹Ø±ÕÊı¾İ¿â¶ÔÏó
+	public static void closeConn(Connection conn) { // å…³é—­æ•°æ®åº“å¯¹è±¡
 		try {
 			conn.close();
 		} catch (SQLException e) {
