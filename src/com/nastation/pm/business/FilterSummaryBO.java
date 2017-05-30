@@ -13,14 +13,14 @@ import com.nastation.pm.bean.FilterSummary;
 import com.nastation.pm.util.DBConn;
 
 /**
- * Ğ´Ò»¸ö¹ıÂËÆ÷¸ÅÒªµÄÂß¼­Àà
+ * å†™ä¸€ä¸ªè¿‡æ»¤å™¨æ¦‚è¦çš„é€»è¾‘ç±»
  * 
  * @author LuckyStar
  * 
  */
 public class FilterSummaryBO {
 	/**
-	 * Ìí¼ÓÒ»¸ö¸ÅÒªĞÅÏ¢
+	 * æ·»åŠ ä¸€ä¸ªæ¦‚è¦ä¿¡æ¯
 	 * 
 	 * @param comment
 	 */
@@ -53,7 +53,7 @@ public class FilterSummaryBO {
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸ö¸ÅÒªĞÅÏ¢
+	 * æ·»åŠ ä¸€ä¸ªæ¦‚è¦ä¿¡æ¯
 	 * 
 	 * @param comment
 	 */

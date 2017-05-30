@@ -8,14 +8,14 @@ import com.nastation.pm.bean.Project;
 import com.nastation.pm.util.*;
 
 /**
- * È¨ÏŞÄ£°åµÄÒµÎñÂß¼­Àà
+ * æƒé™æ¨¡æ¿çš„ä¸šåŠ¡é€»è¾‘ç±»
  * 
  * @author sun
  */
 public class PermissionSchemeBO {
 
 	/**
-	 * Ìí¼ÓÒ»¸öÈ¨ÏŞÄ£°å
+	 * æ·»åŠ ä¸€ä¸ªæƒé™æ¨¡æ¿
 	 * 
 	 * @param PermissionScheme
 	 * @author sun
@@ -39,7 +39,7 @@ public class PermissionSchemeBO {
 	}
 
 	/**
-	 * ¸üĞÂÒ»¸öÈ¨ÏŞÄ£°å
+	 * æ›´æ–°ä¸€ä¸ªæƒé™æ¨¡æ¿
 	 * 
 	 * @param PermissionScheme
 	 * @author sun
@@ -64,7 +64,7 @@ public class PermissionSchemeBO {
 	}
 
 	/**
-	 * É¾³ıÒ»¸öÈ¨ÏŞÄ£°å
+	 * åˆ é™¤ä¸€ä¸ªæƒé™æ¨¡æ¿
 	 * 
 	 * @param id
 	 * @author sun
@@ -86,7 +86,7 @@ public class PermissionSchemeBO {
 	}
 
 	/**
-	 * »ñµÃÒ»¸öËùÓĞÈ¨ÏŞÄ£°åÁĞ±í£¬Ã¿¸öÈ¨ÏŞÄ£°å°üÀ¨Ä£°åĞÅÏ¢ÒÔ¼°Ê¹ÓÃÕâ¸öÄ£°åµÄÏîÄ¿ĞÅÏ¢¡£
+	 * è·å¾—ä¸€ä¸ªæ‰€æœ‰æƒé™æ¨¡æ¿åˆ—è¡¨ï¼Œæ¯ä¸ªæƒé™æ¨¡æ¿åŒ…æ‹¬æ¨¡æ¿ä¿¡æ¯ä»¥åŠä½¿ç”¨è¿™ä¸ªæ¨¡æ¿çš„é¡¹ç›®ä¿¡æ¯ã€‚
 	 * 
 	 * @author sun
 	 */
@@ -121,7 +121,7 @@ public class PermissionSchemeBO {
 	}
 
 	/**
-	 * »ñµÃÒ»¸ö Scheme
+	 * è·å¾—ä¸€ä¸ª Scheme
 	 * 
 	 * @param id
 	 * @author sun
@@ -153,7 +153,7 @@ public class PermissionSchemeBO {
 	}
 	
 	/**
-	 * Í¨¹ıÃû³Æ»ñµÃÄ£°åid
+	 * é€šè¿‡åç§°è·å¾—æ¨¡æ¿id
 	 * 
 	 * @param name
 	 * @author sun
@@ -180,7 +180,7 @@ public class PermissionSchemeBO {
 	}
 	
 	/**
-	 * ÓÃÓÚÃüÃûcopyµÄĞÂschemeÃû×Ö¡£
+	 * ç”¨äºå‘½åcopyçš„æ–°schemeåå­—ã€‚
 	 * @param name
 	 * @return
 	 */
@@ -208,7 +208,7 @@ public class PermissionSchemeBO {
 		
 	}
 	/**
-	 * ÅĞ¶ÏÒ»¸öÄ£°åÃûÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­ä¸€ä¸ªæ¨¡æ¿åæ˜¯å¦å·²ç»å­˜åœ¨
 	 * @author sun
 	 */
 	public boolean exist(String name){
@@ -233,7 +233,7 @@ public class PermissionSchemeBO {
 	}
 	
 	/**
-	 * »ñµÃÔÚ×éÎªgroupNameÖĞµÄËùÓĞÈ¨ÏŞÄ£°åÁĞ±í¡£
+	 * è·å¾—åœ¨ç»„ä¸ºgroupNameä¸­çš„æ‰€æœ‰æƒé™æ¨¡æ¿åˆ—è¡¨ã€‚
 	 * 
 	 * @author liuliehui
 	 */

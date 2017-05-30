@@ -10,7 +10,7 @@ public class PermissionScheme {
     private String name;
     private String description;
     private String createDate;
-    private List<Project> projectList;  //ÓÃÓÚ´æ·ÅÊ¹ÓÃ¸ÃPermissionSchemeµÄËùÓĞÏîÄ¿ĞÅÏ¢¡£
+    private List<Project> projectList;  //ç”¨äºå­˜æ”¾ä½¿ç”¨è¯¥PermissionSchemeçš„æ‰€æœ‰é¡¹ç›®ä¿¡æ¯ã€‚
     
 	public List getProjectList() {
 		return projectList;

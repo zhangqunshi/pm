@@ -1,8 +1,8 @@
 package com.nastation.pm.business;
 
 /**
- * ¹¦ÄÜ£ºÎÊÌâµÄÒµÎñÂß¼­Àà
- * @author ĞíÏ£¹â
+ * åŠŸèƒ½ï¼šé—®é¢˜çš„ä¸šåŠ¡é€»è¾‘ç±»
+ * @author è®¸å¸Œå…‰
  * 
  */
 import java.sql.Connection;
@@ -24,7 +24,7 @@ import com.nastation.pm.util.DBConn;
 public class IssuePriorityBO {
 
 	/*
-	 * ÏòÊı¾İ¿âÖĞÌí¼Ó¼ÇÂ¼ IssuePriority ¶ÔÏó
+	 * å‘æ•°æ®åº“ä¸­æ·»åŠ è®°å½• IssuePriority å¯¹è±¡
 	 */
 	public void addIssuePriority(IssuePriority issuePriority) {
 
@@ -53,7 +53,7 @@ public class IssuePriorityBO {
 	}
 
 	/*
-	 * ¸üĞÂÒÑÖªµÄ¼ÇÂ¼
+	 * æ›´æ–°å·²çŸ¥çš„è®°å½•
 	 */
 	public void updateIssuePriority(IssuePriority issuePriority) {
 
@@ -83,7 +83,7 @@ public class IssuePriorityBO {
 	}
 
 	/*
-	 * ¸ù¾İÒÑÖªµÄ id £¬»ñµÃIssuePriority¶ÔÏó
+	 * æ ¹æ®å·²çŸ¥çš„ id ï¼Œè·å¾—IssuePriorityå¯¹è±¡
 	 */
 	public IssuePriority getIssuePriority(int id) {
 
@@ -119,7 +119,7 @@ public class IssuePriorityBO {
 	}
 
 	/*
-	 * ¸ù¾İÒÑÖªµÄ name £¬»ñµÃIssuePriority¶ÔÏó
+	 * æ ¹æ®å·²çŸ¥çš„ name ï¼Œè·å¾—IssuePriorityå¯¹è±¡
 	 */
 	public IssuePriority getIssuePriority(String name) {
 
@@ -155,7 +155,7 @@ public class IssuePriorityBO {
 	}
 
 	/*
-	 * É¾³ı¶ÔÓ¦IDµÄIssuePriority ¶ÔÏó
+	 * åˆ é™¤å¯¹åº”IDçš„IssuePriority å¯¹è±¡
 	 */
 	public void deleteIssuePriority(int id) {
 		Connection conn = DBConn.getConnection();
@@ -172,7 +172,7 @@ public class IssuePriorityBO {
 	}
 
 	/*
-	 * »ñµÃÎÊÌâÓÅÏÈ¼¶ÁĞ±í List
+	 * è·å¾—é—®é¢˜ä¼˜å…ˆçº§åˆ—è¡¨ List
 	 */
 	public List<IssuePriority> getIssuePriorityList() {
 
@@ -209,7 +209,7 @@ public class IssuePriorityBO {
 	}
 
 	/**
-	 * ¼ì²éÊÇ·ñ´´½¨ÁËÍ¬ÃûIssuePriority
+	 * æ£€æŸ¥æ˜¯å¦åˆ›å»ºäº†åŒåIssuePriority
 	 */
 	public boolean exist(IssuePriority ip) {
 		Connection conn = DBConn.getConnection();
@@ -231,7 +231,7 @@ public class IssuePriorityBO {
 	}
 	
 	/**
-	 * »ñµÃ´ËÍ¼Æ¬ÀàĞÍµÄlist
+	 * è·å¾—æ­¤å›¾ç‰‡ç±»å‹çš„list
 	 * 
 	 * @return
 	 */
@@ -269,7 +269,7 @@ public class IssuePriorityBO {
 	}
 
 	/**
-	 * ¸ù¾İicon »ñµÃÎÊÌâÓÅÏÈ¼¶ÁĞ±í List
+	 * æ ¹æ®icon è·å¾—é—®é¢˜ä¼˜å…ˆçº§åˆ—è¡¨ List
 	 */
 	public List<IssuePriority> getIssuePriorityListByIcon(Icon icon) {
 

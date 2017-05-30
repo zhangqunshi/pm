@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * ×Ö´®´¦ÀíÀà
+ * å­—ä¸²å¤„ç†ç±»
  * 
  * @author Kris zhang.kris@gmail.com
  * @version 2008-12-17
@@ -17,7 +17,7 @@ public class StringUtils {
 	public static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
 	/**
-	 * ²ÉÓÃ²ÎÊıÖ¸¶¨µÄpattern, °ÑÈÕÆÚ×ª³É×Ö·û´®
+	 * é‡‡ç”¨å‚æ•°æŒ‡å®šçš„pattern, æŠŠæ—¥æœŸè½¬æˆå­—ç¬¦ä¸²
 	 * 
 	 * @param date
 	 * @param pattern
@@ -29,7 +29,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ²ÉÓÃÄ¬ÈÏµÄpattern, °ÑÈÕÆÚ×ª³É×Ö·û´®
+	 * é‡‡ç”¨é»˜è®¤çš„pattern, æŠŠæ—¥æœŸè½¬æˆå­—ç¬¦ä¸²
 	 * 
 	 * @see StringUtils#DEFAULT_DATE_PATTERN
 	 * @param date
@@ -40,7 +40,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ²ÉÓÃ²ÎÊıÖ¸¶¨µÄpattern, °Ñ×Ö·û´®×ª³ÉÈÕÆÚ
+	 * é‡‡ç”¨å‚æ•°æŒ‡å®šçš„pattern, æŠŠå­—ç¬¦ä¸²è½¬æˆæ—¥æœŸ
 	 * 
 	 * @param date
 	 * @param pattern
@@ -54,7 +54,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ²ÉÓÃÄ¬ÈÏµÄpattern, °Ñ×Ö·û´®×ª³ÉÈÕÆÚ
+	 * é‡‡ç”¨é»˜è®¤çš„pattern, æŠŠå­—ç¬¦ä¸²è½¬æˆæ—¥æœŸ
 	 * 
 	 * @see StringUtils#DEFAULT_DATE_PATTERN
 	 * @param date
@@ -66,7 +66,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÎª¿Õ
+	 * åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 	 * 
 	 * <pre>
 	 * Checks if a String is empty (&quot;&quot;) or null.
@@ -103,7 +103,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ±È½ÏÁ½¸ö×Ö·û´®ÊÇ·ñÏàµÈ.
+	 * æ¯”è¾ƒä¸¤ä¸ªå­—ç¬¦ä¸²æ˜¯å¦ç›¸ç­‰.
 	 * 
 	 * <pre>
 	 * Compares two Strings, returning true if they are equal.
@@ -132,7 +132,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÅĞ¶ÏÒ»¸ö×Ö·û´®µÄ³¤¶ÈÊÇ·ñ´óÓÚÖ¸¶¨Öµ
+	 * åˆ¤æ–­ä¸€ä¸ªå­—ç¬¦ä¸²çš„é•¿åº¦æ˜¯å¦å¤§äºæŒ‡å®šå€¼
 	 * 
 	 * <pre>
 	 * lengthGreaterThan(null, 3) == false
@@ -163,7 +163,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÊÇ·ñÎª<b>ºÏ·¨</b>µÄEmail
+	 * æ˜¯å¦ä¸º<b>åˆæ³•</b>çš„Email
 	 * 
 	 * @return
 	 */
@@ -177,7 +177,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÊÇ·ñÎª<b>²»ºÏ·¨</b>µÄEmail
+	 * æ˜¯å¦ä¸º<b>ä¸åˆæ³•</b>çš„Email
 	 * 
 	 * @return
 	 */
@@ -186,11 +186,11 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÎª¿Õ
+	 * åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 	 * 
 	 * <pre>
 	 * Checks if a String is empty (&quot;&quot;) or null.
-	 * ÓëisEmpty()·½·¨µÄ²»Í¬ÔÚÓÚ£º
+	 * ä¸isEmpty()æ–¹æ³•çš„ä¸åŒåœ¨äºï¼š
 	 * StringUtils.isEmpty(&quot; &quot;)       = false
 	 * 
 	 * StringUtils.isBlank(&quot; &quot;)       = true
@@ -219,9 +219,9 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÒÆµ÷ÈÕÆÚÖĞµÄÊ±¼ä
+	 * ç§»è°ƒæ—¥æœŸä¸­çš„æ—¶é—´
 	 * <p>
-	 * ÀıÈç£ºremoveTime(2008-12-25 11:28:00.0) ±ä³É 2008-12-25
+	 * ä¾‹å¦‚ï¼šremoveTime(2008-12-25 11:28:00.0) å˜æˆ 2008-12-25
 	 */
 	public static String removeTime(String str) {
 		if (str == null || str.length() < 10) {
@@ -231,7 +231,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ·µ»Øµ±Ç°ÈÕÆÚµÄ×Ö·û´®ĞÎÊ½£¬¸ñÊ½ÎªÄ¬ÈÏ¸ñÊ½¡£
+	 * è¿”å›å½“å‰æ—¥æœŸçš„å­—ç¬¦ä¸²å½¢å¼ï¼Œæ ¼å¼ä¸ºé»˜è®¤æ ¼å¼ã€‚
 	 * 
 	 * @return
 	 * @see StringUtils#DEFAULT_DATE_PATTERN
@@ -248,7 +248,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * °Ñ»Ø³µÌæ»»³É&lt;br&gt;html±êÇ©
+	 * æŠŠå›è½¦æ›¿æ¢æˆ&lt;br&gt;htmlæ ‡ç­¾
 	 * 
 	 * @return
 	 */
@@ -260,7 +260,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * È¥µôhtmlµÄ>ºÍ<
+	 * å»æ‰htmlçš„>å’Œ<
 	 * 
 	 * @param str
 	 * @return
@@ -291,7 +291,7 @@ public class StringUtils {
 		// System.out.println("==" +
 		// replaceNewLineToBr("hello\\\r\\\n\nkris\r\n"));
 		System.out.println("=="
-				+ removeHtmlTag("<<<<a>> href=\"index.html\">Ö÷Ò³</a>"));
+				+ removeHtmlTag("<<<<a>> href=\"index.html\">ä¸»é¡µ</a>"));
 	}
 
 }

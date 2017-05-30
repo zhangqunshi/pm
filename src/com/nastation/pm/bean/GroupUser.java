@@ -1,13 +1,13 @@
 /**
- * 描述:组和用户关联的javaBean
+ * 鎻忚堪:缁勫拰鐢ㄦ埛鍏宠仈鐨刯avaBean
  * @author liuliehui
  */
 package com.nastation.pm.bean;
 
 public class GroupUser {
-     private int id; //用户组ID
-     private int userId; //用户ID
-     private int groupId; //组ID
+     private int id; //鐢ㄦ埛缁処D
+     private int userId; //鐢ㄦ埛ID
+     private int groupId; //缁処D
 	public int getId() {
 		return id;
 	}

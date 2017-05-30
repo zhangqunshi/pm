@@ -1,8 +1,8 @@
 package com.nastation.pm.business;
 
 /**
- * ¹¦ÄÜ£ºÎÊÌâµÄÒµÎñÂß¼­Àà
- * @author ĞíÏ£¹â
+ * åŠŸèƒ½ï¼šé—®é¢˜çš„ä¸šåŠ¡é€»è¾‘ç±»
+ * @author è®¸å¸Œå…‰
  * 
  */
 import java.sql.Connection;
@@ -21,14 +21,14 @@ import com.nastation.pm.util.DBConn;
 
 public class IssueBO {
 
-	/** ×Ö¶ÎÁĞ±í */
+	/** å­—æ®µåˆ—è¡¨ */
 	public static final String columnNames = "issue_key, issue_type_id, name, priority_level_id, start_time,"
 			+ " end_time, plan_end_time, component_id, assignee_id, reporter_id, "
 			+ " environment, description, project_id, last_update_date, create_date, "
 			+ " issue_status";
 
 	/**
-	 * ÏòÊı¾İ¿âÖĞÌí¼Ó¼ÇÂ¼ Issue¶ÔÏó
+	 * å‘æ•°æ®åº“ä¸­æ·»åŠ è®°å½• Issueå¯¹è±¡
 	 */
 	public void addIssue(Issue issue) {
 		Connection conn = DBConn.getConnection();
@@ -73,7 +73,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İ Id £¬¸üĞÂÒÑÖªµÄ¼ÇÂ¼
+	 * æ ¹æ® Id ï¼Œæ›´æ–°å·²çŸ¥çš„è®°å½•
 	 */
 	public void updateIssue(Issue issue) {
 
@@ -118,7 +118,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İissue id £¬»ñµÃIssue¶ÔÏó
+	 * æ ¹æ®issue id ï¼Œè·å¾—Issueå¯¹è±¡
 	 */
 	public Issue getIssue(int id) {
 
@@ -166,7 +166,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * É¾³ı¶ÔÓ¦IDµÄIssue ¶ÔÏó
+	 * åˆ é™¤å¯¹åº”IDçš„Issue å¯¹è±¡
 	 */
 	public void deleteIssue(int id) {
 		Connection conn = DBConn.getConnection();
@@ -187,7 +187,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İIssueKey £¬»ñµÃIssue¶ÔÏó
+	 * æ ¹æ®IssueKey ï¼Œè·å¾—Issueå¯¹è±¡
 	 */
 	public Issue getIssueByKey(String name) {
 		Connection conn = DBConn.getConnection();
@@ -234,7 +234,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ´ÓÊı¾İ¿âÖĞ·µ»ØËùÓĞµÄÈÎÎñÎÊÌâÁĞ±í
+	 * ä»æ•°æ®åº“ä¸­è¿”å›æ‰€æœ‰çš„ä»»åŠ¡é—®é¢˜åˆ—è¡¨
 	 */
 	public List<Issue> getIssueList() {
 
@@ -283,7 +283,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İÏîÄ¿id, »ñµÃÍ¬Ò»ÏîÄ¿ÖĞÏà¹ØµÄÈÎÎñÁĞ±í
+	 * æ ¹æ®é¡¹ç›®id, è·å¾—åŒä¸€é¡¹ç›®ä¸­ç›¸å…³çš„ä»»åŠ¡åˆ—è¡¨
 	 * 
 	 * @param projectId
 	 */
@@ -335,7 +335,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İ¿ª·¢ÕßId, »ñµÃÆäÃûÏÂµÄÈÎÎñÁĞ±í
+	 * æ ¹æ®å¼€å‘è€…Id, è·å¾—å…¶åä¸‹çš„ä»»åŠ¡åˆ—è¡¨
 	 * 
 	 * @param assigneeId
 	 */
@@ -402,7 +402,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ·µ»ØÒ»¸öÏîÄ¿µÄËùÓĞÎÊÌâÁĞ±í¡£
+	 * è¿”å›ä¸€ä¸ªé¡¹ç›®çš„æ‰€æœ‰é—®é¢˜åˆ—è¡¨ã€‚
 	 * 
 	 * @param project_id
 	 * @return
@@ -472,7 +472,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¼ì²éÊÇ·ñ´´½¨ÁËÍ¬ÃûIssue
+	 * æ£€æŸ¥æ˜¯å¦åˆ›å»ºäº†åŒåIssue
 	 */
 	public boolean checkIssue(Issue issue) {
 		Connection conn = DBConn.getConnection();
@@ -493,7 +493,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İissue id £¬»ñµÃIssueËùÓĞµÄĞÅÏ¢£¬Õâ¸ö·½·¨Òª±ÈgetIssueµÃµ½¸ü¶àµÄĞÅÏ¢. °üÀ¨Í¼Æ¬µÄurl
+	 * æ ¹æ®issue id ï¼Œè·å¾—Issueæ‰€æœ‰çš„ä¿¡æ¯ï¼Œè¿™ä¸ªæ–¹æ³•è¦æ¯”getIssueå¾—åˆ°æ›´å¤šçš„ä¿¡æ¯. åŒ…æ‹¬å›¾ç‰‡çš„url
 	 * 
 	 * @see IssueBO#getIssue(int)
 	 */
@@ -586,7 +586,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İissue key £¬»ñµÃIssueËùÓĞµÄĞÅÏ¢£¬Õâ¸ö·½·¨Òª±ÈgetIssueµÃµ½¸ü¶àµÄĞÅÏ¢. °üÀ¨Í¼Æ¬µÄurl
+	 * æ ¹æ®issue key ï¼Œè·å¾—Issueæ‰€æœ‰çš„ä¿¡æ¯ï¼Œè¿™ä¸ªæ–¹æ³•è¦æ¯”getIssueå¾—åˆ°æ›´å¤šçš„ä¿¡æ¯. åŒ…æ‹¬å›¾ç‰‡çš„url
 	 * 
 	 * @see IssueBO#getIssue(int)
 	 */
@@ -653,7 +653,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * »ñµÃµ±Ç°ÓÃ»§ËùÓĞ½øĞĞÖĞµÄÎÊÌâÁĞ±í
+	 * è·å¾—å½“å‰ç”¨æˆ·æ‰€æœ‰è¿›è¡Œä¸­çš„é—®é¢˜åˆ—è¡¨
 	 * 
 	 * @param assignee_id
 	 */
@@ -722,7 +722,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * »ñµÃÄ³ÓÃ»§Ëù·ÖÅäÎÊÌâµÄÊıÁ¿
+	 * è·å¾—æŸç”¨æˆ·æ‰€åˆ†é…é—®é¢˜çš„æ•°é‡
 	 * 
 	 * @param user_id
 	 * @return
@@ -756,7 +756,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * »ñµÃÄ³ÓÃ»§±¨¸æÎÊÌâµÄÊıÁ¿
+	 * è·å¾—æŸç”¨æˆ·æŠ¥å‘Šé—®é¢˜çš„æ•°é‡
 	 * 
 	 * @param user_id
 	 * @return
@@ -790,7 +790,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ÖØĞÂÉèÖÃ¿ª·¢Õß£¬ÓÃÓÚ·ÖÅäÈÎÎñ¡£
+	 * é‡æ–°è®¾ç½®å¼€å‘è€…ï¼Œç”¨äºåˆ†é…ä»»åŠ¡ã€‚
 	 * 
 	 * @param assigne_id,issue_id
 	 */
@@ -819,7 +819,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * Í¨¹ıÏîÄ¿ID»ñµÃÒ»¸öĞÂµÄÎÊÌâKey¡£
+	 * é€šè¿‡é¡¹ç›®IDè·å¾—ä¸€ä¸ªæ–°çš„é—®é¢˜Keyã€‚
 	 * 
 	 * @param project_id
 	 * @return
@@ -859,7 +859,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ÔÚÒÆ¶¯ÎÊÌâÖĞ ¸ù¾İissue¸üĞÂÒÑÖªµÄ¼ÇÂ¼
+	 * åœ¨ç§»åŠ¨é—®é¢˜ä¸­ æ ¹æ®issueæ›´æ–°å·²çŸ¥çš„è®°å½•
 	 */
 	public void updateMoveIssue(Issue issue) {
 
@@ -887,7 +887,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İ Id £¬¸üĞÂÒÑÖªµÄ¼ÇÂ¼
+	 * æ ¹æ® Id ï¼Œæ›´æ–°å·²çŸ¥çš„è®°å½•
 	 */
 	public void updateIssueByResolution(int resolutionId, int resolutionNewId) {
 
@@ -912,7 +912,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İ Id É¾³ı¼ÇÂ¼
+	 * æ ¹æ® Id åˆ é™¤è®°å½•
 	 */
 	public void deleteAllIssueByLinkProject(int projectId) {
 		List list = this.getAllIssue(projectId);
@@ -957,7 +957,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * check ÈÕÆÚ¸ñÊ½
+	 * check æ—¥æœŸæ ¼å¼
 	 */
 	public boolean checkDate(String time) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-d");
@@ -972,7 +972,7 @@ public class IssueBO {
 	}
 
 	/*
-	 * ¸ù¾İ Id £¬¸üĞÂÒÑÖªµÄ¼ÇÂ¼
+	 * æ ¹æ® Id ï¼Œæ›´æ–°å·²çŸ¥çš„è®°å½•
 	 */
 	public void updateIssueByLinkResolution(Issue issue) {
 
@@ -999,7 +999,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İ Id £¬¸üĞÂÒÑÖªµÄ¼ÇÂ¼
+	 * æ ¹æ® Id ï¼Œæ›´æ–°å·²çŸ¥çš„è®°å½•
 	 */
 	public void updateIssueByLinkStatus(Issue issue) {
 
@@ -1031,7 +1031,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * »ñµÃµ±Ç°ÓÃ»§ËùÓĞ½øĞĞÖĞµÄÎÊÌâÁĞ±í
+	 * è·å¾—å½“å‰ç”¨æˆ·æ‰€æœ‰è¿›è¡Œä¸­çš„é—®é¢˜åˆ—è¡¨
 	 * 
 	 * @param assignee_id
 	 */
@@ -1105,7 +1105,7 @@ public class IssueBO {
 	}
 
 	/**
-	 * ¸ù¾İfilterId»ñµÃÈÎÎñÁĞ±í
+	 * æ ¹æ®filterIdè·å¾—ä»»åŠ¡åˆ—è¡¨
 	 * 
 	 * @param filterId
 	 */
@@ -1116,7 +1116,7 @@ public class IssueBO {
 		ResultSet rs = null;
 		PreparedStatement st = null;
 		try {
-			// Ê×ÏÈ¸ù¾İfilterId»ñµÃsqlÓï¾ä
+			// é¦–å…ˆæ ¹æ®filterIdè·å¾—sqlè¯­å¥
 			String sql = "select request_content from t_search_request where id=?";
 			st = conn.prepareStatement(sql);
 			st.setInt(1, filterId);
@@ -1124,7 +1124,7 @@ public class IssueBO {
 			if (rs.next()) {
 				String searchsql = rs.getString("request_content");
 
-				// »ñµÃsqlÓï¾äÖĞµÄ²ÎÊıÖµ
+				// è·å¾—sqlè¯­å¥ä¸­çš„å‚æ•°å€¼
 				String sql2 = "select param_value from t_filter_parameter_value where filter_id=? order by param_order asc";
 				st = conn.prepareStatement(sql2);
 				st.setInt(1, filterId);
@@ -1135,7 +1135,7 @@ public class IssueBO {
 					paramValues.add(rs.getString("param_value"));
 				}
 
-				//¿ªÊ¼²éÑ¯
+				//å¼€å§‹æŸ¥è¯¢
 				st = conn.prepareStatement(searchsql);
 				if (paramValues != null) {
 					int k = 1;

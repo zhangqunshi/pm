@@ -40,7 +40,7 @@ public class PermissionBO {
 		return list;
 	}
 	/**
-	 * »ñµÃËùÓÐÈ¨ÏÞ£¬°´È¨ÏÞÀàÐÍ·ÖÀà¡£ÒÔÀàÐÍÃûÎªKey£¬¸ÃÀàÐÍÏÂµÄËùÓÐÈ¨ÏÞÁÐ±íÎªValue.
+	 * èŽ·å¾—æ‰€æœ‰æƒé™ï¼ŒæŒ‰æƒé™ç±»åž‹åˆ†ç±»ã€‚ä»¥ç±»åž‹åä¸ºKeyï¼Œè¯¥ç±»åž‹ä¸‹çš„æ‰€æœ‰æƒé™åˆ—è¡¨ä¸ºValue.
 	 * @author sun
 	 * @return 
 	 */

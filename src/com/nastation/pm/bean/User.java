@@ -3,7 +3,7 @@ package com.nastation.pm.bean;
 import java.util.*;
 
 /**
- * @author ËïÖØÑô User bean
+ * @author å­™é‡é˜³ User bean
  */
 public class User {
 
@@ -83,7 +83,7 @@ public class User {
 	}
 
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÔÚÄ³Ò»ÏîÄ¿ÖĞÊÇ·ñ¾ßÓĞÄ³Ò»È¨ÏŞ¡£È¨ÏŞÈ¡Öµ¿É´Ócom.nastation.pm.PermissionConstants.javaÖĞµÃµ½¡£
+	 * åˆ¤æ–­ç”¨æˆ·åœ¨æŸä¸€é¡¹ç›®ä¸­æ˜¯å¦å…·æœ‰æŸä¸€æƒé™ã€‚æƒé™å–å€¼å¯ä»com.nastation.pm.PermissionConstants.javaä¸­å¾—åˆ°ã€‚
 	 * 
 	 * @param projectId
 	 * @param permission

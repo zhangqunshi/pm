@@ -1,13 +1,13 @@
 package com.nastation.pm.bean;
 
 /*
- * 定义个projectCategory的bean;
+ * 瀹氫箟涓猵rojectCategory鐨刡ean;
  */
 public class ProjectCategory {
-	private int id;// 项目类型ID
-	private String name;// 项目类型名字
-	private String description;// 项目类型描述
-	private String createDate;// 项目类型创建日期
+	private int id;// 椤圭洰绫诲瀷ID
+	private String name;// 椤圭洰绫诲瀷鍚嶅瓧
+	private String description;// 椤圭洰绫诲瀷鎻忚堪
+	private String createDate;// 椤圭洰绫诲瀷鍒涘缓鏃ユ湡
 
 	public int getId() {
 		return id;

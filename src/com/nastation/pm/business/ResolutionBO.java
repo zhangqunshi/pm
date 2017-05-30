@@ -11,7 +11,7 @@ import com.nastation.pm.bean.Resolution;
 import com.nastation.pm.util.DBConn;
 
 /**
- * ÎÊÌâResolutionµÄÒµÎñÂß¼­Àà
+ * é—®é¢˜Resolutionçš„ä¸šåŠ¡é€»è¾‘ç±»
  * 
  * @author Kris
  * @version 2008-12-27
@@ -20,7 +20,7 @@ import com.nastation.pm.util.DBConn;
 public class ResolutionBO {
 
 	/**
-	 * ÏòÊı¾İ¿âÖĞÌí¼ÓResolution ¶ÔÏó
+	 * å‘æ•°æ®åº“ä¸­æ·»åŠ Resolution å¯¹è±¡
 	 */
 	public void addResolution(Resolution resolution) {
 
@@ -87,7 +87,7 @@ public class ResolutionBO {
 	}
 
 	/**
-	 * ¸ü¸ÄresolutionµÄÒ»Ìõ¼ÇÂ¼ÎªÄ¬ÈÏ
+	 * æ›´æ”¹resolutionçš„ä¸€æ¡è®°å½•ä¸ºé»˜è®¤
 	 * 
 	 * @return
 	 */
@@ -278,7 +278,7 @@ public class ResolutionBO {
 	}
 
 	/**
-	 * ÏòÊı¾İ¿âÖĞÉ¾³ıResolution ¶ÔÏó
+	 * å‘æ•°æ®åº“ä¸­åˆ é™¤Resolution å¯¹è±¡
 	 */
 	public void deleteResolution(int id) {
 

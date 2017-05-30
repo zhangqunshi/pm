@@ -3,14 +3,14 @@ package com.nastation.pm;
 public interface Global {
 
 	// --------Task Status -----
-	// 此状态的值必须对应t_issue_status中的id
+	// 姝ょ姸鎬佺殑鍊煎繀椤诲搴攖_issue_status涓殑id
 	int OPEN = 1;
 	int IN_PROGRESS = 2;
 	int REOPEN = 3;
 	int RESOLVED = 4;
 	int CLOSE = 5;
 
-	/** 如果值为1，即为resolution默认选项 */
+	/** 濡傛灉鍊间负1锛屽嵆涓簉esolution榛樿閫夐」 */
 	int RESOLUTION_DEFAULT = 1;
 
 	// ---------- key in session -------------

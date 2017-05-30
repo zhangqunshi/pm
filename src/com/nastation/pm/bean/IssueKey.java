@@ -1,15 +1,15 @@
 package com.nastation.pm.bean;
 
  /**
-  * ¹¦ÄÜ£ºÎÊÌâIssue µÄKey,·â×°Ïà¹Ø×Ö¶Î
-  * @author ĞíÏ£¹â
+  * åŠŸèƒ½ï¼šé—®é¢˜Issue çš„Key,å°è£…ç›¸å…³å­—æ®µ
+  * @author è®¸å¸Œå…‰
   *
   */
 public class IssueKey {
     
-	private String issueKey; // KeyÖµ
-	private int issueId;     // ÎÊÌâ Issue ¶ÔÏó Id
-	private int projectId;   // ÏîÄ¿ Project ¶ÔÏó Id
+	private String issueKey; // Keyå€¼
+	private int issueId;     // é—®é¢˜ Issue å¯¹è±¡ Id
+	private int projectId;   // é¡¹ç›® Project å¯¹è±¡ Id
 	public String getIssueKey() {
 		return issueKey;
 	}

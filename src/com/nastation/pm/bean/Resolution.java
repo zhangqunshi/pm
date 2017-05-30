@@ -1,17 +1,17 @@
 package com.nastation.pm.bean;
 
 /**
- * 问题Resolution
+ * 闂Resolution
  * 
  * @author Kris
  * @version 2008-12-27
  */
 public class Resolution {
 
-	private int id; // 问题类型ID
-	private String name; // 类型名称
-	private String description; // 类型描述
-	private int isDefault; // 图标URL
+	private int id; // 闂绫诲瀷ID
+	private String name; // 绫诲瀷鍚嶇О
+	private String description; // 绫诲瀷鎻忚堪
+	private int isDefault; // 鍥炬爣URL
 
 	public int getId() {
 		return id;

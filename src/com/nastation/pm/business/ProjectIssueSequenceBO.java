@@ -9,7 +9,7 @@ import com.nastation.pm.util.DBConn;
 public class ProjectIssueSequenceBO {
 
 	/**
-	 * É¾³ıËùÓĞÏîÄ¿Ä£¿é
+	 * åˆ é™¤æ‰€æœ‰é¡¹ç›®æ¨¡å—
 	 */
 
 	public void deleteAllProjectIssueSequence(int projectId) {
@@ -27,7 +27,7 @@ public class ProjectIssueSequenceBO {
 	}
 
 	/**
-	 * ÅĞ¶Ït_project_user±íÀïÊÇ·ñ´æÔÚprojectId Èç¹û´æÔÚ¾Í·µ»Øtrue£¬·´Ö®Ôò·µ»Øfalse
+	 * åˆ¤æ–­t_project_userè¡¨é‡Œæ˜¯å¦å­˜åœ¨projectId å¦‚æœå­˜åœ¨å°±è¿”å›trueï¼Œåä¹‹åˆ™è¿”å›false
 	 */
 
 	public boolean checkProjectLinkProjectIssueSequence(int projectId) {

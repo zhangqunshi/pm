@@ -1,21 +1,21 @@
 /**
- * ÃèÊö:ÓÃ»§×éjavaBean
+ * æè¿°:ç”¨æˆ·ç»„javaBean
  * @author liuliehui
  */
 package com.nastation.pm.bean;
 
 public class Group {
-	private int id; //×éID
-	private String name; //×éÃû
-	private int userCount; //Ò»¸ö×é¶ÔÓ¦µÄÓÃ»§Êı
-	private int permissionSchemeId; //È¨ÏŞÄ£°åID
-	private String createDate; //´´½¨ÈÕÆÚ
-	private String permissionSchemeName; //È¨ÏŞÄ£°åÃû
-	private int userId; //ÓÃ»§ID
-	private int groupUserId; //ÓÃ»§×éID
-	private String userName; //ÓÃ»§Ãû
-	private String userFullName; //ÓÃ»§È«Ãû
-	private String userEmail; //ÓÃ»§ÓÊÏä
+	private int id; //ç»„ID
+	private String name; //ç»„å
+	private int userCount; //ä¸€ä¸ªç»„å¯¹åº”çš„ç”¨æˆ·æ•°
+	private int permissionSchemeId; //æƒé™æ¨¡æ¿ID
+	private String createDate; //åˆ›å»ºæ—¥æœŸ
+	private String permissionSchemeName; //æƒé™æ¨¡æ¿å
+	private int userId; //ç”¨æˆ·ID
+	private int groupUserId; //ç”¨æˆ·ç»„ID
+	private String userName; //ç”¨æˆ·å
+	private String userFullName; //ç”¨æˆ·å…¨å
+	private String userEmail; //ç”¨æˆ·é‚®ç®±
 	
 
 	public int getGroupUserId() {

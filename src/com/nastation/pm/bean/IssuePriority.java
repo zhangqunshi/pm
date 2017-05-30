@@ -1,17 +1,17 @@
 package com.nastation.pm.bean;
 
 /**
- * ¹¦ÄÜ£ºÎÊÌâÓÅÏÈ¼¶ bean Àà,·â×°×Ö¶Î
- * @author ĞíÏ£¹â
+ * åŠŸèƒ½ï¼šé—®é¢˜ä¼˜å…ˆçº§ bean ç±»,å°è£…å­—æ®µ
+ * @author è®¸å¸Œå…‰
  *
  */
 public class IssuePriority {
 	
-    private int id;                // ÎÊÌâÓÅÏÈ¼¶ID
-    private String name;           // ÓÅÏÈ¼¶Ãû³Æ
-    private String description;    // ÓÅÏÈ¼¶ÃèÊö
-    private String priorityColor; // ÓÅÏÈ¼¶ÑÕÉ«
-    private String iconUrl;       // ÓÅÏÈ¼¶Í¼±êURL
+    private int id;                // é—®é¢˜ä¼˜å…ˆçº§ID
+    private String name;           // ä¼˜å…ˆçº§åç§°
+    private String description;    // ä¼˜å…ˆçº§æè¿°
+    private String priorityColor; // ä¼˜å…ˆçº§é¢œè‰²
+    private String iconUrl;       // ä¼˜å…ˆçº§å›¾æ ‡URL
     
 	public int getId() {
 		return id;

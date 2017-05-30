@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * 把所有的请求字符转成UTF8编码
+ * 鎶婃墍鏈夌殑璇锋眰瀛楃杞垚UTF8缂栫爜
  * 
  * @author sun 
  */

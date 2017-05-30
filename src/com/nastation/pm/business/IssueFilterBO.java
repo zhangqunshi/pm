@@ -16,14 +16,14 @@ import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.StringUtils;
 
 /**
- * ´´½¨Ò»¸ö¹ıÂËÆ÷µÄÂß¼­ÒµÎñÀà
+ * åˆ›å»ºä¸€ä¸ªè¿‡æ»¤å™¨çš„é€»è¾‘ä¸šåŠ¡ç±»
  * 
  * @author LuckyStar
  * 
  */
 public class IssueFilterBO {
 	/**
-	 * Ìí¼ÓÒ»¸öfilterĞÅÏ¢
+	 * æ·»åŠ ä¸€ä¸ªfilterä¿¡æ¯
 	 * 
 	 * @param comment
 	 */
@@ -51,7 +51,7 @@ public class IssueFilterBO {
 	}
 
 	/**
-	 * °Ñfilter±íÖĞsqlÓï¾äËùĞè²ÎÊıµÄÖµ±£´æµ½±íÖĞ
+	 * æŠŠfilterè¡¨ä¸­sqlè¯­å¥æ‰€éœ€å‚æ•°çš„å€¼ä¿å­˜åˆ°è¡¨ä¸­
 	 * 
 	 * @param comment
 	 */
@@ -81,7 +81,7 @@ public class IssueFilterBO {
 	}
 
 	/**
-	 * deleteÒ»¸öfilterĞÅÏ¢
+	 * deleteä¸€ä¸ªfilterä¿¡æ¯
 	 * 
 	 * @param id
 	 */
@@ -101,7 +101,7 @@ public class IssueFilterBO {
 	}
 
 	/**
-	 * updateÒ»¸öfilterĞÅÏ¢
+	 * updateä¸€ä¸ªfilterä¿¡æ¯
 	 * 
 	 * @param filter
 	 */
@@ -166,7 +166,7 @@ public class IssueFilterBO {
 	
 	
 	/**
-	 * updateÒ»¸öfilterĞÅÏ¢
+	 * updateä¸€ä¸ªfilterä¿¡æ¯
 	 * 
 	 * @param filter
 	 */
@@ -188,7 +188,7 @@ public class IssueFilterBO {
 	}
 
 	/**
-	 * getÒ»¸öfilterListĞÅÏ¢
+	 * getä¸€ä¸ªfilterListä¿¡æ¯
 	 * 
 	 * @param comment
 	 */
@@ -274,7 +274,7 @@ public class IssueFilterBO {
 	}
 
 	/**
-	 * ¼ìÑéÊÇ·ñÖØÃû
+	 * æ£€éªŒæ˜¯å¦é‡å
 	 * 
 	 * @param comment
 	 */
@@ -301,7 +301,7 @@ public class IssueFilterBO {
 	}
 
 	/**
-	 * getÒ»¸öfilterĞÅÏ¢
+	 * getä¸€ä¸ªfilterä¿¡æ¯
 	 * 
 	 * @param comment
 	 */
@@ -361,7 +361,7 @@ public class IssueFilterBO {
 				filter.setProjectId(rs.getInt("project_id"));
 				filter.setRequestContent(rs.getString("request_content"));
 
-				// È¡µÃitems
+				// å–å¾—items
 				String sql2 = "select filter_summary_key, filter_summary_value  from t_filter_summary where request_id=?";
 				psmt = conn.prepareStatement(sql2);
 				psmt.setInt(1, filterId);
@@ -374,7 +374,7 @@ public class IssueFilterBO {
 					item.put(key, value);
 				}
 
-				// È¡µÃparam value
+				// å–å¾—param value
 				String sql3 = "select param_value from t_filter_parameter_value where filter_id=? order by param_order asc";
 				psmt = conn.prepareStatement(sql3);
 				psmt.setInt(1, filterId);

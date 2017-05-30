@@ -12,14 +12,14 @@ import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.StringUtils;
 
 /**
- * ±¸×¢µÄÒµÎñÂß¼­Àà
+ * å¤‡æ³¨çš„ä¸šåŠ¡é€»è¾‘ç±»
  * 
  * @author liuliehui
  */
 public class CommentBO {
 
 	/**
-	 * Ìí¼ÓÒ»¸ö±¸×¢ĞÅÏ¢
+	 * æ·»åŠ ä¸€ä¸ªå¤‡æ³¨ä¿¡æ¯
 	 * 
 	 * @param comment
 	 */
@@ -43,7 +43,7 @@ public class CommentBO {
 
 	}
 	/**
-	 * »ñµÃÒ»¸ö±¸×¢ĞÅÏ¢
+	 * è·å¾—ä¸€ä¸ªå¤‡æ³¨ä¿¡æ¯
 	 * 
 	 * @param comment
 	 */
@@ -72,7 +72,7 @@ public class CommentBO {
 		return comm;
 	}
 	/**
-	 * ÓÃissueµÄIDµÃµ½Ò»¸öComment¶ÔÏó¼¯ºÏ
+	 * ç”¨issueçš„IDå¾—åˆ°ä¸€ä¸ªCommentå¯¹è±¡é›†åˆ
 	 * 
 	 * @param comment
 	 */
@@ -106,7 +106,7 @@ public class CommentBO {
 		return commlist;
 	}
 	/**
-	 * ¸üĞÂÒ»Ìõ±¸×¢ĞÅÏ¢
+	 * æ›´æ–°ä¸€æ¡å¤‡æ³¨ä¿¡æ¯
 	 * 
 	 * @param comment
 	 */
@@ -127,7 +127,7 @@ public class CommentBO {
 		}
 	}
 	/**
-	 * É¾³ıÒ»Ìõ±¸×¢
+	 * åˆ é™¤ä¸€æ¡å¤‡æ³¨
 	 * 
 	 * @param comment
 	 */

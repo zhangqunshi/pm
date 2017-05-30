@@ -1,16 +1,16 @@
 package com.nastation.pm.bean;
 
 /**
- * ´ú±íÈÎÎñ´¦ÀíµÄ¶¯×÷
+ * ä»£è¡¨ä»»åŠ¡å¤„ç†çš„åŠ¨ä½œ
  * 
  * <pre>
- * 	ÒÔÏÂÎª¿ª·¢Õß×Ô¼ºµÄÈÎÎñÊ±£º
- *  Èç¹û (ÎÊÌâ×´Ì¬ÎªOpen), ÔòÏÔÊ¾&quot;¿ªÊ¼½øÐÐ&quot;, &quot;½â¾öÎÊÌâ&quot;, &quot;¹Ø±ÕÎÊÌâ&quot;
- *  Èç¹û (ÎÊÌâ×´Ì¬ÎªIn Progress ), ÔòÏÔÊ¾&quot;Í£Ö¹½øÐÐ&quot;, &quot;½â¾öÎÊÌâ&quot;, &quot;¹Ø±ÕÎÊÌâ&quot;,
- *  Èç¹ûµã»÷&quot;½â¾öÎÊÌâ&quot;, &quot;¹Ø±ÕÎÊÌâ&quot;£¬¶¼½øÈëÌîÐ´½â¾ö½á¹ûÒ³Ãæ
- *  Èç¹û (ÎÊÌâ×´Ì¬ÎªResolved), ÔòÏÔÊ¾&quot;¹Ø±ÕÎÊÌâ&quot;, &quot;»Ö¸´¿ªÆôÎÊÌâ&quot;
- *  Èç¹û (ÎÊÌâ×´Ì¬ÎªClosed), ÔòÏÔÊ¾&quot;»Ö¸´¿ªÆôÎÊÌâ&quot;
- *  Èç¹û (ÎÊÌâ×´Ì¬ÎªReopened), ÔòÏÔÊ¾&quot;¿ªÊ¼½øÐÐ&quot;, &quot;½â¾öÎÊÌâ&quot;, &quot;¹Ø±ÕÎÊÌâ&quot;
+ * 	ä»¥ä¸‹ä¸ºå¼€å‘è€…è‡ªå·±çš„ä»»åŠ¡æ—¶ï¼š
+ *  å¦‚æžœ (é—®é¢˜çŠ¶æ€ä¸ºOpen), åˆ™æ˜¾ç¤º&quot;å¼€å§‹è¿›è¡Œ&quot;, &quot;è§£å†³é—®é¢˜&quot;, &quot;å…³é—­é—®é¢˜&quot;
+ *  å¦‚æžœ (é—®é¢˜çŠ¶æ€ä¸ºIn Progress ), åˆ™æ˜¾ç¤º&quot;åœæ­¢è¿›è¡Œ&quot;, &quot;è§£å†³é—®é¢˜&quot;, &quot;å…³é—­é—®é¢˜&quot;,
+ *  å¦‚æžœç‚¹å‡»&quot;è§£å†³é—®é¢˜&quot;, &quot;å…³é—­é—®é¢˜&quot;ï¼Œéƒ½è¿›å…¥å¡«å†™è§£å†³ç»“æžœé¡µé¢
+ *  å¦‚æžœ (é—®é¢˜çŠ¶æ€ä¸ºResolved), åˆ™æ˜¾ç¤º&quot;å…³é—­é—®é¢˜&quot;, &quot;æ¢å¤å¼€å¯é—®é¢˜&quot;
+ *  å¦‚æžœ (é—®é¢˜çŠ¶æ€ä¸ºClosed), åˆ™æ˜¾ç¤º&quot;æ¢å¤å¼€å¯é—®é¢˜&quot;
+ *  å¦‚æžœ (é—®é¢˜çŠ¶æ€ä¸ºReopened), åˆ™æ˜¾ç¤º&quot;å¼€å§‹è¿›è¡Œ&quot;, &quot;è§£å†³é—®é¢˜&quot;, &quot;å…³é—­é—®é¢˜&quot;
  * </pre>
  * 
  * @author Kris

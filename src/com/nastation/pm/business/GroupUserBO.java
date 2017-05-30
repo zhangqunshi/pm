@@ -1,5 +1,5 @@
 /**
- * ÃèÊö:×éºÍÓÃ»§¹ØÁªµÄjavaBean
+ * æè¿°:ç»„å’Œç”¨æˆ·å…³è”çš„javaBean
  * @author liuliehui
  */
 package com.nastation.pm.business;
@@ -18,7 +18,7 @@ import com.nastation.pm.util.StringUtils;
 public class GroupUserBO {
 	
 /**
- * Ìí¼ÓÓÃ»§×é
+ * æ·»åŠ ç”¨æˆ·ç»„
  */
 	public void addGroupUser(GroupUser groupUser) throws SQLException {
 		Connection conn = DBConn.getConnection();
@@ -38,7 +38,7 @@ public class GroupUserBO {
 	}
 	
 	/**
-	 * ÅĞ¶ÏÓÃ»§×éÓÃ»§×éÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­ç”¨æˆ·ç»„ç”¨æˆ·ç»„æ˜¯å¦å­˜åœ¨
 	 */
 		public boolean groupUserExit(GroupUser groupUser){
 			boolean flag = false;
@@ -65,7 +65,7 @@ public class GroupUserBO {
 		}
 		
 	/**
-	 * ÅĞ¶Ï×éIDÎªgroupIdµÄÓÃ»§×éÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­ç»„IDä¸ºgroupIdçš„ç”¨æˆ·ç»„æ˜¯å¦å­˜åœ¨
 	 */
 		public boolean groupUserExit(int groupId){
 			boolean flag = false;
@@ -89,7 +89,7 @@ public class GroupUserBO {
 		}
 		
 	/**
-	 * É¾³ı×éIDÎªgroupIdµÄÓÃ»§×é
+	 * åˆ é™¤ç»„IDä¸ºgroupIdçš„ç”¨æˆ·ç»„
 	 */
 		public void deleteGroupUser(int groupId){
 			Connection conn = DBConn.getConnection();
@@ -109,7 +109,7 @@ public class GroupUserBO {
 		}
 		
 		/**
-		 * É¾³ıÓÃ»§×éÓÃ»§
+		 * åˆ é™¤ç”¨æˆ·ç»„ç”¨æˆ·
 		 */
 			public void deleteUserGroup(GroupUser userGroup){
 				Connection conn = DBConn.getConnection();

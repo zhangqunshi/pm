@@ -15,7 +15,7 @@ import com.nastation.pm.util.DBConn;
 
 public class ProjectCategoryBO {
 	/**
-	 * ´´½¨Ò»¸öÏîÄ¿ÀàĞÍ
+	 * åˆ›å»ºä¸€ä¸ªé¡¹ç›®ç±»å‹
 	 */
 	public void addProjectCategory(ProjectCategory category) {
 		Connection conn = DBConn.getConnection();
@@ -35,7 +35,7 @@ public class ProjectCategoryBO {
 	}
 
 	/**
-	 * Í¨¹ıÒ»¸öID»ñµÃ¶ÔÓ¦µÄÏîÄ¿ÀàĞÍ
+	 * é€šè¿‡ä¸€ä¸ªIDè·å¾—å¯¹åº”çš„é¡¹ç›®ç±»å‹
 	 */
 	public ProjectCategory getProjectCategory(int id) {
 		ProjectCategory category = new ProjectCategory();
@@ -60,7 +60,7 @@ public class ProjectCategoryBO {
 	}
 
 	/**
-	 * ¼ì²éÊÇ·ñ´´½¨ÁËÍ¬ÃûÏîÄ¿ÖÖÀà
+	 * æ£€æŸ¥æ˜¯å¦åˆ›å»ºäº†åŒåé¡¹ç›®ç§ç±»
 	 */
 	public boolean checkProjectCategory(ProjectCategory category) {
 		Connection conn = DBConn.getConnection();
@@ -81,7 +81,7 @@ public class ProjectCategoryBO {
 	}
 
 	/**
-	 * »ñµÃÊı¾İ¿âÖĞËùÓĞµÄÏîÄ¿ÖÖÀàĞÅÏ¢
+	 * è·å¾—æ•°æ®åº“ä¸­æ‰€æœ‰çš„é¡¹ç›®ç§ç±»ä¿¡æ¯
 	 */
 	public List getCategoryList() {
 		List list = new ArrayList();
@@ -107,7 +107,7 @@ public class ProjectCategoryBO {
 	}
 
 	/**
-	 * É¾³ı¶ÔÓ¦IDµÄÏîÄ¿ÖÖÀà
+	 * åˆ é™¤å¯¹åº”IDçš„é¡¹ç›®ç§ç±»
 	 */
 	public void deleteCategory(int id) {
 		Connection conn = DBConn.getConnection();
@@ -125,7 +125,7 @@ public class ProjectCategoryBO {
 	}
 
 	/**
-	 * ¸üĞÂÏîÄ¿ÖÖÀà
+	 * æ›´æ–°é¡¹ç›®ç§ç±»
 	 */
 	public void updateCategory(ProjectCategory category) {
 		Connection conn = DBConn.getConnection();
@@ -166,7 +166,7 @@ public class ProjectCategoryBO {
 	}
 
 	/**
-	 * ²éÑ¯Óë´Ë·ÖÀàÓĞ¹ØµÄËùÓĞÏîÄ¿
+	 * æŸ¥è¯¢ä¸æ­¤åˆ†ç±»æœ‰å…³çš„æ‰€æœ‰é¡¹ç›®
 	 */
 	public List getAllProject(int categoryId) {
 		Connection conn = DBConn.getConnection();
@@ -193,7 +193,7 @@ public class ProjectCategoryBO {
 	}
 
 	/**
-	 * É¾³ıÓëÏîÄ¿ÓĞ¹ØÁªÏîÄ¿·ÖÀà
+	 * åˆ é™¤ä¸é¡¹ç›®æœ‰å…³è”é¡¹ç›®åˆ†ç±»
 	 */
 	public void deleteProjectCategoryForLinkProject(int id) {
 		Connection conn = DBConn.getConnection();
@@ -215,7 +215,7 @@ public class ProjectCategoryBO {
 	}
 	
 	/**
-	 * ÅĞ¶Ï´Ë·ÖÀàÊÇ·ñÓëÆäËûÏîÄ¿ÓĞ¹ØÁª
+	 * åˆ¤æ–­æ­¤åˆ†ç±»æ˜¯å¦ä¸å…¶ä»–é¡¹ç›®æœ‰å…³è”
 	 */
 	public boolean checkLinkProject(int categoryId) {
 		Connection conn = DBConn.getConnection();

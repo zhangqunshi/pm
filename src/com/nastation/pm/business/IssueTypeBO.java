@@ -1,8 +1,8 @@
 package com.nastation.pm.business;
 
 /**
- * ¹¦ÄÜ£ºÎÊÌâµÄÒµÎñÂß¼­Àà
- * @author ĞíÏ£¹â
+ * åŠŸèƒ½ï¼šé—®é¢˜çš„ä¸šåŠ¡é€»è¾‘ç±»
+ * @author è®¸å¸Œå…‰
  * 
  */
 import java.sql.Connection;
@@ -19,7 +19,7 @@ import com.nastation.pm.util.DBConn;
 public class IssueTypeBO {
 
 	/**
-	 * ÏòÊı¾İ¿âÖĞÌí¼Ó¼ÇÂ¼ IssueType ¶ÔÏó
+	 * å‘æ•°æ®åº“ä¸­æ·»åŠ è®°å½• IssueType å¯¹è±¡
 	 */
 	public void addIssueType(IssueType issueType) {
 
@@ -48,7 +48,7 @@ public class IssueTypeBO {
 	}
 
 	/**
-	 * ¸ù¾İ Id £¬¸üĞÂÒÑÖªµÄ¼ÇÂ¼IssueType ¶ÔÏó
+	 * æ ¹æ® Id ï¼Œæ›´æ–°å·²çŸ¥çš„è®°å½•IssueType å¯¹è±¡
 	 */
 	public void updateIssueType(IssueType issueType) {
 
@@ -76,7 +76,7 @@ public class IssueTypeBO {
 	}
 
 	/*
-	 * É¾³ı¶ÔÓ¦IDµÄIssueType ¶ÔÏó
+	 * åˆ é™¤å¯¹åº”IDçš„IssueType å¯¹è±¡
 	 */
 	public void deleteIssueType(int id) {
 		Connection conn = DBConn.getConnection();
@@ -93,7 +93,7 @@ public class IssueTypeBO {
 	}
 
 	/*
-	 * ¸ù¾İÒÑÖªµÄ name £¬»ñµÃIssueType¶ÔÏó
+	 * æ ¹æ®å·²çŸ¥çš„ name ï¼Œè·å¾—IssueTypeå¯¹è±¡
 	 */
 	public IssueType getIssueType(String name) {
 
@@ -130,7 +130,7 @@ public class IssueTypeBO {
 	}
 
 	/*
-	 * ¸ù¾İÒÑÖªµÄ id £¬»ñµÃ IssueType ¶ÔÏó
+	 * æ ¹æ®å·²çŸ¥çš„ id ï¼Œè·å¾— IssueType å¯¹è±¡
 	 */
 	public IssueType getIssueType(int id) {
 
@@ -166,7 +166,7 @@ public class IssueTypeBO {
 	}
 
 	/*
-	 * »ñµÃÎÊÌâÀàĞÍÁĞ±í List
+	 * è·å¾—é—®é¢˜ç±»å‹åˆ—è¡¨ List
 	 */
 	public List<IssueType> getIssueTypeList() {
 
@@ -203,7 +203,7 @@ public class IssueTypeBO {
 	}
 
 	/*
-	 * ¼ì²éÊÇ·ñ´´½¨ÁËÍ¬ÃûIssueType
+	 * æ£€æŸ¥æ˜¯å¦åˆ›å»ºäº†åŒåIssueType
 	 */
 	public boolean checkIssueType(IssueType issueType) {
 		Connection conn = DBConn.getConnection();
@@ -224,7 +224,7 @@ public class IssueTypeBO {
 	}
 
 	/**
-	 * ¼ì²éÊÇ·ñ´´½¨ÁËÍ¬ÃûIssueType
+	 * æ£€æŸ¥æ˜¯å¦åˆ›å»ºäº†åŒåIssueType
 	 */
 	public boolean exist(IssueType issueType) {
 		Connection conn = DBConn.getConnection();
@@ -246,7 +246,7 @@ public class IssueTypeBO {
 	}
 
 	/**
-	 * »ñµÃ´ËÍ¼Æ¬ÀàĞÍµÄlist
+	 * è·å¾—æ­¤å›¾ç‰‡ç±»å‹çš„list
 	 * 
 	 * @return
 	 */
@@ -284,8 +284,8 @@ public class IssueTypeBO {
 	}
 
 	/**
-	 * ¸ù¾İicon
-	 * »ñµÃÎÊÌâÀàĞÍÁĞ±í List
+	 * æ ¹æ®icon
+	 * è·å¾—é—®é¢˜ç±»å‹åˆ—è¡¨ List
 	 */
 	public List<IssueType> getIssueTypeListByIcon(Icon icon) {
 

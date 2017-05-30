@@ -16,7 +16,7 @@ import com.nastation.pm.Global;
 import com.nastation.pm.bean.User;
 
 /**
- * ¼ì²éÓÃ»§ÊÇ·ñµÇÂ½, sessionÊÇ·ñ¹ıÆÚ
+ * æ£€æŸ¥ç”¨æˆ·æ˜¯å¦ç™»é™†, sessionæ˜¯å¦è¿‡æœŸ
  * 
  * @author Kris
  * @version 2009-1-13

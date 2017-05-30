@@ -1,7 +1,7 @@
 package com.nastation.pm.bean;
 
 /**
- * 项目成员
+ * 椤圭洰鎴愬憳
  * 
  * @author Kris
  */

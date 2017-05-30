@@ -1,7 +1,7 @@
 /**
- * ÃèÊö£ºProjectÒµÎñÂß¼­Àà
- * ×÷Õß£ºÕÅ²©
- * ÈÕÆÚ£º2008-12-18
+ * æè¿°ï¼šProjectä¸šåŠ¡é€»è¾‘ç±»
+ * ä½œè€…ï¼šå¼ åš
+ * æ—¥æœŸï¼š2008-12-18
  */
 package com.nastation.pm.business;
 
@@ -21,10 +21,10 @@ import com.nastation.pm.util.DBConn;
 public class ProjectBO {
 
 	/**
-	 * Ìí¼ÓÒ»¸öÏîÄ¿
+	 * æ·»åŠ ä¸€ä¸ªé¡¹ç›®
 	 * 
 	 * @param project
-	 *            °ÑÏîÄ¿Ïà¹ØĞÅÏ¢´æÈëÊı¾İ¿â±íÖĞ
+	 *            æŠŠé¡¹ç›®ç›¸å…³ä¿¡æ¯å­˜å…¥æ•°æ®åº“è¡¨ä¸­
 	 */
 	public void addProject(Project project) {
 		Connection conn = DBConn.getConnection();
@@ -58,14 +58,14 @@ public class ProjectBO {
 				projectId = rs.getInt("id");
 			}
 
-			  //½«ÏîÄ¿¸ºÔğÈËĞÅÏ¢²åÈëµ½t_project_user;
+			  //å°†é¡¹ç›®è´Ÿè´£äººä¿¡æ¯æ’å…¥åˆ°t_project_user;
 			String sql1="insert t_project_user (project_id,user_id,role_id,create_date) values(?,?,?,curdate())";
 			PreparedStatement pstmt=conn.prepareStatement(sql1);
 			UserBO userBO=new UserBO();
 			User user=userBO.getUser(project.getLeader());
 			pstmt.setInt(1,projectId);
 			pstmt.setInt(2, user.getId());
-			pstmt.setInt(3, 1);//½ÇÉ«IDÖĞ1Îª¹ÜÀíÔ±¡£
+			pstmt.setInt(3, 1);//è§’è‰²IDä¸­1ä¸ºç®¡ç†å‘˜ã€‚
 			pstmt.executeUpdate();
 			
 			
@@ -75,7 +75,7 @@ public class ProjectBO {
 			System.out.println("=======projectId===" + projectId);
 			PreparedStatement pst2 = conn.prepareStatement(sql2);
 			pst2.setInt(1, projectId);
-			pst2.setInt(2, 1); // ÆğÊ¼ÖµÎª1
+			pst2.setInt(2, 1); // èµ·å§‹å€¼ä¸º1
 			pst2.executeUpdate();
 
 			conn.commit();
@@ -94,10 +94,10 @@ public class ProjectBO {
 	}
 
 	/**
-	 * »ñµÃÒ»¸öÏîÄ¿ĞÅÏ¢
+	 * è·å¾—ä¸€ä¸ªé¡¹ç›®ä¿¡æ¯
 	 * 
 	 * @param id
-	 * @return ·µ»ØÊı¾İ¿âÖĞÒ»¸öÏîÄ¿µÄÏêÏ¸ĞÅÏ¢
+	 * @return è¿”å›æ•°æ®åº“ä¸­ä¸€ä¸ªé¡¹ç›®çš„è¯¦ç»†ä¿¡æ¯
 	 */
 	public Project getProject(int id) {
 		Project project = new Project();
@@ -127,7 +127,7 @@ public class ProjectBO {
 	}
 	
 	/**
-	 * Í¨¹ıÏîÄ¿Ãû»ñµÃ¸ÃÏîÄ¿ID
+	 * é€šè¿‡é¡¹ç›®åè·å¾—è¯¥é¡¹ç›®ID
 	 * @param name
 	 * @return id
 	 */
@@ -152,7 +152,7 @@ public class ProjectBO {
 	}
 
 	/**
-	 * ÅĞ¶ÏÏîÄ¿ÃûÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­é¡¹ç›®åæ˜¯å¦å·²ç»å­˜åœ¨
 	 * 
 	 * @param projectName
 	 * @param projectKey
@@ -177,7 +177,7 @@ public class ProjectBO {
 		return false;
 	}
 	/**
-	 * ÅĞ¶ÏkeyÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­keyæ˜¯å¦å·²ç»å­˜åœ¨
 	 * @param key
 	 * @return
 	 */
@@ -201,7 +201,7 @@ public class ProjectBO {
 	}
 	
 	/**
-	 * ĞŞ¸ÄÏîÄ¿ĞÅÏ¢
+	 * ä¿®æ”¹é¡¹ç›®ä¿¡æ¯
 	 * 
 	 * @param project
 	 */
@@ -225,7 +225,7 @@ public class ProjectBO {
 	}
 
 	/**
-	 * É¾³ıÒ»¸öÏîÄ¿
+	 * åˆ é™¤ä¸€ä¸ªé¡¹ç›®
 	 * 
 	 * @param id
 	 */
@@ -246,9 +246,9 @@ public class ProjectBO {
 	}
 
 	/**
-	 * »ñµÃÊı¾İ¿âÖĞt_project±íÖĞËùÓĞµÄĞÅÏ¢
+	 * è·å¾—æ•°æ®åº“ä¸­t_projectè¡¨ä¸­æ‰€æœ‰çš„ä¿¡æ¯
 	 * 
-	 * @return ·µ»ØÒ»¸ö±£´æ¸ÃÏîÄ¿ĞÅÏ¢µÄList
+	 * @return è¿”å›ä¸€ä¸ªä¿å­˜è¯¥é¡¹ç›®ä¿¡æ¯çš„List
 	 */
 
 	public List getProjectList() {
@@ -280,7 +280,7 @@ public class ProjectBO {
 	}
 
 	/**
-	 * ¸üĞÂÏîÄ¿ÀàĞÍ
+	 * æ›´æ–°é¡¹ç›®ç±»å‹
 	 */
 
 	public void updateProject1(Project project) {
@@ -304,7 +304,7 @@ public class ProjectBO {
 	}
 
 	/**
-	 * ·µ»ØÖ¸¶¨ProjectIdµÄÎÊÌâ×î´óË÷ÒıÖµ
+	 * è¿”å›æŒ‡å®šProjectIdçš„é—®é¢˜æœ€å¤§ç´¢å¼•å€¼
 	 * 
 	 * @param projectId
 	 * @return
@@ -348,7 +348,7 @@ public class ProjectBO {
 	}
     
 	/**
-	 * ·µ»ØÒ»¸öÈ¨ÏŞÄ£°åÏÂµÄËùÓĞÏîÄ¿ĞÅÏ¢
+	 * è¿”å›ä¸€ä¸ªæƒé™æ¨¡æ¿ä¸‹çš„æ‰€æœ‰é¡¹ç›®ä¿¡æ¯
 	 * @param schemeId
 	 * @return
 	 * @author sun
@@ -378,7 +378,7 @@ public class ProjectBO {
 		return list;
 	}
     /**
-     * ¸Ä±äÒ»¸öÏîÄ¿Ê¹ÓÃµÄÄ£°å
+     * æ”¹å˜ä¸€ä¸ªé¡¹ç›®ä½¿ç”¨çš„æ¨¡æ¿
      * @param projectId,schemeId
      */
 	public void changeScheme(int projectId,int schemeId){

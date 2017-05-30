@@ -1,17 +1,17 @@
 package com.nastation.pm.bean;
 
 /**
- * ¹¦ÄÜ£ºÎÊÌâÀàĞÍ bean Àà,·â×°×Ö¶Î
- * @author ĞíÏ£¹â
+ * åŠŸèƒ½ï¼šé—®é¢˜ç±»å‹ bean ç±»,å°è£…å­—æ®µ
+ * @author è®¸å¸Œå…‰
  *
  */
 public class IssueType {
 	
-    private int id;               // ÎÊÌâÀàĞÍID
-    private String name;          // ÀàĞÍÃû³Æ
-    private String description;   // ÀàĞÍÃèÊö 
-    private String iconUrl;      // Í¼±êURL
-    private String createDate;   // ¸ÃÀàĞÍ´´½¨µÄÊ±¼ä
+    private int id;               // é—®é¢˜ç±»å‹ID
+    private String name;          // ç±»å‹åç§°
+    private String description;   // ç±»å‹æè¿° 
+    private String iconUrl;      // å›¾æ ‡URL
+    private String createDate;   // è¯¥ç±»å‹åˆ›å»ºçš„æ—¶é—´
     
 	public int getId() {
 		return id;

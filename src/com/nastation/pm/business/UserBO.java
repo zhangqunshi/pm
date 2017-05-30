@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  * 
- * @author ËïÖØÑô
+ * @author å­™é‡é˜³
  * 
  */
 public class UserBO {
@@ -53,7 +53,7 @@ public class UserBO {
 	}
 
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÃûÊÇ·ñÖØ¸´
+	 * åˆ¤æ–­ç”¨æˆ·åæ˜¯å¦é‡å¤
 	 */
 	public boolean exist(String name) {
 		boolean flag = false;
@@ -200,7 +200,7 @@ public class UserBO {
 		ResultSet rs = null;
 		boolean flag = false;
 		try {
-			// ÅĞ¶Ït_project_user±íÖĞÊÇ·ñÓĞÍâ¼ü¹ØÁª¡£
+			// åˆ¤æ–­t_project_userè¡¨ä¸­æ˜¯å¦æœ‰å¤–é”®å…³è”ã€‚
 			conn = DBConn.getConnection();
 			String sql = "select user_id from t_project_user where user_id=?";
 			System.out.println(sql);
@@ -213,7 +213,7 @@ public class UserBO {
 				flag = true;
 				System.out.println(flag);
 			}
-			// ÅĞ¶Ït_issue±íÖĞassignee_idÊÇ·ñÓĞÍâ¼ü¹ØÁª¡£
+			// åˆ¤æ–­t_issueè¡¨ä¸­assignee_idæ˜¯å¦æœ‰å¤–é”®å…³è”ã€‚
 			String sql2 = "select assignee_id,reporter_id from t_issue where assignee_id=? or reporter_id=?";
 			System.out.println(sql2);
 			pstmt = conn.prepareStatement(sql2);
@@ -328,7 +328,7 @@ public class UserBO {
 	}
 
 	/**
-	 * ÅĞ¶Ït_project_user±íÀïÊÇ·ñ´æÔÚprojectId Èç¹û´æÔÚ¾Í·µ»Øtrue£¬·´Ö®Ôò·µ»Øfalse
+	 * åˆ¤æ–­t_project_userè¡¨é‡Œæ˜¯å¦å­˜åœ¨projectId å¦‚æœå­˜åœ¨å°±è¿”å›trueï¼Œåä¹‹åˆ™è¿”å›false
 	 */
 	public boolean checkProjectUser(int projectId) {
 		Connection conn = DBConn.getConnection();
@@ -351,7 +351,7 @@ public class UserBO {
 	}
 
 	/**
-	 * É¾³ıÏîÄ¿ÖĞËùÓĞÓÃ»§
+	 * åˆ é™¤é¡¹ç›®ä¸­æ‰€æœ‰ç”¨æˆ·
 	 */
 	public void deleteAllProjectUser(int projectId) {
 		Connection conn = DBConn.getConnection();
@@ -393,7 +393,7 @@ public class UserBO {
 	}
 
 	/**
-	 * Í¨¹ıÓÃ»§ID»ñµÃ¸ÃÓÃ»§µÄËùÓĞÈ¨ÏŞ¡£È¨ÏŞÍ¨¹ıHashMap´æ´¢£¬KeyÎªprojectId,ValueÎªlist<Permission>¡£
+	 * é€šè¿‡ç”¨æˆ·IDè·å¾—è¯¥ç”¨æˆ·çš„æ‰€æœ‰æƒé™ã€‚æƒé™é€šè¿‡HashMapå­˜å‚¨ï¼ŒKeyä¸ºprojectId,Valueä¸ºlist<Permission>ã€‚
 	 * 
 	 * @param id
 	 * @author sun
@@ -467,7 +467,7 @@ public class UserBO {
 	}
 
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÊÇ·ñÎª¹ÜÀíÔ±¡£
+	 * åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ä¸ºç®¡ç†å‘˜ã€‚
 	 * 
 	 * @author sun
 	 * @param userId

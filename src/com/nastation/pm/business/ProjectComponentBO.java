@@ -12,7 +12,7 @@ import com.nastation.pm.bean.ProjectComponent;
 import com.nastation.pm.util.DBConn;
 
 /**
- * ĞÂ½¨ÏîÄ¿Ä£¿é
+ * æ–°å»ºé¡¹ç›®æ¨¡å—
  * 
  * @author weiboyuan
  * 
@@ -23,7 +23,7 @@ public class ProjectComponentBO {
 	PreparedStatement pstmt = null;
 
 	/**
-	 * Ìí¼ÓÏîÄ¿Ä£¿é
+	 * æ·»åŠ é¡¹ç›®æ¨¡å—
 	 */
 	public void addProjectComponent(ProjectComponent pc) {
 		String sql = "insert into t_component(project_id,name,description,leader,create_time) value(?,?,?,?,?)";
@@ -50,7 +50,7 @@ public class ProjectComponentBO {
 	}
 
 	/**
-	 * ¼ì²éÏîÄ¿Ä£¿éÃû³ÆÊÇ·ñÏàµÈ
+	 * æ£€æŸ¥é¡¹ç›®æ¨¡å—åç§°æ˜¯å¦ç›¸ç­‰
 	 */
 	public boolean checkProjectComponent(ProjectComponent pc) {
 		Connection conn = DBConn.getConnection();
@@ -72,7 +72,7 @@ public class ProjectComponentBO {
 	}
 
 	/**
-	 * »ñÈ¡Ä£¿é±íÖĞÊı¾İ
+	 * è·å–æ¨¡å—è¡¨ä¸­æ•°æ®
 	 */
 	public List<ProjectComponent> getProjectComponentList(int id) {
 		List<ProjectComponent> list = new ArrayList<ProjectComponent>();
@@ -99,7 +99,7 @@ public class ProjectComponentBO {
 	}
 
 	/**
-	 * É¾³ıÏîÄ¿Ä£¿é
+	 * åˆ é™¤é¡¹ç›®æ¨¡å—
 	 */
 	public void deleteProjectComponent(int id) {
 		Connection conn = DBConn.getConnection();
@@ -116,7 +116,7 @@ public class ProjectComponentBO {
 	}
 	
 	/**
-	 * É¾³ıËùÓĞÏîÄ¿Ä£¿é
+	 * åˆ é™¤æ‰€æœ‰é¡¹ç›®æ¨¡å—
 	 */
 	
 	public void deleteAllProjectComponents(int projectId) {
@@ -134,8 +134,8 @@ public class ProjectComponentBO {
 	}
 	
 	/**
-	 * ÅĞ¶Ït_component±íÀïÊÇ·ñ´æÔÚprojectId
-	 * Èç¹û´æÔÚ¾Í·µ»Øtrue£¬·´Ö®Ôò·µ»Øfalse
+	 * åˆ¤æ–­t_componentè¡¨é‡Œæ˜¯å¦å­˜åœ¨projectId
+	 * å¦‚æœå­˜åœ¨å°±è¿”å›trueï¼Œåä¹‹åˆ™è¿”å›false
 	 */
 	
 	public boolean checkProjectComponent2(int projectId) {
@@ -159,7 +159,7 @@ public class ProjectComponentBO {
 	}
 
 	/**
-	 * ¸üĞÂÏîÄ¿Ä£¿é
+	 * æ›´æ–°é¡¹ç›®æ¨¡å—
 	 */
 	public void updateProjectComponent(ProjectComponent pc) {
 		Connection conn = DBConn.getConnection();
@@ -179,7 +179,7 @@ public class ProjectComponentBO {
 	}
 
 	/**
-	 * Id²éÕÒÊı¾İ
+	 * IdæŸ¥æ‰¾æ•°æ®
 	 */
 	public ProjectComponent getProjectComponent(int id) {
 		ProjectComponent pc = new ProjectComponent();

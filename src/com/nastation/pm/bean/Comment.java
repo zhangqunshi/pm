@@ -2,14 +2,14 @@ package com.nastation.pm.bean;
 
 /**
  * 
- * @author liuliehui ±¸×¢µÄjavaBeanÀà
+ * @author liuliehui å¤‡æ³¨çš„javaBeanç±»
  */
 public class Comment {
-	public int id; // ±¸×¢ID
-	public String commentContent; // ±¸×¢ÄÚÈİ
-	public String author; // ´´½¨ÈË
-	public int issueId; // ÎÊÌâID
-	public String createDate; // ±¸×¢´´½¨Ê±¼ä
+	public int id; // å¤‡æ³¨ID
+	public String commentContent; // å¤‡æ³¨å†…å®¹
+	public String author; // åˆ›å»ºäºº
+	public int issueId; // é—®é¢˜ID
+	public String createDate; // å¤‡æ³¨åˆ›å»ºæ—¶é—´
 
 	public int getId() {
 		return id;

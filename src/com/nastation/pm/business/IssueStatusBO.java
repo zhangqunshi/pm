@@ -1,8 +1,8 @@
 package com.nastation.pm.business;
 
 /**
- * ¹¦ÄÜ£ºÎÊÌâ×´Ì¬µÄÒµÎñÂß¼­Àà
- * @author ĞíÏ£¹â
+ * åŠŸèƒ½ï¼šé—®é¢˜çŠ¶æ€çš„ä¸šåŠ¡é€»è¾‘ç±»
+ * @author è®¸å¸Œå…‰
  * 
  */
 import java.sql.Connection;
@@ -24,7 +24,7 @@ import com.nastation.pm.util.DBConn;
 public class IssueStatusBO {
 
 	/*
-	 * ÏòÊı¾İ¿âÖĞÌí¼Ó¼ÇÂ¼ IssueStatus ¶ÔÏó
+	 * å‘æ•°æ®åº“ä¸­æ·»åŠ è®°å½• IssueStatus å¯¹è±¡
 	 */
 	public void addIssueStatus(IssueStatus issueStatus) {
 
@@ -51,7 +51,7 @@ public class IssueStatusBO {
 	}
 
 	/*
-	 * ¸üĞÂÒÑÖªµÄ¼ÇÂ¼
+	 * æ›´æ–°å·²çŸ¥çš„è®°å½•
 	 */
 	public void updateIssueStatus(IssueStatus issueStatus) {
 
@@ -79,7 +79,7 @@ public class IssueStatusBO {
 	}
 
 	/*
-	 * ¸ù¾İÒÑÖªµÄ id £¬»ñµÃIssueStatus¶ÔÏó
+	 * æ ¹æ®å·²çŸ¥çš„ id ï¼Œè·å¾—IssueStatuså¯¹è±¡
 	 */
 	public IssueStatus getIssueStatus(int id) {
 
@@ -113,7 +113,7 @@ public class IssueStatusBO {
 	}
 
 	/*
-	 * ¸ù¾İÒÑÖªµÄ name £¬»ñµÃIssueStatus¶ÔÏó
+	 * æ ¹æ®å·²çŸ¥çš„ name ï¼Œè·å¾—IssueStatuså¯¹è±¡
 	 */
 	public IssueStatus getIssueStatus(String name) {
 
@@ -147,7 +147,7 @@ public class IssueStatusBO {
 	}
 
 	/*
-	 * É¾³ı¶ÔÓ¦IDµÄIssueStatus ¶ÔÏó
+	 * åˆ é™¤å¯¹åº”IDçš„IssueStatus å¯¹è±¡
 	 */
 	public void deleteIssueStatus(int id) {
 
@@ -165,7 +165,7 @@ public class IssueStatusBO {
 	}
 
 	/*
-	 * »ñµÃÎÊÌâ×´Ì¬ÁĞ±í List
+	 * è·å¾—é—®é¢˜çŠ¶æ€åˆ—è¡¨ List
 	 */
 	public List<IssueStatus> getIssueStatusList() {
 
@@ -201,7 +201,7 @@ public class IssueStatusBO {
 	}
 
 	/**
-	 * ¼ì²éÊÇ·ñ´´½¨ÁËÍ¬ÃûIssueStatus
+	 * æ£€æŸ¥æ˜¯å¦åˆ›å»ºäº†åŒåIssueStatus
 	 */
 	public boolean exist(IssueStatus is) {
 		Connection conn = DBConn.getConnection();
@@ -223,7 +223,7 @@ public class IssueStatusBO {
 	}
 
 	/**
-	 * »ñµÃ´ËÍ¼Æ¬ÀàĞÍµÄlist
+	 * è·å¾—æ­¤å›¾ç‰‡ç±»å‹çš„list
 	 * 
 	 * @return
 	 */
@@ -261,7 +261,7 @@ public class IssueStatusBO {
 	}
 
 	/**
-	 * ¸ù¾İicon »ñµÃÎÊÌâÀàĞÍÁĞ±í List
+	 * æ ¹æ®icon è·å¾—é—®é¢˜ç±»å‹åˆ—è¡¨ List
 	 */
 	public List<IssueStatus> getIssueStatusListByIcon(Icon icon) {
 

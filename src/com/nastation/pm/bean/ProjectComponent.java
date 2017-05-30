@@ -1,7 +1,7 @@
 package com.nastation.pm.bean;
 /**
  * @author weiboyuan
- * ÏîÄ¿Ä£¿éjava bean
+ * é¡¹ç›®æ¨¡å—java bean
  */
 
 

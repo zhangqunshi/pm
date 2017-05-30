@@ -1,39 +1,39 @@
 package com.nastation.pm.bean;
 
 /**
- * ¹¦ÄÜ£ºÎÊÌâ»ù±¾ĞÅÏ¢ bean Àà,·â×°×Ö¶Î
+ * åŠŸèƒ½ï¼šé—®é¢˜åŸºæœ¬ä¿¡æ¯ bean ç±»,å°è£…å­—æ®µ
  * 
- * @author ĞíÏ£¹â
+ * @author è®¸å¸Œå…‰
  */
 public class Issue {
 
-	private int id; // ÎÊÌâID
+	private int id; // é—®é¢˜ID
 	private String issueKey;
-	private int issueTypeId; // ÎÊÌâÀàĞÍID
-	private String issueTypeName; // ÎÊÌâÀàĞÍÃû³Æ
+	private int issueTypeId; // é—®é¢˜ç±»å‹ID
+	private String issueTypeName; // é—®é¢˜ç±»å‹åç§°
 	private String issueTypeIcon;
-	private String name; // ÎÊÌâ¸ÅÒª
-	private int priorityLevelId; // ÓÅÏÈ¼¶ID
-	private String priorityLevel; // ÓÅÏÈ¼¶Ãû³Æ
+	private String name; // é—®é¢˜æ¦‚è¦
+	private int priorityLevelId; // ä¼˜å…ˆçº§ID
+	private String priorityLevel; // ä¼˜å…ˆçº§åç§°
 	private String priorityLevelIcon;
-	private String startTime; // Êµ¼Ê¿ªÊ¼Ê±¼ä
-	private String endTime; // Êµ¼Ê½áÊøÈÕÆÚ
-	private String planEndTime; // ¼Æ»®½áÊøÊ±¼ä
-	private int componentId; // Ä£¿éID
-	private String componentName; // Ä£¿éÃû³Æ
-	private int assigneeId; // ¿ª·¢ÕßID
-	private String assignee; // ¿ª·¢ÕßĞÕÃû
+	private String startTime; // å®é™…å¼€å§‹æ—¶é—´
+	private String endTime; // å®é™…ç»“æŸæ—¥æœŸ
+	private String planEndTime; // è®¡åˆ’ç»“æŸæ—¶é—´
+	private int componentId; // æ¨¡å—ID
+	private String componentName; // æ¨¡å—åç§°
+	private int assigneeId; // å¼€å‘è€…ID
+	private String assignee; // å¼€å‘è€…å§“å
 	private String assigneeFullname;
-	private int reporterId; // ±¨¸æÈËID
-	private String reporter; // ±¨¸æÈËĞÕÃû
+	private int reporterId; // æŠ¥å‘ŠäººID
+	private String reporter; // æŠ¥å‘Šäººå§“å
 	private String reporterFullname;
-	private String environment; // »·¾³
-	private String description; // ÎÊÌâÃèÊö
-	private int projectId; // ÏîÄ¿ID
-	private String projectName; // ÏîÄ¿Ãû³Æ
-	private String lastUpdateDate; // ×îºó¸ü¸ÄÈÕÆÚ
-	private String createDate; // ²úÉúÈÕÆÚ
-	private int issueStatus; // ÎÊÌâ×´Ì¬
+	private String environment; // ç¯å¢ƒ
+	private String description; // é—®é¢˜æè¿°
+	private int projectId; // é¡¹ç›®ID
+	private String projectName; // é¡¹ç›®åç§°
+	private String lastUpdateDate; // æœ€åæ›´æ”¹æ—¥æœŸ
+	private String createDate; // äº§ç”Ÿæ—¥æœŸ
+	private int issueStatus; // é—®é¢˜çŠ¶æ€
 	private int resolutionId;
 	private String resolution;
 	private String issueStatusName;

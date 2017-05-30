@@ -1,13 +1,13 @@
 package com.nastation.pm.bean;
 
 /**
- * @author 张磊
+ * @author 寮犵
  */
 public class Role {
-	String roleName;// 角色名称
-	String roleDesc;// 角色描述
-	int roleId;// 角色ID
-	String createDate;// 创建角色日期
+	String roleName;// 瑙掕壊鍚嶇О
+	String roleDesc;// 瑙掕壊鎻忚堪
+	int roleId;// 瑙掕壊ID
+	String createDate;// 鍒涘缓瑙掕壊鏃ユ湡
 
 	public int getRoleId() {
 		return roleId;

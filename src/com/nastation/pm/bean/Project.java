@@ -4,20 +4,20 @@ package com.nastation.pm.bean;
 /**
  * 
  * @author Zhangbo
- * 该类是项目javabean
+ * 璇ョ被鏄」鐩甹avabean
  */
 
 public class Project {
 	
 	private int projectId;
-	private String name; //项目名称
+	private String name; //椤圭洰鍚嶇О
 	private String projectKey; 
-	private String description; //描述
-	private String url;  //项目路径
-	private String leader;  //管理员id
-	private int categoryId;  //类型id
-	private String createDate;  //创建日期
-	private int permissionSchemeId;//该项目使用的权限模板id
+	private String description; //鎻忚堪
+	private String url;  //椤圭洰璺緞
+	private String leader;  //绠＄悊鍛榠d
+	private int categoryId;  //绫诲瀷id
+	private String createDate;  //鍒涘缓鏃ユ湡
+	private int permissionSchemeId;//璇ラ」鐩娇鐢ㄧ殑鏉冮檺妯℃澘id
 	
 	
 

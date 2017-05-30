@@ -6,25 +6,25 @@ import java.util.List;
 
 public class IssueFilter {
 
-	// ----±£´æÔÚitemÖĞµÄkeyÖµ -------
-	public static final String pid = "ÏîÄ¿";
-	public static final String issue_type = "ÎÊÌâÀàĞÍ";
-	public static final String query = "²éÑ¯";
-	public static final String query_summary = "¸ÅÒª";
-	public static final String query_description = "ÃèÊö";
-	public static final String query_body = "±¸×¢";
-	public static final String query_environment = "»·¾³";
-	public static final String reporterSelect = "±¨¸æÈËÑ¡Ôñ";
-	public static final String reporter = "±¨¸æÈË";
-	public static final String assigneeSelect = "¿ª·¢ÕßÑ¡Ôñ";
-	public static final String assignee = "¿ª·¢Õß";
-	public static final String status = "×´Ì¬";
-	public static final String resolution = "Æ¥ÅäµÄ½â¾öÇé¿ö";
-	public static final String priority = "Æ¥ÅäµÄÓÅÏÈ¼¶";
-	public static final String createdafter = "´´½¨..Ö®ºó";
-	public static final String createdbefore = "´´½¨..Ö®Ç°";
-	public static final String duedateafter = "ÓâÆÚ..Ö®ºó";
-	public static final String duedatebefore = "ÓâÆÚ..Ö®Ç°";
+	// ----ä¿å­˜åœ¨itemä¸­çš„keyå€¼ -------
+	public static final String pid = "é¡¹ç›®";
+	public static final String issue_type = "é—®é¢˜ç±»å‹";
+	public static final String query = "æŸ¥è¯¢";
+	public static final String query_summary = "æ¦‚è¦";
+	public static final String query_description = "æè¿°";
+	public static final String query_body = "å¤‡æ³¨";
+	public static final String query_environment = "ç¯å¢ƒ";
+	public static final String reporterSelect = "æŠ¥å‘Šäººé€‰æ‹©";
+	public static final String reporter = "æŠ¥å‘Šäºº";
+	public static final String assigneeSelect = "å¼€å‘è€…é€‰æ‹©";
+	public static final String assignee = "å¼€å‘è€…";
+	public static final String status = "çŠ¶æ€";
+	public static final String resolution = "åŒ¹é…çš„è§£å†³æƒ…å†µ";
+	public static final String priority = "åŒ¹é…çš„ä¼˜å…ˆçº§";
+	public static final String createdafter = "åˆ›å»º..ä¹‹å";
+	public static final String createdbefore = "åˆ›å»º..ä¹‹å‰";
+	public static final String duedateafter = "é€¾æœŸ..ä¹‹å";
+	public static final String duedatebefore = "é€¾æœŸ..ä¹‹å‰";
 
 	private String filterName;
 	private int id;
@@ -124,7 +124,7 @@ public class IssueFilter {
 	}
 
 	/**
-	 * Ö»ÊÇ±È½ÏÄÚÈİ£¬²»±È½Ïid, Èç¹ûÒ²Ïë±È½Ïid£¬ÇëÖØĞ´equals·½·¨
+	 * åªæ˜¯æ¯”è¾ƒå†…å®¹ï¼Œä¸æ¯”è¾ƒid, å¦‚æœä¹Ÿæƒ³æ¯”è¾ƒidï¼Œè¯·é‡å†™equalsæ–¹æ³•
 	 * 
 	 * @param oneFilter
 	 * @return

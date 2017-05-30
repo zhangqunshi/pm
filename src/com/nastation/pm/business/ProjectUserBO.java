@@ -76,7 +76,7 @@ public class ProjectUserBO {
 	}
 
 	/**
-	 * ¸ù¾İprojectId»ñµÃprojectUserÀà¼¯ºÏlist
+	 * æ ¹æ®projectIdè·å¾—projectUserç±»é›†åˆlist
 	 * 
 	 * @param projectId
 	 * @return
@@ -116,7 +116,7 @@ public class ProjectUserBO {
 	}
 
 	//
-	// ¸ù¾İÏîÄ¿ID»ñµÃprojectUserÀà¼¯ºÏlist
+	// æ ¹æ®é¡¹ç›®IDè·å¾—projectUserç±»é›†åˆlist
 	public List<ProjectUser> getProjectUser3(int projectId) {
 		List<ProjectUser> projectList = new ArrayList<ProjectUser>();
 
@@ -144,7 +144,7 @@ public class ProjectUserBO {
 
 	}
 
-	// ¸ù¾İÏîÄ¿ºÍ½ÇÉ«IDºÍÓÃ»§id»ñµÃprojectUserÀà
+	// æ ¹æ®é¡¹ç›®å’Œè§’è‰²IDå’Œç”¨æˆ·idè·å¾—projectUserç±»
 	public ProjectUser getProjectUser5(int projectId, int roleId, int userId) {
 		Connection conn = DBConn.getConnection();
 		ProjectUser projectUser = new ProjectUser();
@@ -177,7 +177,7 @@ public class ProjectUserBO {
 	}
 
 	/**
-	 * ¸ù¾İÏîÄ¿IDºÍ½ÇÉ«IDºÍ»ñµÃprojectUserÀàlist¼¯ºÏ
+	 * æ ¹æ®é¡¹ç›®IDå’Œè§’è‰²IDå’Œè·å¾—projectUserç±»listé›†åˆ
 	 */
 	public List<ProjectUser> getProjectUserByProjectIdRoleId(int projectId,
 			int roleId) {
@@ -211,7 +211,7 @@ public class ProjectUserBO {
 
 	}
 
-	// ¸ù¾İÏîÄ¿ºÍ½ÇÉ«IDºÍ»ñµÃnumberÊı
+	// æ ¹æ®é¡¹ç›®å’Œè§’è‰²IDå’Œè·å¾—numberæ•°
 	public int getProjectUser6(int projectId, int roleId) {
 		Connection conn = DBConn.getConnection();
 		int number = 0;
@@ -299,7 +299,7 @@ public class ProjectUserBO {
 	}
 	
 /**
- * É¾³ıËùÓĞÓë´Ë½ÇÉ«ÓĞ¹ØµÄprojectUser
+ * åˆ é™¤æ‰€æœ‰ä¸æ­¤è§’è‰²æœ‰å…³çš„projectUser
  * @param roleId
  */
 	public void deleteAllProjectUser(int roleId) {

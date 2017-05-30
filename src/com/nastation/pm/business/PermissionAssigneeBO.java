@@ -6,14 +6,14 @@ import java.sql.*;
 import com.nastation.pm.bean.*;
 import com.nastation.pm.util.*;
 /**
- * È¨ÏŞ·ÖÅäÒµÎñÂß¼­Àà¡£
+ * æƒé™åˆ†é…ä¸šåŠ¡é€»è¾‘ç±»ã€‚
  * @author sun
  *
  */
 public class PermissionAssigneeBO {
 	
 	/**
-	 * »ñµÃÖ¸¶¨È¨ÏŞÄ£°åÖĞÖ¸¶¨È¨ÏŞµÄ·ÖÅäÁĞ±í¡£
+	 * è·å¾—æŒ‡å®šæƒé™æ¨¡æ¿ä¸­æŒ‡å®šæƒé™çš„åˆ†é…åˆ—è¡¨ã€‚
 	 * @author sun
 	 * @param permissionId,schemeId
 	 */
@@ -48,7 +48,7 @@ public class PermissionAssigneeBO {
 	
 	
 	/**
-	 * Ìí¼ÓÒ»¸öÈ¨ÏŞ·ÖÅä
+	 * æ·»åŠ ä¸€ä¸ªæƒé™åˆ†é…
 	 * @author sun
 	 * @param assignee
 	 */
@@ -72,7 +72,7 @@ public class PermissionAssigneeBO {
 	}
 	
 	/**
-	 * É¾³ıÒ»¸öÈ¨ÏŞ·ÖÅä
+	 * åˆ é™¤ä¸€ä¸ªæƒé™åˆ†é…
 	 * @author sun
 	 * @param id
 	 */
@@ -91,7 +91,7 @@ public class PermissionAssigneeBO {
 		}
 	}
 	/**
-	 * »ñµÃÒ»¸öÈ¨ÏŞ·ÖÅäµÄÏêÏ¸ĞÅÏ¢
+	 * è·å¾—ä¸€ä¸ªæƒé™åˆ†é…çš„è¯¦ç»†ä¿¡æ¯
 	 * @author sun
 	 * @param id
 	 */
@@ -123,7 +123,7 @@ public class PermissionAssigneeBO {
 		return assignee;
 	}
 	/**
-	 * É¾³ıÒ»¸öÄ£°åÏÂµÄËùÓĞÈ¨ÏŞ·ÖÅä¡£
+	 * åˆ é™¤ä¸€ä¸ªæ¨¡æ¿ä¸‹çš„æ‰€æœ‰æƒé™åˆ†é…ã€‚
 	 * @author sun
 	 * @param schemeId
 	 */
@@ -143,7 +143,7 @@ public class PermissionAssigneeBO {
 	}
 	
 	/**
-	 * »ñµÃÖ¸¶¨È¨ÏŞÄ£°åÏÂµÄËùÓĞÈ¨ÏŞ·ÖÅäÁĞ±í
+	 * è·å¾—æŒ‡å®šæƒé™æ¨¡æ¿ä¸‹çš„æ‰€æœ‰æƒé™åˆ†é…åˆ—è¡¨
 	 * @param schemeId
 	 * @author sun
 	 */
@@ -177,7 +177,7 @@ public class PermissionAssigneeBO {
 		return list;
 	}
 	/**
-	 * ÓÃÓÚ¸´ÖÆÄ£°å£¬½«±»¸´ÖÆÄ£°åµÄËùÓĞÈ¨ÏŞ·ÖÅä¼ÇÂ¼²åÈëµ½Êı¾İ¿âÖĞ¡£
+	 * ç”¨äºå¤åˆ¶æ¨¡æ¿ï¼Œå°†è¢«å¤åˆ¶æ¨¡æ¿çš„æ‰€æœ‰æƒé™åˆ†é…è®°å½•æ’å…¥åˆ°æ•°æ®åº“ä¸­ã€‚
 	 * @author sun
 	 * @param list
 	 */
@@ -201,7 +201,7 @@ public class PermissionAssigneeBO {
 		}
 	}
 	/**
-	 * ÅĞ¶ÏÒ»¸öÈ¨ÏŞ·ÖÅäÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­ä¸€ä¸ªæƒé™åˆ†é…æ˜¯å¦å·²ç»å­˜åœ¨
 	 * @author sun
 	 * @param permissionAssignee
 	 */
@@ -230,7 +230,7 @@ public class PermissionAssigneeBO {
 		return flag;
 	}
 	/**
-	 * »ñµÃÖ¸¶¨È¨ÏŞÄ£°åÖĞÖ¸¶¨È¨ÏŞµÄ·ÖÅäÁĞ±í¡£
+	 * è·å¾—æŒ‡å®šæƒé™æ¨¡æ¿ä¸­æŒ‡å®šæƒé™çš„åˆ†é…åˆ—è¡¨ã€‚
 	 * @author liuliehui
 	 * @param schemeId
 	 */
@@ -272,7 +272,7 @@ public class PermissionAssigneeBO {
 		return permissionAssigneeList;
 	}
 	/**
-	 * »ñµÃÖ¸¶¨×éÖĞÖ¸¶¨È¨ÏŞµÄ·ÖÅäÁĞ±íĞÅÏ¢¡£
+	 * è·å¾—æŒ‡å®šç»„ä¸­æŒ‡å®šæƒé™çš„åˆ†é…åˆ—è¡¨ä¿¡æ¯ã€‚
 	 * @author liuliehui
 	 * @param assigneeType ,assignee
 	 */

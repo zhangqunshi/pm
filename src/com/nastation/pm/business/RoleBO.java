@@ -17,7 +17,7 @@ import com.nastation.pm.util.DBConn;
  */
 public class RoleBO {
 	/**
-	 * ´´½¨Ò»¸ö½ÇÉ«
+	 * åˆ›å»ºä¸€ä¸ªè§’è‰²
 	 */
 	public void addRole(Role role) {
 		Connection conn = DBConn.getConnection();
@@ -37,7 +37,7 @@ public class RoleBO {
 	}
 
 	/**
-	 * Í¨¹ıÒ»¸öID»ñµÃ¶ÔÓ¦µÄ½ÇÉ«
+	 * é€šè¿‡ä¸€ä¸ªIDè·å¾—å¯¹åº”çš„è§’è‰²
 	 */
 	public Role getRole(int id) {
 		Role role = new Role();
@@ -62,7 +62,7 @@ public class RoleBO {
 	}
 
 	/**
-	 * ¼ì²éÊÇ·ñ´´½¨ÁËÍ¬Ãû½ÇÉ«
+	 * æ£€æŸ¥æ˜¯å¦åˆ›å»ºäº†åŒåè§’è‰²
 	 */
 	public boolean checkRole(Role role) {
 		boolean flag = false;
@@ -84,7 +84,7 @@ public class RoleBO {
 	}
 
 	/**
-	 * »ñµÃÊı¾İ¿âÖĞËùÓĞµÄ½ÇÉ«ĞÅÏ¢
+	 * è·å¾—æ•°æ®åº“ä¸­æ‰€æœ‰çš„è§’è‰²ä¿¡æ¯
 	 */
 	public List<Role> getRoleList() {
 		List<Role> list = new ArrayList<Role>();
@@ -110,7 +110,7 @@ public class RoleBO {
 	}
 
 	/**
-	 * É¾³ı¶ÔÓ¦IDµÄ½ÇÉ«
+	 * åˆ é™¤å¯¹åº”IDçš„è§’è‰²
 	 */
 	public void deleteRole(int id) {
 		Connection conn = DBConn.getConnection();
@@ -128,7 +128,7 @@ public class RoleBO {
 	}
 
 	/**
-	 * ¸üĞÂ½ÇÉ«
+	 * æ›´æ–°è§’è‰²
 	 */
 	public void updateRole(Role role) {
 		Connection conn = DBConn.getConnection();
@@ -146,7 +146,7 @@ public class RoleBO {
 		}
 	}
 	/**
-	 * ¼ì²éÊÇ·ñ´Ë½ÇÉ«ÓĞ¹ØÁªµÄ¶ÔÏó
+	 * æ£€æŸ¥æ˜¯å¦æ­¤è§’è‰²æœ‰å…³è”çš„å¯¹è±¡
 	 */
 	public boolean checkRoleByLink(int roleId) {
 		Connection conn = DBConn.getConnection();

@@ -8,19 +8,19 @@ package com.nastation.pm.bean;
  */
 public class PermissionAssignee {
 	
-	private int id;// 权限分配ID
-	private int permissionId;// 权限id
+	private int id;// 鏉冮檺鍒嗛厤ID
+	private int permissionId;// 鏉冮檺id
 	private String assigneeType;
 	private String assignee;
-	private int schemeId;// 权限模块id
-	private String createTime;// 权限分配创建时间
-	private String permission;// 权限名字
-	private String permissionDescription; // 权限描述
-	private String permissionTypeName; // 权限类型名字
-	private String permissionDateTime; // 权限创建时间
-	private String schemeName; // 权限模块名字
-	private String schemeDescription; // 权限模块描述
-	private String schemeDateTime;// 权限模块创建时间
+	private int schemeId;// 鏉冮檺妯″潡id
+	private String createTime;// 鏉冮檺鍒嗛厤鍒涘缓鏃堕棿
+	private String permission;// 鏉冮檺鍚嶅瓧
+	private String permissionDescription; // 鏉冮檺鎻忚堪
+	private String permissionTypeName; // 鏉冮檺绫诲瀷鍚嶅瓧
+	private String permissionDateTime; // 鏉冮檺鍒涘缓鏃堕棿
+	private String schemeName; // 鏉冮檺妯″潡鍚嶅瓧
+	private String schemeDescription; // 鏉冮檺妯″潡鎻忚堪
+	private String schemeDateTime;// 鏉冮檺妯″潡鍒涘缓鏃堕棿
 
 	public String getPermissionDescription() {
 		return permissionDescription;

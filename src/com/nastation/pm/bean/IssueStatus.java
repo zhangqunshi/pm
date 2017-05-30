@@ -1,15 +1,15 @@
 package com.nastation.pm.bean;
 
 /**
- * ¹¦ÄÜ£ºIssue ×´Ì¬µÄ·â×°Àà
- * @author ĞíÏ£¹â
+ * åŠŸèƒ½ï¼šIssue çŠ¶æ€çš„å°è£…ç±»
+ * @author è®¸å¸Œå…‰
  *
  */
 public class IssueStatus {
-	private int id;              // ×´Ì¬id
-    private String name;         // ×´Ì¬Ãû³Æ
-    private String description;  //  ×´Ì¬µÄÃèÊö
-    private String iconUrl;      // ×´Ì¬µÄÍ¼±ê
+	private int id;              // çŠ¶æ€id
+    private String name;         // çŠ¶æ€åç§°
+    private String description;  //  çŠ¶æ€çš„æè¿°
+    private String iconUrl;      // çŠ¶æ€çš„å›¾æ ‡
     
 	public int getId() {
 		return id;

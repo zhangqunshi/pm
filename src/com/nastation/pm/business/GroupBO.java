@@ -1,5 +1,5 @@
 /**
- * ¹¦ÄÜ:ÓÃ»§×éµÄÒµÎñÂß¼­Àà
+ * åŠŸèƒ½:ç”¨æˆ·ç»„çš„ä¸šåŠ¡é€»è¾‘ç±»
  * @author liuliehui
  */
 package com.nastation.pm.business;
@@ -19,7 +19,7 @@ import com.nastation.pm.util.*;
 public class GroupBO {
 	
 	/**
-	 * Ìí¼Ó×é
+	 * æ·»åŠ ç»„
 	 */
 	public void addGroup(String groupName){
 		Connection conn = DBConn.getConnection();
@@ -42,8 +42,8 @@ public class GroupBO {
 
 
 	/**
-	 * µÃµ½ËùÓĞÓÃ»§×é
-	 * µÃµ½group¶ÔÏó¼¯ºÏgroupList
+	 * å¾—åˆ°æ‰€æœ‰ç”¨æˆ·ç»„
+	 * å¾—åˆ°groupå¯¹è±¡é›†åˆgroupList
 	 */
 	
 	public List<Group> getViewGroups(){
@@ -78,8 +78,8 @@ public class GroupBO {
 	}
 
 	/**
-	 * ä¯ÀÀËùÓĞÓÃ»§×é
-	 * ²éÑ¯×éÖĞÓÃ»§IDÎªuserIdµÄgroup¶ÔÏó¼¯ºÏgroupList
+	 * æµè§ˆæ‰€æœ‰ç”¨æˆ·ç»„
+	 * æŸ¥è¯¢ç»„ä¸­ç”¨æˆ·IDä¸ºuserIdçš„groupå¯¹è±¡é›†åˆgroupList
 	 */
 	
 	public List<Group> getUserGroupName(int userId){
@@ -114,8 +114,8 @@ public class GroupBO {
 	}
 
 	/**
-	 * µÃµ½ËùÓĞ×éÃûÎªgroupNameÓÃ»§×é
-	 * ²éÑ¯×éÖĞ×éÃûÎªgroupNameµÄgroup¶ÔÏó¼¯ºÏgroupList
+	 * å¾—åˆ°æ‰€æœ‰ç»„åä¸ºgroupNameç”¨æˆ·ç»„
+	 * æŸ¥è¯¢ç»„ä¸­ç»„åä¸ºgroupNameçš„groupå¯¹è±¡é›†åˆgroupList
 	 */
 	
 	public List<Group> getUserGroup(String groupName){
@@ -157,7 +157,7 @@ public class GroupBO {
 	}
 	
 	/**
-	 * ÅĞ¶ÏÓÃ»§×éÊÇ·ñ´æÔÚ;Èç¹û´æÔÚ·µ»Øtrue;·ñÔò·µ»Øfalse;
+	 * åˆ¤æ–­ç”¨æˆ·ç»„æ˜¯å¦å­˜åœ¨;å¦‚æœå­˜åœ¨è¿”å›true;å¦åˆ™è¿”å›false;
 	 * 
 	 */
 	
@@ -184,7 +184,7 @@ public class GroupBO {
 	}
 
 	/**
-	 * µÃµ½×éÃûÎªgroupNameµÄGroup¶ÔÏó
+	 * å¾—åˆ°ç»„åä¸ºgroupNameçš„Groupå¯¹è±¡
 	 *
 	 */
 	
@@ -215,8 +215,8 @@ public class GroupBO {
 	}
 	
 	/**
-	 * µÃµ½×éÃûÎªgroupNameµÄGroup¶ÔÏó
-	 * Õâ¸öĞÅÏ¢±È½ÏÈ«
+	 * å¾—åˆ°ç»„åä¸ºgroupNameçš„Groupå¯¹è±¡
+	 * è¿™ä¸ªä¿¡æ¯æ¯”è¾ƒå…¨
 	 *
 	 */
 	
@@ -256,7 +256,7 @@ public class GroupBO {
 		return group;
 	}
 	/**
-	 * É¾³ı×éIDÎªµÄGroupID×é
+	 * åˆ é™¤ç»„IDä¸ºçš„GroupIDç»„
 	 *
 	 */
 	
@@ -276,8 +276,8 @@ public class GroupBO {
 		}
 	}
 	/**
-	 * ä¯ÀÀËùÓĞÓÃ»§×é
-	 * ²éÑ¯×éÖĞÓÃ»§IDÎª²»ÎªuserIdµÄgroup¶ÔÏó¼¯ºÏgroupList
+	 * æµè§ˆæ‰€æœ‰ç”¨æˆ·ç»„
+	 * æŸ¥è¯¢ç»„ä¸­ç”¨æˆ·IDä¸ºä¸ä¸ºuserIdçš„groupå¯¹è±¡é›†åˆgroupList
 	 */
 	
 	public List<Group> getUserGroupList(int userId){

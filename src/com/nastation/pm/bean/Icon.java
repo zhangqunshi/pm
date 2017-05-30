@@ -5,9 +5,9 @@ package com.nastation.pm.bean;
  *
  */
 public class Icon {
-	private int id;// ±àºÅ
-	private String fileName;//Í¼Æ¬µØÖ·
-	private int iconType;//Í¼Æ¬ÀàĞÍ
+	private int id;// ç¼–å·
+	private String fileName;//å›¾ç‰‡åœ°å€
+	private int iconType;//å›¾ç‰‡ç±»å‹
 
 	public int getId() {
 		return id;
