@@ -3,3 +3,6 @@ CVS
 /.project
 /.classpath
 /WebRoot/WEB-INF/classes
+.idea
+/nbproject/private/
+/build/
