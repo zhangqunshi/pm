@@ -89,7 +89,7 @@
 
 									还没注册?
 									<b><a
-										href="/ProjectManagementSoftware/jsp/addUser.jsp"
+                                                                                href="<%=path%>/jsp/addUser.jsp"
 										id="signup">注册</a> </b> 帐号.
 
 								</td>
