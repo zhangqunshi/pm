@@ -14,10 +14,7 @@ public class Project {
 	private String url; // 项目路径
 	private String leader; // 管理员id
 	private java.util.Date createDate;
-
-	// private int categoryId; //类型id
 	private ProjectCategory categoryId;
-	// private int permissionSchemeId;//该项目使用的权限模板id
 	private PermissionScheme permissionSchemeId;
 
 	public PermissionScheme getPermissionSchemeId() {

@@ -15,7 +15,6 @@ import org.hibernate.cfg.*;
 import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 
-
 /**
  * 
  * @author zhanglei
@@ -26,7 +25,6 @@ public class RoleBO {
 	 * 创建一个角色
 	 */
 
-	
 	public void addRole(Role role) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -34,20 +32,18 @@ public class RoleBO {
 			tx = session.beginTransaction();
 			session.save(role);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
-	
-		
+
 	/**
 	 * 通过一个ID获得对应的角色
 	 */
 
-	
 	public Role getRole(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -56,10 +52,10 @@ public class RoleBO {
 			tx = session.beginTransaction();
 			r2 = session.load(Role.class, id);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return r2;
@@ -91,7 +87,6 @@ public class RoleBO {
 	 * 获得数据库中所有的角色信息
 	 */
 
-	
 	public List<Role> getRoleList() {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -100,21 +95,19 @@ public class RoleBO {
 			tx = session.beginTransaction();
 			r2List = session.createQuery("from Role").list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return r2List;
 	}
-	
 
 	/**
 	 * 删除对应ID的角色
 	 */
 
-	
 	public void deleteRole(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -122,14 +115,13 @@ public class RoleBO {
 			tx = session.beginTransaction();
 			session.delete(session.load(Role.class, id));
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
-	
 
 	/**
 	 * 更新角色
@@ -142,14 +134,14 @@ public class RoleBO {
 			tx = session.beginTransaction();
 			session.update(role);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
-	
+
 	/**
 	 * 检查是否此角色有关联的对象
 	 */
@@ -170,23 +162,5 @@ public class RoleBO {
 		}
 		return false;
 	}
-	
-	
-	
-	public static void main(String[] args) {
-		RoleBO rBO = new RoleBO();
-		Role r2 = rBO.getRole(4);
-		System.out.println(r2.getRoleName());
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

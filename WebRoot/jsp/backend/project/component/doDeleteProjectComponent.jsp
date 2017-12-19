@@ -6,7 +6,7 @@
 	ProjectComponentBO pb = new ProjectComponentBO();
 	String mkd = request.getParameter("idd");
 	int pi = Integer.parseInt(mkd);
-	System.out.println("========1========11=========" + pi);	
+	System.out.println("========1========11=========" + pi);
 	pb.deleteProjectComponent(pi);
 %>
-<jsp:forward page="../viewProjectDetail.jsp"/>
+<jsp:forward page="../viewProjectDetail.jsp" />

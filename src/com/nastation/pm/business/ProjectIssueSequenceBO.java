@@ -18,15 +18,13 @@ public class ProjectIssueSequenceBO {
 	 * 删除所有项目模块
 	 */
 
-	
-
 	public void deleteAllProjectIssueSequence(int projectId) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			session.createQuery("delete from ProjectIssueSequence as p where p.projectId.id=:id").setInteger("id", projectId)
-						.executeUpdate();
+			session.createQuery("delete from ProjectIssueSequence as p where p.projectId.id=:id")
+					.setInteger("id", projectId).executeUpdate();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null)
@@ -39,8 +37,6 @@ public class ProjectIssueSequenceBO {
 	/**
 	 * 判断t_project_user表里是否存在projectId 如果存在就返回true，反之则返回false
 	 */
-
-	
 
 	public boolean checkProjectLinkProjectIssueSequence(int projectId) {
 		boolean flag = false;
@@ -62,15 +58,6 @@ public class ProjectIssueSequenceBO {
 			session.close();
 		}
 		return flag;
-	}
-
-	public static void main(String[] args) {
-		
-		ProjectIssueSequenceBO pBO = new ProjectIssueSequenceBO();
-//		boolean bl = pBO.checkProjectLinkProjectIssueSequence(10);
-//		System.out.println(bl+"--------存在----------");
-		pBO.deleteAllProjectIssueSequence(10);
-		
 	}
 
 }

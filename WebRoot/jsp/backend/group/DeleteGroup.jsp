@@ -12,25 +12,25 @@
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 
 <html>
-	<head>
-	</head>
-	<body>
-		<%
-			String groupName = request.getParameter("groupName");
-			if (StringUtils.isBlank(groupName)) {
-				System.out.println("=============groupNaem is null=======");
-				return;
-			}
-			GroupBO groupBO = new GroupBO();
-			GroupUserBO groupUserBO = new GroupUserBO();
-			
-			Group moveGroup = groupBO.getGroupInformation(groupName);
-			
-			if(groupUserBO.groupUserExit(moveGroup.getId())){
-			   groupUserBO.deleteGroupUser(moveGroup.getId());
-			}
-			groupBO.deleteGroup(moveGroup.getId());
-			response.sendRedirect("GroupBrowser.jsp");
-		%>
-	</body>
+<head>
+</head>
+<body>
+	<%
+		String groupName = request.getParameter("groupName");
+		if (StringUtils.isBlank(groupName)) {
+			System.out.println("=============groupNaem is null=======");
+			return;
+		}
+		GroupBO groupBO = new GroupBO();
+		GroupUserBO groupUserBO = new GroupUserBO();
+
+		Group moveGroup = groupBO.getGroupInformation(groupName);
+
+		if (groupUserBO.groupUserExit(moveGroup.getId())) {
+			groupUserBO.deleteGroupUser(moveGroup.getId());
+		}
+		groupBO.deleteGroup(moveGroup.getId());
+		response.sendRedirect("GroupBrowser.jsp");
+	%>
+</body>
 </html>

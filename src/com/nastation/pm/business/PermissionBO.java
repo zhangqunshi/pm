@@ -16,6 +16,23 @@ import com.nastation.pm.util.*;
  */
 		
 public class PermissionBO {
+	
+	public Permission idGetPermission(int id) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		Permission p = null;
+		try {
+			tx = session.beginTransaction();
+			p = session.load(Permission.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
+		}
+		return p;
+	}
     
 	/**
 	 * get all permission 

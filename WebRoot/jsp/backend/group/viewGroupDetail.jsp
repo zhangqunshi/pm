@@ -11,73 +11,73 @@
 <%@ page import="java.util.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <html>
-	<head>
-	</head>
+<head>
+</head>
 
-	<body>
+<body>
 	<%
-	   String groupName = request.getParameter("groupName");
-	   if(StringUtils.isBlank(groupName)){
-	       System.out.println("=============groupNaem is null=======");
-	       return ;
-	   }
-	  GroupBO groupBO = new GroupBO();
-	  Group groupInformation = groupBO.getGroupInformation(groupName);
-	  
-	  
-	 %>
-		<table cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-			<tbody>
-				<tr>
-					<td>
-						<table class="simpleform maxWidth">
-							<tbody>
-								<tr bgcolor="#dddddd">
-									<td class="simpleformheader" >
-										<h3 class="formtitle">
-											Group: <%=groupName %>
-										</h3>
-									</td>
-								</tr>
-								<tr>
-									<td class="simpleformbody">
-										<p>
-											<b>Group Name</b> <%=groupName %>
-											<br />
-											<b>Users: </b> <%=groupInformation.getUserCount() %>
-											<font size="1"> ( <a
-												href="../user/viewUser.jsp?group=<%=groupName %>">查看</a> | <a
-												id="edit_members_of_ghg"
-												href="BulkEditUserGroups!default.jsp?groupName=<%=groupName %>">Edit
-													Members</a> ) </font>
-											<br />
-											<br />
-											<b>Permission Schemes:</b>
-											<br />
-											<%
+		String groupName = request.getParameter("groupName");
+		if (StringUtils.isBlank(groupName)) {
+			System.out.println("=============groupNaem is null=======");
+			return;
+		}
+		GroupBO groupBO = new GroupBO();
+		Group groupInformation = groupBO.getGroupInformation(groupName);
+	%>
+	<table cellspacing="0" cellpadding="0" border="0" width="100%"
+		style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
+		<tbody>
+			<tr>
+				<td>
+					<table class="simpleform maxWidth">
+						<tbody>
+							<tr bgcolor="#dddddd">
+								<td class="simpleformheader">
+									<h3 class="formtitle">
+										Group:
+										<%=groupName%>
+									</h3>
+								</td>
+							</tr>
+							<tr>
+								<td class="simpleformbody">
+									<p>
+										<b>Group Name</b>
+										<%=groupName%>
+										<br /> <b>Users: </b>
+										<%=groupInformation.getUserCount()%>
+										<font size="1"> ( <a
+											href="../user/viewUser.jsp?group=<%=groupName%>">查看</a> | <a
+											id="edit_members_of_ghg"
+											href="BulkEditUserGroups!default.jsp?groupName=<%=groupName%>">Edit
+												Members</a> )
+										</font> <br /> <br /> <b>Permission Schemes:</b> <br />
+										<%
 											PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
-			                                List<PermissionScheme> PermissionSchemeList = permissionSchemeBO.getPermissionSchemeList("Group",groupName);
-											if(PermissionSchemeList == null || PermissionSchemeList.size() == 0){
-											   out.println("<img height='8' border='0' align='absmiddle' width='8'"
-											   +"src='"+request.getContextPath()+"/images/icons/bullet_blue.gif ' / >"
-											   +" There are no <b>Permission Schemes</b> associated with this Group.<br />");
-											}else{
-											   for(int i = 0;i < PermissionSchemeList.size();i++){
-												   PermissionScheme permissionScheme = PermissionSchemeList.get(i);
-												   out.println("<img height='8' border='0' align='absmiddle' width='8' src='"+request.getContextPath()
-					                               +"/images/icons/bullet_blue.gif'/ > <a href='"+request.getContextPath()+"/jsp/backend/permission/editPermissions.jsp?"
-					                               +"schemeId="+permissionScheme.getId()+"'>"+permissionScheme.getName()+"</a><br/>");
-											   }
-										   }
-										   %>
-										</p>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</body>
+											List<PermissionScheme> PermissionSchemeList = permissionSchemeBO.getPermissionSchemeList("Group",
+													groupName);
+											if (PermissionSchemeList == null || PermissionSchemeList.size() == 0) {
+												out.println("<img height='8' border='0' align='absmiddle' width='8'" + "src='"
+														+ request.getContextPath() + "/images/icons/bullet_blue.gif ' / >"
+														+ " There are no <b>Permission Schemes</b> associated with this Group.<br />");
+											} else {
+												for (int i = 0; i < PermissionSchemeList.size(); i++) {
+													PermissionScheme permissionScheme = PermissionSchemeList.get(i);
+													out.println("<img height='8' border='0' align='absmiddle' width='8' src='"
+															+ request.getContextPath() + "/images/icons/bullet_blue.gif'/ > <a href='"
+															+ request.getContextPath() + "/jsp/backend/permission/editPermissions.jsp?" + "schemeId="
+															+ permissionScheme.getId() + "'>" + permissionScheme.getName() + "</a><br/>");
+												}
+											}
+										%>
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
 </html>

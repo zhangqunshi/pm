@@ -54,8 +54,15 @@
 	IssueFilter filter = (IssueFilter)session.getAttribute(Global.SESSION_FILTER);
 	filter.setFilterName(newName);
 	filter.setDescription(description);
+	SearchRequest sr = new SearchRequest();
+	sr.setId(filter.getId());
+	sr.setAuthorName(filter.getAuthorName());
+	sr.setDescription(filter.getDescription());
+	sr.setFilterName(filter.getFilterName());
+	sr.setProjectId(filter.getProjectId());
+	sr.setRequest_content(filter.getRequestContent());
 	
-	filterBO.updateFilterBasicInfo(filter);
+	filterBO.updateFilterBasicInfo(sr);
 	
 	session.setAttribute(Global.SESSION_FILTER, filter);
 %>

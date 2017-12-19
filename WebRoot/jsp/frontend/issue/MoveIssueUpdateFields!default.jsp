@@ -246,7 +246,6 @@
 		issue.setIssueTypeId(issueType);
 		issue.setIssueTypeName(issueType.getName());   
 		System.out.println("===============issue==="+issue);
-		//request.setAttribute("moveIssue",issue);
         session.setAttribute("moveIssue",issue);
    %>
 	</body>

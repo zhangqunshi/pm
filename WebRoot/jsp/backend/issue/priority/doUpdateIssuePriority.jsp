@@ -45,8 +45,7 @@
 	}
 
 	IssuePriorityBO issuePriorityBO = new IssuePriorityBO();
-	IssuePriority issuePriority = issuePriorityBO
-			.getIssuePriority(issuePriorityId);
+	IssuePriority issuePriority = issuePriorityBO.getIssuePriority(issuePriorityId);
 	issuePriority.setName(name);
 	issuePriority.setDescription(description);
 	issuePriority.setPriorityColor(color);

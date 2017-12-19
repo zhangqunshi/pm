@@ -20,16 +20,15 @@
 	System.out.println("===id===" + id);
 	ProjectComponentBO pcbo = new ProjectComponentBO();
 	ProjectComponent pc = new ProjectComponent();
-	ProjectBO pBO = new ProjectBO();  //修改
+	ProjectBO pBO = new ProjectBO();
 	UserBO userbo = new UserBO();
 	User user = new User();
 	String CreateDate = StringUtils.toString(new java.util.Date());
-	
-	pc.setProjectId(pBO.getProject(id));  //修改
+
+	pc.setProjectId(pBO.getProject(id));
 	pc.setName(name);
 	pc.setDescription(description);
 	pc.setLeaderId(leader);
-	//pc.setCreateDate(CreateDate);   //修改
 	System.out.println("===leader===" + leader);
 	if (!pcbo.checkProjectComponent(pc)) {
 		String error = "A component with the name fd already exists in this project.";

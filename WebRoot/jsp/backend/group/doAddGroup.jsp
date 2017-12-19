@@ -8,22 +8,22 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.util.*"%>
-<%@taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-	
-<%
-  String addNameStr = request.getParameter("groupName"); 
-	System.out.println(addNameStr+"----组名-----------");
-  GroupBO groupBO = new GroupBO();
-  if(StringUtils.isBlank(addNameStr)){
-        System.out.println("===================addNameStr is null=======");
-        response.sendRedirect("GroupBrowser.jsp?exitName=group name cann't null ");
-        return;
-  }else if(groupBO.groupNameExit(addNameStr)){
-      response.sendRedirect("GroupBrowser.jsp?exitName=A group or user with this name already exists. ");
-      return;
-  }
-  groupBO.addGroup(addNameStr);
-  System.out.println("===================add  group success======");
+<%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 
-  response.sendRedirect("GroupBrowser.jsp");
-%>	
+<%
+	String addNameStr = request.getParameter("groupName");
+	System.out.println(addNameStr + "----组名-----------");
+	GroupBO groupBO = new GroupBO();
+	if (StringUtils.isBlank(addNameStr)) {
+		System.out.println("===================addNameStr is null=======");
+		response.sendRedirect("GroupBrowser.jsp?exitName=group name cann't null ");
+		return;
+	} else if (groupBO.groupNameExit(addNameStr)) {
+		response.sendRedirect("GroupBrowser.jsp?exitName=A group or user with this name already exists. ");
+		return;
+	}
+	groupBO.addGroup(addNameStr);
+	System.out.println("===================add  group success======");
+
+	response.sendRedirect("GroupBrowser.jsp");
+%>

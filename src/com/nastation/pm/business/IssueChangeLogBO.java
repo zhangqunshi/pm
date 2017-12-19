@@ -19,13 +19,12 @@ import org.hibernate.cfg.*;
 import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 
-
 public class IssueChangeLogBO {
 
 	/**
 	 * 保存问题改编log
 	 * 
-	 * */
+	 */
 	public void addIssueChangeLog(IssueChangeLog issueChangeLog) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -33,19 +32,19 @@ public class IssueChangeLogBO {
 			tx = session.beginTransaction();
 			session.save(issueChangeLog);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * 通过id获取对象
 	 * 
-	 * */
+	 */
 	public IssueChangeLog getIssueChangeLog(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -54,16 +53,14 @@ public class IssueChangeLogBO {
 			tx = session.beginTransaction();
 			i = session.load(IssueChangeLog.class, id);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return i;
 	}
-	
-
 
 	public List getIssueChangeLogList(int id) {
 		Session session = SessionF.sessionFactory.openSession();
@@ -71,25 +68,22 @@ public class IssueChangeLogBO {
 		List l = new ArrayList();
 		try {
 			tx = session.beginTransaction();
-			l = session.createQuery("from IssueChangeLog as i where i.issueId.id=:id")
-					.setInteger("id", id).list();
+			l = session.createQuery("from IssueChangeLog as i where i.issueId.id=:id").setInteger("id", id).list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return l;
 	}
-	
 
 	public void checkIfAdd(Issuehb old, Issuehb new1) {
 		if (!(old.getAssigneeId() == new1.getAssigneeId())) {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("AssigneeId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
 			log.setIssueId(old);
 			log.setNewValue("" + new1.getAssigneeId());
 			log.setOldValue("" + old.getAssigneeId());
@@ -99,7 +93,6 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("ComponentId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
 			log.setIssueId(old);
 			log.setNewValue("" + new1.getComponentId());
 			log.setOldValue("" + old.getComponentId());
@@ -109,7 +102,6 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("Description");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
 			log.setIssueId(old);
 			log.setNewValue(new1.getDescription());
 			log.setOldValue(old.getDescription());
@@ -120,7 +112,7 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("Environment");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
+
 			log.setIssueId(old);
 			log.setNewValue(new1.getEnvironment());
 			log.setOldValue(old.getEnvironment());
@@ -130,18 +122,17 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("Status");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
+
 			log.setIssueId(old);
 			log.setNewValue("" + new1.getIssueStatus());
 			log.setOldValue("" + old.getIssueStatus());
 			this.addIssueChangeLog(log);
 		}
-
 		if (!(old.getIssueTypeId() == new1.getIssueTypeId())) {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("IssueTypeId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
+
 			log.setIssueId(old);
 			log.setNewValue("" + new1.getIssueTypeId());
 			log.setOldValue("" + old.getIssueTypeId());
@@ -151,7 +142,6 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("IssueName");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
 			log.setIssueId(old);
 			log.setNewValue(new1.getName());
 			log.setOldValue(old.getName());
@@ -162,7 +152,6 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("PlanEndTime");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
 			log.setIssueId(old);
 			log.setNewValue(StringUtils.toString(new1.getPlanEndTime()));
 			log.setOldValue(StringUtils.toString(old.getPlanEndTime()));
@@ -172,7 +161,6 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("PriorityLevelId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
 			log.setIssueId(old);
 			log.setNewValue("" + new1.getPriorityLevelId());
 			log.setOldValue("" + old.getPriorityLevelId());
@@ -183,7 +171,6 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("ReporterId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			//log.setCreateDate(createDate);
 			log.setIssueId(old);
 			log.setNewValue("" + new1.getReporterId());
 			log.setOldValue("" + old.getReporterId());

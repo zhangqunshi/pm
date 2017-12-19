@@ -36,7 +36,7 @@
 	}
 	    Comment c = new Comment();
 		c.setCommentContent(StringUtils.removeHtmlTag(commentContent));
-		c.setIssueId(Integer.parseInt(issueId));
+		c.setIssueId(new IssueBO().getIssue(Integer.parseInt(issueId)));
 		c.setAuthor(author.getName());
 		
 		CommentBO bo = new CommentBO();		
