@@ -12,8 +12,15 @@ import java.util.List;
 
 import com.nastation.pm.bean.FilterSummary;
 import com.nastation.pm.bean.IssueFilter;
+import com.nastation.pm.bean.SearchRequest;
+
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.StringUtils;
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
 
 /**
  * 创建一个过滤器的逻辑业务类
@@ -27,26 +34,20 @@ public class IssueFilterBO {
 	 * 
 	 * @param comment
 	 */
-	public void addFilter(IssueFilter filter) {
-		Connection conn = DBConn.getConnection();
-		String sql = "insert into t_search_request(filter_name,author_name,description,project_id,request_content) values(?,?,?,?,?)";
-		System.out.println("=21=Sql==" + sql);
+
+	
+	public void addFilter(SearchRequest filter) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, filter.getFilterName());
-			psmt.setString(2, filter.getAuthorName());
-			psmt.setString(3, filter.getDescription());
-			if (filter.getProjectId() == 0) {
-				psmt.setNull(4, Types.NULL);
-			} else {
-				psmt.setInt(4, filter.getProjectId());
-			}
-			psmt.setString(5, filter.getRequestContent());
-			psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.save(filter);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -85,18 +86,20 @@ public class IssueFilterBO {
 	 * 
 	 * @param id
 	 */
+
+	
 	public void deleteFilter(int id) {
-		Connection conn = DBConn.getConnection();
-		String sql = "delete from t_search_request where id=?";
-		System.out.println("=21=Sql==" + sql);
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, id);
-			psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.delete(session.load(SearchRequest.class, id));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -170,20 +173,20 @@ public class IssueFilterBO {
 	 * 
 	 * @param filter
 	 */
-	public void updateFilterBasicInfo(IssueFilter filter) {
-		Connection conn = DBConn.getConnection();
-		String sql = "update t_search_request set filter_name=?,description=? where id=?";
-		System.out.println("==176====sql==" + sql);
+
+	
+	public void updateFilterBasicInfo(SearchRequest filter) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, filter.getFilterName());
-			psmt.setString(2, filter.getDescription());
-			psmt.setInt(3, filter.getId());
-			psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(filter);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -192,85 +195,69 @@ public class IssueFilterBO {
 	 * 
 	 * @param comment
 	 */
+
+	
 	public List getFilterList() {
-		Connection conn = DBConn.getConnection();
-		List list = new ArrayList();
-		String sql = "select * from t_search_request";
-		System.out.println("=21=Sql==" + sql);
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List l = null;
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			ResultSet rs = psmt.executeQuery();
-			while (rs.next()) {
-				IssueFilter filter = new IssueFilter();
-				filter.setId(rs.getInt(1));
-				filter.setFilterName(rs.getString(2));
-				filter.setAuthorName(rs.getString(3));
-				filter.setDescription(rs.getString(4));
-				filter.setProjectId(rs.getInt(5));
-				filter.setRequestContent(rs.getString(6));
-				list.add(filter);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			l = session.createQuery("from SearchRequest").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
 
+	/**
+	 * 
+	 * 
+	 * 
+	 * */
+	
 	public List getFiltersByUser(String username) {
-		Connection conn = DBConn.getConnection();
-		List list = new ArrayList();
-		String sql = "select * from t_search_request where author_name=?";
-		System.out.println("=21=Sql==" + sql);
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List l = null;
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, username);
-			ResultSet rs = psmt.executeQuery();
-			while (rs.next()) {
-				IssueFilter filter = new IssueFilter();
-				filter.setId(rs.getInt("id"));
-				filter.setFilterName(rs.getString("filter_name"));
-				filter.setAuthorName(rs.getString("author_name"));
-				filter.setDescription(rs.getString("description"));
-				filter.setProjectId(rs.getInt("project_id"));
-				filter.setRequestContent(rs.getString("request_content"));
-				list.add(filter);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			l = session.createQuery("from SearchRequest as s where s.authorName=:name").setString("name", username).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
 
+
+	/**
+	 * 名字和项目ID获取搜索请求集合
+	 * 
+	 * */
 	public List getFilterByUserAndProject(String username, int projectId) {
-		Connection conn = DBConn.getConnection();
-		List list = new ArrayList();
-		String sql = "select * from t_search_request where author_name=? and project_id=?";
-		System.out.println("=21=Sql==" + sql);
-		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, username);
-			psmt.setInt(2, projectId);
-			ResultSet rs = psmt.executeQuery();
-			while (rs.next()) {
-				IssueFilter filter = new IssueFilter();
-				filter.setId(rs.getInt("id"));
-				filter.setFilterName(rs.getString("filter_name"));
-				filter.setAuthorName(rs.getString("author_name"));
-				filter.setDescription(rs.getString("description"));
-				filter.setProjectId(rs.getInt("project_id"));
-				filter.setRequestContent(rs.getString("request_content"));
-				list.add(filter);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List l = null;
+		try {  
+			tx = session.beginTransaction();
+			l = session.createQuery("from SearchRequest as s where s.authorName=:name and s.projectId=:id")
+				.setString("name", username).setInteger("id", projectId).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
 
 	/**
@@ -278,24 +265,26 @@ public class IssueFilterBO {
 	 * 
 	 * @param comment
 	 */
+
+	
 	public boolean checkFilterName(String filterName) {
 		if (StringUtils.isBlank(filterName)) {
 			return true;
 		}
-		Connection conn = DBConn.getConnection();
-		String sql = "select id from t_search_request where filter_name=?";
-		System.out.println("=21=Sql==" + sql + ", filterName=" + filterName);
+				Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, filterName);
-			ResultSet rs = psmt.executeQuery();
-			if (rs.next()) {
+			tx = session.beginTransaction();
+			SearchRequest s = (SearchRequest)session.createQuery("from SearchRequest as s where s.filterName=:name").setString("name", filterName).setMaxResults(1).uniqueResult();
+			if(s != null) {
 				return true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			} 
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 		return false;
 	}

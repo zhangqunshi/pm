@@ -30,25 +30,27 @@
 
 			//通过issueKey获得issue对象 
 			IssueBO issueBo = new IssueBO();
-			Issue issue = issueBo.getIssueByKey(moveIssueKey);
+			Issue issueW = new Issue();
+			Issuehb issue = issueBo.getIssueByKey(moveIssueKey);
 
 			//获得project对象和project对象集合projectList
 			ProjectBO projectBo = new ProjectBO();
-			Project project = projectBo.getProject(issue.getProjectId());
+			//Project project = projectBo.getProject(issue.getProjectId());
+			Project project = issue.getProjectId();  //xxx
 			List projectList = projectBo.getProjectList();
 
 			//获得IssueType对象和IssueType集合issueTypeList
 			IssueTypeBO issueTypeBo = new IssueTypeBO();
-			IssueType issueType = issueTypeBo.getIssueType(issue
-					.getIssueTypeId());
+			IssueType issueType = issue.getIssueTypeId();
+					
 			List issueTypeList = issueTypeBo.getIssueTypeList();
 
 			//获得projectCategory对象
 			IssueStatusBO issueStatusBo = new IssueStatusBO();
-			IssueStatus issueStatus = issueStatusBo.getIssueStatus(issue
-					.getIssueStatus());
-
-			issue.setIssueStatusName(issueStatus.getName());
+			IssueStatus issueStatus = issue.getIssueStatus();
+					
+  
+			issue.setIssueStatusName(issueStatus.getName()); //xxx
 		%>
 		<form action="MoveIssueUpdateFields!default.jsp">
 			<table cellspacing="0" cellpadding="0" border="0" width="100%">

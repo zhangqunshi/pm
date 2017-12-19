@@ -11,6 +11,11 @@ import com.nastation.pm.bean.Comment;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.StringUtils;
 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
 /**
  * 备注的业务逻辑类
  * 
@@ -23,127 +28,114 @@ public class CommentBO {
 	 * 
 	 * @param comment
 	 */
-	public void addComment(Comment comment) {
-		Connection conn = DBConn.getConnection();
-		String sql = "insert into t_comment(comment_content,author,issue_id,create_date) values(?,?,?,?)";
-		System.out.println("=33=Sql==" + sql);
-		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			System.out.println("=36==");
-			psmt.setString(1, comment.getCommentContent());
-			psmt.setString(2, comment.getAuthor());
-			psmt.setInt(3, comment.getIssueId());
-			psmt.setString(4, StringUtils.getCurrDate());
-			psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
 
+	
+	public void addComment(Comment comment) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.save(comment);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
+		}
 	}
+	
 	/**
 	 * 获得一个备注信息
 	 * 
 	 * @param comment
 	 */
-	public Comment getComment(int commentId) throws SQLException {
-		Comment comm = new Comment();
-		Connection conn = DBConn.getConnection();
+
+	public Comment getComment(int commentId) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		Comment c = new Comment();
 		try {
-			String sql = "select * from t_comment where id=?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, commentId);
-			System.out.println("=51==sql2===" + sql);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				comm.setId(rs.getInt("id"));
-				comm.setCommentContent(rs.getString("comment_content"));
-				comm.setAuthor(rs.getString("author"));
-				comm.setIssueId(rs.getInt("issue_id"));
-				comm.setCreateDate(rs.getString("create_date"));
-			}
-			rs.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			c =session.load(Comment.class, commentId);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return comm;
+		return c;
 	}
+	
+	
+	
 	/**
 	 * 用issue的ID得到一个Comment对象集合
 	 * 
 	 * @param comment
 	 */
-	public List<Comment> getCommentLists(int issueId) throws SQLException {
-		ArrayList<Comment> commlist = new ArrayList<Comment>();
-		Connection conn = DBConn.getConnection();
+
+	public List<Comment> getCommentLists(int issueId) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Comment> cs = new ArrayList<>();
+		
 		try {
-			String sql = "select * from t_comment where issue_id=? order by id asc";
-			System.out.println("=51==sql2===" + sql);
-
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, issueId);
-
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				Comment comm = new Comment();
-				comm.setId(rs.getInt("id"));
-				comm.setCommentContent(rs.getString("comment_content"));
-				comm.setAuthor(rs.getString("author"));
-				comm.setIssueId(rs.getInt("issue_id"));
-				comm.setCreateDate(rs.getString("create_date"));
-				commlist.add(comm);
-			}
-			rs.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			cs = session.createQuery("from Comment as c where c.issueId.id=:id")
+					.setInteger("id", issueId).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return commlist;
+		return cs;
 	}
+	
+	
 	/**
 	 * 更新一条备注信息
 	 * 
 	 * @param comment
 	 */
-	public void updateComment(Comment comment) throws SQLException { 
-		Connection conn = DBConn.getConnection();
+
+	public void updateComment(Comment comment) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "update t_comment set comment_content=? where id= ?";
-			System.out.println("=========121==sql====" + sql);
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, comment.getCommentContent());
-			stmt.setInt(2, comment.getId());
-			stmt.executeUpdate();
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(comment);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	  
 	/**
 	 * 删除一条备注
 	 * 
 	 * @param comment
 	 */
-	public void deleteComment(int commentId) throws SQLException { 
-		Connection conn = DBConn.getConnection();
+
+	
+	public void deleteComment(int commentId) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_comment where id=?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, commentId);
-			System.out.println("==========131====sql=" + sql);
-			stmt.executeUpdate();
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.delete(session.load(Comment.class, commentId));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 

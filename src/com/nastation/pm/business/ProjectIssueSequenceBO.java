@@ -5,6 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.nastation.pm.util.DBConn;
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+
+import com.nastation.pm.bean.ProjectIssueSequence;
+import com.nastation.pm.util.*;
 
 public class ProjectIssueSequenceBO {
 
@@ -12,17 +18,21 @@ public class ProjectIssueSequenceBO {
 	 * 删除所有项目模块
 	 */
 
+	
+
 	public void deleteAllProjectIssueSequence(int projectId) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_project_issue_sequence where project_id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, projectId);
-			ps.executeUpdate();
+			tx = session.beginTransaction();
+			session.createQuery("delete from ProjectIssueSequence as p where p.projectId.id=:id").setInteger("id", projectId)
+						.executeUpdate();
+			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
 	}
 
@@ -30,23 +40,37 @@ public class ProjectIssueSequenceBO {
 	 * 判断t_project_user表里是否存在projectId 如果存在就返回true，反之则返回false
 	 */
 
-	public boolean checkProjectLinkProjectIssueSequence(int projectId) {
-		Connection conn = DBConn.getConnection();
-		boolean b = false;
-		try {
-			String sql = "select * from t_project_issue_sequence where project_id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, projectId);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				b = true;
-			}
+	
 
+	public boolean checkProjectLinkProjectIssueSequence(int projectId) {
+		boolean flag = false;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			ProjectIssueSequence p = (ProjectIssueSequence) session
+					.createQuery("from ProjectIssueSequence as p where p.projectId.id=:id").setInteger("id", projectId)
+					.setMaxResults(1).uniqueResult();
+			if (p != null) {
+				flag = true;
+			}
+			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
-		return b;
+		return flag;
 	}
+
+	public static void main(String[] args) {
+		
+		ProjectIssueSequenceBO pBO = new ProjectIssueSequenceBO();
+//		boolean bl = pBO.checkProjectLinkProjectIssueSequence(10);
+//		System.out.println(bl+"--------存在----------");
+		pBO.deleteAllProjectIssueSequence(10);
+		
+	}
+
 }

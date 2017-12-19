@@ -22,7 +22,7 @@ a new component
 <%
 	ProjectComponentBO pcbo = new ProjectComponentBO();
 	List<ProjectComponent> componentList = new ArrayList<ProjectComponent>();
-	componentList = pcbo.getProjectComponentList(pid2);
+	componentList = pcbo.getProjectComponentList(pid2);  
 	if (componentList.size() == 0) {
 		out.println("There are no components at the moment.");
 	} else {
@@ -52,14 +52,14 @@ a new component
 						out.println(" ");
 					} else {
 						out.println("(负责人: </b>" + pc.getLeaderId() + "<b>)");
-					}
+					}  
 					out.println("</b> </td>");
 					out
-							.println("<td><a href='/ProjectManagementSoftware/jsp/backend/project/component/deleteProjectComponent.jsp?idd="
+							.println("<td><a href='/pm/jsp/backend/project/component/deleteProjectComponent.jsp?idd="
 									+ pc.getId()
 									+ "&id="
 									+ id
-									+ "'>(删除</a>|<a href='/ProjectManagementSoftware/jsp/backend/project/component/updateProjectComponent.jsp?idd="
+									+ "'>(删除</a>|<a href='/pm/jsp/backend/project/component/updateProjectComponent.jsp?idd="
 									+ pc.getId()
 									+ "&id="
 									+ id

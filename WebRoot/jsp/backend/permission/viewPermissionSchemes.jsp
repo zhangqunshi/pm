@@ -6,7 +6,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
-<%@ page import="java.util.List"%>
+<%@ page import="java.util.*"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -90,7 +90,7 @@
 									<td nowrap="" valign="top">
 
 										<%
-											List<Project> list = scheme.getProjectList();
+											Set<Project> list = scheme.getProjectList();
 
 													for (Project project : list) {
 										%>

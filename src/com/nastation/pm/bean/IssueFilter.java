@@ -25,7 +25,7 @@ public class IssueFilter {
 	public static final String createdbefore = "创建..之前";
 	public static final String duedateafter = "逾期..之后";
 	public static final String duedatebefore = "逾期..之前";
-
+	
 	private String filterName;
 	private int id;
 	private String authorName;

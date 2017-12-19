@@ -57,7 +57,7 @@
 					out.println("<tr><td align='left'><b>E-mail: </b><a href='#'>"
 							+ user.getEmail() + "</a></td></tr>");
 					out.println("<tr><td align='left'><b>创建时间: </b>"
-							+ user.getCreateDate() + "</td></tr>");
+							+ user.getCreateDate() + "</td></tr>");  
 				%>
 				<tr>
 					<td align="left" valign="top">

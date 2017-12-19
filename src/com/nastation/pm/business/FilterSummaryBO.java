@@ -12,6 +12,11 @@ import java.util.List;
 import com.nastation.pm.bean.FilterSummary;
 import com.nastation.pm.util.DBConn;
 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
 /**
  * 写一个过滤器概要的逻辑类
  * 
@@ -34,7 +39,7 @@ public class FilterSummaryBO {
 		System.out.println("=33=Sql==" + summarys);
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);
-
+			
 			Iterator<String> it = summarys.keySet().iterator();
 			while (it.hasNext()) {
 				String key = it.next();
@@ -57,28 +62,23 @@ public class FilterSummaryBO {
 	 * 
 	 * @param comment
 	 */
+
+	
+	
 	public List getFilterSummaryList(int requestId) {
-		Connection conn = DBConn.getConnection();
-		String sql = "select * from t_filter_summary where request_id=?";
-		System.out.println("=33=Sql==" + sql);
-		List list = new ArrayList();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List l = null;
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, requestId);
-			ResultSet rs = psmt.executeQuery();
-			while (rs.next()) {
-				FilterSummary summary = new FilterSummary();
-				summary.setId(rs.getInt(1));
-				summary.setRequestId(rs.getInt(2));
-				summary.setFilterSummaryKey(rs.getString(3));
-				summary.setFilterSummaryValue(rs.getString(4));
-				list.add(summary);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			l = session.createQuery("from FilterSummary as f where f.requestId.id=:id").setInteger("id", requestId).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
 }

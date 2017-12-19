@@ -21,19 +21,19 @@
 	
 	//获得复制前的任务对象
 	IssueBO bo = new IssueBO();
-	Issue oldIssue = bo.getIssue(Integer.parseInt(issueId));
+	Issuehb oldIssue = bo.getIssue(Integer.parseInt(issueId));
 	
 	//生成复制后的任务对象
 	
 	ProjectBO projectBO = new ProjectBO();
-	int nextId = projectBO.getProjectIssueMaxId(oldIssue.getProjectId());
-	Project project = projectBO.getProject(oldIssue.getProjectId());
+	int nextId = projectBO.getProjectIssueMaxId(oldIssue.getProjectId().getProjectId()); //改
+	Project project = projectBO.getProject(oldIssue.getProjectId().getProjectId()); //改
 	String projectKey = project.getProjectKey();
 	String newIssueKey = projectKey + "-" + nextId;
 	System.out.println("===newIssueKey===="	+ newIssueKey);
-	String currDate = StringUtils.getCurrDate();
+	//String currDate = StringUtils.getCurrDate();  //改
 	
-	Issue newIssue = new Issue();
+	Issuehb newIssue = new Issuehb();
 	newIssue.setIssueTypeId(oldIssue.getIssueTypeId());
 	newIssue.setName(issueName);
 	newIssue.setPriorityLevelId(oldIssue.getPriorityLevelId());
@@ -44,8 +44,8 @@
 	newIssue.setEnvironment(oldIssue.getEnvironment());
 	newIssue.setDescription(oldIssue.getDescription());
 	newIssue.setProjectId(oldIssue.getProjectId());
-	newIssue.setCreateDate(currDate);
-	newIssue.setLastUpdateDate(currDate);
+	newIssue.setCreateDate(new java.util.Date());
+	newIssue.setLastUpdateDate(new java.util.Date());
 	newIssue.setIssueStatus(oldIssue.getIssueStatus());
 	newIssue.setIssueKey(newIssueKey);
 	bo.addIssue(newIssue);

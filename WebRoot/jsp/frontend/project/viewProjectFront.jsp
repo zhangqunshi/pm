@@ -21,7 +21,7 @@
 		for (int i = 0; i < list.size(); i++) {
 			Project project = (Project) list.get(i);
 			//user在menu页面中，因为是include该页面。且多个被include的页面都用到user.
-			if (usr.validate(project.getProjectId(),
+			if (usr.validate(project.getProjectId(),  
 					PermissionConstants.ADMINISTRATER_PROJECTS)) {
 					
 %>

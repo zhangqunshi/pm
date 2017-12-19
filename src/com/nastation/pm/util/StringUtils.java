@@ -286,6 +286,27 @@ public class StringUtils {
 		matcher2.appendTail(sbr2);
 		return sbr2.toString();
 	}
+	
+	/**
+	 * 字符转解析成日期类型
+	 * 
+	 * */
+	public static java.util.Date parseDate(String time) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-d");
+		
+			Date dt = null;
+			try {
+				dt = format.parse(time);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//format.format(dt);
+			
+		
+		return dt;
+	}
+	
 
 	public static void main(String[] args) {
 		// System.out.println("==" +

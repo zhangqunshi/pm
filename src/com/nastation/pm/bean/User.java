@@ -6,17 +6,27 @@ import java.util.*;
  * @author 孙重阳 User bean
  */
 public class User {
-
+	
 	private int id; // User ID;
 	private String name; // User name;
-	private String password; // Password;
+	private String password; // Password;  
 	private String fullName; // User full name;
 	private String email; // email;
-	private String createDate; // create date;
+	private java.util.Date createDate;
 	private boolean admin;
-	private HashMap<Integer, List> permissions; // key is project id, value is
-
+	private HashMap<Integer, List<Permission>> permissions; // key is project id, value is
+	
 	// List<Permission>
+	
+	
+	
+	public java.util.Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(java.util.Date createDate) {
+		this.createDate = createDate;
+	}
 
 	public int getId() {
 		return id;
@@ -24,6 +34,9 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+		if(id == 1) {
+			this.admin = true;
+		}
 	}
 
 	public String getName() {
@@ -50,13 +63,7 @@ public class User {
 		this.fullName = fullName;
 	}
 
-	public String getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
-	}
+	
 
 	public String getEmail() {
 		return email;
@@ -74,11 +81,11 @@ public class User {
 		this.admin = admin;
 	}
 
-	public HashMap getPermissions() {
+	public HashMap<Integer, List<Permission>> getPermissions() {
 		return permissions;
 	}
 
-	public void setPermissions(HashMap permissions) {
+	public void setPermissions(HashMap<Integer, List<Permission>> permissions) {
 		this.permissions = permissions;
 	}
 
@@ -90,18 +97,18 @@ public class User {
 	 * @return
 	 */
 	public boolean validate(int projectId, String permission) {
-		boolean flag = false;
-		List<String> pList = permissions.get(projectId);
-		if (pList != null) {
-			flag = pList.contains(permission);
-		}
+		boolean flag = true;
+//		List<String> pList = permissions.get(projectId);
+//		if (pList != null) {
+//			flag = pList.contains(permission);
+//		}
 		return flag;
 	}
 
 	@Override
 	public String toString() {
 		return "[User] id=" + id + ", name=" + name + ", fullName="
-				+ fullName + ", email=" + email + ", createDate=" + createDate;
+				+ fullName + ", email=" + email + ", createDate=";
 	}
 
 }

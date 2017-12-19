@@ -10,6 +10,12 @@ import java.util.List;
 import com.nastation.pm.bean.Role;
 import com.nastation.pm.util.DBConn;
 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
+
 /**
  * 
  * @author zhanglei
@@ -19,46 +25,44 @@ public class RoleBO {
 	/**
 	 * 创建一个角色
 	 */
+
+	
 	public void addRole(Role role) {
-		Connection conn = DBConn.getConnection();
-		String sql = "insert into t_role(role_name,role_desc,create_date) value(?,?,?)";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			System.out.println("========name===" + role.getRoleName());
-			PreparedStatement pst = conn.prepareStatement(sql);
-			pst.setString(1, role.getRoleName());
-			pst.setString(2, role.getRoleDesc());
-			pst.setString(3, role.getCreateDate());
-			pst.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.save(role);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
-
+	
+		
 	/**
 	 * 通过一个ID获得对应的角色
 	 */
+
+	
 	public Role getRole(int id) {
-		Role role = new Role();
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		Role r2 = new Role();
 		try {
-			String sql = "select * from t_role where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				role.setRoleId(id);
-				role.setCreateDate(rs.getString("create_date"));
-				role.setRoleDesc(rs.getString("role_desc"));
-				role.setRoleName(rs.getString("role_name"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			r2 = session.load(Role.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return role;
+		return r2;
 	}
 
 	/**
@@ -86,65 +90,66 @@ public class RoleBO {
 	/**
 	 * 获得数据库中所有的角色信息
 	 */
+
+	
 	public List<Role> getRoleList() {
-		List<Role> list = new ArrayList<Role>();
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Role> r2List = new ArrayList<>();
 		try {
-			String sql = "select * from t_role";
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				Role role = new Role();
-				role.setRoleId(rs.getInt("id"));
-				role.setCreateDate(rs.getString("create_date"));
-				role.setRoleDesc(rs.getString("role_desc"));
-				role.setRoleName(rs.getString("role_name"));
-				list.add(role);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			r2List = session.createQuery("from Role").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return r2List;
 	}
+	
 
 	/**
 	 * 删除对应ID的角色
 	 */
+
+	
 	public void deleteRole(int id) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_role where id=?";
-			System.out.println("==sql==" + sql);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.delete(session.load(Role.class, id));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
 
 	/**
 	 * 更新角色
 	 */
+
 	public void updateRole(Role role) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "update t_role set role_name=?,role_desc=? where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, role.getRoleName());
-			ps.setString(2, role.getRoleDesc());
-			ps.setInt(3, role.getRoleId());
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(role);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
 	/**
 	 * 检查是否此角色有关联的对象
 	 */
@@ -165,4 +170,23 @@ public class RoleBO {
 		}
 		return false;
 	}
+	
+	
+	
+	public static void main(String[] args) {
+		RoleBO rBO = new RoleBO();
+		Role r2 = rBO.getRole(4);
+		System.out.println(r2.getRoleName());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

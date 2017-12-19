@@ -26,7 +26,7 @@
         alert("==boj==");
 	      var fath=document.viewform.getElementById("fatherid");  
 	      var fathLength=fath.length;
-	      for(int i = 0;i<fathlength;i++){
+	      for(int i = 0;i<fathlength;i++){ 
 	          var f=fath[i];
 	          if(f.selected){
 	             f.focus();

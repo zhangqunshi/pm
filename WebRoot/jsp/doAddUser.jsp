@@ -37,10 +37,10 @@
 			}
 			user.setName(userName);
 			user.setEmail(email);
-			user.setCreateDate(createDate);
+			//user.setCreateDate(createDate);
 			user.setFullName(fullName);
 			user.setPassword(password);
-			if (userBO.addUser(user)) {
+			if (userBO.addUser(user)) { 
 				if (groupBO.groupNameExit("users")) {
 					Group group = groupBO.getGroup("users");
 					User secondUser = userBO.getUser(userName);

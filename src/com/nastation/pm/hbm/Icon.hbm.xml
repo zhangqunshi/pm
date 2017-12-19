@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.nastation.pm.bean.Icon" table="t_icon"
+		lazy="false">
+
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+
+
+		<!-- unique -->
+		<property name="fileName" type="string" column="filename"  />
+
+		<property name="iconType" type="int" column="icon_type" />
+		
+		
+		
+
+
+
+
+	
+
+
+
+
+	</class>
+
+
+
+</hibernate-mapping>

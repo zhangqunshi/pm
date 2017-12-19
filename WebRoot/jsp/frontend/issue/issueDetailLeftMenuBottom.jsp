@@ -39,7 +39,7 @@ function showOrHiddenBox() {
 %>	
 <table border="0">
 	<tr>
-		<td>
+		<td>  
 		<% if(currentUser.validate(issueLCMB.getProjectId(),PermissionConstants.ASSIGN_ISSUES)){%>
 			<img height="8" border="0" align="absmiddle" width="8"
 				src="<%=path %>/images/icons/bullet_creme.gif" />

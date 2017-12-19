@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     String rename=psBO.renameScheme(ps.getName());
     //保存新模板信息。
     ps.setName(rename);
-    ps.setCreateDate(StringUtils.getCurrDate());
+    //ps.setCreateDate(StringUtils.getCurrDate());  //改
     psBO.addPermissionScheme(ps);
     //获得新模板id
     int id=psBO.getId(rename);

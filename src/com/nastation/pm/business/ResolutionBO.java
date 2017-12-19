@@ -10,6 +10,12 @@ import java.util.List;
 import com.nastation.pm.bean.Resolution;
 import com.nastation.pm.util.DBConn;
 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
+
 /**
  * 问题Resolution的业务逻辑类
  * 
@@ -22,28 +28,21 @@ public class ResolutionBO {
 	/**
 	 * 向数据库中添加Resolution 对象
 	 */
+
+	
+	
 	public void addResolution(Resolution resolution) {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-
-		String sql = "insert into t_resolution(name,description,is_default) values(?,?,?)";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, resolution.getName());
-			pstmt.setString(2, resolution.getDescription());
-			pstmt.setInt(3, resolution.getIsDefault());
-
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.save(resolution);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -52,38 +51,23 @@ public class ResolutionBO {
 	 * 
 	 * @return
 	 */
-	public List getAllResolutions() {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-
-		List list = new ArrayList();
-		ResultSet rs = null;
+	
+	public List<Resolution> getAllResolutions() {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Resolution> r2List = new ArrayList<>();
 		try {
-			String sql = "select * from t_resolution ";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Resolution r = new Resolution();
-				r.setId(rs.getInt("id"));
-				r.setName(rs.getString("name"));
-				r.setDescription(rs.getString("description"));
-				r.setIsDefault(rs.getInt("is_default"));
-
-				list.add(r);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			r2List = session.createQuery("from Resolution").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return r2List;
 	}
 
 	/**
@@ -129,80 +113,46 @@ public class ResolutionBO {
 	 * 
 	 * @param id
 	 */
+
+	
 	public Resolution getResolution(int id) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select * from  t_resolution where id=?";
-		Resolution resolution = new Resolution();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		Resolution r2 = new Resolution();
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				resolution.setId(rs.getInt("id"));
-				resolution.setDescription(rs.getString("description"));
-				resolution.setName(rs.getString("name"));
-				resolution.setIsDefault(rs.getInt("is_default"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-					rs = null;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-
-			}
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-					pstmt = null;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			r2 = session.load(Resolution.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return resolution;
+		return r2;
 	}
+	
+	
 
 	/**
 	 * update resolution
 	 * 
 	 * @param resolution
 	 */
+
+	
 	public Resolution updateResolution(Resolution resolution) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "update t_resolution set name=?,description=?,is_default=? where id=?";
-
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, resolution.getName());
-			pstmt.setString(2, resolution.getDescription());
-			pstmt.setInt(3, resolution.getIsDefault());
-			pstmt.setInt(4, resolution.getId());
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-					pstmt = null;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(resolution);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 		return resolution;
 	}
@@ -212,32 +162,27 @@ public class ResolutionBO {
 	 * 
 	 * @return
 	 */
-	public boolean checkExistResolution(Resolution resolution) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	
+	public boolean checkExistResolution(Resolution resolution) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		boolean flag =false;
 		try {
-			String sql = "select * from t_resolution where name=? and id!=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, resolution.getName());
-			pstmt.setInt(2, resolution.getId());
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return true;
+			tx = session.beginTransaction();
+			List<Resolution> rList = session.createQuery("from Resolution as r where r.name=:name and r.id<>:id")
+					.setString("name", resolution.getName()).setInteger("id", resolution.getId()).list();
+			tx.commit();
+			if(rList.get(0) != null) {
+				flag = true;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return false;
+		return flag;
 	}
 
 	/**
@@ -280,26 +225,43 @@ public class ResolutionBO {
 	/**
 	 * 向数据库中删除Resolution 对象
 	 */
+
 	public void deleteResolution(int id) {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-
-		String sql = "delete from t_resolution where id=?";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, id);
-
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.delete(session.load(Resolution.class, id));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+		ResolutionBO rBO = new ResolutionBO();
+		Resolution r2 = rBO.getResolution(7);
+		
+		boolean bb = rBO.checkExistResolution(r2);
+		System.out.println(bb);
+		
+//		Resolution r22 = new Resolution();
+//		r22.setName("uu");
+//		rBO.addResolution(r22);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 }

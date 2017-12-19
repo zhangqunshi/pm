@@ -11,6 +11,10 @@ public class Permission {
 	private String description;
 	private String typeName;
 
+	public Permission() {
+
+	}
+
 	public int getId() {
 		return id;
 	}
