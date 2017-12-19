@@ -18,12 +18,13 @@
 		String error2 = "You must specify a valid component name.";
 		request.setAttribute("error", error2);
 	}
-	ProjectComponent pc = new ProjectComponent();
-	pc.setId(id);
+	
+	ProjectComponent pc = pcbo.getProjectComponent(id); // xxx
+	//pc.setId(id);  //xxx
 	pc.setName(name);
 	pc.setDescription(description);
 	pc.setLeaderId(leaderId);
-	if (!pcbo.checkProjectComponent(pc)) {
+	if (!pcbo.checkProjectComponent(pc)) {   
 		String error = "A component with this name already exists in this project.";
 		request.setAttribute("error", error);
 %>

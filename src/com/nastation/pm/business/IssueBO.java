@@ -16,8 +16,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import com.nastation.pm.bean.Issue;
-import com.nastation.pm.util.DBConn;
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
+import com.nastation.pm.bean.*;
+
+
 
 public class IssueBO {
 
@@ -30,256 +36,127 @@ public class IssueBO {
 	/**
 	 * 向数据库中添加记录 Issue对象
 	 */
-	public void addIssue(Issue issue) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "insert into t_issue(" + columnNames
-				+ ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		System.out.println("=============34=========" + sql);
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, issue.getIssueKey());
-			pstmt.setInt(2, issue.getIssueTypeId());
-			pstmt.setString(3, issue.getName());
-			pstmt.setInt(4, issue.getPriorityLevelId());
-			pstmt.setNull(5, Types.NULL);
-			pstmt.setNull(6, Types.NULL);
-			pstmt.setString(7, issue.getPlanEndTime());
-			if (issue.getComponentId() == 0) {
-				pstmt.setNull(8, Types.NULL);
-			} else {
-				pstmt.setInt(8, issue.getComponentId());
-			}
-			pstmt.setInt(9, issue.getAssigneeId());
-			pstmt.setInt(10, issue.getReporterId());
-			pstmt.setString(11, issue.getEnvironment());
-			pstmt.setString(12, issue.getDescription());
-			pstmt.setInt(13, issue.getProjectId());
-			pstmt.setString(14, issue.getLastUpdateDate());
-			pstmt.setString(15, issue.getCreateDate());
-			pstmt.setInt(16, issue.getIssueStatus());
 
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+	public void addIssue(Issuehb issue) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.save(issue);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
 
 	/**
 	 * 根据 Id ，更新已知的记录
 	 */
-	public void updateIssue(Issue issue) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "update t_issue set issue_type_id=?,name=?,priority_level_id=?,start_time=?,"
-				+ "end_time=?,plan_end_time=?,component_id=?,assignee_id=?,reporter_id=?,"
-				+ "environment=?,description=?,last_update_date=?,issue_status=? where id=?";
-
+	
+	public void updateIssue(Issuehb issue) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, issue.getIssueTypeId());
-			pstmt.setString(2, issue.getName());
-			pstmt.setInt(3, issue.getPriorityLevelId());
-			pstmt.setString(4, issue.getStartTime());
-			pstmt.setString(5, issue.getEndTime());
-			pstmt.setString(6, issue.getPlanEndTime());
-			if (issue.getComponentId() == 0) {
-				pstmt.setNull(7, Types.NULL);
-			} else {
-				pstmt.setInt(7, issue.getComponentId());
-			}
-			pstmt.setInt(8, issue.getAssigneeId());
-			pstmt.setInt(9, issue.getReporterId());
-			pstmt.setString(10, issue.getEnvironment());
-			pstmt.setString(11, issue.getDescription());
-			pstmt.setString(12, issue.getLastUpdateDate());
-			pstmt.setInt(13, issue.getIssueStatus());
-			pstmt.setInt(14, issue.getId());
-
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(issue);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
 	/**
 	 * 根据issue id ，获得Issue对象
 	 */
-	public Issue getIssue(int id) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		Issue issue = new Issue();
-		ResultSet rs = null;
+	
+	public Issuehb getIssue(int id) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		Issuehb i = null;
 		try {
-			String sql = "select id, " + columnNames
-					+ " from t_issue where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				issue.setId(rs.getInt("id"));
-				issue.setIssueKey(rs.getString("issue_key"));
-				issue.setIssueTypeId(rs.getInt("issue_type_id"));
-				issue.setName(rs.getString("name"));
-				issue.setPriorityLevelId(rs.getInt("priority_level_id"));
-				issue.setStartTime(rs.getString("start_time"));
-				issue.setEndTime(rs.getString("end_time"));
-				issue.setPlanEndTime(rs.getString("plan_end_time"));
-				issue.setComponentId(rs.getInt("component_id"));
-				issue.setAssigneeId(rs.getInt("assignee_id"));
-				issue.setReporterId(rs.getInt("reporter_id"));
-				issue.setEnvironment(rs.getString("environment"));
-				issue.setDescription(rs.getString("description"));
-				issue.setProjectId(rs.getInt("project_id"));
-				issue.setLastUpdateDate(rs.getString("last_update_date"));
-				issue.setCreateDate(rs.getString("create_date"));
-				issue.setIssueStatus(rs.getInt("issue_status"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			i = session.load(Issuehb.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return issue;
+		return i;
 	}
 
 	/**
 	 * 删除对应ID的Issue 对象
 	 */
+
 	public void deleteIssue(int id) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_issue where id=?";
-			String sql2 = "delete from t_comment where issue_id=?";
-			PreparedStatement ps = conn.prepareStatement(sql2);
-			ps.setInt(1, id);
-			ps.executeUpdate();
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.delete("from Comment as c where c.issueId.id='"+id+"'");
+			session.delete(session.load(Issuehb.class,id));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
 	/**
 	 * 根据IssueKey ，获得Issue对象
 	 */
-	public Issue getIssueByKey(String name) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		Issue issue = new Issue();
-		ResultSet rs = null;
+
+	
+	public Issuehb getIssueByKey(String name) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		Issuehb i = null;
 		try {
-			String sql = "select id, " + columnNames
-					+ " from t_issue where issue_key=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				issue.setId(rs.getInt("id"));
-				issue.setIssueKey(rs.getString("issue_key"));
-				issue.setIssueTypeId(rs.getInt("issue_type_id"));
-				issue.setName(rs.getString("name"));
-				issue.setPriorityLevelId(rs.getInt("priority_level_id"));
-				issue.setStartTime(rs.getString("start_time"));
-				issue.setEndTime(rs.getString("end_time"));
-				issue.setPlanEndTime(rs.getString("plan_end_time"));
-				issue.setComponentId(rs.getInt("component_id"));
-				issue.setAssigneeId(rs.getInt("assignee_id"));
-				issue.setReporterId(rs.getInt("reporter_id"));
-				issue.setEnvironment(rs.getString("environment"));
-				issue.setDescription(rs.getString("description"));
-				issue.setProjectId(rs.getInt("project_id"));
-				issue.setLastUpdateDate(rs.getString("last_update_date"));
-				issue.setCreateDate(rs.getString("create_date"));
-				issue.setIssueStatus(rs.getInt("issue_status"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			i = (Issuehb)session.createQuery("from Issuehb as i where i.issueKey=:key").setString("key", name).uniqueResult();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return issue;
+		return i;
 	}
 
 	/**
 	 * 从数据库中返回所有的任务问题列表
 	 */
-	public List<Issue> getIssueList() {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		List<Issue> list = new ArrayList<Issue>();
-		ResultSet rs = null;
+	
+	public List<Issuehb> getIssueList() {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Issuehb> il = null;
 		try {
-			String sql = "select id," + columnNames + " from t_issue";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Issue issue = new Issue();
-				issue.setId(rs.getInt("id"));
-				issue.setIssueKey(rs.getString("issue_key"));
-				issue.setIssueTypeId(rs.getInt("issue_type_id"));
-				issue.setName(rs.getString("name"));
-				issue.setPriorityLevelId(rs.getInt("priority_level_id"));
-				issue.setStartTime(rs.getString("start_time"));
-				issue.setEndTime(rs.getString("end_time"));
-				issue.setPlanEndTime(rs.getString("plan_end_time"));
-				issue.setComponentId(rs.getInt("component_id"));
-				issue.setAssigneeId(rs.getInt("assignee_id"));
-				issue.setReporterId(rs.getInt("reporter_id"));
-				issue.setEnvironment(rs.getString("environment"));
-				issue.setDescription(rs.getString("description"));
-				issue.setProjectId(rs.getInt("project_id"));
-				issue.setLastUpdateDate(rs.getString("last_update_date"));
-				issue.setCreateDate(rs.getString("create_date"));
-				issue.setIssueStatus(rs.getInt("issue_status"));
-
-				list.add(issue);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			il = session.createQuery("from Issuehb").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return il;
 	}
 
 	/**
@@ -287,51 +164,23 @@ public class IssueBO {
 	 * 
 	 * @param projectId
 	 */
-	public List<Issue> getIssueList(int projectId) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		List<Issue> list = new ArrayList<Issue>();
-		ResultSet rs = null;
-		try {
-			String sql = "select id," + columnNames
-					+ " from t_issue where project_id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, projectId);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Issue issue = new Issue();
-				issue.setId(rs.getInt("id"));
-				issue.setIssueKey(rs.getString("issue_key"));
-				issue.setIssueTypeId(rs.getInt("issue_type_id"));
-				issue.setName(rs.getString("name"));
-				issue.setPriorityLevelId(rs.getInt("priority_level_id"));
-				issue.setStartTime(rs.getString("start_time"));
-				issue.setEndTime(rs.getString("end_time"));
-				issue.setPlanEndTime(rs.getString("plan_end_time"));
-				issue.setComponentId(rs.getInt("component_id"));
-				issue.setAssigneeId(rs.getInt("assignee_id"));
-				issue.setReporterId(rs.getInt("reporter_id"));
-				issue.setEnvironment(rs.getString("environment"));
-				issue.setDescription(rs.getString("description"));
-				issue.setProjectId(rs.getInt("project_id"));
-				issue.setLastUpdateDate(rs.getString("last_update_date"));
-				issue.setCreateDate(rs.getString("create_date"));
-				issue.setIssueStatus(rs.getInt("issue_status"));
 
-				list.add(issue);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+	
+	public List<Issuehb> getIssueList(int projectId) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Issuehb> i = null;
+		try {
+			tx = session.beginTransaction();
+			i = session.createQuery("from Issuehb as i where i.projectId.id=:pid").setInteger("pid", projectId).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return i;
 	}
 
 	/**
@@ -474,22 +323,27 @@ public class IssueBO {
 	/**
 	 * 检查是否创建了同名Issue
 	 */
-	public boolean checkIssue(Issue issue) {
-		Connection conn = DBConn.getConnection();
+
+	
+	public boolean checkIssue(Issuehb issue) {
+		boolean flag = true;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select * from t_issue where name=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, issue.getName());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return false;
+			tx = session.beginTransaction();
+			Issuehb i = (Issuehb)session.createQuery("from Issuehb as i where i.name=:name").setString("name", issue.getName()).setMaxResults(1).uniqueResult();
+			if(i != null) {
+				flag = false;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return true;
+		return flag;
+		
 	}
 
 	/**
@@ -727,32 +581,23 @@ public class IssueBO {
 	 * @param user_id
 	 * @return
 	 */
-	public int assigneeCount(int user_id) {
-		int assigneeCount = 0;
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
 
-		ResultSet rs = null;
+	
+	public int assigneeCount(int user_id) {
+		int count = 0;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select count(*) from t_issue where assignee_id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, user_id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				assigneeCount = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			count = (Integer)session.createQuery("select count(*) from Issuehb as i where i.assigneeId.id=:id").setInteger("id", user_id).uniqueResult();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return assigneeCount;
+		return count;
 	}
 
 	/**
@@ -761,32 +606,23 @@ public class IssueBO {
 	 * @param user_id
 	 * @return
 	 */
-	public int reporterCount(int reporter_id) {
-		int reporterCount = 0;
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
 
-		ResultSet rs = null;
+	
+	public int reporterCount(int reporter_id) {
+		int count = 0;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select count(*) from t_issue where reporter_id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reporter_id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				reporterCount = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			count = (Integer)session.createQuery("select count(*) from Issuehb as i where i.reporterId.id=:id").setInteger("id", reporter_id).uniqueResult();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return reporterCount;
+		return count;
 	}
 
 	/**
@@ -794,27 +630,23 @@ public class IssueBO {
 	 * 
 	 * @param assigne_id,issue_id
 	 */
+
+	
 	public void setAssignee(int issueId, int assigneeId) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "update t_issue set assignee_id=? where id=?";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, assigneeId);
-			pstmt.setInt(2, issueId);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-					pstmt = null;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			User u = session.load(User.class, assigneeId);
+			Issuehb i = session.load(Issuehb.class, issueId);
+			i.setAssigneeId(u);
+					
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -861,28 +693,20 @@ public class IssueBO {
 	/**
 	 * 在移动问题中 根据issue更新已知的记录
 	 */
-	public void updateMoveIssue(Issue issue) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "update t_issue set issue_key=?,project_id=?,issue_type_id=? where id=?";
-		System.out.println("==========857==========sql===" + sql);
+	
+	public void updateMoveIssue(Issuehb issue) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, issue.getIssueKey());
-			pstmt.setInt(2, issue.getProjectId());
-			pstmt.setInt(3, issue.getIssueTypeId());
-			pstmt.setInt(4, issue.getId());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(issue);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -910,50 +734,38 @@ public class IssueBO {
 			DBConn.closeConn(conn);
 		}
 	}
+	
+
 
 	/**
 	 * 根据 Id 删除记录
 	 */
 	public void deleteAllIssueByLinkProject(int projectId) {
-		List list = this.getAllIssue(projectId);
+		List<Issuehb> list = this.getAllIssue(projectId);
 		for (int i = 0; i < list.size(); i++) {
-			Issue issue = (Issue) list.get(i);
+			Issuehb issue = (Issuehb) list.get(i);
 			this.deleteIssue(issue.getId());
 		}
 
 	}
 
-	public List<Issue> getAllIssue(int projectId) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		List<Issue> list = new ArrayList();
-		ResultSet rs = null;
+	
+	public List<Issuehb> getAllIssue(int projectId) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Issuehb> l = null;
 		try {
-			String sql = "select id from t_issue where project_id=?";
-
-			System.out.println("=getIssueDetail==sql==" + sql);
-
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, projectId);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Issue issue = new Issue();
-				issue.setId(rs.getInt("id"));
-				list.add(issue);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			l = session.createQuery("from Issuehb as i where i.projectId.id=:id").setInteger("id", projectId).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
 
 	/**
@@ -971,62 +783,43 @@ public class IssueBO {
 		return false;
 	}
 
-	/*
+	/**
 	 * 根据 Id ，更新已知的记录
 	 */
-	public void updateIssueByLinkResolution(Issue issue) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "update t_issue set resolution_id=?,assignee_id=? where id=?";
-
+	
+	public void updateIssueByLinkResolution(Issuehb issue) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, issue.getResolutionId());
-			pstmt.setInt(2, issue.getAssigneeId());
-			pstmt.setInt(3, issue.getId());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(issue);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
 	/**
 	 * 根据 Id ，更新已知的记录
 	 */
-	public void updateIssueByLinkStatus(Issue issue) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "update t_issue set issue_status=?,last_update_date=?,end_time=? where id=?";
-
+	
+	public void updateIssueByLinkStatus(Issuehb issue) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, issue.getIssueStatus());
-			pstmt.setString(2, issue.getLastUpdateDate());
-			if (issue.getEndTime() == null) {
-				pstmt.setNull(3, Types.NULL);
-			} else {
-				pstmt.setString(3, issue.getEndTime());
-			}
-			pstmt.setInt(4, issue.getId());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(issue);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -1037,7 +830,7 @@ public class IssueBO {
 	 */
 	public List<Issue> getIssueSearchList(String searchsql,
 			List<String> paramValues) {
-
+		
 		Connection conn = DBConn.getConnection();
 		List<Issue> list = new ArrayList<Issue>();
 		ResultSet rs = null;
@@ -1200,4 +993,47 @@ public class IssueBO {
 		}
 		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+//		IssueBO iBO = new IssueBO();
+//		Issuehb i = new Issuehb();
+//		i.setName("test_1");
+//		iBO.addIssue(i);
+		
+		
+		
+	}
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -1,10 +1,15 @@
 package com.nastation.pm.bean;
 
 public class FilterSummary {
+
 	private int id;
-	private int requestId;
+	private SearchRequest requestId;
 	private String filterSummaryKey;
 	private String filterSummaryValue;
+	
+	public FilterSummary() {
+
+	}
 
 	public int getId() {
 		return id;
@@ -14,11 +19,11 @@ public class FilterSummary {
 		this.id = id;
 	}
 
-	public int getRequestId() {
+	public SearchRequest getRequestId() {
 		return requestId;
 	}
 
-	public void setRequestId(int requestId) {
+	public void setRequestId(SearchRequest requestId) {
 		this.requestId = requestId;
 	}
 
@@ -37,4 +42,5 @@ public class FilterSummary {
 	public void setFilterSummaryValue(String filterSummaryValue) {
 		this.filterSummaryValue = filterSummaryValue;
 	}
+	
 }

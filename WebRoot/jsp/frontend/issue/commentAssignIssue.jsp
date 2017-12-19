@@ -19,11 +19,11 @@
 	System.out.println("=======coment======" + comment);
 	int issueId = Integer.parseInt(id);
 	IssueBO ib = new IssueBO();
-	Issue issue = ib.getIssue(issueId);
+	Issuehb issue = ib.getIssue(issueId);
 	if (assign.equals("-1")) {
-		issue.setAssigneeId(user.getId());
+		issue.setAssigneeId(user);  //xxx
 	} else {
-		issue.setAssigneeId(Integer.parseInt(assign));
+		issue.setAssigneeId(new UserBO().getUser(Integer.parseInt(assign)));  //xxx
 	}
 	issue.setResolutionId(Integer.parseInt(resolution));
 	ib.updateIssueByLinkResolution(issue);
@@ -33,31 +33,31 @@
 		Comment coment = new Comment();
 		coment.setAuthor(user.getName());
 		coment.setCommentContent(comment);
-		coment.setIssueId(issueId);
-		coment.setCreateDate(createTime);
+		coment.setIssueId(issue);
+		coment.setCreateDate(new java.util.Date());
 		cb.addComment(coment);
 	}
 	if (status.equals("close")) {
 		String endTime = StringUtils.toString(new Date());
-		Issue newIssue = ib.getIssue(issueId);
-		newIssue.setEndTime(endTime);
-		newIssue.setLastUpdateDate(endTime);
-		newIssue.setIssueStatus(Global.CLOSE);
+		Issuehb newIssue = ib.getIssue(issueId);
+		newIssue.setEndTime(new java.util.Date());
+		newIssue.setLastUpdateDate(new java.util.Date());
+		newIssue.setIssueStatus(new IssueStatusBO().getIssueStatus(Global.CLOSE));
 		ib.updateIssueByLinkStatus(newIssue);
 	}
 	if (status.equals("resolved")) {
 		String endTime = StringUtils.toString(new Date());
-		Issue newIssue = ib.getIssue(issueId);
-		newIssue.setEndTime(endTime);
-		newIssue.setLastUpdateDate(endTime);
-		newIssue.setIssueStatus(Global.RESOLVED);
+		Issuehb newIssue = ib.getIssue(issueId);
+		newIssue.setEndTime(new java.util.Date());
+		newIssue.setLastUpdateDate(new java.util.Date());
+		newIssue.setIssueStatus(new IssueStatusBO().getIssueStatus(Global.RESOLVED));
 		ib.updateIssueByLinkStatus(newIssue);
 	}
 	if (status.equals("reopen")) {
 		String updateTime = StringUtils.toString(new Date());
-		Issue newIssue = ib.getIssue(issueId);
-		newIssue.setLastUpdateDate(updateTime);
-		newIssue.setIssueStatus(Global.REOPEN);
+		Issuehb newIssue = ib.getIssue(issueId);
+		newIssue.setLastUpdateDate(new java.util.Date());
+		newIssue.setIssueStatus(new IssueStatusBO().getIssueStatus(Global.REOPEN));
 		ib.updateIssueByLinkStatus(newIssue);
 	}
 %>

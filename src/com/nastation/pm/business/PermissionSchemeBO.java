@@ -1,11 +1,19 @@
 package com.nastation.pm.business;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.util.*;
 
 import com.nastation.pm.bean.PermissionScheme;
 import com.nastation.pm.bean.Project;
 import com.nastation.pm.util.*;
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
+
 
 /**
  * 权限模板的业务逻辑类
@@ -20,21 +28,20 @@ public class PermissionSchemeBO {
 	 * @param PermissionScheme
 	 * @author sun
 	 */
-	public void addPermissionScheme(PermissionScheme scheme) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		try {
-			String sql = "insert into t_permission_scheme (name,description,create_date) values(?,?,?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, scheme.getName());
-			pstmt.setString(2, scheme.getDescription());
-			pstmt.setString(3, scheme.getCreateDate());
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
 
-			DBConn.closeConn(conn);
+	
+	public void addPermissionScheme(PermissionScheme scheme) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.save(scheme);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -44,22 +51,20 @@ public class PermissionSchemeBO {
 	 * @param PermissionScheme
 	 * @author sun
 	 */
-	public void updatePermissionScheme(PermissionScheme scheme) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		try {
-			String sql = "update t_permission_scheme set name=?,description=?,create_date=? where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, scheme.getName());
-			pstmt.setString(2, scheme.getDescription());
-			pstmt.setString(3, scheme.getCreateDate());
-			pstmt.setInt(4, scheme.getId());
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
 
-			DBConn.closeConn(conn);
+	
+	public void updatePermissionScheme(PermissionScheme scheme) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.update(scheme);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -69,19 +74,20 @@ public class PermissionSchemeBO {
 	 * @param id
 	 * @author sun
 	 */
-	public void deletePermissionScheme(int id) {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		try {
-			String sql = "delete from t_permission_scheme where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, id);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
 
-			DBConn.closeConn(conn);
+	
+	public void deletePermissionScheme(int id) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.delete(session.load(PermissionScheme.class, id));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -90,34 +96,23 @@ public class PermissionSchemeBO {
 	 * 
 	 * @author sun
 	 */
-	public List<PermissionScheme> getSchemeList() {
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		ProjectBO projectBO = new ProjectBO();
-		ResultSet rs = null;
-		List<PermissionScheme> schemeList = new ArrayList();
-		try {
-			String sql = "select * from t_permission_scheme";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				PermissionScheme scheme = new PermissionScheme();
-				scheme.setId(rs.getInt("id"));
-				scheme.setName(rs.getString("name"));
-				scheme.setDescription(rs.getString("description"));
-				scheme.setCreateDate(rs.getString("create_date"));
-				List<Project> list = projectBO.getProjectListByScheme(rs
-						.getInt("id"));
-				scheme.setProjectList(list);
-				schemeList.add(scheme);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
 
-			DBConn.closeConn(conn);
+	
+	public List<PermissionScheme> getSchemeList() {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<PermissionScheme> psList = new ArrayList<>();
+		try {
+			tx = session.beginTransaction();
+			psList = session.createQuery("from PermissionScheme").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return schemeList;
+		return psList;
 	}
 
 	/**
@@ -126,30 +121,23 @@ public class PermissionSchemeBO {
 	 * @param id
 	 * @author sun
 	 */
+
+	
 	public PermissionScheme getScheme(int schemeId) {
-		PermissionScheme scheme = new PermissionScheme();
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		PermissionScheme ps = new PermissionScheme();
 		try {
-			String sql = "select * from t_permission_scheme where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, schemeId);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				scheme.setId(schemeId);
-				scheme.setName(rs.getString("name"));
-				scheme.setDescription(rs.getString("description"));
-				scheme.setCreateDate(rs.getString("create_date"));
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			ps = session.load(PermissionScheme.class, schemeId);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return scheme;
+		return ps;
 	}
 	
 	/**
@@ -158,25 +146,25 @@ public class PermissionSchemeBO {
 	 * @param name
 	 * @author sun
 	 */
+
+	
 	public int getId(String name) {
-		int id=0;
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		PermissionScheme ps = new PermissionScheme();
 		try {
-			String sql = "select id from t_permission_scheme where name=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				id=rs.getInt("id");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			ps = (PermissionScheme)session.createQuery("from PermissionScheme as p where p.name=:name")
+					.setString("name", name).uniqueResult();
+			tx.commit();
+			
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return id;
+		return ps.getId();
 	}
 	
 	/**
@@ -211,33 +199,38 @@ public class PermissionSchemeBO {
 	 * 判断一个模板名是否已经存在
 	 * @author sun
 	 */
-	public boolean exist(String name){
-		boolean flag=false;
-		Connection conn=DBConn.getConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String sql="select name from t_permission_scheme where name=?";
-		try{
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs=pstmt.executeQuery();
-			if(rs.next()){
-				flag=true;
+
+	
+	public boolean exist(String name) {
+		boolean flag = false;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		PermissionScheme ps = new PermissionScheme();
+		try {
+			tx = session.beginTransaction();
+			ps = (PermissionScheme)session.createQuery("from PermissionScheme as p where p.name=:name")
+					.setString("name", name).uniqueResult();
+			tx.commit();
+			if(ps != null) {
+				flag = true;
 			}
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			DBConn.closeConn(conn);
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 		return flag;
 	}
+	
 	
 	/**
 	 * 获得在组为groupName中的所有权限模板列表。
 	 * 
 	 * @author liuliehui
+	 * @throws ParseException 
 	 */
-	public List<PermissionScheme> getPermissionSchemeList(String assigneeType,String assignee) {
+	public List<PermissionScheme> getPermissionSchemeList(String assigneeType,String assignee) throws ParseException {
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		ProjectBO projectBO = new ProjectBO();
@@ -258,7 +251,7 @@ public class PermissionSchemeBO {
 				scheme.setId(rs.getInt("id"));
 				scheme.setName(rs.getString("name"));
 				scheme.setDescription(rs.getString("description"));
-				scheme.setCreateDate(rs.getString("create_date"));
+				scheme.setCreateDate(StringUtils.toDate(rs.getString("create_date")));
 				schemeList.add(scheme);
 			}
 		} catch (SQLException e) {
@@ -269,6 +262,23 @@ public class PermissionSchemeBO {
 		}
 		return schemeList;
 	}
+	
+	
+	public static void main(String[] args) {
+		
+//		PermissionSchemeBO psBO = new PermissionSchemeBO();
+//		int bb = psBO.getId("qq");
+//		System.out.println(bb);
+//		
+//		List<PermissionScheme> pList = psBO.getSchemeList();
+//		for(PermissionScheme ps : pList) {
+//			System.out.println(ps.getName());
+//		}
+		
+	}
+	
+	
+	
 
 
 }

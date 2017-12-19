@@ -16,7 +16,7 @@
 	<body>
 	<%
 			//从session中获得issue信息;
-			Issue newIssue = (Issue)session.getAttribute("moveIssue");
+			Issuehb newIssue = (Issuehb)session.getAttribute("moveIssue");
             
 			//判断参数是否为空
 			if (newIssue == null) {
@@ -25,20 +25,20 @@
 				return;
 			}
 			
-			System.out.println("=======step3==newIssue.getProjectName=========="+newIssue.getProjectName());
-			System.out.println("=======step3==newIssue.getIssueTypeName=========="+newIssue.getIssueTypeName());
+			System.out.println("=======step3==newIssue.getProjectName=========="+newIssue.getProjectId().getName());
+			System.out.println("=======step3==newIssue.getIssueTypeName=========="+newIssue.getIssueTypeId().getName());
 			
             //通过issueKey获得另一个issue对象moveIssue 
 			IssueBO issueBo = new IssueBO();
-			Issue oldIssue = issueBo.getIssueByKey(newIssue.getIssueKey());
+			Issuehb oldIssue = issueBo.getIssueByKey(newIssue.getIssueKey());
             
 			//获得project对象
 			ProjectBO projectBo = new ProjectBO();
-			Project project = projectBo.getProject(oldIssue.getProjectId());
+			Project project = oldIssue.getProjectId();  //xxx
 
 			//获得IssueType对象
 			IssueTypeBO issueTypeBo = new IssueTypeBO();
-			IssueType issueType = issueTypeBo.getIssueType(oldIssue.getIssueTypeId());
+			IssueType issueType = oldIssue.getIssueTypeId();
 			
 			
 		%>
@@ -81,7 +81,7 @@
 												<td />
 												<td nowrap="">
 													项目:
-													<b><%=newIssue.getProjectName() %></b>
+													<b><%=newIssue.getProjectId().getName() %></b>
 												</td>
 											</tr>
 											<tr>
@@ -89,7 +89,7 @@
 												<td />
 												<td nowrap="">
 													问题类型:
-													<b><%=newIssue.getIssueTypeName() %></b>
+													<b><%=newIssue.getIssueTypeId().getName() %></b>
 												</td>
 											</tr>
 											<tr>
@@ -209,7 +209,7 @@
 																		<span class="red-highlight"><%=project.getName() %></span>
 																	</td>
 																	<td bgcolor="#ffffff" width="40%" valign="top">
-																		<span class="green-highlight"><%=newIssue.getProjectName() %></span>
+																		<span class="green-highlight"><%=newIssue.getProjectId().getName() %></span>
 																	</td>
 																</tr>
 																<tr>
@@ -220,7 +220,7 @@
 																		<%=issueType.getName() %>
 																	</td>
 																	<td bgcolor="#ffffff" width="40%" valign="top">
-																		<%=newIssue.getIssueTypeName() %>
+																		<%=newIssue.getIssueTypeId().getName() %>
 																	</td>
 																</tr>
 															</tbody>

@@ -20,11 +20,12 @@
 	String url = request.getParameter("url");
 	String leader = request.getParameter("lead");
 	String schemeIdStr = request.getParameter("permission_scheme_id");
-	String createDate = StringUtils.toString(new java.util.Date());
-	//	String category = request.getParameter("category");  //新建项目时，并不马上选择
+	//String createDate = StringUtils.toString(new java.util.Date());
+		String category = request.getParameter("category");  //新建项目时，并不马上选择
 
 	//检查参数
 	int schemeId = 0;
+	System.out.println(schemeId+"========模板id");
 	if (StringUtils.isNotBlank(schemeIdStr)) {
 		schemeId = Integer.parseInt(schemeIdStr);
 	}
@@ -51,10 +52,12 @@
 	projectKey = projectKey.toUpperCase();
 	project.setProjectKey(projectKey);
 	project.setUrl(url);
-	project.setCreateDate(createDate);
+	//project.setCreateDate(createDate);  //自动插入当前时间
 	project.setDescription(description);
 	project.setLeader(leader);
-	project.setPermissionSchemeId(schemeId);
+	PermissionSchemeBO psBO = new PermissionSchemeBO();
+	
+	project.setPermissionSchemeId(psBO.getScheme(schemeId)); //修改
 	boolean existName = pb.existName(project);
 	boolean existKey = pb.existKey(project);
 	if (!user.exist(leader)) {

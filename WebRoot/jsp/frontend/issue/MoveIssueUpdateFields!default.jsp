@@ -13,7 +13,7 @@
 	<head>
 		<%
 			//从session中获得issue信息;
-			Issue issue = (Issue)session.getAttribute("moveIssue");
+			Issuehb issue = (Issuehb)session.getAttribute("moveIssue");
 			String pidStr = request.getParameter("pid");
 			String issueTypeStr = request.getParameter("issuetype");
 
@@ -49,7 +49,7 @@
 	</head>
 	<body>
 	  <%
-	   if(issue.getProjectId() == pidInt && issue.getIssueTypeId() == issueTypeInt){
+	   if(issue.getProjectId().getProjectId() == pidInt && issue.getIssueTypeId().getId() == issueTypeInt){
 	  %>
 	       <jsp:forward page="MoveIssue!default.jsp">
 	       <jsp:param name="error" value="错误<br>你必须选择一个不同的项目或者问题类型."/>
@@ -241,10 +241,10 @@
 	<%
 	//把新的项目和问题类型放放issue中;
 	//再把issue放入session中;
-        issue.setProjectId(project.getProjectId());
-		issue.setProjectName(project.getName());
-		issue.setIssueTypeId(issueType.getId());
-		issue.setIssueTypeName(issueType.getName());
+        issue.setProjectId(project);
+		issue.setProjectName(project.getName()); 
+		issue.setIssueTypeId(issueType);
+		issue.setIssueTypeName(issueType.getName());   
 		System.out.println("===============issue==="+issue);
 		//request.setAttribute("moveIssue",issue);
         session.setAttribute("moveIssue",issue);

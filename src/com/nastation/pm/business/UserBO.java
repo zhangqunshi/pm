@@ -2,10 +2,16 @@ package com.nastation.pm.business;
 
 import com.nastation.pm.bean.Permission;
 import com.nastation.pm.bean.User;
+
 import com.nastation.pm.util.*;
 
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
 
 /**
  * 
@@ -20,6 +26,7 @@ public class UserBO {
 	 * This method is use to insert the user's information into database;
 	 * 
 	 */
+	/*
 	public boolean addUser(User user) {
 		boolean flag = false;
 		Connection conn = null;
@@ -51,140 +58,184 @@ public class UserBO {
 		}
 		return flag;
 	}
+	*/
+	//
+	public boolean addUser(User user) {
+		boolean flag = false;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.save(user);
+			tx.commit();
+			flag = true;
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
+		}
+		return flag;
+	}
 
 	/**
 	 * 判断用户名是否重复
 	 */
+//	public boolean exist(String name) {
+//		boolean flag = false;
+//		Connection conn = DBConn.getConnection();
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		String sql = "select * from t_user where username=?";
+//		System.out.println("==UserBO.java==exist==sql==" + sql);
+//		System.out.println("==UserBO.java==exist==name==" + name);
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, name);
+//			rs = pstmt.executeQuery();
+//			if (rs.next()) {
+//				flag = true;
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBConn.closeConn(conn);
+//		}
+//		return flag;
+//	}
+	
+	//
 	public boolean exist(String name) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		boolean flag = false;
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select * from t_user where username=?";
-		System.out.println("==UserBO.java==exist==sql==" + sql);
-		System.out.println("==UserBO.java==exist==name==" + name);
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			tx = session.beginTransaction();
+			User user = (User)session.createQuery("from User as u where u.name=:name")
+					.setString("name", name).setMaxResults(1).uniqueResult();
+			tx.commit(); 
+			if(user != null) {
 				flag = true;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 		return flag;
 	}
-
+	
+	
 	/**
 	 * this method is use to change password.
 	 */
+//	public boolean changePassword(int id, String newpwd) {
+//		boolean flag = false;
+//		Connection conn = null;
+//		String sql = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		try {
+//			conn = DBConn.getConnection();
+//			sql = "update t_user set password=? where id=? ";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, newpwd);
+//			pstmt.setInt(2, id);
+//			int x = pstmt.executeUpdate();
+//			flag = true;
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBConn.closeConn(conn);
+//		}
+//		return flag;
+//	}
+	
 	public boolean changePassword(int id, String newpwd) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		boolean flag = false;
-		Connection conn = null;
-		String sql = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		try {
-			conn = DBConn.getConnection();
-			sql = "update t_user set password=? where id=? ";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, newpwd);
-			pstmt.setInt(2, id);
-			int x = pstmt.executeUpdate();
+			tx = session.beginTransaction();
+			User user = session.load(User.class, id);
+			user.setPassword(newpwd);
+			tx.commit();
 			flag = true;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 		return flag;
 	}
+	
 
 	/**
 	 * This method is use to get a user class by user id.
 	 */
+
+	
 	public User getUser(String username) {
-		Connection conn = null;
-		String sql = "select id," + columnNames + " from t_user where username=?";
-		ResultSet rs = null;
-		PreparedStatement stmt = null;
-		User user = null;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		User user = new User();
 		try {
-			conn = DBConn.getConnection();
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, username);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				user = new User();
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("username"));
-				user.setPassword(rs.getString("password"));
-				user.setFullName(rs.getString("fullname"));
-				user.setEmail(rs.getString("email"));
-				user.setCreateDate(rs.getString("create_date"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
+			tx = session.beginTransaction();
+			user = (User)session.createQuery("from User as u where u.name=:name")
+					.setString("name", username).setMaxResults(1).uniqueResult();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
+		} 
 		return user;
 	}
 
 	/**
 	 * this method is use to get a user class by id.
 	 */
+
+	
 	public User getUser(int id) {
-		Connection conn = null;
-		String sql = "select * from t_user where id=" + id;
-		System.out.println("=======sql==161==" + sql);
-		System.out.println("=======userId==161==" + id);
-		ResultSet rs = null;
-		Statement stmt = null;
-		User user = new User();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		User u2 = new User();
 		try {
-			conn = DBConn.getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("username"));
-				user.setPassword(rs.getString("password"));
-				user.setFullName(rs.getString("fullname"));
-				user.setEmail(rs.getString("email"));
-				user.setCreateDate(rs.getDate("create_date").toString());
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			u2 = session.load(User.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return user;
+		return u2;
 	}
+	
 
 	/**
 	 * This method is use to update user's information
 	 */
-	public void updateUser(User user) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = DBConn.getConnection();
-			String sql = "update t_user set fullname=?,email=? where id='"
-					+ user.getId() + "'";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getFullName());
-			pstmt.setString(2, user.getEmail());
-			pstmt.execute();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+	
+	public void updateUser(User user) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.update(user);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
@@ -262,70 +313,51 @@ public class UserBO {
 	 * This method is use to view all user's details. All user's informations
 	 * are reserved in a List class.
 	 */
-	public List viewUsers() {
-		Connection conn = null;
-		String sql = "select * from t_user";
-		ResultSet rs = null;
-		Statement stmt = null;
-		List list = new ArrayList();
+
+	public List<User> viewUsers() {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<User> uList = new ArrayList<>();
 		try {
-			conn = DBConn.getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				User user = new User();
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("username"));
-				user.setFullName(rs.getString("fullname"));
-				user.setEmail(rs.getString("email"));
-				user.setCreateDate(rs.getDate("create_date").toString());
-				list.add(user);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			uList = session.createQuery("from User").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return uList;
 	}
+	
 
 	/**
 	 * this method is check login,use to check the user's name and password and
 	 * return a user class.
 	 */
+
+	
 	public User login(String username, String password) {
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		User user = new User();
-		String sql = "select * from t_user where username=? and password=?";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		User u = new User();
 		try {
-			conn = DBConn.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, username);
-			pstmt.setString(2, password);
-			rs = pstmt.executeQuery();
-			if (rs.next() == false) {
-				user = null;
-			} else {
-
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("username"));
-				user.setEmail(rs.getString("email"));
-				user.setFullName(rs.getString("fullname"));
-				user.setPassword(rs.getString("password"));
-				user.setCreateDate(rs.getDate("create_date").toString());
-				user.setPermissions(getAllPermissions(rs.getInt("id")));
-				user.setAdmin(isAdmin(rs.getInt("id")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			u = (User)session.createQuery("from User as u where u.name=:name and password=:password")
+					.setString("name", username).setString("password", password).uniqueResult();
+			
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return user;
+		return u;
 	}
+	
+	
 
 	/**
 	 * 判断t_project_user表里是否存在projectId 如果存在就返回true，反之则返回false
@@ -475,7 +507,7 @@ public class UserBO {
 	 */
 
 	public boolean isAdmin(int userId) {
-		boolean flag = false;
+		boolean flag = true;
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -496,4 +528,32 @@ public class UserBO {
 		}
 		return flag;
 	}
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		UserBO uBO = new UserBO();
+		User user = new User();
+		
+//		user.setName("meiguo");
+//		user.setPassword("123");
+//		
+//		uBO.addUser(user);
+		
+		User user_1 = uBO.login("hongz", "123");
+//		System.out.println(user_1.getName());
+//		System.out.println(uBO.exist("admin") + "负责人------------");
+		
+		User user2 = uBO.getUser(1);
+		System.out.println(user2.getEmail());
+		
+	}
+	
+	
+	
+	
+	
 }

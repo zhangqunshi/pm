@@ -9,73 +9,14 @@ package com.nastation.pm.bean;
 public class PermissionAssignee {
 	
 	private int id;// 权限分配ID
-	private int permissionId;// 权限id
+	private Permission permissionId;// 权限id
 	private String assigneeType;
 	private String assignee;
-	private int schemeId;// 权限模块id
-	private String createTime;// 权限分配创建时间
-	private String permission;// 权限名字
-	private String permissionDescription; // 权限描述
-	private String permissionTypeName; // 权限类型名字
-	private String permissionDateTime; // 权限创建时间
-	private String schemeName; // 权限模块名字
-	private String schemeDescription; // 权限模块描述
-	private String schemeDateTime;// 权限模块创建时间
+	private PermissionScheme schemeId;// 权限模块id
+	private java.util.Date createTime;// 权限分配创建时间
 
-	public String getPermissionDescription() {
-		return permissionDescription;
-	}
+	public PermissionAssignee() {
 
-	public void setPermissionDescription(String permissionDescription) {
-		this.permissionDescription = permissionDescription;
-	}
-
-	public String getPermissionTypeName() {
-		return permissionTypeName;
-	}
-
-	public void setPermissionTypeName(String permissionTypeName) {
-		this.permissionTypeName = permissionTypeName;
-	}
-
-	public String getPermissionDateTime() {
-		return permissionDateTime;
-	}
-
-	public void setPermissionDateTime(String permissionDateTime) {
-		this.permissionDateTime = permissionDateTime;
-	}
-
-	public String getSchemeName() {
-		return schemeName;
-	}
-
-	public void setSchemeName(String schemeName) {
-		this.schemeName = schemeName;
-	}
-
-	public String getSchemeDescription() {
-		return schemeDescription;
-	}
-
-	public void setSchemeDescription(String schemeDescription) {
-		this.schemeDescription = schemeDescription;
-	}
-
-	public String getSchemeDateTime() {
-		return schemeDateTime;
-	}
-
-	public void setSchemeDateTime(String schemeDateTime) {
-		this.schemeDateTime = schemeDateTime;
-	}
-
-	public String getPermission() {
-		return permission;
-	}
-
-	public void setPermission(String permission) {
-		this.permission = permission;
 	}
 
 	public int getId() {
@@ -86,11 +27,11 @@ public class PermissionAssignee {
 		this.id = id;
 	}
 
-	public int getPermissionId() {
+	public Permission getPermissionId() {
 		return permissionId;
 	}
 
-	public void setPermissionId(int permissionId) {
+	public void setPermissionId(Permission permissionId) {
 		this.permissionId = permissionId;
 	}
 
@@ -110,19 +51,19 @@ public class PermissionAssignee {
 		this.assignee = assignee;
 	}
 
-	public int getSchemeId() {
+	public PermissionScheme getSchemeId() {
 		return schemeId;
 	}
 
-	public void setSchemeId(int schemeId) {
+	public void setSchemeId(PermissionScheme schemeId) {
 		this.schemeId = schemeId;
 	}
 
-	public String getCreateTime() {
+	public java.util.Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(java.util.Date createTime) {
 		this.createTime = createTime;
 	}
 

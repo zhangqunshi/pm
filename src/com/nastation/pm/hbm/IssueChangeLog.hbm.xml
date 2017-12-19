@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.nastation.pm.bean.IssueChangeLog" table="t_issue_change_log"
+		lazy="false">
+
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+			
+			
+	
+
+		<!-- unique -->
+		<property name="changeField" type="string" column="change_field" />
+
+		<property name="oldValue" type="string" column="old_value" />
+		
+		<property name="newValue" type="string" column="new_value" />
+		
+		
+		
+		<property name="createDate" type="timestamp" column="create_date" />
+	
+		
+		<many-to-one 
+			name="issueId"
+			column="issue_id"
+			class="com.nastation.pm.bean.Issuehb"
+			cascade="save-update"
+		/>
+  
+	
+
+
+
+
+	</class>
+
+
+
+</hibernate-mapping>

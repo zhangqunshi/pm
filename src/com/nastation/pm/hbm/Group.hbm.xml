@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.nastation.pm.bean.Group" table="t_group"
+		lazy="false">
+
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+
+
+		<!-- unique -->
+		<property name="name" type="string" column="name" not-null="true" />
+		<property name="createDate" type="timestamp" column="create_date" />
+		
+		
+		<many-to-one
+			name="permissionSchemeId"
+			column="permission_scheme_id"
+			class="com.nastation.pm.bean.PermissionScheme"
+			cascade="save-update"
+		
+		/>
+		
+  
+	
+	 <!--    
+	<idbag name="users" table="t_group_user" lazy="false" cascade="save-update">
+		<collection-id type="int" column="id">
+			<generator class="increment" />
+		</collection-id>
+		<key column="group_id" />
+		<many-to-many class="com.nastation.pm.bean.User" column="user_id" />
+	     
+	
+	</idbag>
+	-->
+	  
+	 
+	<set name="users" table="t_group_user" lazy="false" cascade="save-update">
+		 
+		<key column="group_id" />
+		<many-to-many class="com.nastation.pm.bean.User" column="user_id" />
+	
+	
+	</set>
+	
+	
+
+
+
+
+	</class>
+
+
+
+</hibernate-mapping>

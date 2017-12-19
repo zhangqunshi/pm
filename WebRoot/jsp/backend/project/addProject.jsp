@@ -198,7 +198,7 @@
 								for (PermissionScheme ps : list) {
 							%>
 							<option value="<%=ps.getId()%>"><%=ps.getName()%>
-							</option>
+							</option> 
 							<%
 								}//endfor
 							%>

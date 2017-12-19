@@ -9,89 +9,88 @@ import java.util.List;
 
 import com.nastation.pm.bean.Issue;
 import com.nastation.pm.bean.IssueChangeLog;
+import com.nastation.pm.bean.Issuehb;
 import com.nastation.pm.bean.Role;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.StringUtils;
 
-public class IssueChangeLogBO {
-	public void addIssueChangeLog(IssueChangeLog issueChangeLog) {
-		Connection conn = DBConn.getConnection();
-		String sql = "insert into t_issue_change_log(issue_id,change_field,old_value,new_value,create_date) value(?,?,?,?,?)";
-		try {
-			PreparedStatement pst = conn.prepareStatement(sql);
-			System.out.println("=========sql========" + sql);
-			pst.setInt(1, issueChangeLog.getIssueId());
-			pst.setString(2, issueChangeLog.getChangeField());
-			pst.setString(3, issueChangeLog.getOldValue());
-			pst.setString(4, issueChangeLog.getNewValue());
-			pst.setString(5, issueChangeLog.getCreateDate());
-			pst.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-	}
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
 
-	public IssueChangeLog getIssueChangeLog(int id) {
-		IssueChangeLog issueChangeLog = new IssueChangeLog();
-		Connection conn = DBConn.getConnection();
+
+public class IssueChangeLogBO {
+
+	/**
+	 * 保存问题改编log
+	 * 
+	 * */
+	public void addIssueChangeLog(IssueChangeLog issueChangeLog) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select * from t_issue_change_log where id=?";
-			System.out.println("=========sql========" + sql);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				issueChangeLog.setId(id);
-				issueChangeLog.setIssueId(rs.getInt("issue_id"));
-				issueChangeLog.setChangeField(rs.getString("change_field"));
-				issueChangeLog.setOldValue(rs.getString("ole_value"));
-				issueChangeLog.setNewValue(rs.getString("new_valeu"));
-				issueChangeLog.setCreateDate(rs.getString("create_date"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.save(issueChangeLog);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return issueChangeLog;
 	}
+	
+	/**
+	 * 
+	 * 通过id获取对象
+	 * 
+	 * */
+	public IssueChangeLog getIssueChangeLog(int id) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		IssueChangeLog i = new IssueChangeLog();
+		try {
+			tx = session.beginTransaction();
+			i = session.load(IssueChangeLog.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
+		}
+		return i;
+	}
+	
+
 
 	public List getIssueChangeLogList(int id) {
-		List list = new ArrayList();
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List l = new ArrayList();
 		try {
-			String sql = "select * from t_issue_change_log where issue_id="
-					+ id;
-			System.out.println("=========sql========" + sql);
-			Statement ps = conn.createStatement();
-			ResultSet rs = ps.executeQuery(sql);
-			while (rs.next()) {
-				IssueChangeLog issueChangeLog = new IssueChangeLog();
-				issueChangeLog.setId(rs.getInt("id"));
-				issueChangeLog.setIssueId(rs.getInt("issue_id"));
-				issueChangeLog.setChangeField(rs.getString("change_field"));
-				issueChangeLog.setOldValue(rs.getString("ole_value"));
-				issueChangeLog.setNewValue(rs.getString("new_valeu"));
-				issueChangeLog.setCreateDate(rs.getString("create_date"));
-				list.add(issueChangeLog);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			l = session.createQuery("from IssueChangeLog as i where i.issueId.id=:id")
+					.setInteger("id", id).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
+	
 
-	public void checkIfAdd(Issue old, Issue new1) {
+	public void checkIfAdd(Issuehb old, Issuehb new1) {
 		if (!(old.getAssigneeId() == new1.getAssigneeId())) {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("AssigneeId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue("" + new1.getAssigneeId());
 			log.setOldValue("" + old.getAssigneeId());
 			this.addIssueChangeLog(log);
@@ -100,8 +99,8 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("ComponentId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue("" + new1.getComponentId());
 			log.setOldValue("" + old.getComponentId());
 			this.addIssueChangeLog(log);
@@ -110,8 +109,8 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("Description");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue(new1.getDescription());
 			log.setOldValue(old.getDescription());
 			this.addIssueChangeLog(log);
@@ -121,8 +120,8 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("Environment");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue(new1.getEnvironment());
 			log.setOldValue(old.getEnvironment());
 			this.addIssueChangeLog(log);
@@ -131,8 +130,8 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("Status");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue("" + new1.getIssueStatus());
 			log.setOldValue("" + old.getIssueStatus());
 			this.addIssueChangeLog(log);
@@ -142,8 +141,8 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("IssueTypeId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue("" + new1.getIssueTypeId());
 			log.setOldValue("" + old.getIssueTypeId());
 			this.addIssueChangeLog(log);
@@ -152,8 +151,8 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("IssueName");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue(new1.getName());
 			log.setOldValue(old.getName());
 			this.addIssueChangeLog(log);
@@ -163,18 +162,18 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("PlanEndTime");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
-			log.setNewValue(new1.getPlanEndTime());
-			log.setOldValue(old.getPlanEndTime());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
+			log.setNewValue(StringUtils.toString(new1.getPlanEndTime()));
+			log.setOldValue(StringUtils.toString(old.getPlanEndTime()));
 			this.addIssueChangeLog(log);
 		}
 		if (!(old.getPriorityLevelId() == new1.getPriorityLevelId())) {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("PriorityLevelId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue("" + new1.getPriorityLevelId());
 			log.setOldValue("" + old.getPriorityLevelId());
 			this.addIssueChangeLog(log);
@@ -184,8 +183,8 @@ public class IssueChangeLogBO {
 			IssueChangeLog log = new IssueChangeLog();
 			log.setChangeField("ReporterId");
 			String createDate = StringUtils.toString(new java.util.Date());
-			log.setCreateDate(createDate);
-			log.setIssueId(old.getId());
+			//log.setCreateDate(createDate);
+			log.setIssueId(old);
 			log.setNewValue("" + new1.getReporterId());
 			log.setOldValue("" + old.getReporterId());
 			this.addIssueChangeLog(log);

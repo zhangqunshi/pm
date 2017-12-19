@@ -12,6 +12,7 @@
 	
 <%
   String addNameStr = request.getParameter("groupName"); 
+	System.out.println(addNameStr+"----组名-----------");
   GroupBO groupBO = new GroupBO();
   if(StringUtils.isBlank(addNameStr)){
         System.out.println("===================addNameStr is null=======");

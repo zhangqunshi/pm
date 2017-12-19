@@ -13,15 +13,16 @@
 	<body>
 		<%
 			ProjectBO pb = new ProjectBO();
+			ProjectCategoryBO pcBO = new ProjectCategoryBO();
 			String str = request.getParameter("projectId");
 			System.out.println(str);
 			int id = Integer.parseInt(str);
 			String category = request.getParameter("categoryId");
 			int categoryId = Integer.parseInt(category);
 			Project project = pb.getProject(id);
-			project.setCategoryId(categoryId);
+			project.setCategoryId(pcBO.getProjectCategory(categoryId));
 			System.out.println("============categoryId======="
-					+ project.getCategoryId());
+					+ project.getCategoryId().getId());
 			pb.updateProject1(project);
 		%>
 		<jsp:forward page="viewProjectDetail.jsp"></jsp:forward>

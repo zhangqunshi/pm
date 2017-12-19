@@ -82,7 +82,7 @@
 												<td align="center" valign="top"><%@ include
 														file="BulkEditMoveGroupUser.jsp"%></td>
 												<td align="center" valign="top"><%@ include
-														file="BulkEditAddGroupUser.jsp"%></td>
+														file="BulkEditAddGroupUser.jsp"%></td>   
 											</tr>
 										</table>
 									</td>

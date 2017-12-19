@@ -17,10 +17,10 @@
 	ProjectCategoryBO pb = new ProjectCategoryBO();
 	System.out.println("====name====" + name);
 	ProjectCategory category = new ProjectCategory();
-	String createTime = StringUtils.toString(new java.util.Date());
+	//String createTime = StringUtils.toString(new java.util.Date());
 	category.setName(name);
 	category.setDescription(desc);
-	category.setCreateDate(createTime);
+	//category.setCreateDate(createTime);
 	if (pb.checkProjectCategory(category)) {
 		pb.addProjectCategory(category);
 		response.sendRedirect("viewProjectCategory.jsp");
@@ -30,5 +30,5 @@
 <jsp:forward page="viewProjectCategory.jsp"></jsp:forward>
 <%
 	}
-%>
+%>   
 

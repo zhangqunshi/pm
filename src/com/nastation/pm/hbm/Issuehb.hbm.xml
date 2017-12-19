@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.nastation.pm.bean.Issuehb" table="t_issue" lazy="false">
+
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+
+
+		<!-- unique -->
+		<property name="name" type="string" column="name" not-null="true" />
+		<property name="issueKey" type="string" column="issue_key" />
+		<property name="resolutionId" type="int" column="resolution_id" />
+		<property name="componentId" type="int" column="component_id" />
+		<property name="environment" type="string" column="environment" />
+		<property name="description" type="text" column="description" />
+		
+		<property name="createDate">
+			<column name="create_date" sql-type="datetime" />
+		</property>
+
+		<property name="startTime">
+			<column name="start_time" sql-type="datetime" />
+		</property>
+		
+		<property name="endTime">
+			<column name="end_time" sql-type="datetime" />
+		</property>
+
+		<property name="planEndTime" type="timestamp" column ="plan_end_time" />
+
+		<property name="lastUpdateDate" type="timestamp" column ="last_update_date"/>
+
+		<many-to-one name="assigneeId" column="assignee_id"
+			class="com.nastation.pm.bean.User" cascade="save-update" />
+
+		<many-to-one name="reporterId" column="reporter_id"
+			class="com.nastation.pm.bean.User" cascade="save-update" />
+
+		<many-to-one name="issueTypeId" column="issue_type_id"
+			class="com.nastation.pm.bean.IssueType" cascade="save-update" />
+
+		<many-to-one name="priorityLevelId" column="priority_level_id"
+			class="com.nastation.pm.bean.IssuePriority" cascade="save-update" />
+		
+		<many-to-one name="projectId" column="project_id"
+			class="com.nastation.pm.bean.Project" cascade="save-update" />
+
+		<many-to-one name="issueStatus" column="issue_status"
+			class="com.nastation.pm.bean.IssueStatus" cascade="save-update" />
+
+
+	</class>
+
+
+
+</hibernate-mapping>

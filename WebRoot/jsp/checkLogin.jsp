@@ -21,6 +21,7 @@
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		UserBO userBO = new UserBO();
+		System.out.println("=======checkLogin_1=========");
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
 			String error = "对不起,你的用户名或者密码不对 - 请重试.";
 			request.setAttribute("error", error);
@@ -29,6 +30,7 @@
 	<%
 		} else {
 			User user = userBO.login(username, password);
+			System.out.println("=======checkLogin_2=========");
 			if (user == null) {
 				String error1 = "对不起,你的用户名或者密码不对 - 请重试.";
 				request.setAttribute("error", error1);

@@ -11,6 +11,12 @@ import java.util.List;
 import com.nastation.pm.bean.ProjectComponent;
 import com.nastation.pm.util.DBConn;
 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
+
 /**
  * 新建项目模块
  * 
@@ -25,183 +31,207 @@ public class ProjectComponentBO {
 	/**
 	 * 添加项目模块
 	 */
+
+	
 	public void addProjectComponent(ProjectComponent pc) {
-		String sql = "insert into t_component(project_id,name,description,leader,create_time) value(?,?,?,?,?)";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, pc.getProjectId());
-			pstmt.setString(2, pc.getName());
-			pstmt.setString(3, pc.getDescription());
-			pstmt.setString(4, pc.getLeaderId());
-			pstmt.setString(5, pc.getCreateDate());
-			pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.save(pc);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-
 	}
+	
 
 	/**
 	 * 检查项目模块名称是否相等
 	 */
+
+	
 	public boolean checkProjectComponent(ProjectComponent pc) {
-		Connection conn = DBConn.getConnection();
+		boolean flag = true;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select * from t_component where name=? and id!=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, pc.getName());
-			ps.setInt(2, pc.getId());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return false;
+			tx = session.beginTransaction();
+			List<ProjectComponent> pList = session.createQuery("from ProjectComponent where name=:name")
+				.setString("name", pc.getName()).list();
+			tx.commit();
+			if(pList.size() > 1) {
+				flag = false;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return true;
+		return flag;
 	}
 
 	/**
 	 * 获取模块表中数据
 	 */
+
+	
 	public List<ProjectComponent> getProjectComponentList(int id) {
-		List<ProjectComponent> list = new ArrayList<ProjectComponent>();
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<ProjectComponent> pList = new ArrayList<>();
+		
 		try {
-			String sql = "select * from t_component where project_id=" + id;
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				ProjectComponent pc = new ProjectComponent();
-				pc.setId(rs.getInt("id"));
-				pc.setLeaderId(rs.getString("leader"));
-				pc.setCreateDate(rs.getString("create_time"));
-				pc.setDescription(rs.getString("description"));
-				pc.setName(rs.getString("name"));
-				list.add(pc);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			pList = session.createQuery("from ProjectComponent as p where p.projectId.projectId=:id")
+					.setInteger("id", id).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return pList;
 	}
 
 	/**
 	 * 删除项目模块
 	 */
+
+	
 	public void deleteProjectComponent(int id) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_component where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.delete(session.load(ProjectComponent.class,id));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
 	
 	/**
 	 * 删除所有项目模块
 	 */
 	
+
+	
 	public void deleteAllProjectComponents(int projectId) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_component where project_id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, projectId);
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.createQuery("delete from ProjectComponent where projectId.projectId=:id").setInteger("id", projectId).executeUpdate();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
 	
 	/**
 	 * 判断t_component表里是否存在projectId
 	 * 如果存在就返回true，反之则返回false
 	 */
 	
+
+	
 	public boolean checkProjectComponent2(int projectId) {
-		Connection conn = DBConn.getConnection();
-		boolean b = false;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select * from t_component where project_id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, projectId);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				b = true;
+			tx = session.beginTransaction();
+			ProjectComponent c = (ProjectComponent)session.createQuery("from ProjectComponent where projectId.projectId=:id").setInteger("id", projectId).setMaxResults(1).uniqueResult();
+			if(c != null) {
+				return true;
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return b;
+		return false;
 	}
 
 	/**
 	 * 更新项目模块
 	 */
+
+	
 	public void updateProjectComponent(ProjectComponent pc) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "update t_component set name=?,description=?,leader=? where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, pc.getName());
-			ps.setString(2, pc.getDescription());
-			ps.setString(3, pc.getLeaderId());
-			ps.setInt(4, pc.getId());
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(pc);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
 
 	/**
 	 * Id查找数据
 	 */
+
+	
 	public ProjectComponent getProjectComponent(int id) {
-		ProjectComponent pc = new ProjectComponent();
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		ProjectComponent p2 = new ProjectComponent();
 		try {
-			String sql = "select * from t_component where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				pc.setId(id);
-				pc.setLeaderId(rs.getString("leader"));
-				pc.setCreateDate(rs.getString("create_time"));
-				pc.setDescription(rs.getString("description"));
-				pc.setName(rs.getString("name"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			p2 = session.load(ProjectComponent.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return pc;
+		return p2;
 	}
+	
+	
+	
+	public static void main(String[] args) {
+		ProjectComponentBO pcBO = new ProjectComponentBO();
+		
+//		ProjectComponent p2 = new ProjectComponent();
+//		p2.setDescription("xfdfdxxfghfghxxxx");
+//		p2.setLeaderId("ggfdfdhfghgfggg");
+//		p2.setName("yyyfdfdyfghfgyyyyy");
+//		pcBO.addProjectComponent(p2);
+		
+//		List<ProjectComponent> l = pcBO.getProjectComponentList(6);
+//		for(ProjectComponent pc : l) {
+//			System.out.println("组件名字 = "+ pc.getName());
+//		}
+		
+//		boolean bb = pcBO.checkProjectComponent(pcBO.getProjectComponent(5));
+//		System.out.println(bb+"-------------------");
+		
+	}
+	
+	
 
 }

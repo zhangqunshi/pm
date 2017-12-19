@@ -10,10 +10,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import com.nastation.pm.bean.Group;
 import com.nastation.pm.bean.GroupUser;
 import com.nastation.pm.bean.ProjectUser;
+import com.nastation.pm.bean.User;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.StringUtils;
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
+import java.util.*;
 
 public class GroupUserBO {
 	
@@ -37,8 +46,10 @@ public class GroupUserBO {
 		
 	}
 	
+
+	
 	/**
-	 * 判断用户组用户组是否存在
+	 * 判断用户组是否存在
 	 */
 		public boolean groupUserExit(GroupUser groupUser){
 			boolean flag = false;
@@ -63,6 +74,8 @@ public class GroupUserBO {
 			}
 			return flag;
 		}
+		
+
 		
 	/**
 	 * 判断组ID为groupId的用户组是否存在
@@ -128,5 +141,37 @@ public class GroupUserBO {
 				}
 				
 			}
+			
+			public int userGroupId(int groupId, int userId){
+				int ugId = 0;
+				Connection conn = DBConn.getConnection();
+				PreparedStatement pstmt = null;
+				String sql = "select id from t_group_user where group_id=? and user_id=?";
+				System.out.println("=============delete groupUsre sql========" + sql);
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, groupId);
+					pstmt.setInt(2, userId);
+					ResultSet rs = pstmt.executeQuery();
+					rs.next();
+					ugId = rs.getInt("id");
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally{
+					DBConn.closeConn(conn);
+				}
+				return ugId;
+			}
+			
+			
+			
+			
+			public static void main(String[] args) {
+//				GroupUserBO guBO = new GroupUserBO();
+//				int id = guBO.userGroupId(1, 1);
+//				System.out.println(id+"--------group_user----------id");
+			}
+			
+			
 		
 }

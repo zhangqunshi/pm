@@ -53,11 +53,11 @@
 			'Remove' buttons below.
 		</p>
 		<p align="center">
-			<b><a href="viewProjectUser.jsp?projectId=<%=projectId%>"><<
+			<b><a href="viewProjectUser.jsp?projectId=<%=projectId%>">
 					Return to Project Role Browser</a>
 			</b>
 		</p>
-
+	
 		<table border="1" width="100%">
 			<tr>
 				<td valign="top">

@@ -1,6 +1,6 @@
 package com.nastation.pm.bean;
 
-import java.util.List;
+import java.util.*;
 /**
  * javabean for PermissionScheme
  * @author sun
@@ -9,13 +9,18 @@ public class PermissionScheme {
     private int id;
     private String name;
     private String description;
-    private String createDate;
-    private List<Project> projectList;  //用于存放使用该PermissionScheme的所有项目信息。
+    private java.util.Date createDate;
+    //private List<Project> projectList;  //用于存放使用该PermissionScheme的所有项目信息。
+    private Set<Project> projectList = new HashSet<>();
     
-	public List getProjectList() {
+    public PermissionScheme() {
+    	
+    }
+    
+	public Set<Project> getProjectList() {
 		return projectList;
 	}
-	public void setProjectList(List projectList) {
+	public void setProjectList(Set<Project> projectList) {
 		this.projectList = projectList;
 	}
 	public int getId() {
@@ -36,10 +41,10 @@ public class PermissionScheme {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCreateDate() {
+	public java.util.Date getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
 	}
 }

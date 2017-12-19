@@ -16,7 +16,14 @@ import java.util.List;
 
 import com.nastation.pm.bean.Project;
 import com.nastation.pm.bean.User;
+
 import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+
+import org.hibernate.query.*;
 
 public class ProjectBO {
 
@@ -26,6 +33,7 @@ public class ProjectBO {
 	 * @param project
 	 *            把项目相关信息存入数据库表中
 	 */
+
 	public void addProject(Project project) {
 		Connection conn = DBConn.getConnection();
 
@@ -35,7 +43,7 @@ public class ProjectBO {
 			conn.setAutoCommit(false);
 
 			// insert project infomation.
-			String sql = "insert into t_project(name,project_key,description,url,leader,category_id,permission_scheme_id,create_date) value(?,?,?,?,?,?,?,?)";
+			String sql = "insert into t_project(name,project_key,description,url,leader,category_id,permission_scheme_id) value(?,?,?,?,?,?,?)";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setString(1, project.getName());
 			pst.setString(2, project.getProjectKey());
@@ -43,10 +51,10 @@ public class ProjectBO {
 			pst.setString(4, project.getUrl());
 			pst.setString(5, project.getLeader());
 			pst.setNull(6, Types.NULL);
-			pst.setInt(7, project.getPermissionSchemeId());
-			pst.setString(8, project.getCreateDate());
+			pst.setInt(7, project.getPermissionSchemeId().getId());
+			// pst.setString(8, project.getCreateDate());
 			pst.executeUpdate();
-          
+
 			// get new project id
 			String sql3 = "select id from t_project where project_key=?";
 			System.out.println("=======sql3===" + sql3);
@@ -58,17 +66,16 @@ public class ProjectBO {
 				projectId = rs.getInt("id");
 			}
 
-			  //将项目负责人信息插入到t_project_user;
-			String sql1="insert t_project_user (project_id,user_id,role_id,create_date) values(?,?,?,curdate())";
-			PreparedStatement pstmt=conn.prepareStatement(sql1);
-			UserBO userBO=new UserBO();
-			User user=userBO.getUser(project.getLeader());
-			pstmt.setInt(1,projectId);
+			// 将项目负责人信息插入到t_project_user;
+			String sql1 = "insert t_project_user (project_id,user_id,role_id,create_date) values(?,?,?,curdate())";
+			PreparedStatement pstmt = conn.prepareStatement(sql1);
+			UserBO userBO = new UserBO();
+			User user = userBO.getUser(project.getLeader());
+			pstmt.setInt(1, projectId);
 			pstmt.setInt(2, user.getId());
-			pstmt.setInt(3, 1);//角色ID中1为管理员。
+			pstmt.setInt(3, 1);// 角色ID中1为管理员。
 			pstmt.executeUpdate();
-			
-			
+
 			// insert initial project issue key
 			String sql2 = "insert into t_project_issue_sequence(project_id,max_id_value) value(?,?)";
 			System.out.println("=======sql2===" + sql2);
@@ -93,60 +100,54 @@ public class ProjectBO {
 		}
 	}
 
+	
+
 	/**
 	 * 获得一个项目信息
 	 * 
 	 * @param id
 	 * @return 返回数据库中一个项目的详细信息
 	 */
+
 	public Project getProject(int id) {
-		Project project = new Project();
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		Project proj = new Project();
 		try {
-			String sql = "select * from t_project where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				project.setProjectId(id);
-				project.setName(rs.getString("name"));
-				project.setProjectKey(rs.getString("project_key"));
-				project.setDescription(rs.getString("description"));
-				project.setUrl(rs.getString("url"));
-				project.setLeader(rs.getString("leader"));
-				project.setCategoryId(rs.getInt("category_id"));
-				project.setPermissionSchemeId(rs.getInt("permission_scheme_id"));
-				project.setCreateDate(rs.getString("create_date"));
-			}
+			tx = session.beginTransaction();
+			proj = session.load(Project.class, id);
+			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
-		return project;
+		return proj;
 	}
-	
+
 	/**
 	 * 通过项目名获得该项目ID
+	 * 
 	 * @param name
 	 * @return id
 	 */
+
 	public int getProjectId(String name) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		int id = 0;
 		try {
-			String sql = "select id from t_project where name=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, name);
-			ResultSet rs = ps.executeQuery();
-			
-			if (rs.next()) {
-				id = rs.getInt("id");
-			}
+			tx = session.beginTransaction();
+			Project proj = (Project) session.createQuery("from Project where name=:name").setString("name", name)
+					.uniqueResult();
+			tx.commit();
+			id = proj.getProjectId();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
 		return id;
 	}
@@ -158,48 +159,56 @@ public class ProjectBO {
 	 * @param projectKey
 	 * @return true if exist, otherwise return false.
 	 */
+
 	public boolean existName(Project project) {
-		Connection conn = DBConn.getConnection();
+		boolean flag = false;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select id from t_project where name=? and id!=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, project.getName());
-			ps.setInt(2, project.getProjectId());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return true;
+			tx = session.beginTransaction();
+			List<Project> pList = session.createQuery("from Project where name=:name")
+					.setString("name", project.getName()).list();
+			tx.commit();
+			if (pList.size() > 1) {
+				flag = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
-		return false;
+		return flag;
 	}
+
 	/**
 	 * 判断key是否已经存在
+	 * 
 	 * @param key
 	 * @return
 	 */
+
 	public boolean existKey(Project project) {
-		Connection conn = DBConn.getConnection();
+		boolean flag = false;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "select id from t_project where project_key=? and id!=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, project.getProjectKey());
-			ps.setInt(2, project.getProjectId());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return true;
+			tx = session.beginTransaction();
+			List<Project> pList = session.createQuery("form Project where projectKey=:key")
+					.setString("key", project.getProjectKey()).list();
+			tx.commit();
+			if (pList.size() > 1) {
+				flag = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
-		return false;
+		return flag;
 	}
-	
+
 	/**
 	 * 修改项目信息
 	 * 
@@ -207,20 +216,17 @@ public class ProjectBO {
 	 */
 
 	public void updateProject(Project project) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "update t_project set name=?,description=?,url=?,leader=? where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, project.getName());
-			ps.setString(2, project.getDescription());
-			ps.setString(3, project.getUrl());
-			ps.setString(4, project.getLeader());
-			ps.setInt(5, project.getProjectId());
-			ps.executeUpdate();
+			tx = session.beginTransaction();
+			session.update(project);
+			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
 	}
 
@@ -231,17 +237,17 @@ public class ProjectBO {
 	 */
 
 	public void deleteProject(int id) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_project where id=?";
-			System.out.println("==sql==" + sql);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.executeUpdate();
+			tx = session.beginTransaction();
+			session.delete(session.load(Project.class, id));
+			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
 	}
 
@@ -251,32 +257,21 @@ public class ProjectBO {
 	 * @return 返回一个保存该项目信息的List
 	 */
 
-	public List getProjectList() {
-		List list = new ArrayList();
-		Connection conn = DBConn.getConnection();
+	public List<Project> getProjectList() {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Project> pList = new ArrayList<>();
 		try {
-			String sql = "select * from t_project";
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				Project project = new Project();
-				project.setProjectId(rs.getInt("id"));
-				project.setName(rs.getString("name"));
-				project.setProjectKey(rs.getString("project_key"));
-				project.setDescription(rs.getString("description"));
-				project.setUrl(rs.getString("url"));
-				project.setLeader(rs.getString("leader"));
-				project.setCategoryId(rs.getInt("category_id"));
-				project.setPermissionSchemeId(rs.getInt("permission_scheme_id"));
-				project.setCreateDate(rs.getString("create_date"));
-				list.add(project);
-			}
+			tx = session.beginTransaction();
+			pList = session.createQuery("from Project").list();
+			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
-		return list;
+		return pList;
 	}
 
 	/**
@@ -284,22 +279,17 @@ public class ProjectBO {
 	 */
 
 	public void updateProject1(Project project) {
-		Connection conn = DBConn.getConnection();
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "update t_project set name=?,project_key=?,description=?,url=?,leader=?,category_id=? where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, project.getName());
-			ps.setString(2, project.getProjectKey());
-			ps.setString(3, project.getDescription());
-			ps.setString(4, project.getUrl());
-			ps.setString(5, project.getLeader());
-			ps.setInt(6, project.getCategoryId());
-			ps.setInt(7, project.getProjectId());
-			ps.executeUpdate();
+			tx = session.beginTransaction();
+			session.update(project);
+			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
 		} finally {
-			DBConn.closeConn(conn);
+			session.close();
 		}
 	}
 
@@ -346,54 +336,78 @@ public class ProjectBO {
 		}
 		return id;
 	}
-    
+
 	/**
 	 * 返回一个权限模板下的所有项目信息
+	 * 
 	 * @param schemeId
 	 * @return
 	 * @author sun
 	 */
 	public List<Project> getProjectListByScheme(int schemeId) {
-        List<Project> list = new ArrayList();
-        Connection conn=DBConn.getConnection();
-        PreparedStatement pstmt = null;
-        ResultSet rs=null;
-        try{
-        	String sql = "select id,name from t_project where permission_scheme_id=?";
-        	pstmt=conn.prepareStatement(sql);
-        	pstmt.setInt(1, schemeId);
-        	rs = pstmt.executeQuery();
-        	while(rs.next()){
-        		Project project = new Project();
-        		project.setProjectId(rs.getInt("id"));
-        		project.setName(rs.getString("name"));
-        		list.add(project);
-        	}
-        }catch(SQLException e){
-        	e.printStackTrace();
-        }finally{
-        	
-        	DBConn.closeConn(conn);
-        }
+		List<Project> list = new ArrayList();
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select id,name from t_project where permission_scheme_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, schemeId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Project project = new Project();
+				project.setProjectId(rs.getInt("id"));
+				project.setName(rs.getString("name"));
+				list.add(project);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			DBConn.closeConn(conn);
+		}
 		return list;
 	}
-    /**
-     * 改变一个项目使用的模板
-     * @param projectId,schemeId
-     */
-	public void changeScheme(int projectId,int schemeId){
-		Connection conn=DBConn.getConnection();
-		PreparedStatement pstmt=null;
-		String sql="update t_project set permission_scheme_id=? where id=?";
-		try{
-			pstmt=conn.prepareStatement(sql);
+
+	/**
+	 * 改变一个项目使用的模板
+	 * 
+	 * @param projectId,schemeId
+	 */
+	public void changeScheme(int projectId, int schemeId) {
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "update t_project set permission_scheme_id=? where id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, schemeId);
 			pstmt.setInt(2, projectId);
 			pstmt.executeUpdate();
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBConn.closeConn(conn);
 		}
 	}
+
+	public static void main(String[] args) {
+		ProjectBO projBO = new ProjectBO();
+
+		Project proj = new Project();
+		proj = projBO.getProject(6);
+		System.out.println(proj.getCreateDate());
+		int id = projBO.getProjectId("hongz");
+		System.out.println(id);
+
+		// proj.setDescription("1");
+		// proj.setLeader("xxxxxxxx");
+		// proj.setName("yyyyy");
+		// proj.setProjectKey("kkkkkk");
+		// proj.setUrl("url");
+		//
+		// projBO.addProject(proj);
+
+		// projBO.deleteProject(12);
+	}
+
 }

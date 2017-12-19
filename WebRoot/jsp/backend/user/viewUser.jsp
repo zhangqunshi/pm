@@ -56,11 +56,11 @@
 				UserBO userBO = new UserBO();
 				GroupBO groupBO = new GroupBO();
 				String group = (String) request.getParameter("group");
-
+				//System.out.println(group+"zu----------------");  
 				if (StringUtils.isBlank(group)) { //查询出没有group参数传进来时,显示的组信息
 
 					System.out.println("================group is null==========");
-					List list = userBO.viewUsers();
+					List<User> list = userBO.viewUsers();
 					if (list != null) {
 						for (int i = 0; i < list.size(); i++) {
 							User user = (User) list.get(i);
@@ -81,7 +81,7 @@
 							if (userGroupList == null || userGroupList.size() == 0) {
 							} else {
 								for (int j = 0; j < userGroupList.size(); j++) {
-									Group firstUserGroupName = userGroupList.get(j);
+									Group firstUserGroupName = userGroupList.get(j); 
 									out
 											.println("<a href='"
 													+ request.getContextPath()
@@ -90,7 +90,7 @@
 													+ "'>"
 													+ firstUserGroupName.getName()
 													+ "</a><br>");
-								}
+								}  
 							}
 							out.println("</td>");
 							out.println("<td colspan='2'>");
@@ -106,29 +106,32 @@
 									+ "/jsp/backend/user/updateUser.jsp?id="
 									+ user.getId() + "'>编辑</a></td></tr>");
 
-						} //endfor
+						} //endfor  
 					}//endif
 				} else { //查询出有group参数传进来时,显示的组信息
-					List<Group> userGroupList = groupBO.getUserGroup(group);
+					Group userGroup = groupBO.getUserGroup(group);
+					List<User> userGroupList = new ArrayList<>(userGroup.getUsers());
+					
 					System.out.println("===================93=userGroupList===="
-							+ userGroupList);
+							+ userGroupList); 
 					for (int k = 0; k < userGroupList.size(); k++) {
-						Group groupAndUser = userGroupList.get(k);
-						if (StringUtils.isBlank(groupAndUser.getUserName())) {
+						User groupAndUser = userGroupList.get(k); 						
+																	
+						if (StringUtils.isBlank(groupAndUser.getName())) {   //改
 							System.out
 									.println("===================93=groupAndUser.getUserName() is null====");
 						} else {
 							out.println("<tr>");
 							out.println("<td><a href='#'>"
-									+ groupAndUser.getUserName() + "</a></td>");
+									+ groupAndUser.getName() + "</a></td>"); 
 							out.println("<td><a href='#'>"
-									+ groupAndUser.getUserEmail() + "</a></td>");
-							out.println("<td>" + groupAndUser.getUserFullName()
+									+ groupAndUser.getEmail() + "</a></td>");
+							out.println("<td>" + groupAndUser.getFullName()
 									+ "</td>");
-
+ 
 							out.println("<td>");
 							List<Group> secondUserGroupList = groupBO
-									.getUserGroupName(groupAndUser.getUserId());
+									.getUserGroupName(groupAndUser.getId());
 
 							if (secondUserGroupList == null
 									|| secondUserGroupList.size() == 0) {
@@ -154,14 +157,14 @@
 									.println("<a href='"
 											+ request.getContextPath()
 											+ "/jsp/backend/group/EditUserGroups!default.jsp?name="
-											+ groupAndUser.getUserName()
+											+ groupAndUser.getName()
 											+ "'>组</a>");
 							out.println("|<a href='" + request.getContextPath()
 									+ "/jsp/backend/user/userDeleteConfirm.jsp?id="
-									+ groupAndUser.getUserId() + "'>删除</a>");
+									+ groupAndUser.getId() + "'>删除</a>");
 							out.println("|<a href='" + request.getContextPath()
 									+ "/jsp/backend/user/updateUser.jsp?id="
-									+ groupAndUser.getUserId()
+									+ groupAndUser.getId()
 									+ "'>编辑</a></td></tr>");
 						}
 					}

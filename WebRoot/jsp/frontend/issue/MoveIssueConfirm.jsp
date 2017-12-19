@@ -15,8 +15,8 @@
 	<body>
 	<%
 			//从session中获得issue信息;
-			Issue issue = (Issue)session.getAttribute("moveIssue");
-            
+			Issuehb issue = (Issuehb)session.getAttribute("moveIssue");  
+              
 			//判断参数是否为空
 			if (issue == null) {
 				System.out.println("问题信息为null");
@@ -24,12 +24,12 @@
 				return;
 			}
 			
-			System.out.println("=======step3==newIssue.getProjectName=========="+issue.getProjectName());
-			System.out.println("=======step3==newIssue.getIssueTypeName=========="+issue.getIssueTypeName());
+			System.out.println("=======step3==newIssue.getProjectName=========="+issue.getProjectId().getName());
+			System.out.println("=======step3==newIssue.getIssueTypeName=========="+issue.getIssueTypeId().getName());
 			
             //通过projectId获得一个新的issueKey 
 			IssueBO issueBo = new IssueBO();
-            String issueKey = issueBo.getMoveIssueDetail(issue.getProjectId());
+            String issueKey = issueBo.getMoveIssueDetail(issue.getProjectId().getProjectId());
             issue.setIssueKey(issueKey);
             
             //根据issue更新已知的记录

@@ -17,9 +17,11 @@
 				System.out.println("==============moveGroupName is null ===");
 				moveGroupName = "";
 			}
-
+			GroupUserBO guBO = new GroupUserBO();
 			GroupBO moveGroupBO = new GroupBO();
-			List<Group> groupUserList = moveGroupBO.getUserGroup(moveGroupName);
+			Group groupUser = moveGroupBO.getUserGroup(moveGroupName);
+			int groupId = groupUser.getId();
+			List<User> groupUserList = new ArrayList<>(groupUser.getUsers());
 		%>
 		
 		<form action="doMoveGroupUser.jsp">
@@ -46,11 +48,12 @@
                       out.println("<select id='usersToUnassign' size='20' name='groupUserId'>");
                       out.println("<optgroup label='"+moveGroupName+"'>");
 	                  for(int i = 0;i < groupUserList.size();i++){
-	                     Group moveGroup =(Group) groupUserList.get(i);
-	                     if(StringUtils.isBlank(moveGroup.getUserName())){
+	                     User moveGroup =(User) groupUserList.get(i);
+	                     int groupUserId = guBO.userGroupId( groupId,  moveGroup.getId());
+	                     if(StringUtils.isBlank(moveGroup.getName())){  
 	                       System.out.println("========UserName is null==========");
-	                     }else{
-	                     out.println("<option value='"+moveGroup.getGroupUserId()+"'>"+moveGroup.getUserName()+"</option>");
+	                     }else{						 //moveGroup.getGroupUserId()
+	                     out.println("<option value='"+groupUserId+"'>"+moveGroup.getName()+"</option>");
 	                     }
 	                  }   
 	                  out.println("</optgroup>");

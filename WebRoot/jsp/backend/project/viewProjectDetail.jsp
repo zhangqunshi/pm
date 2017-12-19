@@ -9,15 +9,16 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-<html>
+<html>  
 	<%  String path=request.getContextPath();
 		String projectId = request.getParameter("projectId");
 		System.out.println("===============projectId======" + projectId);
 		int pid = Integer.parseInt(projectId);
+		System.out.println(pid+"========= 项目id");
 		ProjectBO pb = new ProjectBO();
 		Project project = pb.getProject(pid);
 		PermissionSchemeBO psBO = new PermissionSchemeBO();
-		PermissionScheme ps=psBO.getScheme(project.getPermissionSchemeId());
+		PermissionScheme ps=psBO.getScheme(project.getPermissionSchemeId().getId()); //修改 
 	%>
 
 	<body>
@@ -60,14 +61,14 @@
 						
 						<%
 							//判断项目类型是否为空
-							if (project.getCategoryId() == 0) {
+							if (project.getCategoryId() == null) {
 								out.println("<b>Category: </b> 无(<a href='"+path+"/jsp/backend/project/category/viewProjectCategoryForProject.jsp?projectId="
 												+ project.getProjectId()
 												+ "'> Select Category</a>)");
 							} else {
 								ProjectCategoryBO pc = new ProjectCategoryBO();
 								ProjectCategory category = pc.getProjectCategory(project
-										.getCategoryId());
+										.getCategoryId().getId()); 							//getId()修改
 								out.println("<b>Project Category: </b>"
 												+ category.getName()
 												+ "(<a href='"+path+"/jsp/backend/project/category/viewProjectCategoryForProject.jsp?projectId="

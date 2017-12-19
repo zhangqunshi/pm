@@ -1,32 +1,39 @@
 package com.nastation.pm.bean;
 
-
 /**
  * 
- * @author Zhangbo
- * 该类是项目javabean
+ * @author Zhangbo 该类是项目javabean
  */
 
 public class Project {
-	
-	private int projectId;
-	private String name; //项目名称
-	private String projectKey; 
-	private String description; //描述
-	private String url;  //项目路径
-	private String leader;  //管理员id
-	private int categoryId;  //类型id
-	private String createDate;  //创建日期
-	private int permissionSchemeId;//该项目使用的权限模板id
-	
-	
 
-	public int getPermissionSchemeId() {
+	private int projectId;
+	private String name; // 项目名称
+	private String projectKey;
+	private String description; // 描述
+	private String url; // 项目路径
+	private String leader; // 管理员id
+	private java.util.Date createDate;
+
+	// private int categoryId; //类型id
+	private ProjectCategory categoryId;
+	// private int permissionSchemeId;//该项目使用的权限模板id
+	private PermissionScheme permissionSchemeId;
+
+	public PermissionScheme getPermissionSchemeId() {
 		return permissionSchemeId;
 	}
 
-	public void setPermissionSchemeId(int permissionSchemeId) {
+	public void setPermissionSchemeId(PermissionScheme permissionSchemeId) {
 		this.permissionSchemeId = permissionSchemeId;
+	}
+
+	public java.util.Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(java.util.Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getName() {
@@ -69,19 +76,11 @@ public class Project {
 		this.leader = leader;
 	}
 
-	public String getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
-	}
-
-	public int getCategoryId() {
+	public ProjectCategory getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(ProjectCategory categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -92,5 +91,5 @@ public class Project {
 	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
-	
+
 }

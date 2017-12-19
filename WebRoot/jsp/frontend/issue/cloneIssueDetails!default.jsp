@@ -11,7 +11,7 @@
 		return;
 	}
 	IssueBO issueBo = new IssueBO();
-	Issue issue = issueBo.getIssueByKey(issueKey);
+	Issuehb issue = issueBo.getIssueByKey(issueKey);
 	if (issue == null) {
 		System.out.println("clone==get=issue===null");
 		return;

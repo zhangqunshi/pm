@@ -88,7 +88,7 @@
 
 <!-- 添加备注信息 -->
 <div id="lhscalinner_my" class="sidetable chromeColor" style="padding: 0pt 2px 1px; clear: both; display:none"> 
-<%@include file="/jsp/frontend/comment/addComment.jsp"%>
+<%@include file="/jsp/frontend/comment/addComment.jsp"%> 
 </div>
 
 

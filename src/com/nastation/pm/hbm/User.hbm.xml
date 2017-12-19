@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+
+
+<hibernate-mapping >
+	
+  <class name="com.nastation.pm.bean.User" table="t_user" lazy="false">
+    
+    <id name="id" type="int" column="id">
+      <generator class="native"/>
+    </id>
+	
+	
+	<!-- unique -->
+    <property name="name" type="string" column ="username" not-null="true" />
+    <property name="password" type="string" column ="password" not-null="true"/>
+     <property name="fullName" type="string" column ="fullname" />  
+     
+       <property name="email" type="string" column ="email" />
+        
+      <property name="createDate" type="timestamp" column="create_date" />
+         
+     
+      
+      <!--  
+    <set name="roles"
+    	 table="t_user_role"
+    	 lazy="false"
+    	 cascade="save-update"
+    >
+    <key column="user_id"/>
+    <many-to-many class="com.hongz.pm.bean.Role" column="role_id"/>
+    
+    </set>
+    -->
+    <!--  
+    <set name="groups"
+    	 table="t_group_user"
+    	 lazy="false"
+    	 cascade="save-update"
+    >
+    <key column="user_id"/>
+    <many-to-many class="com.hongz.pm.bean.Group" column="group_id"/>
+    
+    </set>
+    -->
+    
+    
+  </class>
+  
+  
+
+</hibernate-mapping>

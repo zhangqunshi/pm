@@ -11,13 +11,14 @@ public class ProjectComponent {
 	
 	public String name;
 	
-	public int projectId;
+	//public int projectId;
+	public Project projectId;
 	
 	public String description;
 	
 	public String leaderId;
 	
-	public String createDate;
+	public java.util.Date createDate;
 
 	public int getId() {
 		return id;
@@ -35,11 +36,11 @@ public class ProjectComponent {
 		this.name = name;
 	}
 
-	public int getProjectId() {
+	public Project getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(int projectId) {
+	public void setProjectId(Project projectId) {
 		this.projectId = projectId;
 	}
 
@@ -59,11 +60,11 @@ public class ProjectComponent {
 		this.leaderId = leaderId;
 	}
 
-	public String getCreateDate() {
+	public java.util.Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
 	}
 

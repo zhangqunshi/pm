@@ -19,7 +19,7 @@
 			String password = request.getParameter("password");
 			String fullName = request.getParameter("fullname");
 			String email = request.getParameter("email");
-			String createDate = StringUtils.toString(new java.util.Date());
+			//String createDate = StringUtils.toString(new java.util.Date());
 			if (StringUtils.isBlank(userName) || StringUtils.isEmpty(userName)) {
 				out.println("用户名不能为空<a href='" + request.getContextPath()
 						+ "/jsp/addUser.jsp'>重新填写</a>");
@@ -30,7 +30,7 @@
 			}
 			user.setName(userName);
 			user.setEmail(email);
-			user.setCreateDate(createDate);
+			//user.setCreateDate(createDate);
 			user.setFullName(fullName);
 			user.setPassword(password);
 			

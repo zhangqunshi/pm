@@ -11,9 +11,9 @@
 	System.out.println("=======action=====" + action);
 	String updateTime = StringUtils.toString(new Date());
 	IssueBO ib = new IssueBO();
-	Issue issue = ib.getIssueByKey(issueKey);
-	issue.setIssueStatus(Global.OPEN);
-	issue.setLastUpdateDate(updateTime);
+	Issuehb issue = ib.getIssueByKey(issueKey);
+	issue.setIssueStatus(new IssueStatusBO().getIssueStatus(Global.OPEN));
+	issue.setLastUpdateDate(new java.util.Date());
 	ib.updateIssueByLinkStatus(issue);
 %>
 <jsp:forward page="issueDetailLayout.jsp" />

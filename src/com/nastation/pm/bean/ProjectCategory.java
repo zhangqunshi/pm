@@ -7,7 +7,7 @@ public class ProjectCategory {
 	private int id;// 项目类型ID
 	private String name;// 项目类型名字
 	private String description;// 项目类型描述
-	private String createDate;// 项目类型创建日期
+	private java.util.Date createDate;// 项目类型创建日期
 
 	public int getId() {
 		return id;
@@ -33,11 +33,11 @@ public class ProjectCategory {
 		this.description = description;
 	}
 
-	public String getCreateDate() {
+	public java.util.Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
 	}
 }

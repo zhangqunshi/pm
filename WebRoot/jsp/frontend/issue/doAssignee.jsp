@@ -38,8 +38,8 @@
 				Comment comment = new Comment();
 				comment.setAuthor(user.getName());
 				comment.setCommentContent(content);
-				comment.setCreateDate(createDate);
-				comment.setIssueId(issueId);
+				comment.setCreateDate(new java.util.Date());
+				comment.setIssueId(new IssueBO().getIssue(issueId));
 				commentBO.addComment(comment);
 			}
 			//assignee issue
@@ -49,7 +49,7 @@
 				System.out
 						.println("======52=====issue.getAssignee============="
 								+ issue.getAssignee());
-		%>
+		%>  
 		<jsp:forward page="assignee.jsp">
 			<jsp:param name="error" value="<%=issue.getAssignee()%>" />
 			<jsp:param name="issueId" value="<%=issueId%>" />

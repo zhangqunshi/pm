@@ -58,7 +58,7 @@
 		//用问题ID获得ProjectComponent对象 
 		ProjectComponentBO projectComponentBO = new ProjectComponentBO();
 		List projectComponentList = projectComponentBO
-				.getProjectComponentList(issue.getProjectId());
+				.getProjectComponentList(issue.getProjectId()); 
 		//用问题ID获得User对象 
 		User user = new UserBO().getUser(issue.getReporterId());
 

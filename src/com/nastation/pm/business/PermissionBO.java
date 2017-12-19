@@ -3,6 +3,12 @@ import java.util.*;
 import java.sql.*;
 import com.nastation.pm.bean.*;
 import com.nastation.pm.util.*;
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
 /**
  * Permission business object.
  * @author sun
@@ -15,30 +21,24 @@ public class PermissionBO {
 	 * get all permission 
 	 * @return list
 	 */
-	public List<Permission> getAllPermission(){
-		List<Permission> list = new ArrayList();
-		Connection conn=DBConn.getConnection();
-		Statement stmt=null;
-		ResultSet rs=null;
-		String sql="select * from t_permission";
-		try{
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			while(rs.next()){
-				Permission permission = new Permission();
-				permission.setId(rs.getInt("id"));
-				permission.setName(rs.getString("name"));
-				permission.setDescription(rs.getString("description"));
-				permission.setTypeName(rs.getString("type_name"));
-				list.add(permission);
-			}
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally{
-			DBConn.closeConn(conn);
+
+	public List<Permission> getAllPermission() {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Permission> l = null;
+		try {
+			tx = session.beginTransaction();
+			l = session.createQuery("from Permission").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
+	
 	/**
 	 * 获得所有权限，按权限类型分类。以类型名为Key，该类型下的所有权限列表为Value.
 	 * @author sun

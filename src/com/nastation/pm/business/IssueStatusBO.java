@@ -21,183 +21,139 @@ import com.nastation.pm.bean.IssueStatus;
 import com.nastation.pm.bean.IssueType;
 import com.nastation.pm.util.DBConn;
 
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+import org.hibernate.query.*;
+import com.nastation.pm.util.*;
+
+
+
 public class IssueStatusBO {
 
-	/*
+	/**
 	 * 向数据库中添加记录 IssueStatus 对象
 	 */
+
+	
 	public void addIssueStatus(IssueStatus issueStatus) {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "insert into t_issue_status(name,description,icon_url)values(?,?,?)";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, issueStatus.getName());
-			pstmt.setString(2, issueStatus.getDescription());
-			pstmt.setString(3, issueStatus.getIconUrl());
-
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.save(issueStatus);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
-	/*
+	/**
 	 * 更新已知的记录
 	 */
+
 	public void updateIssueStatus(IssueStatus issueStatus) {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "update t_issue_status set name=?,description=?,icon_url=?where id=?";
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, issueStatus.getName());
-			pstmt.setString(2, issueStatus.getDescription());
-			pstmt.setString(3, issueStatus.getIconUrl());
-			pstmt.setInt(4, issueStatus.getId());
-
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.update(issueStatus);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
+	
 
-	/*
+	/**
 	 * 根据已知的 id ，获得IssueStatus对象
 	 */
+
 	public IssueStatus getIssueStatus(int id) {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		IssueStatus issueStatus = new IssueStatus();
-		ResultSet rs = null;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		IssueStatus issue2 = new IssueStatus();
 		try {
-			String sql = "select * from t_issue_status where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				issueStatus.setId(rs.getInt(1));
-				issueStatus.setName(rs.getString(2));
-				issueStatus.setDescription(rs.getString(3));
-				issueStatus.setIconUrl(rs.getString(4));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			issue2 = session.load(IssueStatus.class, id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return issueStatus;
+		return issue2;
 	}
-
-	/*
+	
+	
+	/**
 	 * 根据已知的 name ，获得IssueStatus对象
 	 */
-	public IssueStatus getIssueStatus(String name) {
 
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-		IssueStatus issueStatus = new IssueStatus();
-		ResultSet rs = null;
+	
+	public IssueStatus getIssueStatus(String name) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		IssueStatus is = null;
 		try {
-			String sql = "select * from t_issue_status where name=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				issueStatus.setId(rs.getInt(1));
-				issueStatus.setName(rs.getString(2));
-				issueStatus.setDescription(rs.getString(3));
-				issueStatus.setIconUrl(rs.getString(4));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			is = (IssueStatus)session.createQuery("from IssueStatus as i where i.name=:name").setString("name", name).uniqueResult();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return issueStatus;
+		return is;
 	}
 
-	/*
+	/**
 	 * 删除对应ID的IssueStatus 对象
 	 */
-	public void deleteIssueStatus(int id) {
 
-		Connection conn = DBConn.getConnection();
+	
+	public void deleteIssueStatus(int id) {
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
 		try {
-			String sql = "delete from t_issue_status where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			session.delete(session.load(IssueStatus.class, id));
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
 	}
 
-	/*
+	/**
 	 * 获得问题状态列表 List
 	 */
+
+	
 	public List<IssueStatus> getIssueStatusList() {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-
-		List<IssueStatus> list = new ArrayList<IssueStatus>();
-		ResultSet rs = null;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<IssueStatus> is = new ArrayList<>();
 		try {
-			String sql = "select * from t_issue_status ";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				IssueStatus issueStatus = new IssueStatus();
-				issueStatus.setId(rs.getInt(1));
-				issueStatus.setName(rs.getString(2));
-				issueStatus.setDescription(rs.getString(3));
-				issueStatus.setIconUrl(rs.getString(4));
-				list.add(issueStatus);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			is = session.createQuery("from IssueStatus").list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return is;
 	}
 
 	/**
@@ -227,72 +183,55 @@ public class IssueStatusBO {
 	 * 
 	 * @return
 	 */
+
+	
 	public List<Icon> getIconList() {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-
-		List<Icon> list = new ArrayList<Icon>();
-		ResultSet rs = null;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<Icon> l = null;
 		try {
-			String sql = "select * from t_icon where icon_type=? ";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 1);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Icon icon = new Icon();
-				icon.setId(rs.getInt(1));
-				icon.setFileName(rs.getString(2));
-				icon.setIconType(rs.getInt(3));
-				list.add(icon);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			l = session.createQuery("from Icon where iconType=:it").setInteger("it", 1).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
 
 	/**
 	 * 根据icon 获得问题类型列表 List
 	 */
+
+	
 	public List<IssueStatus> getIssueStatusListByIcon(Icon icon) {
-
-		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
-
-		List<IssueStatus> list = new ArrayList<IssueStatus>();
-		ResultSet rs = null;
+		Session session = SessionF.sessionFactory.openSession();
+		Transaction tx = null;
+		List<IssueStatus> l = null;
 		try {
-			String sql = "select * from t_issue_status where icon_url=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, icon.getFileName());
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				IssueStatus status = new IssueStatus();
-				status.setIconUrl(rs.getString(4));
-				status.setName(rs.getString(2));
-				list.add(status);
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			DBConn.closeConn(conn);
+			tx = session.beginTransaction();
+			l = session.createQuery("from IssueStatus as i where i.iconUrl=:name").setString("name", icon.getFileName()).list();
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
 		}
-		return list;
+		return l;
 	}
-}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}	

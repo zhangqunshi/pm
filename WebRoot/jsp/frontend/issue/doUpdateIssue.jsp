@@ -48,6 +48,7 @@
 
 		int issueId = Integer.parseInt(id);
 		int issueTypeIdInt = Integer.parseInt(issueTypeId);
+		IssueType issueType = new IssueTypeBO().getIssueType(issueTypeIdInt);  //
 		//检查参数
 		boolean hasError = false;
 		String errMsg = "";
@@ -83,35 +84,37 @@
 		} //endif
 
 		int priorityLevelIdInt = Integer.parseInt(priorityLevelId);
+		IssuePriority issuePriority = new IssuePriorityBO().getIssuePriority(priorityLevelIdInt);//
 		int componentIdInt = 0;
 		if (StringUtils.isNotBlank(componentId)) {
 			componentIdInt = Integer.parseInt(componentId);
 		}
 		int developerIdInt = Integer.parseInt(developerId);
+		User userD = new UserBO().getUser(developerIdInt); //
 
 		User user = new UserBO().getUser(reportername);
 		IssueBO issueBO = new IssueBO();
-		Issue issue = issueBO.getIssue(issueId);
+		Issuehb issue = issueBO.getIssue(issueId);
 
 		if (StringUtils.isNotBlank(componentId)) {
 			issue.setComponentId(componentIdInt);
 		}
-		issue.setIssueTypeId(issueTypeIdInt);
+		issue.setIssueTypeId(issueType);
 		issue.setName(StringUtils.removeHtmlTag(name));
-		issue.setPriorityLevelId(priorityLevelIdInt);
-		issue.setPlanEndTime(planEndTime);
+		issue.setPriorityLevelId(issuePriority);
+		issue.setPlanEndTime(StringUtils.toDate(planEndTime));
 		issue.setComponentId(componentIdInt);
-		issue.setAssigneeId(developerIdInt);
-		issue.setReporterId(user.getId());
+		issue.setAssigneeId(userD); 
+		issue.setReporterId(user);
 		issue.setEnvironment(StringUtils.removeHtmlTag(environment));
 		issue.setDescription(StringUtils.removeHtmlTag(description));
-		issue.setLastUpdateDate(createDate);
-		issue.setIssueStatus(1); // 状态 1 ，表示待解决
+		issue.setLastUpdateDate(new java.util.Date());
+		issue.setIssueStatus(new IssueStatusBO().getIssueStatus(1)); // 状态 1 ，表示待解决
 
 		//保存更改记录
-		Issue issue1 = issueBO.getIssue(issueId);
+		Issuehb issue1 = issueBO.getIssue(issueId);
 		IssueChangeLogBO iclbo = new IssueChangeLogBO();
-		iclbo.checkIfAdd(issue, issue1);
+		iclbo.checkIfAdd(issue, issue1);   
 		
 		//更新issue
 		issueBO.updateIssue(issue);

@@ -21,7 +21,7 @@
 	<tr>
 		<td>
 			<!-- 操作 -->
-			<%@include file="/jsp/frontend/issue/issueDetailLeftMenuBottom.jsp"%>
+			<%@include file="/jsp/frontend/issue/issueDetailLeftMenuBottom.jsp"%> 
 		</td>
 	</tr>
 </table>

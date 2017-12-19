@@ -86,31 +86,38 @@
 	int issueTypeId = Integer.parseInt(issueTypeIdStr);
 	int projectId = Integer.parseInt(projectIdStr);
 	int priorityLevelId = Integer.parseInt(priorityLevelIdStr);
+	IssueType issueType = new IssueTypeBO().getIssueType(issueTypeId);
+	Project proj = new ProjectBO().getProject(projectId);
+	IssuePriority issuePriority = new IssuePriorityBO().getIssuePriority(priorityLevelId);
+	
+	
 	int componentId = 0;
 	if (StringUtils.isNotBlank(componentIdStr)) {
 		componentId = Integer.parseInt(componentIdStr);
 	}
 	int developerId = Integer.parseInt(developerIdStr);
+	User userD = new UserBO().getUser(developerId);
 	String createDate = StringUtils.toString(new java.util.Date());
-
+	
 	//建立issue对象  	
-	Issue issue = new Issue();
-	issue.setIssueTypeId(issueTypeId);
+	Issuehb issue = new Issuehb();
+	issue.setIssueTypeId(issueType);
 	issue.setName(StringUtils.removeHtmlTag(summary));
-	issue.setPriorityLevelId(priorityLevelId);
-	issue.setPlanEndTime(planEndTime);
+	issue.setPriorityLevelId(issuePriority);
+	issue.setPlanEndTime(StringUtils.parseDate(planEndTime));
 	if (StringUtils.isNotBlank(componentIdStr)) {
 		issue.setComponentId(componentId);
 	}
-	issue.setAssigneeId(developerId);
+	issue.setAssigneeId(userD);
 	User user = new UserBO().getUser(reporter); //注意我没有判断这个用户是否存在, 以后加上
-	issue.setReporterId(user.getId());
+	issue.setReporterId(user);
 	issue.setEnvironment(StringUtils.removeHtmlTag(environment));
 	issue.setDescription(StringUtils.removeHtmlTag(description));
-	issue.setProjectId(projectId);
-	issue.setCreateDate(createDate);
-	issue.setLastUpdateDate(createDate);
-	issue.setIssueStatus(Global.OPEN);
+	issue.setProjectId(proj);
+	issue.setCreateDate(new java.util.Date());
+	issue.setLastUpdateDate(new java.util.Date());
+	IssueStatus is = new IssueStatusBO().getIssueStatus(Global.OPEN); //改
+	issue.setIssueStatus(is);
 
 	//找此项目的最大问题的索引值,作为issueKey
 	ProjectBO projectBO = new ProjectBO();

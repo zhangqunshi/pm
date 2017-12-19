@@ -35,7 +35,7 @@
 	<%
 		User curUser = (User) session.getAttribute(Global.SESSION_USER);
 		int projectId = issueRB.getProjectId();
-		if (curUser.validate(projectId, PermissionConstants.ADD_COMMENTS)) {
+		if (curUser.validate(projectId, PermissionConstants.ADD_COMMENTS)) { 
 	%>
 	<table border="0" width="100%">
 		<tr>

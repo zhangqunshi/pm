@@ -9,7 +9,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.util.*"%>
-<%@page import="java.util.List;"%>
+
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 
 <%
@@ -54,7 +54,7 @@
 	//获得project模块信息
 	ProjectComponentBO projectComponentBO = new ProjectComponentBO();
 	List projectComponentList = projectComponentBO
-			.getProjectComponentList(projectId);
+			.getProjectComponentList(projectId);  
 
 	//获得project成员信息
 	ProjectUserBO projectUserBO = new ProjectUserBO();

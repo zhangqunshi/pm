@@ -45,7 +45,7 @@
 				<th>
 					Users
 				</th>
-			</tr>
+			</tr> 
 			<%
 				//get all roles
 				RoleBO rb = new RoleBO();
