@@ -56,7 +56,7 @@
 				UserBO userBO = new UserBO();
 				GroupBO groupBO = new GroupBO();
 				String group = (String) request.getParameter("group");
-				//System.out.println(group+"zu----------------");  
+
 				if (StringUtils.isBlank(group)) { //查询出没有group参数传进来时,显示的组信息
 
 					System.out.println("================group is null==========");
@@ -117,7 +117,7 @@
 					for (int k = 0; k < userGroupList.size(); k++) {
 						User groupAndUser = userGroupList.get(k); 						
 																	
-						if (StringUtils.isBlank(groupAndUser.getName())) {   //改
+						if (StringUtils.isBlank(groupAndUser.getName())) {  
 							System.out
 									.println("===================93=groupAndUser.getUserName() is null====");
 						} else {

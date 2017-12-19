@@ -15,7 +15,6 @@ import org.hibernate.cfg.*;
 import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 
-
 /**
  * 问题Resolution的业务逻辑类
  * 
@@ -29,8 +28,6 @@ public class ResolutionBO {
 	 * 向数据库中添加Resolution 对象
 	 */
 
-	
-	
 	public void addResolution(Resolution resolution) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -38,10 +35,10 @@ public class ResolutionBO {
 			tx = session.beginTransaction();
 			session.save(resolution);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -52,7 +49,6 @@ public class ResolutionBO {
 	 * @return
 	 */
 
-	
 	public List<Resolution> getAllResolutions() {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -61,10 +57,10 @@ public class ResolutionBO {
 			tx = session.beginTransaction();
 			r2List = session.createQuery("from Resolution").list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return r2List;
@@ -114,7 +110,6 @@ public class ResolutionBO {
 	 * @param id
 	 */
 
-	
 	public Resolution getResolution(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -123,16 +118,14 @@ public class ResolutionBO {
 			tx = session.beginTransaction();
 			r2 = session.load(Resolution.class, id);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return r2;
 	}
-	
-	
 
 	/**
 	 * update resolution
@@ -140,7 +133,6 @@ public class ResolutionBO {
 	 * @param resolution
 	 */
 
-	
 	public Resolution updateResolution(Resolution resolution) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -148,10 +140,10 @@ public class ResolutionBO {
 			tx = session.beginTransaction();
 			session.update(resolution);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return resolution;
@@ -163,23 +155,22 @@ public class ResolutionBO {
 	 * @return
 	 */
 
-	
 	public boolean checkExistResolution(Resolution resolution) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
-		boolean flag =false;
+		boolean flag = false;
 		try {
 			tx = session.beginTransaction();
 			List<Resolution> rList = session.createQuery("from Resolution as r where r.name=:name and r.id<>:id")
 					.setString("name", resolution.getName()).setInteger("id", resolution.getId()).list();
 			tx.commit();
-			if(rList.get(0) != null) {
+			if (rList.get(0) != null) {
 				flag = true;
 			}
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
@@ -233,35 +224,12 @@ public class ResolutionBO {
 			tx = session.beginTransaction();
 			session.delete(session.load(Resolution.class, id));
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
-	
-	
-	
-	
-	public static void main(String[] args) {
-		
-		ResolutionBO rBO = new ResolutionBO();
-		Resolution r2 = rBO.getResolution(7);
-		
-		boolean bb = rBO.checkExistResolution(r2);
-		System.out.println(bb);
-		
-//		Resolution r22 = new Resolution();
-//		r22.setName("uu");
-//		rBO.addResolution(r22);
-		
-		
-	}
-	
-	
-	
-	
-	
-	
+
 }

@@ -24,14 +24,13 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<p>
-					Confirm that you want to delete this project and all its issues,
-					components and versions.
-				</p>
+				<p>Confirm that you want to delete this project and all its
+					issues, components and versions.</p>
 				<p>
 					<font color="#cc0000"> WARNING: This operation cannot be
 						undone. If you wish to save the project data, it is recommended
-						that you <a href="#">back it up first</a>. </font>
+						that you <a href="#">back it up first</a>.
+					</font>
 				</p>
 			</td>
 		</tr>
@@ -39,13 +38,12 @@
 			id="issueStatusId" />
 		<input type="hidden" value="true" name="confirm" />
 		<tr>
-			<td colspan="2">
-				<input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S"
-					onclick="location.href='<c:url value="/jsp/backend/issue/status/doDeleteIssueStatus.jsp"/>?IssueStatusId=<%=id%>'"
-					value="删除" id="删除" name="删除" />
-				<input type="button"
-					onclick="location.href='<c:url value="/jsp/backend/issue/status/viewIssueStatus.jsp"/>?IssueStatusId=<%=id%>'"
-					value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
+			<td colspan="2"><input type="submit" class="spaced"
+				title="按 Alt+S 提交" accesskey="S"
+				onclick="location.href='<c:url value="/jsp/backend/issue/status/doDeleteIssueStatus.jsp"/>?IssueStatusId=<%=id%>'"
+				value="删除" id="删除" name="删除" /> <input type="button"
+				onclick="location.href='<c:url value="/jsp/backend/issue/status/viewIssueStatus.jsp"/>?IssueStatusId=<%=id%>'"
+				value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
 
 			</td>
 		</tr>

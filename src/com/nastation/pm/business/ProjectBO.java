@@ -52,7 +52,6 @@ public class ProjectBO {
 			pst.setString(5, project.getLeader());
 			pst.setNull(6, Types.NULL);
 			pst.setInt(7, project.getPermissionSchemeId().getId());
-			// pst.setString(8, project.getCreateDate());
 			pst.executeUpdate();
 
 			// get new project id
@@ -99,8 +98,6 @@ public class ProjectBO {
 			DBConn.closeConn(conn);
 		}
 	}
-
-	
 
 	/**
 	 * 获得一个项目信息
@@ -388,26 +385,6 @@ public class ProjectBO {
 		} finally {
 			DBConn.closeConn(conn);
 		}
-	}
-
-	public static void main(String[] args) {
-		ProjectBO projBO = new ProjectBO();
-
-		Project proj = new Project();
-		proj = projBO.getProject(6);
-		System.out.println(proj.getCreateDate());
-		int id = projBO.getProjectId("hongz");
-		System.out.println(id);
-
-		// proj.setDescription("1");
-		// proj.setLeader("xxxxxxxx");
-		// proj.setName("yyyyy");
-		// proj.setProjectKey("kkkkkk");
-		// proj.setUrl("url");
-		//
-		// projBO.addProject(proj);
-
-		// projBO.deleteProject(12);
 	}
 
 }

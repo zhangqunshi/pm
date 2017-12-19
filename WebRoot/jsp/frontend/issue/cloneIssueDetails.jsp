@@ -26,12 +26,11 @@
 	//生成复制后的任务对象
 	
 	ProjectBO projectBO = new ProjectBO();
-	int nextId = projectBO.getProjectIssueMaxId(oldIssue.getProjectId().getProjectId()); //改
-	Project project = projectBO.getProject(oldIssue.getProjectId().getProjectId()); //改
+	int nextId = projectBO.getProjectIssueMaxId(oldIssue.getProjectId().getProjectId());
+	Project project = projectBO.getProject(oldIssue.getProjectId().getProjectId());
 	String projectKey = project.getProjectKey();
 	String newIssueKey = projectKey + "-" + nextId;
 	System.out.println("===newIssueKey===="	+ newIssueKey);
-	//String currDate = StringUtils.getCurrDate();  //改
 	
 	Issuehb newIssue = new Issuehb();
 	newIssue.setIssueTypeId(oldIssue.getIssueTypeId());

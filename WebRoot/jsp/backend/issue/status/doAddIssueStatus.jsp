@@ -19,9 +19,7 @@
 <%
 	}
 	if (StringUtils.isBlank(iconUrl)) {
-		request
-				.setAttribute("error",
-						"You must specify a URL for the icon of this new status.");
+		request.setAttribute("error", "You must specify a URL for the icon of this new status.");
 %>
 <jsp:forward page="viewIssueStatus.jsp"></jsp:forward>
 <%

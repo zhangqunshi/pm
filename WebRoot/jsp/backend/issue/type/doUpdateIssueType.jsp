@@ -42,5 +42,5 @@
 %>
 <jsp:include page="viewIssueType.jsp"></jsp:include>
 <%
-	}//end else
+	} //end else
 %>

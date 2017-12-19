@@ -10,21 +10,20 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 
 <html>
-	<body>
-		<%
-			ProjectBO pb = new ProjectBO();
-			ProjectCategoryBO pcBO = new ProjectCategoryBO();
-			String str = request.getParameter("projectId");
-			System.out.println(str);
-			int id = Integer.parseInt(str);
-			String category = request.getParameter("categoryId");
-			int categoryId = Integer.parseInt(category);
-			Project project = pb.getProject(id);
-			project.setCategoryId(pcBO.getProjectCategory(categoryId));
-			System.out.println("============categoryId======="
-					+ project.getCategoryId().getId());
-			pb.updateProject1(project);
-		%>
-		<jsp:forward page="viewProjectDetail.jsp"></jsp:forward>
-	</body>
+<body>
+	<%
+		ProjectBO pb = new ProjectBO();
+		ProjectCategoryBO pcBO = new ProjectCategoryBO();
+		String str = request.getParameter("projectId");
+		System.out.println(str);
+		int id = Integer.parseInt(str);
+		String category = request.getParameter("categoryId");
+		int categoryId = Integer.parseInt(category);
+		Project project = pb.getProject(id);
+		project.setCategoryId(pcBO.getProjectCategory(categoryId));
+		System.out.println("============categoryId=======" + project.getCategoryId().getId());
+		pb.updateProject1(project);
+	%>
+	<jsp:forward page="viewProjectDetail.jsp"></jsp:forward>
+</body>
 </html>

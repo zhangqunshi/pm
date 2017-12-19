@@ -47,12 +47,20 @@
 <jsp:forward page="saveAsFilter.jsp" />
 <%
 	} //endif
-
+	
+	
 	User user = (User) session.getAttribute(Global.SESSION_USER);
 	filter.setAuthorName(user.getName());
 	filter.setDescription(description);
 	filter.setFilterName(newFilterName.trim());
-	filterBO.addFilter(filter);
+	SearchRequest sr = new SearchRequest();
+	sr.setId(filter.getId());
+	sr.setAuthorName(filter.getAuthorName());
+	sr.setDescription(filter.getDescription());
+	sr.setFilterName(filter.getFilterName());
+	sr.setRequest_content(filter.getRequestContent());
+	sr.setProjectId(filter.getProjectId());
+	filterBO.addFilter(sr);
 	
 	//从数据库中取得对象获得id
 	IssueFilter savedFilter = filterBO.getFilter(newFilterName);

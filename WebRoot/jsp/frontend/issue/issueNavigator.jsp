@@ -31,7 +31,7 @@
 	if (StringUtils.isNotBlank(filterId)) {
 		IssueFilterBO filterBO = new IssueFilterBO();
 		IssueFilter issueF = filterBO.getFilterById(Integer.parseInt(filterId));
-		session.setAttribute(Global.SESSION_FILTER, issueF);
+		session.setAttribute(Global.SESSION_FILTER, issueF);   //从这里开始把问题过滤条件添加到session中的
 	}
 	
 	//如果是新建，就删除session中所有的filter

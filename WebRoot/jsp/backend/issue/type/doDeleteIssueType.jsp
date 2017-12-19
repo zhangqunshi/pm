@@ -8,4 +8,4 @@
 	int ii = Integer.parseInt(iid);
 	ib.deleteIssueType(ii);
 %>
-<jsp:forward page="/jsp/backend/issue/type/viewIssueType.jsp"/>
+<jsp:forward page="/jsp/backend/issue/type/viewIssueType.jsp" />

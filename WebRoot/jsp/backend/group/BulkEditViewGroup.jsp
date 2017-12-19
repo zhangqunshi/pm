@@ -39,39 +39,31 @@
 <form action="BulkEditUserGroups!default.jsp" name="viewform">
 	<table>
 		<tr>
-			<td align="center">
-				<b>Selected 1 of <%=groupList.size()%> Groups<b>
-			</td>
+			<td align="center"><b>Selected 1 of <%=groupList.size()%>
+					Groups<b></td>
 		</tr>
 		<tr>
 		</tr>
 		<tr>
-		    <td align="center">
-		       <input type="submit" value="check"/>
-		    </td>
+			<td align="center"><input type="submit" value="check" /></td>
 		</tr>
 		<tr>
-			<td align="center">
-				<br>
-				<select id="fatherid" size="5" 
-					name="groupName">
+			<td align="center"><br> <select id="fatherid" size="5"
+				name="groupName">
 					<%
-					for (int i = 0; i < groupList.size(); i++) {
-						Group group = groupList.get(i);
-						if (group.getName().equals(viewGroupName)) {
-							out.println("<option selected value='" + group.getName()
-							+ "'>" + group.getName() + "</option>");
-						} else {
-							out.println("<option value='" + group.getName() + "'>"
-							+ group.getName() + "</option>");
-						}
+						for (int i = 0; i < groupList.size(); i++) {
+							Group group = groupList.get(i);
+							if (group.getName().equals(viewGroupName)) {
+								out.println("<option selected value='" + group.getName() + "'>" + group.getName() + "</option>");
+							} else {
+								out.println("<option value='" + group.getName() + "'>" + group.getName() + "</option>");
+							}
 
-					}
+						}
 					%>
-				</select>
-			</td>
+			</select></td>
 		</tr>
-		
+
 	</table>
 </form>
 

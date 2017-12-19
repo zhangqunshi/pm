@@ -22,7 +22,7 @@
 		commentStr = "";
 	}
 
-	Issue issueRB = new IssueBO().getIssueDetailByKey(issueKeyCommnt); //得到问题对象
+	Issue issueRB = new IssueBO().getIssueDetailByKey(issueKeyCommnt);
 
 	out.println("<font color='red'>" + commentStr + "</font>");
 %>

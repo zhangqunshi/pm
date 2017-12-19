@@ -25,7 +25,7 @@
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/jsp/backend/user/viewUserDetail.jsp");
 			rd.forward(request, response);
-			//response.sendRedirect(path+"/jsp/backend/user/viewUserDetail.jsp");
+			
 		%>
 
 	</body>

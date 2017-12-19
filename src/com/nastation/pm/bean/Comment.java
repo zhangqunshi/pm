@@ -10,7 +10,7 @@ public class Comment {
 	public String author; // 创建人
 	public Issuehb issueId;
 	public java.util.Date createDate; // 备注创建时间
-	
+
 	public Comment() {
 
 	}
@@ -54,9 +54,5 @@ public class Comment {
 	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
 	}
-
-	
-
-	
 
 }

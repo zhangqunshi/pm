@@ -17,7 +17,7 @@
 		out.println("<body>The issue key is null</body>");
 		return;
 	}
-	Issue issue = new IssueBO().getIssueDetailByKey(issueKey); //得到问题对象
+	Issue issue = new IssueBO().getIssueDetailByKey(issueKey);
 	request.setAttribute("issue", issue);
 %>
 <html>

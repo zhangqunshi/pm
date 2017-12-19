@@ -26,40 +26,7 @@ public class UserBO {
 	 * This method is use to insert the user's information into database;
 	 * 
 	 */
-	/*
-	public boolean addUser(User user) {
-		boolean flag = false;
-		Connection conn = null;
-		String sql = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			sql = "insert into t_user(" + columnNames + ") value(?,?,?,?,?)";
-			conn = DBConn.getConnection();
-			pstmt = conn.prepareStatement(sql);
 
-			if (!exist(user.getName())) {
-				pstmt.setString(1, user.getName());
-				pstmt.setString(2, user.getPassword());
-				pstmt.setString(3, user.getFullName());
-				pstmt.setString(4, user.getEmail());
-				pstmt.setString(5, user.getCreateDate());
-				int x = pstmt.executeUpdate();
-				flag = true;
-			} else {
-				flag = false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-
-			DBConn.closeConn(conn);
-
-		}
-		return flag;
-	}
-	*/
-	//
 	public boolean addUser(User user) {
 		boolean flag = false;
 		Session session = SessionF.sessionFactory.openSession();
@@ -69,10 +36,10 @@ public class UserBO {
 			session.save(user);
 			tx.commit();
 			flag = true;
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
@@ -81,78 +48,32 @@ public class UserBO {
 	/**
 	 * 判断用户名是否重复
 	 */
-//	public boolean exist(String name) {
-//		boolean flag = false;
-//		Connection conn = DBConn.getConnection();
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		String sql = "select * from t_user where username=?";
-//		System.out.println("==UserBO.java==exist==sql==" + sql);
-//		System.out.println("==UserBO.java==exist==name==" + name);
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, name);
-//			rs = pstmt.executeQuery();
-//			if (rs.next()) {
-//				flag = true;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			DBConn.closeConn(conn);
-//		}
-//		return flag;
-//	}
-	
-	//
+
 	public boolean exist(String name) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		boolean flag = false;
 		try {
 			tx = session.beginTransaction();
-			User user = (User)session.createQuery("from User as u where u.name=:name")
-					.setString("name", name).setMaxResults(1).uniqueResult();
-			tx.commit(); 
-			if(user != null) {
+			User user = (User) session.createQuery("from User as u where u.name=:name").setString("name", name)
+					.setMaxResults(1).uniqueResult();
+			tx.commit();
+			if (user != null) {
 				flag = true;
 			}
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
 	}
-	
-	
+
 	/**
 	 * this method is use to change password.
 	 */
-//	public boolean changePassword(int id, String newpwd) {
-//		boolean flag = false;
-//		Connection conn = null;
-//		String sql = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		try {
-//			conn = DBConn.getConnection();
-//			sql = "update t_user set password=? where id=? ";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, newpwd);
-//			pstmt.setInt(2, id);
-//			int x = pstmt.executeUpdate();
-//			flag = true;
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			DBConn.closeConn(conn);
-//		}
-//		return flag;
-//	}
-	
+
 	public boolean changePassword(int id, String newpwd) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -163,36 +84,34 @@ public class UserBO {
 			user.setPassword(newpwd);
 			tx.commit();
 			flag = true;
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
 	}
-	
 
 	/**
 	 * This method is use to get a user class by user id.
 	 */
 
-	
 	public User getUser(String username) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		User user = new User();
 		try {
 			tx = session.beginTransaction();
-			user = (User)session.createQuery("from User as u where u.name=:name")
-					.setString("name", username).setMaxResults(1).uniqueResult();
+			user = (User) session.createQuery("from User as u where u.name=:name").setString("name", username)
+					.setMaxResults(1).uniqueResult();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
-		} 
+		}
 		return user;
 	}
 
@@ -200,7 +119,6 @@ public class UserBO {
 	 * this method is use to get a user class by id.
 	 */
 
-	
 	public User getUser(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -209,21 +127,19 @@ public class UserBO {
 			tx = session.beginTransaction();
 			u2 = session.load(User.class, id);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return u2;
 	}
-	
 
 	/**
 	 * This method is use to update user's information
 	 */
 
-	
 	public void updateUser(User user) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -231,10 +147,10 @@ public class UserBO {
 			tx = session.beginTransaction();
 			session.update(user);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -310,8 +226,8 @@ public class UserBO {
 	}
 
 	/**
-	 * This method is use to view all user's details. All user's informations
-	 * are reserved in a List class.
+	 * This method is use to view all user's details. All user's informations are
+	 * reserved in a List class.
 	 */
 
 	public List<User> viewUsers() {
@@ -322,42 +238,38 @@ public class UserBO {
 			tx = session.beginTransaction();
 			uList = session.createQuery("from User").list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return uList;
 	}
-	
 
 	/**
 	 * this method is check login,use to check the user's name and password and
 	 * return a user class.
 	 */
 
-	
 	public User login(String username, String password) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		User u = new User();
 		try {
 			tx = session.beginTransaction();
-			u = (User)session.createQuery("from User as u where u.name=:name and password=:password")
+			u = (User) session.createQuery("from User as u where u.name=:name and password=:password")
 					.setString("name", username).setString("password", password).uniqueResult();
-			
+
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return u;
 	}
-	
-	
 
 	/**
 	 * 判断t_project_user表里是否存在projectId 如果存在就返回true，反之则返回false
@@ -438,33 +350,24 @@ public class UserBO {
 		ResultSet rs = null;
 		ResultSet rs2 = null;
 		StringBuffer strBuffer = new StringBuffer();
-		strBuffer
-				.append("select distinct a.id as user_id,b.id as project_id, ");
+		strBuffer.append("select distinct a.id as user_id,b.id as project_id, ");
 		strBuffer.append("e.name as permission_name ");
-		strBuffer
-				.append("from t_user a left join t_project_user f on a.id=f.user_id ");
+		strBuffer.append("from t_user a left join t_project_user f on a.id=f.user_id ");
 		strBuffer.append("left join t_project b on f.project_id=b.id ");
-		strBuffer
-				.append("left join t_permission_scheme c on b.permission_scheme_id=c.id ");
-		strBuffer
-				.append("left join t_permission_assignee d on c.id = d.scheme_id ");
+		strBuffer.append("left join t_permission_scheme c on b.permission_scheme_id=c.id ");
+		strBuffer.append("left join t_permission_assignee d on c.id = d.scheme_id ");
 		strBuffer.append("left join t_permission e on d.permission_id=e.id ");
-		strBuffer
-				.append("where ((d.assignee_type='ProjectRole' and d.assignee in ");
+		strBuffer.append("where ((d.assignee_type='ProjectRole' and d.assignee in ");
 		strBuffer.append("(select distinct b.role_name ");
-		strBuffer
-				.append("from t_user a left join t_project_user c on a.id=c.user_id ");
+		strBuffer.append("from t_user a left join t_project_user c on a.id=c.user_id ");
 		strBuffer.append("left join t_role b on b.id=c.role_id ");
 		strBuffer.append("left join t_project d on d.id=c.project_id ");
 		strBuffer.append("where a.id=?)) ");
 		strBuffer.append("or (d.assignee_type='Group' and d.assignee in( ");
 		strBuffer.append("select distinct c.name as group_name ");
-		strBuffer
-				.append("from t_user a left join t_group_user e on a.id=e.user_id ");
-		strBuffer
-				.append("left join t_group c on c.id=e.group_id where a.id=?)) ");
-		strBuffer
-				.append("or (d.assignee_type='Single User' and d.assignee=a.username)) ");
+		strBuffer.append("from t_user a left join t_group_user e on a.id=e.user_id ");
+		strBuffer.append("left join t_group c on c.id=e.group_id where a.id=?)) ");
+		strBuffer.append("or (d.assignee_type='Single User' and d.assignee=a.username)) ");
 		strBuffer.append("and a.id=? ");
 		String view = strBuffer.toString();
 		String sql = "select distinct project_id from (" + view + ") as view";
@@ -528,32 +431,5 @@ public class UserBO {
 		}
 		return flag;
 	}
-	
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		UserBO uBO = new UserBO();
-		User user = new User();
-		
-//		user.setName("meiguo");
-//		user.setPassword("123");
-//		
-//		uBO.addUser(user);
-		
-		User user_1 = uBO.login("hongz", "123");
-//		System.out.println(user_1.getName());
-//		System.out.println(uBO.exist("admin") + "负责人------------");
-		
-		User user2 = uBO.getUser(1);
-		System.out.println(user2.getEmail());
-		
-	}
-	
-	
-	
-	
-	
+
 }

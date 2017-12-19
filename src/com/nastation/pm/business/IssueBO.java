@@ -23,15 +23,12 @@ import com.nastation.pm.util.*;
 
 import com.nastation.pm.bean.*;
 
-
-
 public class IssueBO {
 
 	/** 字段列表 */
 	public static final String columnNames = "issue_key, issue_type_id, name, priority_level_id, start_time,"
 			+ " end_time, plan_end_time, component_id, assignee_id, reporter_id, "
-			+ " environment, description, project_id, last_update_date, create_date, "
-			+ " issue_status";
+			+ " environment, description, project_id, last_update_date, create_date, " + " issue_status";
 
 	/**
 	 * 向数据库中添加记录 Issue对象
@@ -44,20 +41,18 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			session.save(issue);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
-	
 
 	/**
 	 * 根据 Id ，更新已知的记录
 	 */
 
-	
 	public void updateIssue(Issuehb issue) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -65,10 +60,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			session.update(issue);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -77,7 +72,6 @@ public class IssueBO {
 	 * 根据issue id ，获得Issue对象
 	 */
 
-	
 	public Issuehb getIssue(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -86,10 +80,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			i = session.load(Issuehb.class, id);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return i;
@@ -104,13 +98,13 @@ public class IssueBO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			session.delete("from Comment as c where c.issueId.id='"+id+"'");
-			session.delete(session.load(Issuehb.class,id));
+			session.delete("from Comment as c where c.issueId.id='" + id + "'");
+			session.delete(session.load(Issuehb.class, id));
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -119,19 +113,19 @@ public class IssueBO {
 	 * 根据IssueKey ，获得Issue对象
 	 */
 
-	
 	public Issuehb getIssueByKey(String name) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		Issuehb i = null;
 		try {
 			tx = session.beginTransaction();
-			i = (Issuehb)session.createQuery("from Issuehb as i where i.issueKey=:key").setString("key", name).uniqueResult();
+			i = (Issuehb) session.createQuery("from Issuehb as i where i.issueKey=:key").setString("key", name)
+					.uniqueResult();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return i;
@@ -141,7 +135,6 @@ public class IssueBO {
 	 * 从数据库中返回所有的任务问题列表
 	 */
 
-	
 	public List<Issuehb> getIssueList() {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -150,10 +143,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			il = session.createQuery("from Issuehb").list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return il;
@@ -165,7 +158,6 @@ public class IssueBO {
 	 * @param projectId
 	 */
 
-	
 	public List<Issuehb> getIssueList(int projectId) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -174,10 +166,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			i = session.createQuery("from Issuehb as i where i.projectId.id=:pid").setInteger("pid", projectId).list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return i;
@@ -324,26 +316,26 @@ public class IssueBO {
 	 * 检查是否创建了同名Issue
 	 */
 
-	
 	public boolean checkIssue(Issuehb issue) {
 		boolean flag = true;
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Issuehb i = (Issuehb)session.createQuery("from Issuehb as i where i.name=:name").setString("name", issue.getName()).setMaxResults(1).uniqueResult();
-			if(i != null) {
+			Issuehb i = (Issuehb) session.createQuery("from Issuehb as i where i.name=:name")
+					.setString("name", issue.getName()).setMaxResults(1).uniqueResult();
+			if (i != null) {
 				flag = false;
 			}
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
-		
+
 	}
 
 	/**
@@ -582,19 +574,19 @@ public class IssueBO {
 	 * @return
 	 */
 
-	
 	public int assigneeCount(int user_id) {
 		int count = 0;
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			count = (Integer)session.createQuery("select count(*) from Issuehb as i where i.assigneeId.id=:id").setInteger("id", user_id).uniqueResult();
+			count = (Integer) session.createQuery("select count(*) from Issuehb as i where i.assigneeId.id=:id")
+					.setInteger("id", user_id).uniqueResult();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return count;
@@ -607,19 +599,19 @@ public class IssueBO {
 	 * @return
 	 */
 
-	
 	public int reporterCount(int reporter_id) {
 		int count = 0;
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			count = (Integer)session.createQuery("select count(*) from Issuehb as i where i.reporterId.id=:id").setInteger("id", reporter_id).uniqueResult();
+			count = (Integer) session.createQuery("select count(*) from Issuehb as i where i.reporterId.id=:id")
+					.setInteger("id", reporter_id).uniqueResult();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return count;
@@ -631,7 +623,6 @@ public class IssueBO {
 	 * @param assigne_id,issue_id
 	 */
 
-	
 	public void setAssignee(int issueId, int assigneeId) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -640,12 +631,12 @@ public class IssueBO {
 			User u = session.load(User.class, assigneeId);
 			Issuehb i = session.load(Issuehb.class, issueId);
 			i.setAssigneeId(u);
-					
+
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -664,17 +655,14 @@ public class IssueBO {
 		ResultSet rs = null;
 		try {
 			String sql = "select a.project_key,b.max_id_value+1 as 'maxint' from t_project a"
-					+ " left join t_project_issue_sequence b on(a.id=b.project_id)"
-					+ "where a.id=?";
+					+ " left join t_project_issue_sequence b on(a.id=b.project_id)" + "where a.id=?";
 			System.out.println("============828=====move sql========" + sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, project_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				issueKey = rs.getString("a.project_key") + "-"
-						+ rs.getInt("maxint");
-				System.out.println("============828=====issueKey========"
-						+ issueKey);
+				issueKey = rs.getString("a.project_key") + "-" + rs.getInt("maxint");
+				System.out.println("============828=====issueKey========" + issueKey);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -694,7 +682,6 @@ public class IssueBO {
 	 * 在移动问题中 根据issue更新已知的记录
 	 */
 
-	
 	public void updateMoveIssue(Issuehb issue) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -702,10 +689,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			session.update(issue);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -734,8 +721,6 @@ public class IssueBO {
 			DBConn.closeConn(conn);
 		}
 	}
-	
-
 
 	/**
 	 * 根据 Id 删除记录
@@ -749,8 +734,6 @@ public class IssueBO {
 
 	}
 
-
-	
 	public List<Issuehb> getAllIssue(int projectId) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -759,10 +742,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			l = session.createQuery("from Issuehb as i where i.projectId.id=:id").setInteger("id", projectId).list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return l;
@@ -787,7 +770,6 @@ public class IssueBO {
 	 * 根据 Id ，更新已知的记录
 	 */
 
-	
 	public void updateIssueByLinkResolution(Issuehb issue) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -795,10 +777,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			session.update(issue);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -807,7 +789,6 @@ public class IssueBO {
 	 * 根据 Id ，更新已知的记录
 	 */
 
-	
 	public void updateIssueByLinkStatus(Issuehb issue) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -815,10 +796,10 @@ public class IssueBO {
 			tx = session.beginTransaction();
 			session.update(issue);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -828,9 +809,8 @@ public class IssueBO {
 	 * 
 	 * @param assignee_id
 	 */
-	public List<Issue> getIssueSearchList(String searchsql,
-			List<String> paramValues) {
-		
+	public List<Issue> getIssueSearchList(String searchsql, List<String> paramValues) {
+
 		Connection conn = DBConn.getConnection();
 		List<Issue> list = new ArrayList<Issue>();
 		ResultSet rs = null;
@@ -928,7 +908,7 @@ public class IssueBO {
 					paramValues.add(rs.getString("param_value"));
 				}
 
-				//开始查询
+				// 开始查询
 				st = conn.prepareStatement(searchsql);
 				if (paramValues != null) {
 					int k = 1;
@@ -938,7 +918,7 @@ public class IssueBO {
 					}
 				}
 				rs = st.executeQuery();
-				
+
 				while (rs.next()) {
 					Issue issue = new Issue();
 					issue.setId(rs.getInt("id"));
@@ -957,14 +937,10 @@ public class IssueBO {
 					issue.setComponentName(rs.getString("component_name"));
 					issue.setAssigneeId(rs.getInt("assignee_id"));
 					issue.setAssignee(rs.getString("assignee"));
-					issue
-							.setAssigneeFullname(rs
-									.getString("assignee_fullname"));
+					issue.setAssigneeFullname(rs.getString("assignee_fullname"));
 					issue.setReporterId(rs.getInt("reporter_id"));
 					issue.setReporter(rs.getString("reporter"));
-					issue
-							.setReporterFullname(rs
-									.getString("reporter_fullname"));
+					issue.setReporterFullname(rs.getString("reporter_fullname"));
 					issue.setEnvironment(rs.getString("environment"));
 					issue.setDescription(rs.getString("description"));
 					issue.setProjectId(rs.getInt("project_id"));
@@ -993,47 +969,5 @@ public class IssueBO {
 		}
 		return list;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		
-//		IssueBO iBO = new IssueBO();
-//		Issuehb i = new Issuehb();
-//		i.setName("test_1");
-//		iBO.addIssue(i);
-		
-		
-		
-	}
-	
-	
-	
-	
-	 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

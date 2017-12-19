@@ -13,20 +13,6 @@ public class Group {
 	private Set<User> users = new HashSet<>();
 	private PermissionScheme permissionSchemeId; // 权限模板ID
 	private java.util.Date createDate; // 创建日期
-	//private String permissionSchemeName; // 权限模板名
-	//private int schemeId;
-
-	public Group() {
-
-	}
-
-//	public int getSchemeId() {
-//		return schemeId;
-//	}
-//
-//	public void setSchemeId(int schemeId) {
-//		this.schemeId = schemeId;
-//	}
 
 	public int getId() {
 		return id;
@@ -68,8 +54,8 @@ public class Group {
 
 	public void setPermissionSchemeId(PermissionScheme permissionSchemeId) {
 		this.permissionSchemeId = permissionSchemeId;
-		//this.permissionSchemeName = permissionSchemeId.getName();
-		//this.schemeId = permissionSchemeId.getId();
+		// this.permissionSchemeName = permissionSchemeId.getName();
+		// this.schemeId = permissionSchemeId.getId();
 	}
 
 	public java.util.Date getCreateDate() {
@@ -80,12 +66,12 @@ public class Group {
 		this.createDate = createDate;
 	}
 
-//	public String getPermissionSchemeName() {
-//		return permissionSchemeName;
-//	}
-//
-//	public void setPermissionSchemeName(String permissionSchemeName) {
-//		this.permissionSchemeName = permissionSchemeName;
-//	}
+	// public String getPermissionSchemeName() {
+	// return permissionSchemeName;
+	// }
+	//
+	// public void setPermissionSchemeName(String permissionSchemeName) {
+	// this.permissionSchemeName = permissionSchemeName;
+	// }
 
 }

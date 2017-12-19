@@ -20,12 +20,11 @@
 	String url = request.getParameter("url");
 	String leader = request.getParameter("lead");
 	String schemeIdStr = request.getParameter("permission_scheme_id");
-	//String createDate = StringUtils.toString(new java.util.Date());
-		String category = request.getParameter("category");  //新建项目时，并不马上选择
+	String category = request.getParameter("category"); //新建项目时，并不马上选择
 
 	//检查参数
 	int schemeId = 0;
-	System.out.println(schemeId+"========模板id");
+	System.out.println(schemeId + "========模板id");
 	if (StringUtils.isNotBlank(schemeIdStr)) {
 		schemeId = Integer.parseInt(schemeIdStr);
 	}
@@ -52,12 +51,11 @@
 	projectKey = projectKey.toUpperCase();
 	project.setProjectKey(projectKey);
 	project.setUrl(url);
-	//project.setCreateDate(createDate);  //自动插入当前时间
 	project.setDescription(description);
 	project.setLeader(leader);
 	PermissionSchemeBO psBO = new PermissionSchemeBO();
-	
-	project.setPermissionSchemeId(psBO.getScheme(schemeId)); //修改
+
+	project.setPermissionSchemeId(psBO.getScheme(schemeId));
 	boolean existName = pb.existName(project);
 	boolean existKey = pb.existKey(project);
 	if (!user.exist(leader)) {
@@ -72,10 +70,9 @@
 		hasError = true;
 		errMsg += "Project Key already exists!";
 	}
-	
 
 	if (hasError) {
-	request.setAttribute("error", errMsg);
+		request.setAttribute("error", errMsg);
 %>
 <jsp:forward page="addProject.jsp"></jsp:forward>
 <%
@@ -84,8 +81,7 @@
 	//保存Project信息
 	pb.addProject(project);
 	int id = pb.getProjectId(name);
-	response.sendRedirect(request.getContextPath()
-			+ "/jsp/backend/project/viewProjectDetail.jsp?projectId="
-			+ id);
+	response.sendRedirect(
+			request.getContextPath() + "/jsp/backend/project/viewProjectDetail.jsp?projectId=" + id);
 %>
 

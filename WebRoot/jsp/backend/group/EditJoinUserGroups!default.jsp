@@ -23,8 +23,7 @@
 
 	User joinUser = joinUserBO.getUser(userName);
 	if (joinUser != null) {
-		List<Group> joinGroupList = groupBO.getUserGroupList(joinUser
-				.getId());
+		List<Group> joinGroupList = groupBO.getUserGroupList(joinUser.getId());
 
 		out.println("<div align='center'><b>Available Groups</b><br>");
 		if (joinGroupList == null || joinGroupList.size() == 0) {
@@ -32,14 +31,12 @@
 		} else {
 			out.println("<p><form action='doEditJoinUserGroups!default.jsp'>");
 			out.println("<input type='submit' value='Join >>'/><div><br>");
-			out.println("<input type='hidden' name='userId' value='"
-					+ joinUser.getId() + "'/>");
+			out.println("<input type='hidden' name='userId' value='" + joinUser.getId() + "'/>");
 			out.println("<select size='5' name='groupId'>");
 
 			for (int i = 0; i < joinGroupList.size(); i++) {
 				Group joinGroup = joinGroupList.get(i);
-				out.println("<option value='" + joinGroup.getId()
-						+ "'>" + joinGroup.getName() + "</option>");
+				out.println("<option value='" + joinGroup.getId() + "'>" + joinGroup.getName() + "</option>");
 			}
 
 			out.println("</select>");

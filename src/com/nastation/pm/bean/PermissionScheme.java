@@ -10,7 +10,6 @@ public class PermissionScheme {
     private String name;
     private String description;
     private java.util.Date createDate;
-    //private List<Project> projectList;  //用于存放使用该PermissionScheme的所有项目信息。
     private Set<Project> projectList = new HashSet<>();
     
     public PermissionScheme() {

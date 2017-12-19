@@ -22,7 +22,6 @@ public class ProjectCategoryBO {
 	 * 创建一个项目类型
 	 */
 
-	
 	public void addProjectCategory(ProjectCategory category) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -30,10 +29,10 @@ public class ProjectCategoryBO {
 			tx = session.beginTransaction();
 			session.save(category);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -50,39 +49,38 @@ public class ProjectCategoryBO {
 			tx = session.beginTransaction();
 			pc2 = session.load(ProjectCategory.class, id);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return pc2;
 	}
-	
 
 	/**
 	 * 检查是否创建了同名项目种类
 	 */
 
-	
 	public boolean checkProjectCategory(ProjectCategory category) {
 		boolean flag = true;
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		List<ProjectCategory> pcList = new ArrayList<>();
 		String name = category.getName();
-		System.out.println(name+"---------分类名字");
+		System.out.println(name + "---------分类名字");
 		try {
 			tx = session.beginTransaction();
-			ProjectCategory pc = (ProjectCategory)session.createQuery("from ProjectCategory as p where p.name=:name").setString("name", name).setMaxResults(1).uniqueResult();
+			ProjectCategory pc = (ProjectCategory) session.createQuery("from ProjectCategory as p where p.name=:name")
+					.setString("name", name).setMaxResults(1).uniqueResult();
 			tx.commit();
-			if(pc != null) {
+			if (pc != null) {
 				flag = false;
 			}
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
@@ -92,7 +90,6 @@ public class ProjectCategoryBO {
 	 * 获得数据库中所有的项目种类信息
 	 */
 
-	
 	public List<ProjectCategory> getCategoryList() {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -101,10 +98,10 @@ public class ProjectCategoryBO {
 			tx = session.beginTransaction();
 			pcList = session.createQuery("from ProjectCategory").list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return pcList;
@@ -114,7 +111,6 @@ public class ProjectCategoryBO {
 	 * 删除对应ID的项目种类
 	 */
 
-	
 	public void deleteCategory(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -122,10 +118,10 @@ public class ProjectCategoryBO {
 			tx = session.beginTransaction();
 			session.delete(session.load(ProjectCategory.class, id));
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -134,7 +130,6 @@ public class ProjectCategoryBO {
 	 * 更新项目种类
 	 */
 
-	
 	public void updateCategory(ProjectCategory category) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
@@ -142,34 +137,32 @@ public class ProjectCategoryBO {
 			tx = session.beginTransaction();
 			session.update(category);
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
-	
-	
+
 	/**
 	 * 通过名字获得一个项目分类
 	 * 
-	 * */
+	 */
 
-	
 	public ProjectCategory getProjectCategory(String name) {
 		ProjectCategory category = new ProjectCategory();
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			category = (ProjectCategory)session.createQuery("from ProjectCategory as p where p.name=:name")
-				.setString("name", name).uniqueResult();
+			category = (ProjectCategory) session.createQuery("from ProjectCategory as p where p.name=:name")
+					.setString("name", name).uniqueResult();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return category;
@@ -179,20 +172,19 @@ public class ProjectCategoryBO {
 	 * 查询与此分类有关的所有项目
 	 */
 
-	
 	public List<Project> getAllProject(int categoryId) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		List<Project> pList = new ArrayList<>();
 		try {
 			tx = session.beginTransaction();
-			pList = session.createQuery("from Project as p where p.categoryId.id=:id")
-					.setInteger("id", categoryId).list();
+			pList = session.createQuery("from Project as p where p.categoryId.id=:id").setInteger("id", categoryId)
+					.list();
 			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return pList;
@@ -205,13 +197,11 @@ public class ProjectCategoryBO {
 	public void deleteProjectCategoryForLinkProject(int id) {
 		this.deleteCategory(id);
 	}
-	
-	
+
 	/**
 	 * 判断此分类是否与其他项目有关联
 	 */
 
-	
 	public boolean checkLinkProject(int categoryId) {
 		boolean flag = false;
 		Session session = SessionF.sessionFactory.openSession();
@@ -219,76 +209,46 @@ public class ProjectCategoryBO {
 		Project proj = new Project();
 		try {
 			tx = session.beginTransaction();
-			proj = (Project)session.createQuery("from Project as p where p.categoryId.id=:id")
+			proj = (Project) session.createQuery("from Project as p where p.categoryId.id=:id")
 					.setInteger("id", categoryId).setMaxResults(1).uniqueResult();
 			tx.commit();
-			System.out.println(proj+"-----------checkLinkProject");
-			if(proj != null) {
+			System.out.println(proj + "-----------checkLinkProject");
+			if (proj != null) {
 				flag = true;
 			}
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
 	}
-	
-	
-	
+
 	/**
 	 * 判断名字是否已经存在
 	 * 
-	 * */
+	 */
 
-	
 	public boolean exists(String name) {
 		boolean flag = false;
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			ProjectCategory pc = (ProjectCategory)session.createQuery("from ProjectCategory as p where p.name=:name")
-				.setString("name", name).setMaxResults(1).uniqueResult();
+			ProjectCategory pc = (ProjectCategory) session.createQuery("from ProjectCategory as p where p.name=:name")
+					.setString("name", name).setMaxResults(1).uniqueResult();
 			tx.commit();
-			if(pc != null) {
+			if (pc != null) {
 				flag = true;
 			}
-		}catch(Exception e) {
-			if(tx != null)
+		} catch (Exception e) {
+			if (tx != null)
 				tx.rollback();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return flag;
 	}
-	
-	
-	public static void main(String[] args) {
-		ProjectCategoryBO pcBO = new ProjectCategoryBO();
-//		List<Project> l = pcBO.getAllProject(1);
-//		for(Project p : l) {
-//			System.out.println(p.getName());
-//		}
-		
-		
-		
-//		ProjectCategory pc = new ProjectCategory();
-//		pc.setName("ww");
-//		System.out.println(pcBO.checkProjectCategory(pc));
-		
-		
-//		ProjectCategory pc1 = new ProjectCategory();
-//		pc1.setName("ww");
-//		pcBO.addProjectCategory(pc1);
-		
-	}
-	
-	
-	
-	
-	
-	
-	
+
 }

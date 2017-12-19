@@ -7,34 +7,34 @@ package com.nastation.pm.bean;
  */
 public class Issue {
 
-	private int id; // 问题ID    1
-	private String issueKey;        //  1
-	private int issueTypeId; // 问题类型ID  1
+	private int id; // 问题ID    
+	private String issueKey;        //  
+	private int issueTypeId; // 问题类型ID  
 	private String issueTypeName; // 问题类型名称
 	private String issueTypeIcon;
-	private String name; // 问题概要       1
-	private int priorityLevelId; // 优先级ID    1
+	private String name; // 问题概要       
+	private int priorityLevelId; // 优先级ID    
 	private String priorityLevel; // 优先级名称
 	private String priorityLevelIcon;
-	private String startTime; // 实际开始时间       1
-	private String endTime; // 实际结束日期         1
-	private String planEndTime; // 计划结束时间     1
-	private int componentId; // 模块ID			1
+	private String startTime; // 实际开始时间       
+	private String endTime; // 实际结束日期         
+	private String planEndTime; // 计划结束时间     
+	private int componentId; // 模块ID			
 	private String componentName; // 模块名称
-	private int assigneeId; // 开发者ID			1
+	private int assigneeId; // 开发者ID			
 	private String assignee; // 开发者姓名
 	private String assigneeFullname;
-	private int reporterId; // 报告人ID			1
+	private int reporterId; // 报告人ID			
 	private String reporter; // 报告人姓名
 	private String reporterFullname;
-	private String environment; // 环境			1
-	private String description; // 问题描述		1
-	private int projectId; // 项目ID				1
+	private String environment; // 环境			
+	private String description; // 问题描述		
+	private int projectId; // 项目ID				
 	private String projectName; // 项目名称
-	private String lastUpdateDate; // 最后更改日期	1
-	private String createDate; // 产生日期		1
-	private int issueStatus; // 问题状态			1
-	private int resolutionId;			//	1
+	private String lastUpdateDate; // 最后更改日期	
+	private String createDate; // 产生日期		
+	private int issueStatus; // 问题状态			
+	private int resolutionId;			//	
 	private String resolution;
 	private String issueStatusName;
 	private String issueStatusIcon;			
