@@ -8,33 +8,32 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.PermissionAssignee" table="t_permission_assignee"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.PermissionAssigneehbm"
+        table="t_permission_assignee" lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
-
-
-
-		<!-- unique -->
-		<property name="assigneeType" type="string" column="assignee_type" />
-		<property name="assignee" type="string" column="assignee" />
-		<property name="createTime" type="timestamp" column="create_time" />
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
-		<many-to-one name="permissionId" column="permission_id"
-			class="com.nastation.pm.bean.Permission" cascade="save-update" />
+        <property name="assigneeType" type="string" column="assignee_type" />
+        <property name="assignee" type="string" column="assignee" />
+        <property name="createTime" type="timestamp" column="create_time" />
 
-		<many-to-one name="schemeId" column="scheme_id"
-			class="com.nastation.pm.bean.PermissionScheme" cascade="save-update" />
 
+        <many-to-one name="permission" column="permission_id"
+            class="com.nastation.pm.beanhbm.Permissionhbm" cascade="save-update" />
+
+        <many-to-one name="scheme" column="scheme_id"
+            class="com.nastation.pm.beanhbm.PermissionSchemehbm"
+            cascade="save-update" />
 
 
 
 
 
-	</class>
+
+    </class>
 
 
 

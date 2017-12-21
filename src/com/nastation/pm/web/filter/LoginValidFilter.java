@@ -23,31 +23,30 @@ import com.nastation.pm.bean.User;
  */
 public class LoginValidFilter implements Filter {
 
-	private String loginURI;
+    private String loginURI;
 
-	public void destroy() {
-	}
+    public void destroy() {
+    }
 
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		HttpSession session = req.getSession();
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        HttpSession session = req.getSession();
 
-		User user = (User) session.getAttribute(Global.SESSION_USER);
-		if (user == null) {
-			res.sendRedirect(req.getContextPath() + loginURI);
-			return;
-		}
-		chain.doFilter(request, response);
-	}
+        User user = (User) session.getAttribute(Global.SESSION_USER);
+        if (user == null) {
+            res.sendRedirect(req.getContextPath() + loginURI);
+            return;
+        }
+        chain.doFilter(request, response);
+    }
 
-	public void init(FilterConfig filterConfig) throws ServletException {
-		loginURI = filterConfig.getInitParameter("loginURI");
-		if (loginURI == null) {
-			throw new ServletException(
-					"Error: The loginURI parameter not found!");
-		}
-	}
+    public void init(FilterConfig filterConfig) throws ServletException {
+        loginURI = filterConfig.getInitParameter("loginURI");
+        if (loginURI == null) {
+            throw new ServletException("Error: The loginURI parameter not found!");
+        }
+    }
 
 }

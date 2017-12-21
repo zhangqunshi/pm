@@ -2,45 +2,41 @@ package com.nastation.pm.bean;
 
 public class FilterSummary {
 
-	private int id;
-	private SearchRequest requestId;
-	private String filterSummaryKey;
-	private String filterSummaryValue;
-	
-	public FilterSummary() {
+    private int id;
+    private int requestId;
+    private String filterSummaryKey;
+    private String filterSummaryValue;
 
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getRequestId() {
+        return requestId;
+    }
 
-	public SearchRequest getRequestId() {
-		return requestId;
-	}
+    public void setRequestId(int requestId) {
+        this.requestId = requestId;
+    }
 
-	public void setRequestId(SearchRequest requestId) {
-		this.requestId = requestId;
-	}
+    public String getFilterSummaryKey() {
+        return filterSummaryKey;
+    }
 
-	public String getFilterSummaryKey() {
-		return filterSummaryKey;
-	}
+    public void setFilterSummaryKey(String filterSummaryKey) {
+        this.filterSummaryKey = filterSummaryKey;
+    }
 
-	public void setFilterSummaryKey(String filterSummaryKey) {
-		this.filterSummaryKey = filterSummaryKey;
-	}
+    public String getFilterSummaryValue() {
+        return filterSummaryValue;
+    }
 
-	public String getFilterSummaryValue() {
-		return filterSummaryValue;
-	}
+    public void setFilterSummaryValue(String filterSummaryValue) {
+        this.filterSummaryValue = filterSummaryValue;
+    }
 
-	public void setFilterSummaryValue(String filterSummaryValue) {
-		this.filterSummaryValue = filterSummaryValue;
-	}
-	
 }

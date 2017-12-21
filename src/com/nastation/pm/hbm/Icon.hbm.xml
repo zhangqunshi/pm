@@ -8,31 +8,30 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.Icon" table="t_icon"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.Iconhbm" table="t_icon"
+        lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
-		<!-- unique -->
-		<property name="fileName" type="string" column="filename"  />
+        <property name="fileName" type="string" column="filename" />
 
-		<property name="iconType" type="int" column="icon_type" />
-		
-		
-		
+        <property name="iconType" type="int" column="icon_type" />
 
 
 
 
-	
 
 
 
 
-	</class>
+
+
+
+
+    </class>
 
 
 

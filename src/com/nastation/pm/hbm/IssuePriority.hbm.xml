@@ -8,29 +8,29 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.IssuePriority" table="t_issue_priority"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.IssuePriorityhbm" table="t_issue_priority"
+        lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
-
-
-		<!-- unique -->
-		<property name="name" type="string" column="name" not-null="true" />
-
-		<property name="description" type="string" column="description" />
-		<property name="priorityColor" type="string" column="priority_color" />
-		<property name="iconUrl" type="string" column="icon_url" />
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
 
-	
+        <property name="name" type="string" column="name"
+            not-null="true" />
+        <property name="description" type="string" column="description" />
+        <property name="priorityColor" type="string" column="priority_color" />
+        <property name="iconUrl" type="string" column="icon_url" />
 
 
 
 
-	</class>
+
+
+
+
+    </class>
 
 
 

@@ -7,7 +7,7 @@ public class Role {
 	String roleName;// 角色名称
 	String roleDesc;// 角色描述
 	int roleId;// 角色ID
-	String createDate;// 创建角色日期
+	java.util.Date createDate;// 创建角色日期
 
 	public int getRoleId() {
 		return roleId;
@@ -17,11 +17,11 @@ public class Role {
 		this.roleId = roleId;
 	}
 
-	public String getCreateDate() {
+	public java.util.Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
 	}
 

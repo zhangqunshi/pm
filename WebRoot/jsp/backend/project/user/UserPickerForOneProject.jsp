@@ -3,19 +3,19 @@
 	作者: 刘列辉
 	日期: 2008-12-22
 --%>
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.User"%>
+<%@ page import="com.nastation.pm.beanhbm.*"%>
 <%
 	String element = request.getParameter("element");
 %>
 <html>
-	<head>
-	<link href="<%=request.getContextPath() %>/includes/css/main.css" media="all" rel="StyleSheet" type="text/css"/>
-	
-		<script type="text/javascript">
+<head>
+<link href="<%=request.getContextPath() %>/includes/css/main.css" media="all" rel="StyleSheet" type="text/css" />
+
+<script type="text/javascript">
         
        /* 是否全选标记 */
  
@@ -67,62 +67,56 @@ function selectAll(){
  			userCount++;
  		}
 	}
-	window.opener.document.getElementById("<%=element%>").value=selectedUsers;
-	window.close();
- }
- </script>
-	</head>
+	window.opener.document.getElementById("<%=element%>
+    ").value = selectedUsers;
+        window.close();
+    }
+</script>
+</head>
 
-	<body>
-		<%
-			UserBO userBO = new UserBO();
-			List list = userBO.viewUsers();
-			if (list == null || list.size() == 0) {
-				out.println("还没有用户，请创建新用户!");
-			} else {
-		%>
-		<form name="form1">
-			<table border="1" width="100%">
-				<tr>
-					<td>
-						<input type="checkbox" id="alls" onClick="selectAll();" />
-					</td>
-					<td>
-						用户名
-					</td>
-					<td>
-						全名
-					</td>
-					<td>
-						E-mail
-					</td>
-				</tr>
-				<%
-					for (int i = 0; i < list.size(); i++) {
-							User user = (User) list.get(i);
-				%>
-				<tr>
-					<td>
-						<input type="checkbox" name="cbox" value="<%=user.getName()%>" />
-					</td>
-					<td><%=user.getName()%></td>
-					<td><%=user.getFullName()%></td>
-					<td><%=user.getEmail()%></td>
-				</tr>
-				<%
-					}
-				%>
-				<tr>
-					<td colspan="5">
-						<input type="button"
-							onClick="javascript:checkAll('form1','cate');" value="选择" />
-					</td>
-				</tr>
-				<%
-					out.println("</table>");
-						out.println("</form>");
-					}
-				%>
-			
-	</body>
+<body>
+    <%
+        UserBO userBO = new UserBO();
+        List<Userhbm> list = userBO.viewUsers();
+        if (list == null || list.size() == 0) {
+            out.println("还没有用户，请创建新用户!");
+        } else {
+    %>
+    <form name="form1">
+        <table border="1" width="100%">
+            <tr>
+                <td>
+                    <input type="checkbox" id="alls" onClick="selectAll();" />
+                </td>
+                <td>用户名</td>
+                <td>全名</td>
+                <td>E-mail</td>
+            </tr>
+            <%
+                for (int i = 0; i < list.size(); i++) {
+                        Userhbm user = list.get(i);
+            %>
+            <tr>
+                <td>
+                    <input type="checkbox" name="cbox" value="<%=user.getName()%>" />
+                </td>
+                <td><%=user.getName()%></td>
+                <td><%=user.getFullName()%></td>
+                <td><%=user.getEmail()%></td>
+            </tr>
+            <%
+                }
+            %>
+            <tr>
+                <td colspan="5">
+                    <input type="button" onClick="javascript:checkAll('form1','cate');" value="选择" />
+                </td>
+            </tr>
+            <%
+                out.println("</table>");
+                    out.println("</form>");
+                }
+            %>
+        
+</body>
 </html>

@@ -8,30 +8,30 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.IssueType" table="t_issue_type"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.IssueTypehbm" table="t_issue_type"
+        lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
-
-
-		<!-- unique -->
-		<property name="name" type="string" column="name" not-null="true" />
-
-		<property name="description" type="string" column="description" />
-		<property name="iconUrl" type="string" column="icon_url" />
-		
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
+        <property name="name" type="string" column="name"
+            not-null="true" />
 
-
-	
+        <property name="description" type="string" column="description" />
+        <property name="iconUrl" type="string" column="icon_url" />
 
 
 
 
-	</class>
+
+
+
+
+
+
+    </class>
 
 
 

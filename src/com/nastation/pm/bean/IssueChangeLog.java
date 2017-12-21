@@ -2,7 +2,7 @@ package com.nastation.pm.bean;
 
 public class IssueChangeLog {
 	private int id;
-	private Issuehb issueId;
+	private int issueId;
 	private String changeField;
 	private String oldValue;
 	private String newValue;
@@ -16,11 +16,11 @@ public class IssueChangeLog {
 		this.id = id;
 	}
 
-	public Issuehb getIssueId() {
+	public int getIssueId() {
 		return issueId;
 	}
 
-	public void setIssueId(Issuehb issueId) {
+	public void setIssueId(int issueId) {
 		this.issueId = issueId;
 	}
 

@@ -14,7 +14,7 @@ import org.hibernate.*;
 import org.hibernate.cfg.*;
 import org.hibernate.query.*;
 import com.nastation.pm.util.*;
-
+import com.nastation.pm.beanhbm.*;
 /**
  * 
  * @author zhanglei
@@ -25,7 +25,7 @@ public class RoleBO {
 	 * 创建一个角色
 	 */
 
-	public void addRole(Role role) {
+	public void addRole(Rolehbm role) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {
@@ -44,13 +44,13 @@ public class RoleBO {
 	 * 通过一个ID获得对应的角色
 	 */
 
-	public Role getRole(int id) {
+	public Rolehbm getRole(int id) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
-		Role r2 = new Role();
+		Rolehbm r2 = null;
 		try {
 			tx = session.beginTransaction();
-			r2 = session.load(Role.class, id);
+			r2 = session.load(Rolehbm.class, id);
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null)
@@ -87,13 +87,13 @@ public class RoleBO {
 	 * 获得数据库中所有的角色信息
 	 */
 
-	public List<Role> getRoleList() {
+	public List<Rolehbm> getRoleList() {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
-		List<Role> r2List = new ArrayList<>();
+		List<Rolehbm> r2List = null;
 		try {
 			tx = session.beginTransaction();
-			r2List = session.createQuery("from Role").list();
+			r2List = session.createQuery("from Rolehbm").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null)
@@ -113,7 +113,7 @@ public class RoleBO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			session.delete(session.load(Role.class, id));
+			session.delete(session.load(Rolehbm.class, id));
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null)
@@ -127,7 +127,7 @@ public class RoleBO {
 	 * 更新角色
 	 */
 
-	public void updateRole(Role role) {
+	public void updateRole(Rolehbm role) {
 		Session session = SessionF.sessionFactory.openSession();
 		Transaction tx = null;
 		try {

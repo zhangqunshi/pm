@@ -8,56 +8,38 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.Group" table="t_group"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.Grouphbm" table="t_group"
+        lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
+
+        <property name="name" type="string" column="name"
+            not-null="true" />
+        <property name="createDate" type="timestamp" column="create_date" />
 
 
-		<!-- unique -->
-		<property name="name" type="string" column="name" not-null="true" />
-		<property name="createDate" type="timestamp" column="create_date" />
-		
-		
-		<many-to-one
-			name="permissionSchemeId"
-			column="permission_scheme_id"
-			class="com.nastation.pm.bean.PermissionScheme"
-			cascade="save-update"
-		
-		/>
-		
-  
-	
-	 <!--    
-	<idbag name="users" table="t_group_user" lazy="false" cascade="save-update">
-		<collection-id type="int" column="id">
-			<generator class="increment" />
-		</collection-id>
-		<key column="group_id" />
-		<many-to-many class="com.nastation.pm.bean.User" column="user_id" />
-	     
-	
-	</idbag>
-	-->
-	  
-	 
-	<set name="users" table="t_group_user" lazy="false" cascade="save-update">
-		 
-		<key column="group_id" />
-		<many-to-many class="com.nastation.pm.bean.User" column="user_id" />
-	
-	
-	</set>
-	
-	
+        <many-to-one name="permissionScheme" column="permission_scheme_id"
+            class="com.nastation.pm.beanhbm.PermissionSchemehbm"
+            cascade="save-update" />
+
+
+        <set name="users" table="t_group_user" lazy="false" cascade="save-update">
+
+            <key column="group_id" />
+            <many-to-many class="com.nastation.pm.beanhbm.Userhbm"
+                column="user_id" />
+
+
+        </set>
 
 
 
 
-	</class>
+
+
+    </class>
 
 
 

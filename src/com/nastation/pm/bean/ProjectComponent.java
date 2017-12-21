@@ -10,7 +10,7 @@ public class ProjectComponent {
 
 	public String name;
 
-	public Project projectId;
+	public int  projectId;
 
 	public String description;
 
@@ -34,11 +34,11 @@ public class ProjectComponent {
 		this.name = name;
 	}
 
-	public Project getProjectId() {
+	public int  getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(Project projectId) {
+	public void setProjectId(int  projectId) {
 		this.projectId = projectId;
 	}
 

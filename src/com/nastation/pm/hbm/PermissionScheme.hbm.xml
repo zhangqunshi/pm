@@ -8,27 +8,25 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.PermissionScheme" table="t_permission_scheme"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.PermissionSchemehbm"
+        table="t_permission_scheme" lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
-		<!-- unique -->
-		<property name="name" type="string" column="name" not-null="true" />
+        <property name="name" type="string" column="name"
+            not-null="true" />
 
-		<property name="description" type="string" column="description" />
-		<property name="createDate" type="timestamp" column="create_date" />
+        <property name="description" type="string" column="description" />
+        <property name="createDate" type="timestamp" column="create_date" />
 
-		<set name="projectList" cascade="save-update" lazy="false">
-		
-			<key column="permission_scheme_id"/>
-			<one-to-many class="com.nastation.pm.bean.Project"/>
-		</set>
-		
-		
+        <set name="projectList" cascade="save-update" lazy="false">
+
+            <key column="permission_scheme_id" />
+            <one-to-many class="com.nastation.pm.beanhbm.Projecthbm" />
+        </set>
 
 
 
@@ -36,7 +34,9 @@
 
 
 
-	</class>
+
+
+    </class>
 
 
 

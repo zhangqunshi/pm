@@ -25,213 +25,196 @@ import org.hibernate.*;
 import org.hibernate.cfg.*;
 import org.hibernate.query.*;
 import com.nastation.pm.util.*;
-
-
+import com.nastation.pm.beanhbm.*;
 
 public class IssueStatusBO {
 
-	/**
-	 * 向数据库中添加记录 IssueStatus 对象
-	 */
+    /**
+     * 向数据库中添加记录 IssueStatus 对象
+     */
 
-	
-	public void addIssueStatus(IssueStatus issueStatus) {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(issueStatus);
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-	}
+    public void addIssueStatus(IssueStatushbm issueStatus) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(issueStatus);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+    }
 
-	/**
-	 * 更新已知的记录
-	 */
+    /**
+     * 更新已知的记录
+     */
 
-	public void updateIssueStatus(IssueStatus issueStatus) {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.update(issueStatus);
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-	}
-	
+    public void updateIssueStatus(IssueStatushbm issueStatus) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(issueStatus);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+    }
 
-	/**
-	 * 根据已知的 id ，获得IssueStatus对象
-	 */
+    /**
+     * 根据已知的 id ，获得IssueStatus对象
+     */
 
-	public IssueStatus getIssueStatus(int id) {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		IssueStatus issue2 = new IssueStatus();
-		try {
-			tx = session.beginTransaction();
-			issue2 = session.load(IssueStatus.class, id);
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-		return issue2;
-	}
-	
-	
-	/**
-	 * 根据已知的 name ，获得IssueStatus对象
-	 */
+    public IssueStatushbm getIssueStatus(int id) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        IssueStatushbm issue2 = null;
+        try {
+            tx = session.beginTransaction();
+            issue2 = session.load(IssueStatushbm.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+        return issue2;
+    }
 
-	
-	public IssueStatus getIssueStatus(String name) {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		IssueStatus is = null;
-		try {
-			tx = session.beginTransaction();
-			is = (IssueStatus)session.createQuery("from IssueStatus as i where i.name=:name").setString("name", name).uniqueResult();
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-		return is;
-	}
+    /**
+     * 根据已知的 name ，获得IssueStatus对象
+     */
 
-	/**
-	 * 删除对应ID的IssueStatus 对象
-	 */
+    public IssueStatushbm getIssueStatus(String name) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        IssueStatushbm is = null;
+        try {
+            tx = session.beginTransaction();
+            is = (IssueStatushbm) session.createQuery("from IssueStatushbm as i where i.name=:name").setString("name", name)
+                    .uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+        return is;
+    }
 
-	
-	public void deleteIssueStatus(int id) {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.delete(session.load(IssueStatus.class, id));
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-	}
+    /**
+     * 删除对应ID的IssueStatus 对象
+     */
 
-	/**
-	 * 获得问题状态列表 List
-	 */
+    public void deleteIssueStatus(int id) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(session.load(IssueStatushbm.class, id));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+    }
 
-	
-	public List<IssueStatus> getIssueStatusList() {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		List<IssueStatus> is = new ArrayList<>();
-		try {
-			tx = session.beginTransaction();
-			is = session.createQuery("from IssueStatus").list();
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-		return is;
-	}
+    /**
+     * 获得问题状态列表 List
+     */
 
-	/**
-	 * 检查是否创建了同名IssueStatus
-	 */
-	public boolean exist(IssueStatus is) {
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "select id from t_issue_status where name=? and id!=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, is.getName());
-			ps.setInt(2, is.getId());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return false;
-	}
+    public List<IssueStatushbm> getIssueStatusList() {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        List<IssueStatushbm> is = null;
+        try {
+            tx = session.beginTransaction();
+            is = session.createQuery("from IssueStatushbm").list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+        return is;
+    }
 
-	/**
-	 * 获得此图片类型的list
-	 * 
-	 * @return
-	 */
+    /**
+     * 检查是否创建了同名IssueStatus
+     */
+    public boolean exist(IssueStatus is) {
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "select id from t_issue_status where name=? and id!=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, is.getName());
+            ps.setInt(2, is.getId());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return false;
+    }
 
-	
-	public List<Icon> getIconList() {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		List<Icon> l = null;
-		try {
-			tx = session.beginTransaction();
-			l = session.createQuery("from Icon where iconType=:it").setInteger("it", 1).list();
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-		return l;
-	}
+    /**
+     * 获得此图片类型的list
+     * 
+     * @return
+     */
 
-	/**
-	 * 根据icon 获得问题类型列表 List
-	 */
+    public List<Iconhbm> getIconList() {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        List<Iconhbm> l = null;
+        try {
+            tx = session.beginTransaction();
+            l = session.createQuery("from Iconhbhm where iconType=:it").setInteger("it", 1).list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+        return l;
+    }
 
-	
-	public List<IssueStatus> getIssueStatusListByIcon(Icon icon) {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		List<IssueStatus> l = null;
-		try {
-			tx = session.beginTransaction();
-			l = session.createQuery("from IssueStatus as i where i.iconUrl=:name").setString("name", icon.getFileName()).list();
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-		return l;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}	
+    /**
+     * 根据icon 获得问题类型列表 List
+     */
+
+    public List<IssueStatushbm> getIssueStatusListByIcon(Icon icon) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        List<IssueStatushbm> l = null;
+        try {
+            tx = session.beginTransaction();
+            l = session.createQuery("from IssueStatushbm as i where i.iconUrl=:name").setString("name", icon.getFileName())
+                    .list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+        return l;
+    }
+
+}

@@ -11,7 +11,7 @@ public class IssueType {
     private String name;          // 类型名称
     private String description;   // 类型描述 
     private String iconUrl;      // 图标URL
-    private String createDate;   // 该类型创建的时间
+    private java.util.Date createDate;   // 该类型创建的时间
     
 	public int getId() {
 		return id;
@@ -37,10 +37,10 @@ public class IssueType {
 	public void setIconUrl(String iconUrl) {
 		this.iconUrl = iconUrl;
 	}
-	public String getCreateDate() {
+	public java.util.Date getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		this.createDate = createDate;
 	}
 }
