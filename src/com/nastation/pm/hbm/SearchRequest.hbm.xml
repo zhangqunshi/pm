@@ -8,33 +8,28 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.SearchRequest" table="t_search_request"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.SearchRequesthbm" table="t_search_request"
+        lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
-  		
-  	
-  		
-  		
-  		
-		<!-- unique -->
-		<property name="filterName" type="string" column="filter_name" />
-		<property name="authorName" type="string" column="author_name" />		
-		<property name="description" type="string" column="description" />		
-		<property name="projectId" type="int" column="project_id" />
-		<property name="request_content" type="text" column="request_content" />
-	
-		 
-		
-	
+
+        <property name="filterName" type="string" column="filter_name" />
+        <property name="authorName" type="string" column="author_name" />
+        <property name="description" type="string" column="description" />
+        <property name="projectId" type="int" column="project_id" />
+        <property name="request_content" type="text" column="request_content" />
 
 
 
 
-	</class>
+
+
+
+
+    </class>
 
 
 

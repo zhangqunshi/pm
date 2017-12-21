@@ -1,23 +1,21 @@
 package com.nastation.pm.bean;
+
 /**
- * @author weiboyuan
- * 项目模块java bean
+ * @author weiboyuan 项目模块java bean
  */
 
-
 public class ProjectComponent {
-	
+
 	public int id;
-	
+
 	public String name;
-	
-	//public int projectId;
-	public Project projectId;
-	
+
+	public int  projectId;
+
 	public String description;
-	
+
 	public String leaderId;
-	
+
 	public java.util.Date createDate;
 
 	public int getId() {
@@ -36,11 +34,11 @@ public class ProjectComponent {
 		this.name = name;
 	}
 
-	public Project getProjectId() {
+	public int  getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(Project projectId) {
+	public void setProjectId(int  projectId) {
 		this.projectId = projectId;
 	}
 
@@ -68,5 +66,4 @@ public class ProjectComponent {
 		this.createDate = createDate;
 	}
 
-	
 }

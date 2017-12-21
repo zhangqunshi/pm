@@ -8,31 +8,30 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.Resolution" table="t_resolution"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.Resolutionhbm" table="t_resolution"
+        lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
-		<!-- unique -->
-		<property name="name" type="string" column="name" not-null="true" />
 
-		<property name="description" type="string" column="description" />
-		
-		<property name="isDefault" type="int" column="is_default" />
-		
+        <property name="name" type="string" column="name"
+            not-null="true" />
+        <property name="description" type="string" column="description" />
+        <property name="isDefault" type="int" column="is_default" />
 
 
 
 
-	
 
 
 
 
-	</class>
+
+
+    </class>
 
 
 

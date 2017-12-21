@@ -7,29 +7,29 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.Permission" table="t_permission"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.Permissionhbm" table="t_permission"
+        lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
-
-
-		<!-- unique -->
-		<property name="name" type="string" column="name" not-null="true" />
-
-		<property name="description" type="string" column="description" />
-		
-		<property name="typeName" type="string" column="type_name" />
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
+        <property name="name" type="string" column="name"
+            not-null="true" />
 
-	
+        <property name="description" type="string" column="description" />
+
+        <property name="typeName" type="string" column="type_name" />
 
 
 
 
-	</class>
+
+
+
+
+    </class>
 
 
 

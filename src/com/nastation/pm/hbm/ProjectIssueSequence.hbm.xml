@@ -7,29 +7,26 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.ProjectIssueSequence" table="t_project_issue_sequence"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.ProjectIssueSequencehbm"
+        table="t_project_issue_sequence" lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
-
-
-
-		<property name="maxIdValue" type="int" column="max_id_value" />
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
+        <property name="maxIdValue" type="int" column="max_id_value" />
 
 
-		<many-to-one name="projectId" column="project_id"
-			class="com.nastation.pm.bean.Project" cascade="save-update" />
+        <many-to-one name="project" column="project_id"
+            class="com.nastation.pm.beanhbm.Projecthbm" cascade="save-update" />
 
 
 
 
 
 
-	</class>
+    </class>
 
 
 

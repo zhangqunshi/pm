@@ -3,44 +3,46 @@
 	作者: 刘列辉
 	日期: 2008-12-22
 --%>
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="com.nastation.pm.*"%>
+<%@ page import="com.nastation.pm.beanhbm.*"%>
 <%
-	String issueId = request.getParameter("issueId");
-	String issueKey = request.getParameter("issueKey");
-	issueKey=java.net.URLEncoder.encode(issueKey,"UTF-8");
-	if (StringUtils.isBlank(issueId) || StringUtils.isBlank(issueKey)) {
-	    String errMsg="The issue id or key is null";
-		request.setAttribute("error",errMsg);
-	}
-	User author = (User) session.getAttribute(Global.SESSION_USER);
-	String commentContent = request.getParameter("commentContent");
+    String issueId = request.getParameter("issueId");
+    String issueKey = request.getParameter("issueKey");
+    issueKey = java.net.URLEncoder.encode(issueKey, "UTF-8");
+    if (StringUtils.isBlank(issueId) || StringUtils.isBlank(issueKey)) {
+        String errMsg = "The issue id or key is null";
+        request.setAttribute("error", errMsg);
+    }
+    User author = (User) session.getAttribute(Global.SESSION_USER);
+    String commentContent = request.getParameter("commentContent");
 
-	System.out.println("==========author===16====" + author.getName());
-	System.out.println("========17=commentContent=" + commentContent);
-
-	if (StringUtils.isBlank(commentContent)) {
-	      System.out.println("The commentContent id or key is null"); 
+    if (StringUtils.isBlank(commentContent)) {
 %>
-		 <jsp:forward page="../comment/addComment.jsp">
-		 <jsp:param name="issueKey" value="<%=issueKey %>" />
-		 <jsp:param name="comment" value="commentContent cann't null" />
-		 </jsp:forward>
-		 
-<% 
-        return ;
-	}
-	    Comment c = new Comment();
-		c.setCommentContent(StringUtils.removeHtmlTag(commentContent));
-		c.setIssueId(Integer.parseInt(issueId));
-		c.setAuthor(author.getName());
-		
-		CommentBO bo = new CommentBO();		
-		bo.addComment(c);
-		System.out.println("添加备注成功");
-	    response.sendRedirect(request.getContextPath() + "/jsp/frontend/issue/issueDetailLayout.jsp?issueKey=" + issueKey);
+<jsp:forward page="../comment/addComment.jsp">
+    <jsp:param name="issueKey" value="<%=issueKey%>" />
+    <jsp:param name="comment" value="commentContent cann't null" />
+</jsp:forward>
+
+<%
+    return;
+    }
+    Comment c = new Comment();
+    c.setCommentContent(StringUtils.removeHtmlTag(commentContent));
+    c.setIssueId(Integer.parseInt(issueId));
+    c.setAuthor(author.getName());
+    IssueBO iBO = new IssueBO();
+    Commenthbm ch = new Commenthbm();
+    ch.setCommentContent(StringUtils.removeHtmlTag(commentContent));
+    ch.setIssue(iBO.getIssue(Integer.parseInt(issueId)));
+    ch.setAuthor(author.getName());
+
+    CommentBO bo = new CommentBO();
+    bo.addComment(ch);
+    System.out.println("添加备注成功");
+    response.sendRedirect(
+            request.getContextPath() + "/jsp/frontend/issue/issueDetailLayout.jsp?issueKey=" + issueKey);
 %>

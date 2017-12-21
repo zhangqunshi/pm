@@ -12,22 +12,22 @@ import javax.servlet.ServletResponse;
 /**
  * 把所有的请求字符转成UTF8编码
  * 
- * @author sun 
+ * @author sun
  */
 public class SetCharacterEncodingFilter implements Filter {
 
-	public static final String UTF8 = "UTF-8";
+    public static final String UTF8 = "UTF-8";
 
-	public void destroy() {
-	}
+    public void destroy() {
+    }
 
-	public void doFilter(ServletRequest req, ServletResponse res,
-			FilterChain chain) throws IOException, ServletException {
-		req.setCharacterEncoding(UTF8);
-		chain.doFilter(req, res);
-	}
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+            throws IOException, ServletException {
+        req.setCharacterEncoding(UTF8);
+        chain.doFilter(req, res);
+    }
 
-	public void init(FilterConfig arg0) throws ServletException {
-	}
+    public void init(FilterConfig arg0) throws ServletException {
+    }
 
 }

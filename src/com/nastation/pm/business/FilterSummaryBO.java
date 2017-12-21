@@ -24,61 +24,60 @@ import com.nastation.pm.util.*;
  * 
  */
 public class FilterSummaryBO {
-	/**
-	 * 添加一个概要信息
-	 * 
-	 * @param comment
-	 */
-	public void addFilterSummary(HashMap<String, String> summarys, int filterId) {
-		if (summarys == null || summarys.isEmpty() || filterId == 0) {
-			return;
-		}
-		Connection conn = DBConn.getConnection();
-		String sql = "insert into t_filter_summary(request_id, filter_summary_key, filter_summary_value) values(?,?,?)";
-		System.out.println("=33=Sql==" + sql);
-		System.out.println("=33=Sql==" + summarys);
-		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			
-			Iterator<String> it = summarys.keySet().iterator();
-			while (it.hasNext()) {
-				String key = it.next();
-				psmt.setInt(1, filterId);
-				psmt.setString(2, key);
-				psmt.setString(3, summarys.get(key));
-				psmt.addBatch();
-			}
-			psmt.executeBatch();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
+    /**
+     * 添加一个概要信息
+     * 
+     * @param comment
+     */
+    public void addFilterSummary(HashMap<String, String> summarys, int filterId) {
+        if (summarys == null || summarys.isEmpty() || filterId == 0) {
+            return;
+        }
+        Connection conn = DBConn.getConnection();
+        String sql = "insert into t_filter_summary(request_id, filter_summary_key, filter_summary_value) values(?,?,?)";
+        System.out.println("=33=Sql==" + sql);
+        System.out.println("=33=Sql==" + summarys);
+        try {
+            PreparedStatement psmt = conn.prepareStatement(sql);
 
-	}
+            Iterator<String> it = summarys.keySet().iterator();
+            while (it.hasNext()) {
+                String key = it.next();
+                psmt.setInt(1, filterId);
+                psmt.setString(2, key);
+                psmt.setString(3, summarys.get(key));
+                psmt.addBatch();
+            }
+            psmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
 
-	/**
-	 * 添加一个概要信息
-	 * 
-	 * @param comment
-	 */
+    }
 
-	
-	
-	public List getFilterSummaryList(int requestId) {
-		Session session = SessionF.sessionFactory.openSession();
-		Transaction tx = null;
-		List l = null;
-		try {
-			tx = session.beginTransaction();
-			l = session.createQuery("from FilterSummary as f where f.requestId.id=:id").setInteger("id", requestId).list();
-			tx.commit();
-		}catch(Exception e) {
-			if(tx != null)
-				tx.rollback();
-		}finally {
-			session.close();
-		}
-		return l;
-	}
+    /**
+     * 添加一个概要信息
+     * 
+     * @param comment
+     */
+
+    public List getFilterSummaryList(int requestId) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+        List l = null;
+        try {
+            tx = session.beginTransaction();
+            l = session.createQuery("from FilterSummaryhbm as f where f.requestId.id=:id").setInteger("id", requestId)
+                    .list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+        return l;
+    }
 }

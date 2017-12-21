@@ -8,313 +8,299 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.ProjectCategory;
 import com.nastation.pm.bean.ProjectUser;
 import com.nastation.pm.util.DBConn;
 
 public class ProjectUserBO {
 
-	// add new project user
+    // add new project user
 
-	public void addProjectUser(ProjectUser projectUser) throws SQLException {
-		Connection conn = DBConn.getConnection();
-		String sql = "select * from t_project_user where project_id=? and user_id=? and role_id=?";
-		System.out.println("=========id=====" + projectUser.getProjectId());
-		System.out.println("=========userid====" + projectUser.getUserId());
-		System.out.println("=========getRoleId====" + projectUser.getRoleId());
-		PreparedStatement pst = conn.prepareStatement(sql);
-		pst.setInt(1, projectUser.getProjectId());
-		pst.setInt(2, projectUser.getUserId());
-		pst.setInt(3, projectUser.getRoleId());
-		ResultSet rs = pst.executeQuery();
-		if(rs.next()){
-			return;
-		}else{
-			
-			String sql2 = "insert into t_project_user(project_id,user_id,role_id,create_date) values(?,?,?,?)";
-			try {
-				System.out.println("=========id=====" + projectUser.getProjectId());
-				PreparedStatement ps = conn.prepareStatement(sql2);
-				ps.setInt(1, projectUser.getProjectId());
-				ps.setInt(2, projectUser.getUserId());
-				ps.setInt(3, projectUser.getRoleId());
-				ps.setString(4, projectUser.getCreateDate());
-				ps.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				DBConn.closeConn(conn);
-			}
-		}
-	}
+    public void addProjectUser(ProjectUser projectUser) throws SQLException {
+        Connection conn = DBConn.getConnection();
+        String sql = "select * from t_project_user where project_id=? and user_id=? and role_id=?";
 
-	// get a projectUser
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setInt(1, projectUser.getProjectId());
+        pst.setInt(2, projectUser.getUserId());
+        pst.setInt(3, projectUser.getRoleId());
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            return;
+        } else {
 
-	public ProjectUser getProjectUser(int id) {
-		ProjectUser projectUser = new ProjectUser();
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "select * from t_project_user where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+            String sql2 = "insert into t_project_user(project_id,user_id,role_id,create_date) values(?,?,?,?)";
+            try {
+                System.out.println("=========id=====" + projectUser.getProjectId());
+                PreparedStatement ps = conn.prepareStatement(sql2);
+                ps.setInt(1, projectUser.getProjectId());
+                ps.setInt(2, projectUser.getUserId());
+                ps.setInt(3, projectUser.getRoleId());
+                ps.setString(4, projectUser.getCreateDate());
+                ps.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                DBConn.closeConn(conn);
+            }
+        }
+    }
 
-				projectUser.setProjectUserId(rs.getInt("id"));
-				projectUser.setCreateDate(rs.getString("create_date"));
-				projectUser.setUserId(rs.getInt("user_id"));
-				projectUser.setRoleId(rs.getInt("role_id"));
-				projectUser.setProjectId(rs.getInt("project_id"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return projectUser;
+    // get a projectUser
 
-	}
+    public ProjectUser getProjectUser(int id) {
+        ProjectUser projectUser = new ProjectUser();
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "select * from t_project_user where id=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
 
-	/**
-	 * 根据projectId获得projectUser类集合list
-	 * 
-	 * @param projectId
-	 * @return
-	 */
-	public List<ProjectUser> getProjectUserByProjectId(int projectId) {
-		List<ProjectUser> projectList = new ArrayList<ProjectUser>();
-		ProjectUser projectUser =null;
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "select a.id, a.create_date, a.user_id, b.username, a.role_id, a.project_id "
-					+ " from t_project_user a, t_user b "
-					+ " where a.project_id=? and a.user_id=b.id";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, projectId);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				projectUser = new ProjectUser();
-				projectUser.setProjectUserId(rs.getInt("id"));
-				projectUser.setCreateDate(rs.getString("create_date"));
-				projectUser.setUserId(rs.getInt("user_id"));
-				projectUser.setUsername(rs.getString("username"));
-				projectUser.setRoleId(rs.getInt("role_id"));
-				projectUser.setProjectId(rs.getInt("project_id"));
-				projectList.add(projectUser);
-			}
-		    for(ProjectUser pUser:projectList){
-		    	System.out.println(pUser.getProjectId());
-		    	System.out.println(pUser.getUsername());
-		    }
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return projectList;
+                projectUser.setProjectUserId(rs.getInt("id"));
+                projectUser.setCreateDate(rs.getString("create_date"));
+                projectUser.setUserId(rs.getInt("user_id"));
+                projectUser.setRoleId(rs.getInt("role_id"));
+                projectUser.setProjectId(rs.getInt("project_id"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return projectUser;
 
-	}
+    }
 
-	//
-	// 根据项目ID获得projectUser类集合list
-	public List<ProjectUser> getProjectUser3(int projectId) {
-		List<ProjectUser> projectList = new ArrayList<ProjectUser>();
+    /**
+     * 根据projectId获得projectUser类集合list
+     * 
+     * @param projectId
+     * @return
+     */
+    public List<ProjectUser> getProjectUserByProjectId(int projectId) {
+        List<ProjectUser> projectList = new ArrayList<ProjectUser>();
+        ProjectUser projectUser = null;
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "select a.id, a.create_date, a.user_id, b.username, a.role_id, a.project_id "
+                    + " from t_project_user a, t_user b " + " where a.project_id=? and a.user_id=b.id";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, projectId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                projectUser = new ProjectUser();
+                projectUser.setProjectUserId(rs.getInt("id"));
+                projectUser.setCreateDate(rs.getString("create_date"));
+                projectUser.setUserId(rs.getInt("user_id"));
+                projectUser.setUsername(rs.getString("username"));
+                projectUser.setRoleId(rs.getInt("role_id"));
+                projectUser.setProjectId(rs.getInt("project_id"));
+                projectList.add(projectUser);
+            }
+            for (ProjectUser pUser : projectList) {
+                System.out.println(pUser.getProjectId());
+                System.out.println(pUser.getUsername());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return projectList;
 
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "select * from t_project_user where project_id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, projectId);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				ProjectUser projectUser = new ProjectUser();
-				projectUser.setProjectUserId(rs.getInt("id"));
-				projectUser.setCreateDate(rs.getString("create_date"));
-				projectUser.setUserId(rs.getInt("user_id"));
-				projectUser.setRoleId(rs.getInt("role_id"));
-				projectUser.setProjectId(rs.getInt("project_id"));
-				projectList.add(projectUser);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return projectList;
+    }
 
-	}
+    //
+    // 根据项目ID获得projectUser类集合list
+    public List<ProjectUser> getProjectUser3(int projectId) {
+        List<ProjectUser> projectList = new ArrayList<ProjectUser>();
 
-	// 根据项目和角色ID和用户id获得projectUser类
-	public ProjectUser getProjectUser5(int projectId, int roleId, int userId) {
-		Connection conn = DBConn.getConnection();
-		ProjectUser projectUser = new ProjectUser();
-		try {
-			String sql = "select * from t_project_user where project_id="
-					+ projectId + " and role_id=" + roleId + " and user_id="
-					+ userId;
-			System.out.println("===========sql=====125==" + sql);
-			System.out.println("===========projectId=====125==" + projectId);
-			System.out.println("===========roleId=====125==" + roleId);
-			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery(sql);
-			while (rs.next()) {
-				projectUser.setProjectUserId(rs.getInt("id"));
-				projectUser.setCreateDate(rs.getString("create_date"));
-				projectUser.setUserId(rs.getInt("user_id"));
-				projectUser.setRoleId(rs.getInt("role_id"));
-				projectUser.setProjectId(rs.getInt("project_id"));
-				System.out.println("========137===sqluserId==="
-						+ projectUser.getUserId());
-			}
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "select * from t_project_user where project_id=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, projectId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ProjectUser projectUser = new ProjectUser();
+                projectUser.setProjectUserId(rs.getInt("id"));
+                projectUser.setCreateDate(rs.getString("create_date"));
+                projectUser.setUserId(rs.getInt("user_id"));
+                projectUser.setRoleId(rs.getInt("role_id"));
+                projectUser.setProjectId(rs.getInt("project_id"));
+                projectList.add(projectUser);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return projectList;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return projectUser;
+    }
 
-	}
+    // 根据项目和角色ID和用户id获得projectUser类
+    public ProjectUser getProjectUser5(int projectId, int roleId, int userId) {
+        Connection conn = DBConn.getConnection();
+        ProjectUser projectUser = new ProjectUser();
+        try {
+            String sql = "select * from t_project_user where project_id=" + projectId + " and role_id=" + roleId
+                    + " and user_id=" + userId;
 
-	/**
-	 * 根据项目ID和角色ID和获得projectUser类list集合
-	 */
-	public List<ProjectUser> getProjectUserByProjectIdRoleId(int projectId,
-			int roleId) {
-		System.out.println("===========projectId=====125==" + projectId);
-		System.out.println("===========roleId=====125==" + roleId);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                projectUser.setProjectUserId(rs.getInt("id"));
+                projectUser.setCreateDate(rs.getString("create_date"));
+                projectUser.setUserId(rs.getInt("user_id"));
+                projectUser.setRoleId(rs.getInt("role_id"));
+                projectUser.setProjectId(rs.getInt("project_id"));
 
-		List<ProjectUser> projectList = new ArrayList<ProjectUser>();
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "select a.user_id, b.username from t_project_user a, t_user b where a.project_id=? and a.role_id=? and a.user_id=b.id";
-			System.out.println("===========sql=====125==" + sql);
+            }
 
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, projectId);
-			psmt.setInt(2, roleId);
-			ResultSet rs = psmt.executeQuery();
-			while (rs.next()) {
-				ProjectUser projectUser = new ProjectUser();
-				projectUser.setUserId(rs.getInt("user_id"));
-				projectUser.setUsername(rs.getString("username"));
-				
-				projectList.add(projectUser);
-			}
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return projectUser;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return projectList;
+    }
 
-	}
+    /**
+     * 根据项目ID和角色ID和获得projectUser类list集合
+     */
+    public List<ProjectUser> getProjectUserByProjectIdRoleId(int projectId, int roleId) {
 
-	// 根据项目和角色ID和获得number数
-	public int getProjectUser6(int projectId, int roleId) {
-		Connection conn = DBConn.getConnection();
-		int number = 0;
-		try {
-			String sql = "select * from t_project_user where project_id="
-					+ projectId + " and role_id=" + roleId;
-			System.out.println("===========sql=====125==" + sql);
-			System.out.println("===========projectId=====125==" + projectId);
-			System.out.println("===========roleId=====125==" + roleId);
-			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery(sql);
-			while (rs.next()) {
-				number += 1;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return number;
+        List<ProjectUser> projectList = new ArrayList<ProjectUser>();
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "select a.user_id, b.username from t_project_user a, t_user b where a.project_id=? and a.role_id=? and a.user_id=b.id";
 
-	}
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1, projectId);
+            psmt.setInt(2, roleId);
+            ResultSet rs = psmt.executeQuery();
+            while (rs.next()) {
+                ProjectUser projectUser = new ProjectUser();
+                projectUser.setUserId(rs.getInt("user_id"));
+                projectUser.setUsername(rs.getString("username"));
 
-	//
+                projectList.add(projectUser);
+            }
 
-	public List<ProjectUser> getProjectUser() {
-		List<ProjectUser> list = new ArrayList<ProjectUser>();
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "select * from t_project_user";
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				ProjectUser projectUser = new ProjectUser();
-				projectUser.setProjectUserId(rs.getInt("id"));
-				projectUser.setProjectId(rs.getInt("project_id"));
-				projectUser.setCreateDate(rs.getString("create_date"));
-				projectUser.setUserId(rs.getInt("user_id"));
-				projectUser.setRoleId(rs.getInt("role_id"));
-				list.add(projectUser);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-		return list;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return projectList;
 
-	// delete a project user
+    }
 
-	public void deleteProjectUser(int id) {
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "delete from t_project_user where id=?";
-			System.out.println("==sql==" + sql);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-	}
+    // 根据项目和角色ID和获得number数
+    public int getProjectUser6(int projectId, int roleId) {
+        Connection conn = DBConn.getConnection();
+        int number = 0;
+        try {
+            String sql = "select * from t_project_user where project_id=" + projectId + " and role_id=" + roleId;
 
-	// update a projectUser
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                number += 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return number;
 
-	public void updateProjectUser(ProjectUser projectUser) {
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "update t_project_user set project_id=?,user_id=?,role_id=?,create_date=? where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, projectUser.getProjectId());
-			ps.setInt(2, projectUser.getUserId());
-			ps.setInt(3, projectUser.getRoleId());
-			ps.setString(4, projectUser.getCreateDate());
-			ps.setInt(5, projectUser.getProjectUserId());
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-	}
-	
-/**
- * 删除所有与此角色有关的projectUser
- * @param roleId
- */
-	public void deleteAllProjectUser(int roleId) {
-		Connection conn = DBConn.getConnection();
-		try {
-			String sql = "delete from t_project_user where role_id=?";
-			System.out.println("==sql==" + sql);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, roleId);
-			ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.closeConn(conn);
-		}
-	}
+    }
+
+    //
+
+    public List<ProjectUser> getProjectUser() {
+        List<ProjectUser> list = new ArrayList<ProjectUser>();
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "select * from t_project_user";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                ProjectUser projectUser = new ProjectUser();
+                projectUser.setProjectUserId(rs.getInt("id"));
+                projectUser.setProjectId(rs.getInt("project_id"));
+                projectUser.setCreateDate(rs.getString("create_date"));
+                projectUser.setUserId(rs.getInt("user_id"));
+                projectUser.setRoleId(rs.getInt("role_id"));
+                list.add(projectUser);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+        return list;
+    }
+
+    // delete a project user
+
+    public void deleteProjectUser(int id) {
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "delete from t_project_user where id=?";
+            System.out.println("==sql==" + sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+    }
+
+    // update a projectUser
+
+    public void updateProjectUser(ProjectUser projectUser) {
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "update t_project_user set project_id=?,user_id=?,role_id=?,create_date=? where id=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, projectUser.getProjectId());
+            ps.setInt(2, projectUser.getUserId());
+            ps.setInt(3, projectUser.getRoleId());
+            ps.setString(4, projectUser.getCreateDate());
+            ps.setInt(5, projectUser.getProjectUserId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+    }
+
+    /**
+     * 删除所有与此角色有关的projectUser
+     * 
+     * @param roleId
+     */
+    public void deleteAllProjectUser(int roleId) {
+        Connection conn = DBConn.getConnection();
+        try {
+            String sql = "delete from t_project_user where role_id=?";
+            System.out.println("==sql==" + sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, roleId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConn.closeConn(conn);
+        }
+    }
 
 }

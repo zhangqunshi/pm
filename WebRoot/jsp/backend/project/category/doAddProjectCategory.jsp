@@ -1,34 +1,35 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.util.*"%>
+<%@ page import="com.nastation.pm.beanhbm.*"%>
+<%
+    String name = request.getParameter("name");
+    String desc = request.getParameter("desc");
+    if (StringUtils.isBlank(name)) {
+        request.setAttribute("error", "The name can't be empty");
+%>
+<jsp:forward page="viewProjectCategory.jsp"></jsp:forward>
+<%
+    }
+    ProjectCategoryBO pb = new ProjectCategoryBO();
 
-<%
-	String name = request.getParameter("name");
-	String desc = request.getParameter("desc");
-	if (StringUtils.isBlank(name)) {
-		request.setAttribute("error", "The name can't be empty");
+    ProjectCategory category = new ProjectCategory();
+    category.setName(name);
+    category.setDescription(desc);
+    ProjectCategoryhbm p = new ProjectCategoryhbm();
+    p.setName(name);
+    p.setDescription(desc);
+    
+    if (pb.checkProjectCategory(p)) {
+        pb.addProjectCategory(p);
+        response.sendRedirect("viewProjectCategory.jsp");
+    } else {
+        request.setAttribute("error", "The name already exist");
 %>
 <jsp:forward page="viewProjectCategory.jsp"></jsp:forward>
 <%
-	}
-	ProjectCategoryBO pb = new ProjectCategoryBO();
-	System.out.println("====name====" + name);
-	ProjectCategory category = new ProjectCategory();
-	//String createTime = StringUtils.toString(new java.util.Date());
-	category.setName(name);
-	category.setDescription(desc);
-	//category.setCreateDate(createTime);
-	if (pb.checkProjectCategory(category)) {
-		pb.addProjectCategory(category);
-		response.sendRedirect("viewProjectCategory.jsp");
-	} else {
-		request.setAttribute("error", "The name already exist");
+    }
 %>
-<jsp:forward page="viewProjectCategory.jsp"></jsp:forward>
-<%
-	}
-%>   
 

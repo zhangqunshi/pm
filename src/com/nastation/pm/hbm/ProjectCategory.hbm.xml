@@ -7,29 +7,28 @@
 
 <hibernate-mapping>
 
-	<class name="com.nastation.pm.bean.ProjectCategory" table="t_project_category"
-		lazy="false">
+    <class name="com.nastation.pm.beanhbm.ProjectCategoryhbm"
+        table="t_project_category" lazy="false">
 
-		<id name="id" type="int" column="id">
-			<generator class="native" />
-		</id>
-
-
-		<!-- unique -->
-		<property name="name" type="string" column="name" not-null="true" />
-
-		<property name="description" type="string" column="description" />
-		
-		<property name="createDate" type="timestamp" column="create_date" />
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
 
 
 
-	
+        <property name="name" type="string" column="name"
+            not-null="true" />
+        <property name="description" type="string" column="description" />
+        <property name="createDate" type="timestamp" column="create_date" />
 
 
 
 
-	</class>
+
+
+
+
+    </class>
 
 
 
