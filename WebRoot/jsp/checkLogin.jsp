@@ -29,23 +29,24 @@
 <%
     } else {
         Userhbm userhbm = userBO.login(username, password);
-        User user = new User();
-        user.setAdmin(userhbm.isAdmin());
-        user.setCreateDate(userhbm.getCreateDate());
-        user.setEmail(userhbm.getEmail());
-        user.setFullName(userhbm.getFullName());
-        user.setId(userhbm.getId());
-        user.setName(userhbm.getName());
-        user.setPassword(userhbm.getPassword());
-        user.setPermissions(userBO.getAllPermissions(userhbm.getId()));
 
-        if (user == null) {
+        if (userhbm == null) {
             String error1 = "对不起,你的用户名或者密码不对 - 请重试.";
             request.setAttribute("error", error1);
 %>
 <jsp:forward page="login.jsp"></jsp:forward>
 <%
     } else {
+            User user = new User();
+            user.setAdmin(userhbm.isAdmin());
+            user.setCreateDate(userhbm.getCreateDate());
+            user.setEmail(userhbm.getEmail());
+            user.setFullName(userhbm.getFullName());
+            user.setId(userhbm.getId());
+            user.setName(userhbm.getName());
+            user.setPassword(userhbm.getPassword());
+            user.setPermissions(userBO.getAllPermissions(userhbm.getId()));
+
             session.setAttribute(Global.SESSION_USER, user);
             response.sendRedirect(request.getContextPath() + welcomePage);
         }

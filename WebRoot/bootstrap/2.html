@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Theme Template for Bootstrap</title>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">
+.bs-example {
+    position: relative;
+}
+</style>
+
+<style type="text/css">
+.body-bgcolor {
+    background-color: #f5f5f5;
+}
+</style>
+<style type="text/css">
+a:hover {
+    color: #fff;
+}
+</style>
+
+
+
+</head>
+<body class="body-bgcolor">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <h3 class="form-title text-center">项目管理软件</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-5">
+                <a class="btn btn-link btn-lg" style='color: #9e9e9e'>注册</a>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <a class="btn btn-link btn-lg" style='color: #9e9e9e'> 登入 </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <form class="form-horizontal" action="<%=path%>/jsp/checkLogin.jsp" method="post" name="myForm" onsubmit="return check()">
+                    <div class="form-group">
+                        <input type="text" id="inputSuccess" class="form-control " placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="inputWarning" class="form-control" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary col-md-12">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
