@@ -34,7 +34,7 @@
             String[] type1 = (typeStr).split(",");
             String type = "";
             for (int i = 0; i < type1.length; i++) {
-                System.out.println("=========i==20====" + i);
+                
                 type = type1[i];
 
                 UserBO userBo = new UserBO();

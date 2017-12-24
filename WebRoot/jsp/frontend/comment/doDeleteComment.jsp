@@ -20,7 +20,7 @@
 
         CommentBO commbo = new CommentBO();
         commbo.deleteComment(commentId);
-        System.out.println("册除成功");
+        
         issueRCKey = java.net.URLEncoder.encode(issueRCKey, "UTF-8");
         response.sendRedirect("../issue/issueDetailLayout.jsp?issueKey=" + issueRCKey);
     %>

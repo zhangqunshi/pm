@@ -14,7 +14,7 @@
     String userName = request.getParameter("name");
 
     if (StringUtils.isBlank(userName)) {
-        System.out.println("==========username is null========");
+        
         return;
     }
 

@@ -28,8 +28,7 @@ public class FilterSummaryBO {
         }
         Connection conn = DBConn.getConnection();
         String sql = "insert into t_filter_summary(request_id, filter_summary_key, filter_summary_value) values(?,?,?)";
-        System.out.println("=33=Sql==" + sql);
-        System.out.println("=33=Sql==" + summarys);
+
         try {
             PreparedStatement psmt = conn.prepareStatement(sql);
 

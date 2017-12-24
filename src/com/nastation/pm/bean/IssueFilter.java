@@ -219,8 +219,6 @@ public class IssueFilter {
         List list2 = new ArrayList();
         list2.add("krisss");
 
-        System.out.println("same==" + hm1.equals(hm2));
-        System.out.println("same==" + list1.equals(list2));
     }
 
 }

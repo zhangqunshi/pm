@@ -14,7 +14,7 @@
     String commentStr = request.getParameter("comment");
 
     if (StringUtils.isBlank(issueKeyCommnt)) {
-        System.out.println("The issue key is null");
+        
         return;
     }
     if (StringUtils.isBlank(commentStr)) {

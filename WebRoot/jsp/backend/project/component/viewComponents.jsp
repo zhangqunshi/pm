@@ -27,7 +27,7 @@ a new component
     } else {
 
         int id = Integer.parseInt(request.getParameter("projectId"));
-        System.out.println("id=" + id);
+        
         ProjectComponentBO pcbo2 = new ProjectComponentBO();
         List<ProjectComponenthbm> componentList2 = pcbo2.getProjectComponentList(id);
         out.println("<table border='0'>");

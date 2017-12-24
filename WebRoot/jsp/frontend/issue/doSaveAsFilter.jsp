@@ -34,7 +34,7 @@
     //保存filter到数据库中
     IssueFilterBO filterBO = new IssueFilterBO();
     boolean exist = filterBO.checkFilterName(newFilterName);
-    System.out.println("===filter===exist====" + exist);
+    
     if (exist) { //判断重名
         hasErr = true;
         errMsg += "The filter name already exist!";

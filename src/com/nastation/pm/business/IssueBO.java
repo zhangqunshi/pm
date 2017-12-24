@@ -189,7 +189,6 @@ public class IssueBO {
         try {
 
             String sql = "select * from v_issue_detail where assignee_id=? order by id desc";
-            System.out.println("=getIssueDetail==sql==" + sql);
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, assigneeId);
@@ -257,8 +256,6 @@ public class IssueBO {
         try {
 
             String sql = "select * from v_issue_detail where project_id=? order by issue_key desc";
-
-            System.out.println("=getIssueDetail==sql==" + sql);
 
             pstmt = conn.prepareStatement(sql.toString());
             pstmt.setInt(1, project_id);
@@ -378,8 +375,6 @@ public class IssueBO {
             // sql.append(" where a.id=?");
             String sql = "select * from v_issue_detail where id=?";
 
-            System.out.println("=getIssueDetail==sql==" + sql);
-
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -445,8 +440,6 @@ public class IssueBO {
 
             String sql = "select * from v_issue_detail where issue_key=?";
 
-            System.out.println("=getIssueDetail==sql==" + sql);
-
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, issueKey);
             rs = pstmt.executeQuery();
@@ -510,8 +503,6 @@ public class IssueBO {
         ResultSet rs = null;
         try {
             String sql = "select * from v_issue_detail where issue_status=2 and assignee_id=? order by id desc";
-
-            System.out.println("=getIssueDetail==sql==" + sql);
 
             pstmt = conn.prepareStatement(sql.toString());
             pstmt.setInt(1, assigneeId);
@@ -654,13 +645,13 @@ public class IssueBO {
         try {
             String sql = "select a.project_key,b.max_id_value+1 as 'maxint' from t_project a"
                     + " left join t_project_issue_sequence b on(a.id=b.project_id)" + "where a.id=?";
-            System.out.println("============828=====move sql========" + sql);
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, project_id);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 issueKey = rs.getString("a.project_key") + "-" + rs.getInt("maxint");
-                System.out.println("============828=====issueKey========" + issueKey);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -815,8 +806,7 @@ public class IssueBO {
         ResultSet rs = null;
         PreparedStatement st = null;
         try {
-            System.out.println("=getIssueDetail==sql==104==" + searchsql);
-            System.out.println("=getIssueDetail==sql==104==" + paramValues);
+
             st = conn.prepareStatement(searchsql);
             if (paramValues != null) {
                 int index = 1;

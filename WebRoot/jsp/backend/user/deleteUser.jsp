@@ -18,14 +18,14 @@
     <%
         request.setCharacterEncoding("UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
+        
         UserBO userBO = new UserBO();
         boolean hasForeignKey = userBO.hasForeignKey(id);
-        System.out.println("has foreign key?" + hasForeignKey);
+        
         if (hasForeignKey) {
             String errMsg = "该用户与项目相关联。要想删除该用户，请先删除项目中的关联！";
             request.setAttribute("error", errMsg);
-            System.out.println(errMsg);
+            
         } else {
             userBO.deleteUser(id);
         }

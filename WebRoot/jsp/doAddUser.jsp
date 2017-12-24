@@ -7,7 +7,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    System.out.println("path==" + path + "basepath==" + basePath);
+    
 %>
 
 <!-- 用于判断新建用户是否符合添加条件，添加成功后显示新建用户详细信息 -->

@@ -14,7 +14,7 @@
     //由于在其他页面也需要issue信息，所以把issue信息保存在request中，供所有页面使用
 			Issue issueRC = (Issue) request.getAttribute("issue");
 			if (issueRC == null) {
-				System.out.println("问题信息为null");
+				
 				return;
 			}
 %>

@@ -164,7 +164,7 @@
                     <select name="developerId" />
                     <%
                         if (projectUserList != null) {
-                    				System.out.println("projectUserList.size()=" + projectUserList.size());
+                    				
                     				for (int i = 0; i < projectUserList.size(); i++) {
                     					ProjectUser projectUser = projectUserList.get(i);
                     %>

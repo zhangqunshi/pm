@@ -229,9 +229,7 @@ public class PermissionSchemeBO {
         try {
             String sql = "select * from t_permission_scheme where id in (select distinct a.scheme_id"
                     + " from t_permission_assignee a where a.assignee_type=? and a.assignee=?)";
-            System.out.println("=====================sql=====" + sql);
-            System.out.println("=====================assigneeType=====" + assigneeType);
-            System.out.println("=====================assignee=====" + assignee);
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, assigneeType);
             pstmt.setString(2, assignee);

@@ -44,7 +44,7 @@
             </td>
             <td>
                 <%
-                    System.out.println("======PermissionSchemeName isn't null======");
+                    
                             PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
                             List<PermissionScheme> permissionSchemeList = permissionSchemeBO.getPermissionSchemeList("Group",
                                     groupView.getName());

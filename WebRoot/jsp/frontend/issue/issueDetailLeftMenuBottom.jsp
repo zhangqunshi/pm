@@ -31,7 +31,7 @@
 
     Issue issueLCMB = (Issue) request.getAttribute("issue");
     if (issueLCMB == null) {
-        System.out.println("问题信息为null");
+        
         return;
     }
     User currentUser = (User) session.getAttribute(Global.SESSION_USER);

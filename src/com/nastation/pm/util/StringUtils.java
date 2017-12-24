@@ -306,9 +306,8 @@ public class StringUtils {
     }
 
     public static void main(String[] args) {
-        // System.out.println("==" +
+
         // replaceNewLineToBr("hello\\\r\\\n\nkris\r\n"));
-        System.out.println("==" + removeHtmlTag("<<<<a>> href=\"index.html\">主页</a>"));
     }
 
 }

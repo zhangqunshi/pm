@@ -32,9 +32,6 @@ public class DBConn {
         user = p.getProperty("user");
         passwd = p.getProperty("password");
 
-        System.out.println("DB className: " + className);
-        System.out.println("DB url: " + url);
-        System.out.println("DB user: " + user);
     }
 
     public static Connection getConnection() { // 获得数据库连接对象

@@ -78,13 +78,13 @@ public class ResolutionBO {
         ResultSet rs = null;
         try {
             String sql = "update t_resolution set is_default=?";
-            System.out.println("========102====sql=======" + sql);
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, 0);
             count = pstmt.executeUpdate();
             if (count > 0) {
                 String sql2 = "update t_resolution set is_default=? where id=?";
-                System.out.println("========108====sql2=======" + sql2);
+
                 PreparedStatement pstmt2 = conn.prepareStatement(sql2);
                 pstmt2.setInt(1, 1);
                 pstmt2.setInt(2, isDefault);

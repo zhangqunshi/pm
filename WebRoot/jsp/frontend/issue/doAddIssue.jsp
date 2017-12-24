@@ -64,7 +64,7 @@
         error += "Please choose reporter!<br>";
     }
     if (hasError) {
-        System.out.println("error" + error);
+        
         request.setAttribute("error", error);
 %>
 <jsp:forward page="addIssueStep2.jsp" />
@@ -119,6 +119,6 @@
     String nextPage = request.getContextPath()
             + "/jsp/frontend/issue/issueDetailLayout.jsp?action=all&issueKey="
             + java.net.URLEncoder.encode(issueKey, "UTF-8");
-    System.out.println("nextPage===" + nextPage);
+    
     response.sendRedirect(nextPage);
 %>

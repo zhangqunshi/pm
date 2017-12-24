@@ -31,9 +31,9 @@
         List<Project> list = projectBO.getProjectListByScheme(schemeId);
         if (list.size() > 0) {
             for (Project project : list) {
-                System.out.println("projectId=" + project.getProjectId());
+                
                 projectBO.changeScheme(project.getProjectId(), 1);
-                System.out.println("after change scheme");
+                
             }
         }
         PermissionAssigneeBO paBO = new PermissionAssigneeBO();

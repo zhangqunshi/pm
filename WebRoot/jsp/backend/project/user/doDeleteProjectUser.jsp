@@ -15,17 +15,17 @@
 			String roleId = request.getParameter("roleId");
 			int pId = Integer.parseInt(projectId);
 			int rId = Integer.parseInt(roleId);
-			System.out.println("==projectId=======38==="+projectId);
-			System.out.println("==roleId=======38==="+roleId);
+			
+			
             String[] type = (request.getParameter("allid")).split(",");
             for (int i = 0; i < type.length; i++) {
-                System.out.println("=========i==20===="+i);
+                
                 if(type[i] == null ||type[i].equals("")){
                     return ;
                 }
                 int projectUserId = Integer.parseInt(type[i]);
 			    ProjectUserBO pb = new ProjectUserBO();	
-			    System.out.println("=25==projectUserId========"+projectUserId);			
+			    
 			    pb.deleteProjectUser(projectUserId);
 			}    
           %>
