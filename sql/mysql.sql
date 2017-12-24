@@ -63,7 +63,7 @@ create table t_comment
    create_date          datetime,
    primary key (id)
 )
-comment = "±¸×¢±í";
+comment = "å¤‡æ³¨è¡¨";
 
 /*==============================================================*/
 /* Table: t_component                                           */
@@ -78,7 +78,7 @@ create table t_component
    create_time          datetime,
    primary key (id)
 )
-comment = "ÏîÄ¿Ä£¿é±í";
+comment = "é¡¹ç›®æ¨¡å—è¡¨";
 
 /*==============================================================*/
 /* Table: t_filter_parameter_value                              */
@@ -91,7 +91,7 @@ create table t_filter_parameter_value
    filter_id            int,
    primary key (id)
 )
-comment = "¹ıÂËÆ÷sql²ÎÊıÖµ";
+comment = "è¿‡æ»¤å™¨sqlå‚æ•°å€¼";
 
 /*==============================================================*/
 /* Table: t_filter_summary                                      */
@@ -116,7 +116,7 @@ create table t_group
    create_date          datetime,
    primary key (id)
 )
-comment = "ÏîÄ¿×é±í, °üÀ¨¶à¸öÓÃ»§";
+comment = "é¡¹ç›®ç»„è¡¨, åŒ…æ‹¬å¤šä¸ªç”¨æˆ·";
 
 /*==============================================================*/
 /* Index: Index_1                                               */
@@ -136,7 +136,7 @@ create table t_group_user
    group_id             int,
    primary key (id)
 )
-comment = "×éºÍÓÃ»§±í";
+comment = "ç»„å’Œç”¨æˆ·è¡¨";
 
 /*==============================================================*/
 /* Table: t_icon                                                */
@@ -145,10 +145,10 @@ create table t_icon
 (
    id                   int not null auto_increment,
    filename             varchar(255),
-   icon_type            int comment '1->ÎÊÌâ×´Ì¬Í¼±ê  2->ÎÊÌâÀàĞÍÍ¼±ê',
+   icon_type            int comment '1->é—®é¢˜çŠ¶æ€å›¾æ ‡  2->é—®é¢˜ç±»å‹å›¾æ ‡',
    primary key (id)
 )
-comment = "ÎÊÌâÍ¼±ê";
+comment = "é—®é¢˜å›¾æ ‡";
 
 /*==============================================================*/
 /* Table: t_issue                                               */
@@ -160,8 +160,8 @@ create table t_issue
    issue_type_id        int,
    name                 varchar(255) not null,
    priority_level_id    int,
-   start_time           datetime comment '³ÌĞòÔ±µÚÒ»¸ö¿ªÊ¼´¦ÀíµÄÊ±¼ä',
-   end_time             datetime comment '×îºóÒ»´ÎcloseµÄÊ±¼ä',
+   start_time           datetime comment 'ç¨‹åºå‘˜ç¬¬ä¸€ä¸ªå¼€å§‹å¤„ç†çš„æ—¶é—´',
+   end_time             datetime comment 'æœ€åä¸€æ¬¡closeçš„æ—¶é—´',
    plan_end_time        datetime,
    component_id         int,
    assignee_id          int,
@@ -175,7 +175,7 @@ create table t_issue
    resolution_id        int,
    primary key (id)
 )
-comment = "ÎÊÌâ±í";
+comment = "é—®é¢˜è¡¨";
 
 /*==============================================================*/
 /* Table: t_issue_change_log                                    */
@@ -190,7 +190,7 @@ create table t_issue_change_log
    create_date          datetime,
    primary key (id)
 )
-comment = "ÎÊÌâ±ä¶¯¼ÇÂ¼";
+comment = "é—®é¢˜å˜åŠ¨è®°å½•";
 
 /*==============================================================*/
 /* Table: t_issue_priority                                      */
@@ -204,7 +204,7 @@ create table t_issue_priority
    icon_url             varchar(255),
    primary key (id)
 )
-comment = "ÎÊÌâÓÅÏÈ¼¶±í";
+comment = "é—®é¢˜ä¼˜å…ˆçº§è¡¨";
 
 /*==============================================================*/
 /* Table: t_issue_status                                        */
@@ -217,7 +217,7 @@ create table t_issue_status
    icon_url             varchar(255),
    primary key (id)
 )
-comment = "ÎÊÌâ×´Ì¬";
+comment = "é—®é¢˜çŠ¶æ€";
 
 /*==============================================================*/
 /* Table: t_issue_type                                          */
@@ -231,7 +231,7 @@ create table t_issue_type
    create_date          datetime,
    primary key (id)
 )
-comment = "ÎÊÌâÀàĞÍ±í";
+comment = "é—®é¢˜ç±»å‹è¡¨";
 
 /*==============================================================*/
 /* Table: t_permission                                          */
@@ -253,7 +253,7 @@ create table t_permission_assignee
    id                   int not null auto_increment,
    permission_id        int,
    assignee_type        varchar(50) not null,
-   assignee             varchar(50) not null comment 'ÊÇRole, group, userÖ®Ò»',
+   assignee             varchar(50) not null comment 'æ˜¯Role, group, userä¹‹ä¸€',
    scheme_id            int,
    create_time          datetime,
    primary key (id)
@@ -287,7 +287,7 @@ create table t_project
    create_date          datetime,
    primary key (id)
 )
-comment = "ÏîÄ¿»ù±¾ĞÅÏ¢±í";
+comment = "é¡¹ç›®åŸºæœ¬ä¿¡æ¯è¡¨";
 
 /*==============================================================*/
 /* Index: Index_1                                               */
@@ -316,7 +316,7 @@ create table t_project_category
    create_date          datetime,
    primary key (id)
 )
-comment = "ÏîÄ¿·ÖÀà±í";
+comment = "é¡¹ç›®åˆ†ç±»è¡¨";
 
 /*==============================================================*/
 /* Table: t_project_issue_sequence                              */
@@ -341,7 +341,7 @@ create table t_project_user
    create_date          datetime,
    primary key (id)
 )
-comment = "ÏîÄ¿ÓÃ»§±í";
+comment = "é¡¹ç›®ç”¨æˆ·è¡¨";
 
 /*==============================================================*/
 /* Table: t_resolution                                          */
@@ -402,7 +402,7 @@ create table t_user
    create_date          datetime,
    primary key (id)
 )
-comment = "ÓÃ»§±í";
+comment = "ç”¨æˆ·è¡¨";
 
 /*==============================================================*/
 /* Index: Index_1                                               */
