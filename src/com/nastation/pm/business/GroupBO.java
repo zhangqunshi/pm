@@ -78,6 +78,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -100,6 +101,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -126,6 +128,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -151,6 +154,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -176,6 +180,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -197,6 +202,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -208,7 +214,7 @@ public class GroupBO {
     public List<Grouphbm> getUserGroupList(int userId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
-        List<Grouphbm> gList = null;
+        List<Grouphbm> gList = new ArrayList<>();
         try {
             tx = session.beginTransaction();
             List<Grouphbm> gl = session.createQuery("from Grouphbm").list();
