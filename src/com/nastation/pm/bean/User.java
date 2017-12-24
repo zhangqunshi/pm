@@ -90,10 +90,13 @@ public class User {
      */
     public boolean validate(int projectId, String permission) {
         boolean flag = false;
-        List<String> pList = permissions.get(projectId);
-        if (pList != null) {
-            flag = pList.contains(permission);
+        if (permissions != null) {
+            List<String> pList = permissions.get(projectId);
+            if (pList != null) {
+                flag = pList.contains(permission);
+            }
         }
+
         return flag;
     }
 
