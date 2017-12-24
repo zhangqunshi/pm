@@ -4,25 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.nastation.pm.bean.FilterSummary;
 import com.nastation.pm.bean.IssueFilter;
-import com.nastation.pm.bean.SearchRequest;
-
+import com.nastation.pm.beanhbm.SearchRequesthbm;
 import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 import com.nastation.pm.util.StringUtils;
-
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-
-import com.nastation.pm.beanhbm.*;
 
 /**
  * 创建一个过滤器的逻辑业务类
@@ -270,8 +265,9 @@ public class IssueFilterBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            SearchRequesthbm s = (SearchRequesthbm) session.createQuery("from SearchRequesthbm as s where s.filterName=:name")
-                    .setString("name", filterName).setMaxResults(1).uniqueResult();
+            SearchRequesthbm s = (SearchRequesthbm) session
+                    .createQuery("from SearchRequesthbm as s where s.filterName=:name").setString("name", filterName)
+                    .setMaxResults(1).uniqueResult();
             if (s != null) {
                 return true;
             }

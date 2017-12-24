@@ -16,6 +16,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登陆页面</title>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="<%=request.getContextPath()%>/includes/css/main.css" media="all" rel="StyleSheet" type="text/css" />
 <script type="text/javascript">
     function check() {
@@ -31,77 +32,71 @@
         }
     }
 </script>
+<style type="text/css">
+.bs-example {
+    margin: 20px;
+}
+</style>
 </head>
 <body>
     <div>&nbsp;</div>
 
-    <table cellspacing="0" cellpadding="6" border="0" width="400" class="centred borderedBoxBlack">
-        <tr>
-            <td bgcolor="#dddddd" align="left">
-                <font color="#000000" size="3">
-                    <b>项目管理软件</b>
-                </font>
-            </td>
-        </tr>
-        <tr>
-            <td bgcolor="#ffffff">
 
 
+    <%
+        String choice = request.getParameter("choice");
+    %>
 
-                <form action="<%=path%>/jsp/checkLogin.jsp" method="post" name="myForm" onsubmit="return check()">
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <h3 class="form-title text-center">项目管理软件</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-5">
+                <a class="btn btn-link btn-lg" href="<%=path%>/jsp/login.jsp?choice=ok" style='color: #9e9e9e'>注册</a>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <a class="btn btn-link btn-lg" href="<%=path%>/jsp/login.jsp" style='color: #9e9e9e'> 登入 </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <%
+                    if(choice != null){
+                %>
+                    <jsp:include page="${path}/jsp/addUser.jsp" />
+                <%
+                    }else{
+                %>
+               
+                <form class="form-horizontal" action="<%=path%>/jsp/checkLogin.jsp" method="post" name="myForm" onsubmit="return check()">
                     <%@include file="/jsp/showErrorMessage.jsp"%>
-                    <table cellspacing="0" cellpadding="4" border="0" align="center">
-                        <tr>
-                            <td align="right" width="25%" valign="middle">
-                                <b>用户名</b>
-                            </td>
-                            <td valign="middle">
-                                <input type="text" accesskey="u" tabindex="1" size="25" name="username" style="width: 12em;" />
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td align="right" width="25%" valign="middle">
-                                <b>密码</b>
-                            </td>
-                            <td valign="middle">
-                                <input type="password" accesskey="p" tabindex="2" size="25" name="password" style="width: 12em;" />
-                                 
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td align="center" valign="middle" colspan="2">
-                                <input type="submit" tabindex="4" value="登录" name="submit" "/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td valign="middle" colspan="2">
-                                <br />
-                                <br />
-
-                                还没注册?
-                                <b>
-                                    <a href="<%=path%>/jsp/addUser.jsp" id="signup">注册</a>
-                                </b>
-                                帐号.
-
-                            </td>
-                        </tr>
-                    </table>
-
+                    <div class="form-group">
+                        <input type="text" id="inputSuccess" class="form-control " name="username" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="inputWarning" class="form-control" name="password" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary col-md-12">Login</button>
+                    </div>
                 </form>
+               <%
+                    }
+               %>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" language="javascript">
+                    document.loginform.elements[0].focus();
+                </script>
 
 
-                <script type="text/javascript" language="javascript">
-                                                                    document.loginform.elements[0]
-                                                                            .focus();
-                                                                </script>
-
-            </td>
-        </tr>
-    </table>
 </body>
 </html>
 

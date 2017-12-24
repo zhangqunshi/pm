@@ -5,9 +5,13 @@
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.nastation.pm.util.*"%>
+<%
+    String path = request.getContextPath();
+%>
 <html>
 <head>
 <title>创建新用户</title>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="<%=request.getContextPath()%>/includes/css/main.css" media="all" rel="StyleSheet" type="text/css" />
 <script language=javascript>
     function isNull(str) {
@@ -64,114 +68,41 @@
 </head>
 
 <body>
-    <br>
-    <table cellspacing="0" cellpadding="0" width="400" class="centred borderedBoxBlack" align="center">
-        <tbody>
-            <tr>
-                <td bgcolor="#003366">
-                    <table cellspacing="0" cellpadding="6" border="0" width="400">
-                        <tbody>
-                            <tr>
-                                <td bgcolor="#dddddd" colspan="2">
-                                    <font color="#000000" size="3">
-                                        <b>注册</b>
-                                    </font>
-                                </td>
-                            </tr>
 
-                            <form action="doAddUser.jsp" method="post" name="myForm" onsubmit="return test();">
-                                <%@include file="/jsp/showErrorMessage.jsp"%>
-                                <tr>
-                                    <td class="simpleformheader" colspan="2" bgcolor="#eeeeee">请输入你的详细信息.</td>
-                                </tr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <form class="form-horizontal" action="<%=path%>/jsp/doAddUser.jsp" method="post" name="myForm" onsubmit="return test()">
+                    <%@include file="/jsp/showErrorMessage.jsp"%>
+                    <div class="form-group">
+                        <input type="text" class="form-control " name="username" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="密码">
+                    </div>
 
-                                <tr>
-                                    <td class="fieldLabelArea">用户名:</td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="fullname" placeholder="全名">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="email" placeholder="邮箱">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary col-md-12">注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script language="javascript">
+                    try {
+                        document.simpleform.elements[0].focus();
+                    } catch (e) {
+                    }
+                </script>
 
-                                    <td bgcolor="#ffffff" class="fieldValueArea">
-
-                                        <input type="text" size="40" name="username" />
-
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td class="fieldLabelArea">密码:</td>
-
-                                    <td bgcolor="#ffffff" class="fieldValueArea">
-
-
-                                        <input type="password" size="40" name="password" />
-
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td class="fieldLabelArea">确认密码:</td>
-
-
-                                    <td bgcolor="#ffffff" class="fieldValueArea">
-
-                                        <input type="password" size="40" name="confirm" />
-
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-
-
-                                    <td class="fieldLabelArea">全名:</td>
-
-                                    <td bgcolor="#ffffff" class="fieldValueArea">
-
-
-                                        <input type="text" size="40" name="fullname" />
-
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td class="fieldLabelArea">邮件:</td>
-
-                                    <td bgcolor="#ffffff" class="fieldValueArea">
-
-                                        <input type="text" size="40" name="email" />
-
-
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="fullyCentered simpleformfooter" colspan="2" bgcolor="#eeeeee">
-
-                                        <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" value="注册" id="注册" name="注册" />
-
-                                        <input type="button" onclick="location.href='/ProjectManagementSoftware/jsp/login.jsp'" value="取消" name="default.jsp" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
-                                    </td>
-                                </tr>
-
-                                <script language="javascript">
-                                                                                                                                    try {
-                                                                                                                                        document.simpleform.elements[0]
-                                                                                                                                                .focus();
-                                                                                                                                    } catch (e) {
-                                                                                                                                    }
-                                                                                                                                </script>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </body>
 </html>
