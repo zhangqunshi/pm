@@ -39,7 +39,7 @@ public class CommentBO {
      *
      * @param comment
      */
-    public Commenthbm getComment(int commentId) {
+    public Commenthbm getComment(int commentId) throws Exception {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         Commenthbm c = new Commenthbm();
@@ -51,6 +51,7 @@ public class CommentBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -62,7 +63,7 @@ public class CommentBO {
      *
      * @param comment
      */
-    public List<Commenthbm> getCommentLists(int issueId) {
+    public List<Commenthbm> getCommentLists(int issueId) throws Exception {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         List<Commenthbm> cs = new ArrayList<>();
@@ -75,6 +76,7 @@ public class CommentBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -107,7 +109,7 @@ public class CommentBO {
      *
      * @param comment
      */
-    public void deleteComment(int commentId) {
+    public void deleteComment(int commentId) throws Exception {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         try {
@@ -118,6 +120,7 @@ public class CommentBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }

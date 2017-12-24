@@ -74,6 +74,7 @@ public class IssueTypeBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -95,6 +96,7 @@ public class IssueTypeBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -117,6 +119,7 @@ public class IssueTypeBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -207,6 +210,7 @@ public class IssueTypeBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -229,6 +233,7 @@ public class IssueTypeBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }

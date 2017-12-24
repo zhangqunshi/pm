@@ -231,6 +231,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -250,6 +251,7 @@ public class GroupBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }

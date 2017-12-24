@@ -42,6 +42,7 @@ public class ProjectCategoryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -69,6 +70,7 @@ public class ProjectCategoryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -110,6 +112,7 @@ public class ProjectCategoryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -151,6 +154,7 @@ public class ProjectCategoryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -173,6 +177,7 @@ public class ProjectCategoryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -207,6 +212,7 @@ public class ProjectCategoryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -233,6 +239,7 @@ public class ProjectCategoryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }

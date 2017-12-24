@@ -67,6 +67,7 @@ public class FilterSummaryBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }

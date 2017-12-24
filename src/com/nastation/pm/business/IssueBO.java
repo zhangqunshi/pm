@@ -84,6 +84,7 @@ public class IssueBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -105,6 +106,7 @@ public class IssueBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -126,6 +128,7 @@ public class IssueBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -170,6 +173,7 @@ public class IssueBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -232,8 +236,12 @@ public class IssueBO {
             e.printStackTrace();
         } finally {
             try {
-                rs.close();
-                pstmt.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -257,7 +265,7 @@ public class IssueBO {
 
             String sql = "select * from v_issue_detail where project_id=? order by issue_key desc";
 
-            pstmt = conn.prepareStatement(sql.toString());
+            pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, project_id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -299,8 +307,12 @@ public class IssueBO {
             e.printStackTrace();
         } finally {
             try {
-                rs.close();
-                pstmt.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -328,6 +340,7 @@ public class IssueBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
@@ -415,8 +428,12 @@ public class IssueBO {
             e.printStackTrace();
         } finally {
             try {
-                rs.close();
-                pstmt.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -480,8 +497,12 @@ public class IssueBO {
             e.printStackTrace();
         } finally {
             try {
-                rs.close();
-                pstmt.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -626,6 +647,7 @@ public class IssueBO {
             if (tx != null) {
                 tx.rollback();
             }
+            throw e;
         } finally {
             session.close();
         }
