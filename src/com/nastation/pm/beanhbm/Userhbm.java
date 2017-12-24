@@ -1,7 +1,5 @@
 package com.nastation.pm.beanhbm;
 
-import java.util.*;
-
 /**
  * @author 孙重阳 User bean
  */
