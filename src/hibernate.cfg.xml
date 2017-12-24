@@ -7,14 +7,9 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/projectmanagement</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">1111</property>
+        <property name="connection.password">123456</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <!-- <property name="connection.isolation">2</property> -->
-
-        <!-- <property name="hibernate.cache.use_second_level_cache">true</property> <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property> <property name="hibernate.cache.use_query_cache">true</property> <property name="jdbc.fetch_size">50</property> <property name="jdbc.batch_size">30</property> -->
-
-
 
         <mapping resource="com/nastation/pm/hbm/User.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/PermissionScheme.hbm.xml" />
@@ -36,18 +31,6 @@
         <mapping resource="com/nastation/pm/hbm/Comment.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Issue.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Group.hbm.xml" />
-
-
-
-        <!-- -->
-
-
-
-
-
-
-
-
 
 
     </session-factory>
