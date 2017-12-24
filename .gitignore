@@ -6,3 +6,4 @@ CVS
 .idea
 /nbproject/private/
 /build/
+/dist/
