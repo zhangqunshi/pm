@@ -207,18 +207,4 @@ public class IssueFilter {
         return changed;
     }
 
-    public static void main(String[] args) {
-        HashMap hm1 = new HashMap();
-        hm1.put(2, "kris");
-
-        HashMap hm2 = new HashMap();
-        hm2.put(1, "kris");
-
-        List list1 = new ArrayList();
-        list1.add("kris");
-        List list2 = new ArrayList();
-        list2.add("krisss");
-
-    }
-
 }
