@@ -1,12 +1,12 @@
 /**
  * 描述:用户组javaBean
+ *
  * @author liuliehui
  */
 package com.nastation.pm.bean;
 
-import java.util.*;
-
 public class Group {
+
     private int id; // 组ID
     private String name; // 组名
     private int userCount; // 一个组对应的用户数
