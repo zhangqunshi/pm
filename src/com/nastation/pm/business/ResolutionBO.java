@@ -11,8 +11,6 @@ import com.nastation.pm.bean.Resolution;
 import com.nastation.pm.util.DBConn;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
 

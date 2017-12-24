@@ -2,18 +2,12 @@ package com.nastation.pm.business;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.nastation.pm.bean.ProjectComponent;
 import com.nastation.pm.util.DBConn;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
 

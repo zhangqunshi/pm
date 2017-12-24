@@ -3,16 +3,12 @@ package com.nastation.pm.business;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.nastation.pm.bean.Role;
 import com.nastation.pm.util.DBConn;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
 
@@ -26,7 +22,6 @@ public class RoleBO {
     /**
      * 创建一个角色
      */
-
     public void addRole(Rolehbm role) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;

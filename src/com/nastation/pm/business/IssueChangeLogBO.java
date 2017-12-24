@@ -1,22 +1,10 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.Issue;
-import com.nastation.pm.bean.IssueChangeLog;
-
-import com.nastation.pm.bean.Role;
-import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.StringUtils;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 
 import com.nastation.pm.beanhbm.*;

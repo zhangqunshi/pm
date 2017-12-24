@@ -1,20 +1,8 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.Project;
-import com.nastation.pm.bean.ProjectCategory;
-import com.nastation.pm.bean.Role;
-import com.nastation.pm.util.DBConn;
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
 
@@ -23,7 +11,6 @@ public class ProjectCategoryBO {
     /**
      * 创建一个项目类型
      */
-
     public void addProjectCategory(ProjectCategoryhbm category) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;

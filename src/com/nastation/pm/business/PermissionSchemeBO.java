@@ -5,13 +5,9 @@ import java.text.ParseException;
 import java.util.*;
 
 import com.nastation.pm.bean.PermissionScheme;
-import com.nastation.pm.bean.Project;
 import com.nastation.pm.util.*;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
 
 /**

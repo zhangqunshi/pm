@@ -1,21 +1,13 @@
 package com.nastation.pm.business;
 
+import com.nastation.pm.util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
-import com.nastation.pm.bean.FilterSummary;
-import com.nastation.pm.util.DBConn;
-
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
 
 /**
  * 写一个过滤器概要的逻辑类

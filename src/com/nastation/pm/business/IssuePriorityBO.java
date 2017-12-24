@@ -6,24 +6,12 @@ package com.nastation.pm.business;
  * @author 许希光
  *
  */
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.nastation.pm.bean.Icon;
-import com.nastation.pm.bean.Issue;
 import com.nastation.pm.bean.IssuePriority;
-import com.nastation.pm.bean.IssueStatus;
-import com.nastation.pm.bean.IssueType;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
 import com.nastation.pm.util.*;
 
 import com.nastation.pm.beanhbm.*;

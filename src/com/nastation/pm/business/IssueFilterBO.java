@@ -32,7 +32,6 @@ public class IssueFilterBO {
      *
      * @param comment
      */
-
     public void addFilter(SearchRequesthbm filter) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;

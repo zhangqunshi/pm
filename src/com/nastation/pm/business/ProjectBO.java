@@ -9,21 +9,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.nastation.pm.bean.Project;
-import com.nastation.pm.bean.User;
 
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-
-import org.hibernate.query.*;
 
 import com.nastation.pm.beanhbm.*;
 

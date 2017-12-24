@@ -1,6 +1,7 @@
 package com.nastation.pm;
 
 public class PermissionConstants {
+
     public static String ADMINISTRATER_PROJECTS = "Administer Projects";
     public static String BROWSE_PROJECTS = "Browse Projects";
     public static String CREATE_ISSUES = "Create Issues";

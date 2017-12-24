@@ -5,21 +5,9 @@
  */
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-
-import com.nastation.pm.bean.Group;
-import com.nastation.pm.bean.User;
 import com.nastation.pm.util.*;
 
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
 import java.util.*;
 import com.nastation.pm.beanhbm.*;
 

@@ -1,22 +1,10 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.util.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.nastation.pm.bean.Comment;
-import com.nastation.pm.util.DBConn;
-import com.nastation.pm.util.StringUtils;
-
 import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-
-import com.nastation.pm.beanhbm.*;
 
 /**
  * 备注的业务逻辑类
