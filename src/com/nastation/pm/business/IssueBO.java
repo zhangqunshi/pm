@@ -2,8 +2,9 @@ package com.nastation.pm.business;
 
 /**
  * 功能：问题的业务逻辑类
+ *
  * @author 许希光
- * 
+ *
  */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +28,9 @@ import com.nastation.pm.beanhbm.*;
 
 public class IssueBO {
 
-    /** 字段列表 */
+    /**
+     * 字段列表
+     */
     public static final String columnNames = "issue_key, issue_type_id, name, priority_level_id, start_time,"
             + " end_time, plan_end_time, component_id, assignee_id, reporter_id, "
             + " environment, description, project_id, last_update_date, create_date, " + " issue_status";
@@ -35,7 +38,6 @@ public class IssueBO {
     /**
      * 向数据库中添加记录 Issue对象
      */
-
     public void addIssue(Issuehbm issue) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -44,8 +46,9 @@ public class IssueBO {
             session.save(issue);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -54,7 +57,6 @@ public class IssueBO {
     /**
      * 根据 Id ，更新已知的记录
      */
-
     public void updateIssue(Issuehbm issue) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -63,8 +65,9 @@ public class IssueBO {
             session.update(issue);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -73,7 +76,6 @@ public class IssueBO {
     /**
      * 根据issue id ，获得Issue对象
      */
-
     public Issuehbm getIssue(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -83,8 +85,9 @@ public class IssueBO {
             i = session.load(Issuehbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -94,7 +97,6 @@ public class IssueBO {
     /**
      * 删除对应ID的Issue 对象
      */
-
     public void deleteIssue(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -104,8 +106,9 @@ public class IssueBO {
             session.delete(session.load(Issuehbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -114,7 +117,6 @@ public class IssueBO {
     /**
      * 根据IssueKey ，获得Issue对象
      */
-
     public Issuehbm getIssueByKey(String name) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -125,8 +127,9 @@ public class IssueBO {
                     .uniqueResult();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -136,7 +139,6 @@ public class IssueBO {
     /**
      * 从数据库中返回所有的任务问题列表
      */
-
     public List<Issuehbm> getIssueList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -146,8 +148,9 @@ public class IssueBO {
             il = session.createQuery("from Issuehb").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -156,10 +159,9 @@ public class IssueBO {
 
     /**
      * 根据项目id, 获得同一项目中相关的任务列表
-     * 
+     *
      * @param projectId
      */
-
     public List<Issuehbm> getIssueList(int projectId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -169,8 +171,9 @@ public class IssueBO {
             i = session.createQuery("from Issuehbm as i where i.projectId.id=:pid").setInteger("pid", projectId).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -179,7 +182,7 @@ public class IssueBO {
 
     /**
      * 根据开发者Id, 获得其名下的任务列表
-     * 
+     *
      * @param assigneeId
      */
     public List<Issue> getIssueListByAssigneeId(int assigneeId) {
@@ -246,11 +249,10 @@ public class IssueBO {
 
     /**
      * 返回一个项目的所有问题列表。
-     * 
+     *
      * @param project_id
      * @return
      */
-
     public List<Issue> getIssueDetailList(int project_id) {
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
@@ -317,7 +319,6 @@ public class IssueBO {
     /**
      * 检查是否创建了同名Issue
      */
-
     public boolean checkIssue(Issuehbm issue) {
         boolean flag = true;
         Session session = SessionF.sessionFactory.openSession();
@@ -331,8 +332,9 @@ public class IssueBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -342,7 +344,7 @@ public class IssueBO {
 
     /**
      * 根据issue id ，获得Issue所有的信息，这个方法要比getIssue得到更多的信息. 包括图片的url
-     * 
+     *
      * @see IssueBO#getIssue(int)
      */
     public Issue getIssueDetail(int id) {
@@ -378,7 +380,6 @@ public class IssueBO {
             // sql.append(" left join t_issue_status h on (h.id=a.issue_status)
             // ");
             // sql.append(" where a.id=?");
-
             String sql = "select * from v_issue_detail where id=?";
 
             System.out.println("=getIssueDetail==sql==" + sql);
@@ -435,7 +436,7 @@ public class IssueBO {
 
     /**
      * 根据issue key ，获得Issue所有的信息，这个方法要比getIssue得到更多的信息. 包括图片的url
-     * 
+     *
      * @see IssueBO#getIssue(int)
      */
     public Issue getIssueDetailByKey(String issueKey) {
@@ -502,7 +503,7 @@ public class IssueBO {
 
     /**
      * 获得当前用户所有进行中的问题列表
-     * 
+     *
      * @param assignee_id
      */
     public List<Issue> getIssueInProgressList(int assigneeId) {
@@ -571,11 +572,10 @@ public class IssueBO {
 
     /**
      * 获得某用户所分配问题的数量
-     * 
+     *
      * @param user_id
      * @return
      */
-
     public int assigneeCount(int user_id) {
         int count = 0;
         Session session = SessionF.sessionFactory.openSession();
@@ -586,8 +586,9 @@ public class IssueBO {
                     .setInteger("id", user_id).uniqueResult();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -596,11 +597,10 @@ public class IssueBO {
 
     /**
      * 获得某用户报告问题的数量
-     * 
+     *
      * @param user_id
      * @return
      */
-
     public int reporterCount(int reporter_id) {
         int count = 0;
         Session session = SessionF.sessionFactory.openSession();
@@ -611,8 +611,9 @@ public class IssueBO {
                     .setInteger("id", reporter_id).uniqueResult();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -621,10 +622,9 @@ public class IssueBO {
 
     /**
      * 重新设置开发者，用于分配任务。
-     * 
+     *
      * @param assigne_id,issue_id
      */
-
     public void setAssignee(int issueId, int assigneeId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -636,8 +636,9 @@ public class IssueBO {
 
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -645,11 +646,10 @@ public class IssueBO {
 
     /**
      * 通过项目ID获得一个新的问题Key。
-     * 
+     *
      * @param project_id
      * @return
      */
-
     public String getMoveIssueDetail(int project_id) {
         String issueKey = null;
         Connection conn = DBConn.getConnection();
@@ -683,7 +683,6 @@ public class IssueBO {
     /**
      * 在移动问题中 根据issue更新已知的记录
      */
-
     public void updateMoveIssue(Issuehbm issue) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -692,8 +691,9 @@ public class IssueBO {
             session.update(issue);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -745,8 +745,9 @@ public class IssueBO {
             l = session.createQuery("from Issuehbm as i where i.project.id=:id").setInteger("id", projectId).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -771,7 +772,6 @@ public class IssueBO {
     /**
      * 根据 Id ，更新已知的记录
      */
-
     public void updateIssueByLinkResolution(Issuehbm issue) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -780,8 +780,9 @@ public class IssueBO {
             session.update(issue);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -790,7 +791,6 @@ public class IssueBO {
     /**
      * 根据 Id ，更新已知的记录
      */
-
     public void updateIssueByLinkStatus(Issuehbm issue) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -799,8 +799,9 @@ public class IssueBO {
             session.update(issue);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -808,7 +809,7 @@ public class IssueBO {
 
     /**
      * 获得当前用户所有进行中的问题列表
-     * 
+     *
      * @param assignee_id
      */
     public List<Issue> getIssueSearchList(String searchsql, List<String> paramValues) {
@@ -881,7 +882,7 @@ public class IssueBO {
 
     /**
      * 根据filterId获得任务列表
-     * 
+     *
      * @param filterId
      */
     public List<Issue> getIssueByFilterId(int filterId) {

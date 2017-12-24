@@ -1,48 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE hibernate-mapping PUBLIC  
  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-
 <hibernate-mapping>
 
     <class name="com.nastation.pm.beanhbm.Projecthbm" table="t_project"
-        lazy="false">
+           lazy="false">
 
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
 
-
-
         <property name="name" type="string" column="name"
-            not-null="true" />
+                  not-null="true" />
         <property name="projectKey" type="string" column="project_key"
-            not-null="true" />
+                  not-null="true" />
         <property name="description" type="string" column="description" />
         <property name="url" type="string" column="url" />
         <property name="leader" type="string" column="leader" />
         <property name="createDate" type="timestamp" column="create_date" />
 
-
         <many-to-one name="category" column="category_id"
-            class="com.nastation.pm.beanhbm.ProjectCategoryhbm" cascade="save-update" />
-
+                     class="com.nastation.pm.beanhbm.ProjectCategoryhbm" cascade="save-update" />
 
         <many-to-one name="permissionScheme" column="permission_scheme_id"
-            class="com.nastation.pm.beanhbm.PermissionSchemehbm"
-            cascade="save-update" />
-
-
-
-
-
-
-
+                     class="com.nastation.pm.beanhbm.PermissionSchemehbm"
+                     cascade="save-update" />
 
     </class>
-
-
 
 </hibernate-mapping>

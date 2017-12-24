@@ -2,8 +2,9 @@ package com.nastation.pm.business;
 
 /**
  * 功能：问题的业务逻辑类
+ *
  * @author 许希光
- * 
+ *
  */
 import java.sql.Connection;
 
@@ -29,7 +30,6 @@ public class IssueTypeBO {
     /**
      * 向数据库中添加记录 IssueType 对象
      */
-
     public void addIssueType(IssueTypehbm issueType) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -38,8 +38,9 @@ public class IssueTypeBO {
             session.save(issueType);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -48,7 +49,6 @@ public class IssueTypeBO {
     /**
      * 根据 Id ，更新已知的记录IssueType 对象
      */
-
     public void updateIssueType(IssueTypehbm issueType) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -57,8 +57,9 @@ public class IssueTypeBO {
             session.update(issueType);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -67,7 +68,6 @@ public class IssueTypeBO {
     /**
      * 删除对应ID的IssueType 对象
      */
-
     public void deleteIssueType(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -76,8 +76,9 @@ public class IssueTypeBO {
             session.delete(session.load(IssueTypehbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -86,7 +87,6 @@ public class IssueTypeBO {
     /**
      * 根据已知的 name ，获得IssueType对象
      */
-
     public IssueTypehbm getIssueType(String name) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -97,8 +97,9 @@ public class IssueTypeBO {
                     .uniqueResult();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -108,7 +109,6 @@ public class IssueTypeBO {
     /**
      * 根据已知的 id ，获得 IssueType 对象
      */
-
     public IssueTypehbm getIssueType(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -119,8 +119,9 @@ public class IssueTypeBO {
             it2 = session.load(IssueTypehbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -130,7 +131,6 @@ public class IssueTypeBO {
     /**
      * 获得问题类型列表 List
      */
-
     public List<IssueTypehbm> getIssueTypeList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -140,8 +140,9 @@ public class IssueTypeBO {
             it2List = session.createQuery("from IssueTypehbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -151,7 +152,6 @@ public class IssueTypeBO {
     /**
      * 检查是否创建了同名IssueType
      */
-
     public boolean checkIssueType(IssueTypehbm issueType) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -164,8 +164,9 @@ public class IssueTypeBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -196,10 +197,9 @@ public class IssueTypeBO {
 
     /**
      * 获得此图片类型的list
-     * 
+     *
      * @return
      */
-
     public List<Iconhbm> getIconList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -209,8 +209,9 @@ public class IssueTypeBO {
             l = session.createQuery("from Iconhbm where iconType=:i").setInteger("i", 2).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -220,7 +221,6 @@ public class IssueTypeBO {
     /**
      * 根据icon 获得问题类型列表 List
      */
-
     public List<IssueTypehbm> getIssueTypeListByIcon(Iconhbm icon) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -231,8 +231,9 @@ public class IssueTypeBO {
                     .list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }

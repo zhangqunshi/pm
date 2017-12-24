@@ -17,7 +17,6 @@ public class ProjectIssueSequenceBO {
     /**
      * 删除所有项目模块
      */
-
     public void deleteAllProjectIssueSequence(int projectId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -27,8 +26,9 @@ public class ProjectIssueSequenceBO {
                     .setInteger("id", projectId).executeUpdate();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -37,7 +37,6 @@ public class ProjectIssueSequenceBO {
     /**
      * 判断t_project_user表里是否存在projectId 如果存在就返回true，反之则返回false
      */
-
     public boolean checkProjectLinkProjectIssueSequence(int projectId) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -52,8 +51,9 @@ public class ProjectIssueSequenceBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }

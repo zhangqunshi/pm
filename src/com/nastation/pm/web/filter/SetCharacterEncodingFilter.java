@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 
 /**
  * 把所有的请求字符转成UTF8编码
- * 
+ *
  * @author sun
  */
 public class SetCharacterEncodingFilter implements Filter {

@@ -1,10 +1,9 @@
 package com.nastation.pm.bean;
 
 /**
- * 
+ *
  * @author Zhangbo 该类是项目javabean
  */
-
 public class Project {
 
     private int projectId;

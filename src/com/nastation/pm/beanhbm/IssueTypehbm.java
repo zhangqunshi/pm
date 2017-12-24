@@ -2,7 +2,7 @@ package com.nastation.pm.beanhbm;
 
 /**
  * 功能：问题类型 bean 类,封装字段
- * 
+ *
  * @author 许希光
  *
  */

@@ -19,14 +19,15 @@ import com.nastation.pm.util.*;
 
 /**
  * 写一个过滤器概要的逻辑类
- * 
+ *
  * @author LuckyStar
- * 
+ *
  */
 public class FilterSummaryBO {
+
     /**
      * 添加一个概要信息
-     * 
+     *
      * @param comment
      */
     public void addFilterSummary(HashMap<String, String> summarys, int filterId) {
@@ -59,10 +60,9 @@ public class FilterSummaryBO {
 
     /**
      * 添加一个概要信息
-     * 
+     *
      * @param comment
      */
-
     public List getFilterSummaryList(int requestId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -73,8 +73,9 @@ public class FilterSummaryBO {
                     .list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }

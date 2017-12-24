@@ -1,59 +1,60 @@
 package com.nastation.pm.beanhbm;
 
 public class IssueChangeLoghbm {
-	private int id;
-	private Issuehbm issue;
-	private String changeField;
-	private String oldValue;
-	private String newValue;
-	private java.util.Date createDate;
 
-	public int getId() {
-		return id;
-	}
+    private int id;
+    private Issuehbm issue;
+    private String changeField;
+    private String oldValue;
+    private String newValue;
+    private java.util.Date createDate;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public Issuehbm getIssue() {
-		return issue;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setIssue(Issuehbm issue) {
-		this.issue = issue;
-	}
+    public Issuehbm getIssue() {
+        return issue;
+    }
 
-	public String getChangeField() {
-		return changeField;
-	}
+    public void setIssue(Issuehbm issue) {
+        this.issue = issue;
+    }
 
-	public void setChangeField(String changeField) {
-		this.changeField = changeField;
-	}
+    public String getChangeField() {
+        return changeField;
+    }
 
-	public String getOldValue() {
-		return oldValue;
-	}
+    public void setChangeField(String changeField) {
+        this.changeField = changeField;
+    }
 
-	public void setOldValue(String oldValue) {
-		this.oldValue = oldValue;
-	}
+    public String getOldValue() {
+        return oldValue;
+    }
 
-	public String getNewValue() {
-		return newValue;
-	}
+    public void setOldValue(String oldValue) {
+        this.oldValue = oldValue;
+    }
 
-	public void setNewValue(String newValue) {
-		this.newValue = newValue;
-	}
+    public String getNewValue() {
+        return newValue;
+    }
 
-	public java.util.Date getCreateDate() {
-		return createDate;
-	}
+    public void setNewValue(String newValue) {
+        this.newValue = newValue;
+    }
 
-	public void setCreateDate(java.util.Date createDate) {
-		this.createDate = createDate;
-	}
+    public java.util.Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(java.util.Date createDate) {
+        this.createDate = createDate;
+    }
 
 }

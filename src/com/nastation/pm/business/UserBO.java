@@ -15,9 +15,9 @@ import org.hibernate.query.*;
 import com.nastation.pm.beanhbm.*;
 
 /**
- * 
+ *
  * @author 孙重阳
- * 
+ *
  */
 public class UserBO {
 
@@ -25,9 +25,8 @@ public class UserBO {
 
     /**
      * This method is use to insert the user's information into database;
-     * 
+     *
      */
-
     public boolean addUser(Userhbm user) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -38,8 +37,9 @@ public class UserBO {
             tx.commit();
             flag = true;
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -49,7 +49,6 @@ public class UserBO {
     /**
      * 判断用户名是否重复
      */
-
     public boolean exist(String name) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -63,8 +62,9 @@ public class UserBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -74,7 +74,6 @@ public class UserBO {
     /**
      * this method is use to change password.
      */
-
     public boolean changePassword(int id, String newpwd) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -86,8 +85,9 @@ public class UserBO {
             tx.commit();
             flag = true;
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -97,7 +97,6 @@ public class UserBO {
     /**
      * This method is use to get a user class by user id.
      */
-
     public Userhbm getUser(String username) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -108,8 +107,9 @@ public class UserBO {
                     .setMaxResults(1).uniqueResult();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -119,7 +119,6 @@ public class UserBO {
     /**
      * this method is use to get a user class by id.
      */
-
     public Userhbm getUser(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -129,8 +128,9 @@ public class UserBO {
             u2 = session.load(Userhbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -140,7 +140,6 @@ public class UserBO {
     /**
      * This method is use to update user's information
      */
-
     public void updateUser(Userhbm user) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -149,8 +148,9 @@ public class UserBO {
             session.update(user);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -158,7 +158,7 @@ public class UserBO {
 
     /**
      * judge if this user have a foreign key.
-     * 
+     *
      * @param id
      */
     public boolean hasForeignKey(int userId) {
@@ -204,7 +204,7 @@ public class UserBO {
 
     /**
      * This method is use to update user's information
-     * 
+     *
      * @param id
      */
     public void deleteUser(int id) {
@@ -227,10 +227,9 @@ public class UserBO {
     }
 
     /**
-     * This method is use to view all user's details. All user's informations are
-     * reserved in a List class.
+     * This method is use to view all user's details. All user's informations
+     * are reserved in a List class.
      */
-
     public List<Userhbm> viewUsers() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -240,8 +239,9 @@ public class UserBO {
             uList = session.createQuery("from Userhbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -252,7 +252,6 @@ public class UserBO {
      * this method is check login,use to check the user's name and password and
      * return a user class.
      */
-
     public Userhbm login(String username, String password) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -264,8 +263,9 @@ public class UserBO {
 
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -339,7 +339,7 @@ public class UserBO {
 
     /**
      * 通过用户ID获得该用户的所有权限。权限通过HashMap存储，Key为projectId,Value为list<Permission>。
-     * 
+     *
      * @param id
      * @author sun
      */
@@ -404,12 +404,11 @@ public class UserBO {
 
     /**
      * 判断用户是否为管理员。
-     * 
+     *
      * @author sun
      * @param userId
      * @return
      */
-
     public boolean isAdmin(int userId) {
         boolean flag = true;
         Connection conn = DBConn.getConnection();
@@ -432,12 +431,12 @@ public class UserBO {
         }
         return flag;
     }
-    
+
     public static void main(String[] args) {
         UserBO uBO = new UserBO();
         Userhbm u = uBO.login("admin", "123");
-        System.out.println(u.getName()+"----------");
-        
+        System.out.println(u.getName() + "----------");
+
     }
 
 }

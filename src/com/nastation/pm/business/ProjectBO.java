@@ -31,11 +31,9 @@ public class ProjectBO {
 
     /**
      * 添加一个项目
-     * 
-     * @param project
-     *            把项目相关信息存入数据库表中
+     *
+     * @param project 把项目相关信息存入数据库表中
      */
-
     public void addProject(Project project) {
         Connection conn = DBConn.getConnection();
 
@@ -100,11 +98,10 @@ public class ProjectBO {
 
     /**
      * 获得一个项目信息
-     * 
+     *
      * @param id
      * @return 返回数据库中一个项目的详细信息
      */
-
     public Projecthbm getProject(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -114,8 +111,9 @@ public class ProjectBO {
             proj = session.load(Projecthbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -124,11 +122,10 @@ public class ProjectBO {
 
     /**
      * 通过项目名获得该项目ID
-     * 
+     *
      * @param name
      * @return id
      */
-
     public int getProjectId(String name) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -137,13 +134,14 @@ public class ProjectBO {
             tx = session.beginTransaction();
             Projecthbm proj = (Projecthbm) session.createQuery("from Projecthbm where name=:name")
                     .setString("name", name).uniqueResult();
-            
+
             id = proj.getId();
             tx.commit();
 
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -152,12 +150,11 @@ public class ProjectBO {
 
     /**
      * 判断项目名是否已经存在
-     * 
+     *
      * @param projectName
      * @param projectKey
      * @return true if exist, otherwise return false.
      */
-
     public boolean existName(Project project) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -171,8 +168,9 @@ public class ProjectBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -181,11 +179,10 @@ public class ProjectBO {
 
     /**
      * 判断key是否已经存在
-     * 
+     *
      * @param key
      * @return
      */
-
     public boolean existKey(Project project) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -199,8 +196,9 @@ public class ProjectBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -209,10 +207,9 @@ public class ProjectBO {
 
     /**
      * 修改项目信息
-     * 
+     *
      * @param project
      */
-
     public void updateProject(Projecthbm project) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -221,8 +218,9 @@ public class ProjectBO {
             session.update(project);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -230,10 +228,9 @@ public class ProjectBO {
 
     /**
      * 删除一个项目
-     * 
+     *
      * @param id
      */
-
     public void deleteProject(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -242,8 +239,9 @@ public class ProjectBO {
             session.delete(session.load(Projecthbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -251,10 +249,9 @@ public class ProjectBO {
 
     /**
      * 获得数据库中t_project表中所有的信息
-     * 
+     *
      * @return 返回一个保存该项目信息的List
      */
-
     public List<Projecthbm> getProjectList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -264,8 +261,9 @@ public class ProjectBO {
             pList = session.createQuery("from Projecthbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -275,7 +273,6 @@ public class ProjectBO {
     /**
      * 更新项目类型
      */
-
     public void updateProject1(Projecthbm project) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -284,8 +281,9 @@ public class ProjectBO {
             session.update(project);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -293,7 +291,7 @@ public class ProjectBO {
 
     /**
      * 返回指定ProjectId的问题最大索引值
-     * 
+     *
      * @param projectId
      * @return
      */
@@ -337,7 +335,7 @@ public class ProjectBO {
 
     /**
      * 返回一个权限模板下的所有项目信息
-     * 
+     *
      * @param schemeId
      * @return
      * @author sun
@@ -369,7 +367,7 @@ public class ProjectBO {
 
     /**
      * 改变一个项目使用的模板
-     * 
+     *
      * @param projectId,schemeId
      */
     public void changeScheme(int projectId, int schemeId) {

@@ -1,5 +1,6 @@
 /**
  * 功能:用户组的业务逻辑类
+ *
  * @author liuliehui
  */
 package com.nastation.pm.business;
@@ -27,7 +28,6 @@ public class GroupBO {
     /**
      * 添加组
      */
-
     public void addGroup(String groupName) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -38,8 +38,9 @@ public class GroupBO {
             session.save(g2);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -48,7 +49,6 @@ public class GroupBO {
     /**
      * 得到所有用户组 得到group对象集合groupList
      */
-
     public List<Grouphbm> getViewGroups() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -58,8 +58,9 @@ public class GroupBO {
             gList = session.createQuery("from Grouphbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -69,7 +70,6 @@ public class GroupBO {
     /**
      * 浏览所有用户组 查询组中用户ID为userId的group对象集合groupList
      */
-
     public List<Grouphbm> getUserGroupName(int userId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -87,8 +87,9 @@ public class GroupBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -98,7 +99,6 @@ public class GroupBO {
     /**
      * 得到所有组名为groupName用户组 查询组中组名为groupName的group对象集合groupList
      */
-
     public Grouphbm getUserGroup(String groupName) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -109,8 +109,9 @@ public class GroupBO {
 
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -119,9 +120,8 @@ public class GroupBO {
 
     /**
      * 判断用户组是否存在;如果存在返回true;否则返回false;
-     * 
+     *
      */
-
     public boolean groupNameExit(String groupName) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -135,8 +135,9 @@ public class GroupBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -147,7 +148,6 @@ public class GroupBO {
      * 得到组名为groupName的Group对象
      *
      */
-
     public Grouphbm getGroup(String groupName) {
 
         Session session = SessionF.sessionFactory.openSession();
@@ -160,8 +160,9 @@ public class GroupBO {
             tx.commit();
 
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -172,7 +173,6 @@ public class GroupBO {
      * 得到组名为groupName的Group对象 这个信息比较全
      *
      */
-
     public Grouphbm getGroupInformation(String groupName) {
 
         Session session = SessionF.sessionFactory.openSession();
@@ -185,8 +185,9 @@ public class GroupBO {
             tx.commit();
 
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -197,7 +198,6 @@ public class GroupBO {
      * 删除组ID为的GroupID组
      *
      */
-
     public void deleteGroup(int groupId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -206,8 +206,9 @@ public class GroupBO {
             session.delete(session.load(Grouphbm.class, groupId));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -216,7 +217,6 @@ public class GroupBO {
     /**
      * 浏览所有用户组 查询组中用户ID不为userId的group对象集合groupList
      */
-
     public List<Grouphbm> getUserGroupList(int userId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -234,8 +234,9 @@ public class GroupBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -252,8 +253,9 @@ public class GroupBO {
             g = session.load(Grouphbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }

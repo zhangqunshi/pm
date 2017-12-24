@@ -17,7 +17,6 @@ public class User {
     private HashMap<Integer, List> permissions; // key is project id, value is
 
     // List<Permission>
-
     public int getId() {
         return id;
     }
@@ -84,7 +83,7 @@ public class User {
 
     /**
      * 判断用户在某一项目中是否具有某一权限。权限取值可从com.nastation.pm.PermissionConstants.java中得到。
-     * 
+     *
      * @param projectId
      * @param permission
      * @return

@@ -1,41 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <!DOCTYPE hibernate-mapping PUBLIC  
  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
-
+ 
 <hibernate-mapping>
 
     <class name="com.nastation.pm.beanhbm.PermissionAssigneehbm"
-        table="t_permission_assignee" lazy="false">
+           table="t_permission_assignee" lazy="false">
 
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
 
-
         <property name="assigneeType" type="string" column="assignee_type" />
         <property name="assignee" type="string" column="assignee" />
         <property name="createTime" type="timestamp" column="create_time" />
 
-
         <many-to-one name="permission" column="permission_id"
-            class="com.nastation.pm.beanhbm.Permissionhbm" cascade="save-update" />
+                     class="com.nastation.pm.beanhbm.Permissionhbm" cascade="save-update" />
 
         <many-to-one name="scheme" column="scheme_id"
-            class="com.nastation.pm.beanhbm.PermissionSchemehbm"
-            cascade="save-update" />
-
-
-
-
-
+                     class="com.nastation.pm.beanhbm.PermissionSchemehbm"
+                     cascade="save-update" />
 
     </class>
-
-
 
 </hibernate-mapping>
 

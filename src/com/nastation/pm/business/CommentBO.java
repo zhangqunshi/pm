@@ -20,17 +20,16 @@ import com.nastation.pm.beanhbm.*;
 
 /**
  * 备注的业务逻辑类
- * 
+ *
  * @author liuliehui
  */
 public class CommentBO {
 
     /**
      * 添加一个备注信息
-     * 
+     *
      * @param comment
      */
-
     public void addComment(Commenthbm comment) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -39,8 +38,9 @@ public class CommentBO {
             session.save(comment);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -48,10 +48,9 @@ public class CommentBO {
 
     /**
      * 获得一个备注信息
-     * 
+     *
      * @param comment
      */
-
     public Commenthbm getComment(int commentId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -61,8 +60,9 @@ public class CommentBO {
             c = session.load(Commenthbm.class, commentId);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -71,10 +71,9 @@ public class CommentBO {
 
     /**
      * 用issue的ID得到一个Comment对象集合
-     * 
+     *
      * @param comment
      */
-
     public List<Commenthbm> getCommentLists(int issueId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -85,8 +84,9 @@ public class CommentBO {
             cs = session.createQuery("from Commenthbm as c where c.issueId.id=:id").setInteger("id", issueId).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -95,10 +95,9 @@ public class CommentBO {
 
     /**
      * 更新一条备注信息
-     * 
+     *
      * @param comment
      */
-
     public void updateComment(Commenthbm comment) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -107,8 +106,9 @@ public class CommentBO {
             session.update(comment);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -116,10 +116,9 @@ public class CommentBO {
 
     /**
      * 删除一条备注
-     * 
+     *
      * @param comment
      */
-
     public void deleteComment(int commentId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -128,8 +127,9 @@ public class CommentBO {
             session.delete(session.load(Commenthbm.class, commentId));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }

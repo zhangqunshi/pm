@@ -2,10 +2,11 @@ package com.nastation.pm.beanhbm;
 
 /**
  * Permission bean.
- * 
+ *
  * @author sun
  */
 public class Permissionhbm {
+
     private int id;
     private String name;
     private String description;

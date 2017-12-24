@@ -13,11 +13,10 @@ import com.nastation.pm.beanhbm.*;
 
 /**
  * Permission business object.
- * 
+ *
  * @author sun
  *
  */
-
 public class PermissionBO {
 
     public Permissionhbm idGetPermission(int id) {
@@ -29,8 +28,9 @@ public class PermissionBO {
             p = session.load(Permissionhbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -39,10 +39,9 @@ public class PermissionBO {
 
     /**
      * get all permission
-     * 
+     *
      * @return list
      */
-
     public List<Permissionhbm> getAllPermission() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -52,8 +51,9 @@ public class PermissionBO {
             l = session.createQuery("from Permissionhbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -62,7 +62,7 @@ public class PermissionBO {
 
     /**
      * 获得所有权限，按权限类型分类。以类型名为Key，该类型下的所有权限列表为Value.
-     * 
+     *
      * @author sun
      * @return
      */

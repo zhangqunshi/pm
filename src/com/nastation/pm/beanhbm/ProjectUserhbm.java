@@ -2,7 +2,7 @@ package com.nastation.pm.beanhbm;
 
 /**
  * 项目成员
- * 
+ *
  * @author Kris
  */
 public class ProjectUserhbm {

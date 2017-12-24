@@ -1,40 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE hibernate-mapping PUBLIC  
  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-
 <hibernate-mapping>
 
     <class name="com.nastation.pm.beanhbm.ProjectComponenthbm"
-        table="t_component" lazy="false">
+           table="t_component" lazy="false">
 
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
 
-
         <property name="name" type="string" column="name"
-            not-null="true" />
+                  not-null="true" />
 
         <property name="description" type="string" column="description" />
         <property name="leader" type="string" column="leader" />
         <property name="createDate" type="timestamp" column="create_time" />
 
-
         <many-to-one name="project" column="project_id"
-            class="com.nastation.pm.beanhbm.Projecthbm" not-null="false"
-            cascade="save-update" />
-
-
-
-
-
-
+                     class="com.nastation.pm.beanhbm.Projecthbm" not-null="false"
+                     cascade="save-update" />
 
     </class>
-
-
 
 </hibernate-mapping>

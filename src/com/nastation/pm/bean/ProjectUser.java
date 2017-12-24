@@ -2,68 +2,68 @@ package com.nastation.pm.bean;
 
 /**
  * 项目成员
- * 
+ *
  * @author Kris
  */
 public class ProjectUser {
 
-	private int projectUserId;
+    private int projectUserId;
 
-	private int projectId;
+    private int projectId;
 
-	private int userId;
-	
-	private String username;
+    private int userId;
 
-	private int roleId;
+    private String username;
 
-	private String createDate;
+    private int roleId;
 
-	public int getProjectUserId() {
-		return projectUserId;
-	}
+    private String createDate;
 
-	public void setProjectUserId(int projectUserId) {
-		this.projectUserId = projectUserId;
-	}
+    public int getProjectUserId() {
+        return projectUserId;
+    }
 
-	public int getProjectId() {
-		return projectId;
-	}
+    public void setProjectUserId(int projectUserId) {
+        this.projectUserId = projectUserId;
+    }
 
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
-	}
+    public int getProjectId() {
+        return projectId;
+    }
 
-	public int getUserId() {
-		return userId;
-	}
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+    public int getUserId() {
+        return userId;
+    }
 
-	public int getRoleId() {
-		return roleId;
-	}
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
+    public int getRoleId() {
+        return roleId;
+    }
 
-	public String getCreateDate() {
-		return createDate;
-	}
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
 
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
-	}
+    public String getCreateDate() {
+        return createDate;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * javabean for PermissionScheme
- * 
+ *
  * @author sun
  */
 public class PermissionSchemehbm {

@@ -21,14 +21,15 @@ import com.nastation.pm.util.StringUtils;
 
 /**
  * 创建一个过滤器的逻辑业务类
- * 
+ *
  * @author LuckyStar
- * 
+ *
  */
 public class IssueFilterBO {
+
     /**
      * 添加一个filter信息
-     * 
+     *
      * @param comment
      */
 
@@ -40,8 +41,9 @@ public class IssueFilterBO {
             session.save(filter);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -49,7 +51,7 @@ public class IssueFilterBO {
 
     /**
      * 把filter表中sql语句所需参数的值保存到表中
-     * 
+     *
      * @param comment
      */
     public void addFilterParameterValues(int filterId, List<String> filterParamValues) {
@@ -78,10 +80,9 @@ public class IssueFilterBO {
 
     /**
      * delete一个filter信息
-     * 
+     *
      * @param id
      */
-
     public void deleteFilter(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -90,8 +91,9 @@ public class IssueFilterBO {
             session.delete(session.load(SearchRequesthbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -99,7 +101,7 @@ public class IssueFilterBO {
 
     /**
      * update一个filter信息
-     * 
+     *
      * @param filter
      */
     public void updateFilter(IssueFilter filter) {
@@ -163,10 +165,9 @@ public class IssueFilterBO {
 
     /**
      * update一个filter信息
-     * 
+     *
      * @param filter
      */
-
     public void updateFilterBasicInfo(SearchRequesthbm filter) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -175,8 +176,9 @@ public class IssueFilterBO {
             session.update(filter);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -184,10 +186,9 @@ public class IssueFilterBO {
 
     /**
      * get一个filterList信息
-     * 
+     *
      * @param comment
      */
-
     public List getFilterList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -197,8 +198,9 @@ public class IssueFilterBO {
             l = session.createQuery("from SearchRequesthbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -206,11 +208,11 @@ public class IssueFilterBO {
     }
 
     /**
-     * 
-     * 
-     * 
-     * */
-
+     *
+     *
+     *
+     *
+     */
     public List getFiltersByUser(String username) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -221,8 +223,9 @@ public class IssueFilterBO {
                     .list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -231,7 +234,7 @@ public class IssueFilterBO {
 
     /**
      * 名字和项目ID获取搜索请求集合
-     * 
+     *
      */
     public List<SearchRequesthbm> getFilterByUserAndProject(String username, int projectId) {
         Session session = SessionF.sessionFactory.openSession();
@@ -243,8 +246,9 @@ public class IssueFilterBO {
                     .setString("name", username).setInteger("id", projectId).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -253,10 +257,9 @@ public class IssueFilterBO {
 
     /**
      * 检验是否重名
-     * 
+     *
      * @param comment
      */
-
     public boolean checkFilterName(String filterName) {
         if (StringUtils.isBlank(filterName)) {
             return true;
@@ -273,8 +276,9 @@ public class IssueFilterBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             session.close();
         }
@@ -283,7 +287,7 @@ public class IssueFilterBO {
 
     /**
      * get一个filter信息
-     * 
+     *
      * @param comment
      */
     public IssueFilter getFilter(String filterName) {
@@ -320,7 +324,7 @@ public class IssueFilterBO {
     }
 
     /**
-     * 
+     *
      * @param filterId
      */
     public IssueFilter getFilterById(int filterId) {

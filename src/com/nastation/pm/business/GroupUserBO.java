@@ -1,5 +1,6 @@
 /**
  * 描述:组和用户关联的javaBean
+ *
  * @author liuliehui
  */
 package com.nastation.pm.business;

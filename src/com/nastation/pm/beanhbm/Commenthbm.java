@@ -1,6 +1,7 @@
 package com.nastation.pm.beanhbm;
 
 public class Commenthbm {
+
     public int id;
     public String commentContent;
     public String author;

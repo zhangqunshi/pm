@@ -4,6 +4,7 @@ package com.nastation.pm.beanhbm;
  * 定义个projectCategory的bean;
  */
 public class ProjectCategoryhbm {
+
     private int id;// 项目类型ID
     private String name;// 项目类型名字
     private String description;// 项目类型描述

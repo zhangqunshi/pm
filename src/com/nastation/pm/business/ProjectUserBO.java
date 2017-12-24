@@ -14,7 +14,6 @@ import com.nastation.pm.util.DBConn;
 public class ProjectUserBO {
 
     // add new project user
-
     public void addProjectUser(ProjectUser projectUser) throws SQLException {
         Connection conn = DBConn.getConnection();
         String sql = "select * from t_project_user where project_id=? and user_id=? and role_id=?";
@@ -46,7 +45,6 @@ public class ProjectUserBO {
     }
 
     // get a projectUser
-
     public ProjectUser getProjectUser(int id) {
         ProjectUser projectUser = new ProjectUser();
         Connection conn = DBConn.getConnection();
@@ -74,7 +72,7 @@ public class ProjectUserBO {
 
     /**
      * 根据projectId获得projectUser类集合list
-     * 
+     *
      * @param projectId
      * @return
      */
@@ -221,7 +219,6 @@ public class ProjectUserBO {
     }
 
     //
-
     public List<ProjectUser> getProjectUser() {
         List<ProjectUser> list = new ArrayList<ProjectUser>();
         Connection conn = DBConn.getConnection();
@@ -247,7 +244,6 @@ public class ProjectUserBO {
     }
 
     // delete a project user
-
     public void deleteProjectUser(int id) {
         Connection conn = DBConn.getConnection();
         try {
@@ -264,7 +260,6 @@ public class ProjectUserBO {
     }
 
     // update a projectUser
-
     public void updateProjectUser(ProjectUser projectUser) {
         Connection conn = DBConn.getConnection();
         try {
@@ -285,7 +280,7 @@ public class ProjectUserBO {
 
     /**
      * 删除所有与此角色有关的projectUser
-     * 
+     *
      * @param roleId
      */
     public void deleteAllProjectUser(int roleId) {

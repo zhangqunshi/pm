@@ -2,7 +2,7 @@ package com.nastation.pm.bean;
 
 /**
  * 功能：问题基本信息 bean 类,封装字段
- * 
+ *
  * @author 许希光
  */
 public class Issue {
