@@ -20,7 +20,7 @@ public class GroupUserBO {
     public void addGroupUser(GroupUser groupUser) throws SQLException {
         Connection conn = DBConn.getConnection();
         String sql = "insert into t_group_user(user_id,group_id) values(?,?)";
-        System.out.println("=========2====sql2=========" + sql);
+
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, groupUser.getUserId());
@@ -41,9 +41,7 @@ public class GroupUserBO {
         boolean flag = false;
         Connection conn = DBConn.getConnection();
         String sql = "select * from t_group_user where user_id=? and group_id=?";
-        System.out.println("=========1====sql=========" + sql);
-        System.out.println("=========1====groupUser.getUserId()=========" + groupUser.getUserId());
-        System.out.println("========1=====groupUser.getGroupId()=========" + groupUser.getGroupId());
+
         PreparedStatement pst;
         try {
             pst = conn.prepareStatement(sql);
@@ -92,7 +90,7 @@ public class GroupUserBO {
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "delete from t_group_user where id=?";
-        System.out.println("=============delete groupUsre sql========" + sql);
+
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, groupId);
@@ -112,7 +110,7 @@ public class GroupUserBO {
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "delete from t_group_user where user_id=? and group_id=?";
-        System.out.println("======118=======delete Usregroup sql========" + sql);
+
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, userGroup.getUserId());
@@ -131,7 +129,7 @@ public class GroupUserBO {
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "select id from t_group_user where group_id=? and user_id=?";
-        System.out.println("=============delete groupUsre sql========" + sql);
+
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, groupId);

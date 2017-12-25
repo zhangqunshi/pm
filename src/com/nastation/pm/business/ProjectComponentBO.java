@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 
 import com.nastation.pm.bean.ProjectComponent;
 import com.nastation.pm.beanhbm.ProjectComponenthbm;
-import com.nastation.pm.beanhbm.Projecthbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 
@@ -39,7 +38,8 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -64,7 +64,8 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -87,7 +88,8 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pList;
     }
@@ -108,7 +110,8 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -128,7 +131,8 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -151,7 +155,8 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return false;
     }
@@ -171,7 +176,8 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -191,23 +197,10 @@ public class ProjectComponentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return p2;
-    }
-
-    public static void main(String[] args) {
-        ProjectComponentBO pc = new ProjectComponentBO();
-        ProjectBO p = new ProjectBO();
-        Projecthbm pm = p.getProject(22);
-        ProjectComponenthbm phm = new ProjectComponenthbm();
-        phm.setProject(pm);
-        phm.setName("good");
-        phm.setLeader("admin");
-        // pc.addProjectComponent(phm);
-
-        boolean bl = pc.checkProjectComponent(phm);
-        System.out.println(bl + "-=-=-=-=-=-=-=-");
     }
 
 }

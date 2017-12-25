@@ -43,7 +43,8 @@ public class IssueFilterBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -58,7 +59,7 @@ public class IssueFilterBO {
         }
         Connection conn = DBConn.getConnection();
         String sql = "insert into t_filter_parameter_value(param_value,param_order,filter_id) values(?,?,?)";
-        System.out.println("=60=Sql==" + sql);
+
         try {
             PreparedStatement psmt = conn.prepareStatement(sql);
             for (int i = 0; i < filterParamValues.size(); i++) {
@@ -93,7 +94,8 @@ public class IssueFilterBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -105,7 +107,7 @@ public class IssueFilterBO {
     public void updateFilter(IssueFilter filter) {
         Connection conn = DBConn.getConnection();
         String sql = "update t_search_request set filter_name=?,description=? where id=?";
-        System.out.println("==69Sql==" + sql);
+
         try {
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setString(1, filter.getFilterName());
@@ -178,7 +180,8 @@ public class IssueFilterBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -200,7 +203,8 @@ public class IssueFilterBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -224,7 +228,8 @@ public class IssueFilterBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -246,7 +251,8 @@ public class IssueFilterBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -276,7 +282,8 @@ public class IssueFilterBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return false;
     }
@@ -289,7 +296,7 @@ public class IssueFilterBO {
     public IssueFilter getFilter(String filterName) {
         Connection conn = DBConn.getConnection();
         String sql = "select * from t_search_request where filter_name=?";
-        System.out.println("=21=Sql==" + sql);
+
         IssueFilter filter = new IssueFilter();
         try {
             PreparedStatement psmt = conn.prepareStatement(sql);
@@ -326,7 +333,7 @@ public class IssueFilterBO {
     public IssueFilter getFilterById(int filterId) {
         Connection conn = DBConn.getConnection();
         String sql = "select id, filter_name, author_name, description, project_id, request_content from t_search_request where id=?";
-        System.out.println("===253=Sql==" + sql);
+
         IssueFilter filter = new IssueFilter();
         try {
             PreparedStatement psmt = conn.prepareStatement(sql);

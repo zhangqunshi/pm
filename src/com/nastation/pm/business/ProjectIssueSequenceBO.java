@@ -24,7 +24,8 @@ public class ProjectIssueSequenceBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -49,13 +50,10 @@ public class ProjectIssueSequenceBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
-    }
-
-    public static void main(String[] args) {
-
     }
 
 }

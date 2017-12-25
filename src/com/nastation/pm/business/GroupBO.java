@@ -4,23 +4,16 @@
  */
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-import com.nastation.pm.bean.Group;
-import com.nastation.pm.bean.User;
-import com.nastation.pm.util.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-import java.util.*;
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.beanhbm.Grouphbm;
+import com.nastation.pm.beanhbm.Userhbm;
+import com.nastation.pm.util.SessionF;
 
 public class GroupBO {
 
@@ -41,7 +34,8 @@ public class GroupBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -61,7 +55,8 @@ public class GroupBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return gList;
     }
@@ -90,7 +85,8 @@ public class GroupBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return gList;
     }
@@ -105,14 +101,16 @@ public class GroupBO {
         Grouphbm g = null;
         try {
             tx = session.beginTransaction();
-            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName).uniqueResult();
+            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName)
+                    .uniqueResult();
 
             tx.commit();
         } catch (Exception e) {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }
@@ -138,7 +136,8 @@ public class GroupBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -155,15 +154,16 @@ public class GroupBO {
         Grouphbm g = null;
         try {
             tx = session.beginTransaction();
-            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName).setMaxResults(1)
-                    .uniqueResult();
+            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName)
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
 
         } catch (Exception e) {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }
@@ -180,15 +180,16 @@ public class GroupBO {
         Grouphbm g = null;
         try {
             tx = session.beginTransaction();
-            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName).setMaxResults(1)
-                    .uniqueResult();
+            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName)
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
 
         } catch (Exception e) {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }
@@ -209,7 +210,8 @@ public class GroupBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -237,7 +239,8 @@ public class GroupBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return gList;
     }
@@ -255,7 +258,8 @@ public class GroupBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }

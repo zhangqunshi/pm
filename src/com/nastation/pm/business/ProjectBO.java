@@ -112,7 +112,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return proj;
     }
@@ -140,7 +141,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return id;
     }
@@ -169,7 +171,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -197,7 +200,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -219,7 +223,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -240,7 +245,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -262,7 +268,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pList;
     }
@@ -282,7 +289,8 @@ public class ProjectBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -381,11 +389,6 @@ public class ProjectBO {
         } finally {
             DBConn.closeConn(conn);
         }
-    }
-
-    public static void main(String[] args) {
-        ProjectBO pBO = new ProjectBO();
-        pBO.deleteProject(10);
     }
 
 }

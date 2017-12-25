@@ -1,31 +1,15 @@
 package com.nastation.pm.business;
 
-/**
- * 功能：问题的业务逻辑类
- * @author 许希光
- * 
- */
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.nastation.pm.bean.Icon;
-import com.nastation.pm.bean.Issue;
 import com.nastation.pm.bean.IssuePriority;
-import com.nastation.pm.bean.IssueStatus;
-import com.nastation.pm.bean.IssueType;
-
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.beanhbm.Iconhbm;
+import com.nastation.pm.beanhbm.IssuePriorityhbm;
+import com.nastation.pm.util.SessionF;
 
 public class IssuePriorityBO {
 
@@ -44,7 +28,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -63,7 +48,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -84,7 +70,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return ip;
     }
@@ -106,7 +93,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return i;
     }
@@ -126,7 +114,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -146,7 +135,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return ipList;
     }
@@ -172,7 +162,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -195,7 +186,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -217,7 +209,8 @@ public class IssuePriorityBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

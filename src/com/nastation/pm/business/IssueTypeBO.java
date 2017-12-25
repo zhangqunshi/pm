@@ -6,23 +6,18 @@ package com.nastation.pm.business;
  * 
  */
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.Icon;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.nastation.pm.bean.IssueType;
+import com.nastation.pm.beanhbm.Iconhbm;
+import com.nastation.pm.beanhbm.IssueTypehbm;
 import com.nastation.pm.util.DBConn;
-
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.util.SessionF;
 
 public class IssueTypeBO {
 
@@ -41,7 +36,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -60,7 +56,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -79,7 +76,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -100,7 +98,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return it;
     }
@@ -122,7 +121,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return it2;
     }
@@ -143,7 +143,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return it2List;
     }
@@ -167,7 +168,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return true;
     }
@@ -212,7 +214,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -234,7 +237,8 @@ public class IssueTypeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

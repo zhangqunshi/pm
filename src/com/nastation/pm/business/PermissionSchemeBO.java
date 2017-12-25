@@ -1,18 +1,21 @@
 package com.nastation.pm.business;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.nastation.pm.bean.PermissionScheme;
-import com.nastation.pm.bean.Project;
-import com.nastation.pm.util.*;
-
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.beanhbm.PermissionSchemehbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+import com.nastation.pm.util.StringUtils;
 
 /**
  * 权限模板的业务逻辑类
@@ -39,7 +42,8 @@ public class PermissionSchemeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -61,7 +65,8 @@ public class PermissionSchemeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -83,7 +88,8 @@ public class PermissionSchemeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -105,7 +111,8 @@ public class PermissionSchemeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return psList;
     }
@@ -129,7 +136,8 @@ public class PermissionSchemeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return ps;
     }
@@ -155,7 +163,8 @@ public class PermissionSchemeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return ps.getId();
     }
@@ -213,7 +222,8 @@ public class PermissionSchemeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -233,9 +243,7 @@ public class PermissionSchemeBO {
         try {
             String sql = "select * from t_permission_scheme where id in (select distinct a.scheme_id"
                     + " from t_permission_assignee a where a.assignee_type=? and a.assignee=?)";
-            System.out.println("=====================sql=====" + sql);
-            System.out.println("=====================assigneeType=====" + assigneeType);
-            System.out.println("=====================assignee=====" + assignee);
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, assigneeType);
             pstmt.setString(2, assignee);

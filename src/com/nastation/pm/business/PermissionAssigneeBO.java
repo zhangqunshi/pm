@@ -1,17 +1,17 @@
 package com.nastation.pm.business;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
 
-import com.nastation.pm.bean.*;
-import com.nastation.pm.util.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.bean.PermissionAssignee;
+import com.nastation.pm.beanhbm.PermissionAssigneehbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 
 /**
  * 权限分配业务逻辑类。
@@ -41,7 +41,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -64,7 +65,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -86,7 +88,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -109,7 +112,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return p;
     }
@@ -155,7 +159,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -211,7 +216,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return false;
     }
@@ -236,7 +242,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -262,7 +269,8 @@ public class PermissionAssigneeBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

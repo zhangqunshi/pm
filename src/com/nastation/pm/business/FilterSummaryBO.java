@@ -2,20 +2,16 @@ package com.nastation.pm.business;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import com.nastation.pm.bean.FilterSummary;
-import com.nastation.pm.util.DBConn;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 
 /**
  * 写一个过滤器概要的逻辑类
@@ -35,8 +31,7 @@ public class FilterSummaryBO {
         }
         Connection conn = DBConn.getConnection();
         String sql = "insert into t_filter_summary(request_id, filter_summary_key, filter_summary_value) values(?,?,?)";
-        System.out.println("=33=Sql==" + sql);
-        System.out.println("=33=Sql==" + summarys);
+
         try {
             PreparedStatement psmt = conn.prepareStatement(sql);
 
@@ -76,7 +71,8 @@ public class FilterSummaryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

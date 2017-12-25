@@ -1,22 +1,13 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.Project;
-import com.nastation.pm.bean.ProjectCategory;
-import com.nastation.pm.bean.Role;
-import com.nastation.pm.util.DBConn;
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.beanhbm.ProjectCategoryhbm;
+import com.nastation.pm.beanhbm.Projecthbm;
+import com.nastation.pm.util.SessionF;
 
 public class ProjectCategoryBO {
     /**
@@ -34,7 +25,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -54,7 +46,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pc2;
     }
@@ -81,7 +74,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -102,7 +96,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pcList;
     }
@@ -122,7 +117,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -141,7 +137,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -163,7 +160,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return category;
     }
@@ -185,7 +183,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pList;
     }
@@ -220,7 +219,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -236,8 +236,9 @@ public class ProjectCategoryBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            ProjectCategoryhbm pc = (ProjectCategoryhbm) session.createQuery("from ProjectCategoryhbm as p where p.name=:name")
-                    .setString("name", name).setMaxResults(1).uniqueResult();
+            ProjectCategoryhbm pc = (ProjectCategoryhbm) session
+                    .createQuery("from ProjectCategoryhbm as p where p.name=:name").setString("name", name)
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
             if (pc != null) {
                 flag = true;
@@ -246,7 +247,8 @@ public class ProjectCategoryBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }

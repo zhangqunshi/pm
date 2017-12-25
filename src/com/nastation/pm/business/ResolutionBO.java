@@ -7,14 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.Resolution;
-import com.nastation.pm.util.DBConn;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.bean.Resolution;
+import com.nastation.pm.beanhbm.Resolutionhbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 
 /**
  * 问题Resolution的业务逻辑类
@@ -40,7 +39,8 @@ public class ResolutionBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -62,7 +62,8 @@ public class ResolutionBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return r2List;
     }
@@ -80,13 +81,13 @@ public class ResolutionBO {
         ResultSet rs = null;
         try {
             String sql = "update t_resolution set is_default=?";
-            System.out.println("========102====sql=======" + sql);
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, 0);
             count = pstmt.executeUpdate();
             if (count > 0) {
                 String sql2 = "update t_resolution set is_default=? where id=?";
-                System.out.println("========108====sql2=======" + sql2);
+
                 PreparedStatement pstmt2 = conn.prepareStatement(sql2);
                 pstmt2.setInt(1, 1);
                 pstmt2.setInt(2, isDefault);
@@ -123,7 +124,8 @@ public class ResolutionBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return r2;
     }
@@ -145,7 +147,8 @@ public class ResolutionBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return resolution;
     }
@@ -174,7 +177,8 @@ public class ResolutionBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -231,7 +235,8 @@ public class ResolutionBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 

@@ -43,7 +43,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -68,7 +69,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -91,7 +93,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -113,7 +116,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return user;
     }
@@ -134,7 +138,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return u2;
     }
@@ -154,7 +159,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -164,7 +170,7 @@ public class UserBO {
      * @param id
      */
     public boolean hasForeignKey(int userId) {
-        System.out.println("hasForeignKey method");
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -173,28 +179,26 @@ public class UserBO {
             // 判断t_project_user表中是否有外键关联。
             conn = DBConn.getConnection();
             String sql = "select user_id from t_project_user where user_id=?";
-            System.out.println(sql);
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, userId);
             rs = pstmt.executeQuery();
-            System.out.println("after executeQuery");
 
             if (rs.next()) {
                 flag = true;
-                System.out.println(flag);
+
             }
             // 判断t_issue表中assignee_id是否有外键关联。
             String sql2 = "select assignee_id,reporter_id from t_issue where assignee_id=? or reporter_id=?";
-            System.out.println(sql2);
+
             pstmt = conn.prepareStatement(sql2);
             pstmt.setInt(1, userId);
             pstmt.setInt(2, userId);
             rs = pstmt.executeQuery();
-            System.out.println("after executeQuery");
 
             if (rs.next()) {
                 flag = true;
-                System.out.println(flag);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -245,7 +249,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return uList;
     }
@@ -269,7 +274,8 @@ public class UserBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return u;
     }

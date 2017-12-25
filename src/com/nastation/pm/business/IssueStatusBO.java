@@ -8,24 +8,17 @@ package com.nastation.pm.business;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.nastation.pm.bean.Icon;
-import com.nastation.pm.bean.Issue;
-import com.nastation.pm.bean.IssuePriority;
-import com.nastation.pm.bean.IssueStatus;
-import com.nastation.pm.bean.IssueType;
-import com.nastation.pm.util.DBConn;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.bean.Icon;
+import com.nastation.pm.bean.IssueStatus;
+import com.nastation.pm.beanhbm.Iconhbm;
+import com.nastation.pm.beanhbm.IssueStatushbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 
 public class IssueStatusBO {
 
@@ -44,7 +37,8 @@ public class IssueStatusBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -63,7 +57,8 @@ public class IssueStatusBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -83,7 +78,8 @@ public class IssueStatusBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return issue2;
     }
@@ -98,14 +94,15 @@ public class IssueStatusBO {
         IssueStatushbm is = null;
         try {
             tx = session.beginTransaction();
-            is = (IssueStatushbm) session.createQuery("from IssueStatushbm as i where i.name=:name").setString("name", name)
-                    .uniqueResult();
+            is = (IssueStatushbm) session.createQuery("from IssueStatushbm as i where i.name=:name")
+                    .setString("name", name).uniqueResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return is;
     }
@@ -125,7 +122,8 @@ public class IssueStatusBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -145,7 +143,8 @@ public class IssueStatusBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return is;
     }
@@ -190,7 +189,8 @@ public class IssueStatusBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -205,14 +205,15 @@ public class IssueStatusBO {
         List<IssueStatushbm> l = null;
         try {
             tx = session.beginTransaction();
-            l = session.createQuery("from IssueStatushbm as i where i.iconUrl=:name").setString("name", icon.getFileName())
-                    .list();
+            l = session.createQuery("from IssueStatushbm as i where i.iconUrl=:name")
+                    .setString("name", icon.getFileName()).list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

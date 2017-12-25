@@ -1,22 +1,13 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.Comment;
-import com.nastation.pm.util.DBConn;
-import com.nastation.pm.util.StringUtils;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.beanhbm.Commenthbm;
+import com.nastation.pm.util.SessionF;
 
 /**
  * 备注的业务逻辑类
@@ -42,7 +33,8 @@ public class CommentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -64,7 +56,8 @@ public class CommentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return c;
     }
@@ -88,7 +81,8 @@ public class CommentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return cs;
     }
@@ -110,7 +104,8 @@ public class CommentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -131,7 +126,8 @@ public class CommentBO {
             if (tx != null)
                 tx.rollback();
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 

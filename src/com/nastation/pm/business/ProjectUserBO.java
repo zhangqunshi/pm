@@ -30,7 +30,7 @@ public class ProjectUserBO {
 
             String sql2 = "insert into t_project_user(project_id,user_id,role_id,create_date) values(?,?,?,?)";
             try {
-                System.out.println("=========id=====" + projectUser.getProjectId());
+
                 PreparedStatement ps = conn.prepareStatement(sql2);
                 ps.setInt(1, projectUser.getProjectId());
                 ps.setInt(2, projectUser.getUserId());
@@ -98,10 +98,7 @@ public class ProjectUserBO {
                 projectUser.setProjectId(rs.getInt("project_id"));
                 projectList.add(projectUser);
             }
-            for (ProjectUser pUser : projectList) {
-                System.out.println(pUser.getProjectId());
-                System.out.println(pUser.getUsername());
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -252,7 +249,7 @@ public class ProjectUserBO {
         Connection conn = DBConn.getConnection();
         try {
             String sql = "delete from t_project_user where id=?";
-            System.out.println("==sql==" + sql);
+
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -292,7 +289,7 @@ public class ProjectUserBO {
         Connection conn = DBConn.getConnection();
         try {
             String sql = "delete from t_project_user where role_id=?";
-            System.out.println("==sql==" + sql);
+
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, roleId);
             ps.executeUpdate();
