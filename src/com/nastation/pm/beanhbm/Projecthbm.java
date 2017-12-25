@@ -4,6 +4,8 @@ package com.nastation.pm.beanhbm;
  * 
  * @author Zhangbo 该类是项目javabean
  */
+import java.util.HashSet;
+import java.util.Set;
 
 public class Projecthbm {
 
@@ -16,6 +18,24 @@ public class Projecthbm {
     private java.util.Date createDate;
     private ProjectCategoryhbm category;
     private PermissionSchemehbm permissionScheme;
+    private Set<Issuehbm> issues = new HashSet<>();
+    private Set<ProjectComponenthbm> components = new HashSet<>();
+
+    public Set<ProjectComponenthbm> getComponents() {
+        return components;
+    }
+
+    public void setComponents(Set<ProjectComponenthbm> components) {
+        this.components = components;
+    }
+
+    public Set<Issuehbm> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(Set<Issuehbm> issues) {
+        this.issues = issues;
+    }
 
     public PermissionSchemehbm getPermissionScheme() {
         return permissionScheme;

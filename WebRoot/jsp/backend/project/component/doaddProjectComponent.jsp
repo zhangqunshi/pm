@@ -18,21 +18,13 @@
     }
     ProjectBO pBO = new ProjectBO();
     ProjectComponentBO pcbo = new ProjectComponentBO();
-    ProjectComponent pc = new ProjectComponent();
     UserBO userbo = new UserBO();
-    User user = new User();
-    pc.setProjectId(id);
-    pc.setName(name);
-    pc.setDescription(description);
-    pc.setLeaderId(leader);
-    pc.setCreateDate(new java.util.Date());
+    Projecthbm phbm = pBO.getProject(id);
     ProjectComponenthbm p = new ProjectComponenthbm();
-    p.setProject(pBO.getProject(id));
+    p.setProject(phbm);
     p.setName(name);
     p.setDescription(description);
     p.setLeader(leader);
-    p.setCreateDate(new java.util.Date());
-    
 
     if (!pcbo.checkProjectComponent(p)) {
         String error = "A component with the name fd already exists in this project.";

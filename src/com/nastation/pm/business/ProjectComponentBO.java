@@ -2,20 +2,17 @@ package com.nastation.pm.business;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.ProjectComponent;
-import com.nastation.pm.util.DBConn;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*; 
+import com.nastation.pm.bean.ProjectComponent;
+import com.nastation.pm.beanhbm.ProjectComponenthbm;
+import com.nastation.pm.beanhbm.Projecthbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+
 /**
  * 新建项目模块
  * 
@@ -56,10 +53,11 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            List<ProjectComponent> pList = session.createQuery("from ProjectComponenthbm where name=:name")
-                    .setString("name", pc.getName()).list();
+            ProjectComponenthbm p = (ProjectComponenthbm) session
+                    .createQuery("from ProjectComponenthbm as p where p.name=:name").setString("name", pc.getName())
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
-            if (pList.size() > 1) {
+            if (p != null) {
                 flag = false;
             }
         } catch (Exception e) {
@@ -82,7 +80,7 @@ public class ProjectComponentBO {
 
         try {
             tx = session.beginTransaction();
-            pList = session.createQuery("from ProjectComponenthbm as p where p.projectId.projectId=:id")
+            pList = session.createQuery("from ProjectComponenthbm as p where p.project.projectId=:id")
                     .setInteger("id", id).list();
             tx.commit();
         } catch (Exception e) {
@@ -103,7 +101,8 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(session.load(ProjectComponenthbm.class, id));
+            session.createQuery("delete from ProjectComponenthbm as a where a.id=:id").setInteger("id", id)
+                    .executeUpdate();
             tx.commit();
         } catch (Exception e) {
             if (tx != null)
@@ -122,8 +121,8 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.createQuery("delete from ProjectComponenthbm where project.id=:id")
-                    .setInteger("id", projectId).executeUpdate();
+            session.createQuery("delete from ProjectComponenthbm where project.id=:id").setInteger("id", projectId)
+                    .executeUpdate();
             tx.commit();
         } catch (Exception e) {
             if (tx != null)
@@ -142,9 +141,8 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            ProjectComponent c = (ProjectComponent) session
-                    .createQuery("from ProjectComponenthbm where project.id=:id").setInteger("id", projectId)
-                    .setMaxResults(1).uniqueResult();
+            ProjectComponent c = (ProjectComponent) session.createQuery("from ProjectComponenthbm where project.id=:id")
+                    .setInteger("id", projectId).setMaxResults(1).uniqueResult();
             if (c != null) {
                 return true;
             }
@@ -196,6 +194,20 @@ public class ProjectComponentBO {
             session.close();
         }
         return p2;
+    }
+
+    public static void main(String[] args) {
+        ProjectComponentBO pc = new ProjectComponentBO();
+        ProjectBO p = new ProjectBO();
+        Projecthbm pm = p.getProject(22);
+        ProjectComponenthbm phm = new ProjectComponenthbm();
+        phm.setProject(pm);
+        phm.setName("good");
+        phm.setLeader("admin");
+        // pc.addProjectComponent(phm);
+
+        boolean bl = pc.checkProjectComponent(phm);
+        System.out.println(bl + "-=-=-=-=-=-=-=-");
     }
 
 }

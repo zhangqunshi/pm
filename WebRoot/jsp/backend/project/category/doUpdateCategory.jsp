@@ -27,7 +27,7 @@
             hasError = true;
             errMsg += "<li><font color='red'>Project Name or Key already exists!</font></li>";
             request.setAttribute("error", errMsg);
-            System.out.println(errMsg);
+            
         }
     } else {
         ProjectCategoryhbm category = new ProjectCategoryhbm();

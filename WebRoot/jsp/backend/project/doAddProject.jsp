@@ -52,8 +52,13 @@
     project.setDescription(description);
     project.setLeader(leader);
     project.setPermissionSchemeId(schemeId);
-    boolean existName = pb.existName(project);
-    boolean existKey = pb.existKey(project);
+    
+    Projecthbm phbm = new Projecthbm();
+    phbm.setName(name);
+    phbm.setProjectKey(projectKey);
+    
+    boolean existName = pb.existName(phbm);
+    boolean existKey = pb.existKey(phbm);
     if (!user.exist(leader)) {
         hasError = true;
         errMsg += "leader no exists!";

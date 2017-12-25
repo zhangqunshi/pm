@@ -53,7 +53,6 @@
                                             errMsg = "";
                                         }
                                         out.println("<font color='red'><b>" + errMsg + "</b></font>");
-                                        System.out.println("======errMsg====" + errMsg);
                                     %>
                                 </td>
                             </tr>

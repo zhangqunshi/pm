@@ -42,7 +42,6 @@
 
     CommentBO bo = new CommentBO();
     bo.addComment(ch);
-    System.out.println("添加备注成功");
     response.sendRedirect(
             request.getContextPath() + "/jsp/frontend/issue/issueDetailLayout.jsp?issueKey=" + issueKey);
 %>

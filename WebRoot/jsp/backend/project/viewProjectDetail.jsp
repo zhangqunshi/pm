@@ -14,20 +14,26 @@
     String path = request.getContextPath();
     String projectId = request.getParameter("projectId");
     int pid = Integer.parseInt(projectId);
+
     ProjectBO pb = new ProjectBO();
     Projecthbm ph = pb.getProject(pid);
+
     PermissionSchemeBO psBO = new PermissionSchemeBO();
-    PermissionSchemehbm psh = psBO.getScheme(ph.getPermissionScheme().getId());
+    PermissionSchemehbm ps = psBO.getScheme(ph.getPermissionScheme().getId());
+
     Project project = new Project();
+    project.setProjectId(ph.getId());
     project.setName(ph.getName());
     project.setProjectKey(ph.getProjectKey());
     project.setUrl(ph.getLeader());
     project.setDescription(ph.getDescription());
-    project.setCategoryId(ph.getCategory().getId());
+    project.setLeader(ph.getLeader());
 
-    PermissionScheme ps = new PermissionScheme();
-    ps.setId(psh.getId());
-    ps.setName(psh.getName());
+    if (ph.getCategory() == null) {
+        project.setCategoryId(0);
+    } else {
+        project.setCategoryId(ph.getCategory().getId());
+    }
 %>
 
 <body>

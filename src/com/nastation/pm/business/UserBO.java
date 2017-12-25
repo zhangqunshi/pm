@@ -1,18 +1,20 @@
 package com.nastation.pm.business;
 
-import com.nastation.pm.bean.Permission;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.nastation.pm.bean.User;
-
-import com.nastation.pm.util.*;
-
-import java.sql.*;
-import java.util.*;
-import java.util.Date;
-
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.beanhbm.Userhbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 
 /**
  * 
@@ -431,13 +433,6 @@ public class UserBO {
             DBConn.closeConn(conn);
         }
         return flag;
-    }
-    
-    public static void main(String[] args) {
-        UserBO uBO = new UserBO();
-        Userhbm u = uBO.login("admin", "123");
-        System.out.println(u.getName()+"----------");
-        
     }
 
 }

@@ -15,6 +15,7 @@
     List<Issue> inprogressList = isBO.getIssueInProgressList(userID);
 %>
 
+
 <table class="tableBorder maxWidth" width="100%" cellspacing="1" cellpadding="3" border="0">
     <tr class="rowHeader">
         <td class="colHeaderLink" colspan="4">
@@ -67,3 +68,4 @@
     %>
 
 </table>
+

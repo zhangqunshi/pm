@@ -16,14 +16,17 @@
     List<Grouphbm> groupList = groupBO.getViewGroups();
 %>
 
-<table id="group_browser_table" class="grid" border="0" width="100%">
-    <tbody>
-        <tr bgcolor="#f0f0f0">
-            <th width="40%">Group Name</th>
-            <th width="20%">Users</th>
-            <th width="30%">Permission Schemes</th>
-            <th nowrap="" width="10%">操作</th>
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th>Group Name</th>
+            <th>Users</th>
+            <th>Permission Schemes</th>
+            <th>操作</th>
         </tr>
+    </thead>
+    <tbody>
         <%
             if (groupList == null || groupList.size() == 0) {
 
@@ -44,8 +47,7 @@
             </td>
             <td>
                 <%
-                    System.out.println("======PermissionSchemeName isn't null======");
-                            PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
+                    PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
                             List<PermissionScheme> permissionSchemeList = permissionSchemeBO.getPermissionSchemeList("Group",
                                     groupView.getName());
                             for (int j = 0; j < permissionSchemeList.size(); j++) {

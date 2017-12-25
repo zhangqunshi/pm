@@ -32,13 +32,15 @@
         }
     }
 </script>
+
 <style type="text/css">
-.bs-example {
-    margin: 20px;
-}
+
+.top { margin-top: 200px; }
 </style>
+
+
 </head>
-<body>
+<body style="background-image: url(/pmhb/images/bg3.jpg); background-repeat: no-repeat;background-size: 100% 100%; background-size: 50xp 50xp;">
     <div>&nbsp;</div>
 
 
@@ -47,7 +49,7 @@
         String choice = request.getParameter("choice");
     %>
 
-    <div class="container">
+    <div class="container top">
         <div class="row">
             <div class="form-group">
                 <h3 class="form-title text-center">项目管理软件</h3>
@@ -66,13 +68,13 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <%
-                    if(choice != null){
+                    if (choice != null) {
                 %>
-                    <jsp:include page="${path}/jsp/addUser.jsp" />
+                <jsp:include page="${path}/jsp/addUser.jsp" />
                 <%
-                    }else{
+                    } else {
                 %>
-               
+
                 <form class="form-horizontal" action="<%=path%>/jsp/checkLogin.jsp" method="post" name="myForm" onsubmit="return check()">
                     <%@include file="/jsp/showErrorMessage.jsp"%>
                     <div class="form-group">
@@ -85,9 +87,9 @@
                         <button type="submit" class="btn btn-primary col-md-12">Login</button>
                     </div>
                 </form>
-               <%
+                <%
                     }
-               %>
+                %>
             </div>
         </div>
     </div>

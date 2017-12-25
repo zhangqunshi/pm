@@ -10,18 +10,35 @@
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <html>
 <head>
+<script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <h3 class="formtitle">View Priorities</h3>
+
+
+     <div class="container">
+   
+   <div class="row">
+      <div class="col-md-12">
+        <h3 class="formtitle">View Priorities</h3>
     <p>The table below shows the priorities used</p>
-    <table border='1' width='100%'>
+      </div>
+         
+   </div>
+   
+   <div class="row">
+      <div class="col-md-12">
+        <table class="table table-hover">
+    <thead>
         <tr>
             <th>名称</th>
             <th>描述</th>
             <th>图标</th>
             <th>颜色</th>
-            <th width="100">操作</th>
+            <th>操作</th>
         </tr>
+        </thead>
+        <tbody>
         <%
             IssuePriorityBO issuePriorityBO = new IssuePriorityBO();
             List<IssuePriorityhbm> list = issuePriorityBO.getIssuePriorityList();
@@ -47,7 +64,30 @@
                         + "' >编辑</a></td></tr>");
             }
         %>
+        </tbody>
     </table>
-    <%@include file="/jsp/backend/issue/priority/addIssuePriority.jsp"%>
+      
+      
+      </div>
+         
+   </div>
+   
+   <div class="row">
+      <div class="col-md-12">
+        <%@include file="/jsp/backend/issue/priority/addIssuePriority.jsp"%>
+      
+      </div>
+         
+   </div>
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
 </body>
 </html>

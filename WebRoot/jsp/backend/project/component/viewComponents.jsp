@@ -19,20 +19,16 @@
 a new component
 <br>
 <%
-    ProjectComponentBO pcbo = new ProjectComponentBO();
-    List<ProjectComponenthbm> componentList = new ArrayList<ProjectComponenthbm>();
-    componentList = pcbo.getProjectComponentList(pid2);
+
+    Projecthbm projectCP = new ProjectBO().getProject(pid2);
+    List<ProjectComponenthbm> componentList = new ArrayList<>(projectCP.getComponents());
     if (componentList.size() == 0) {
         out.println("There are no components at the moment.");
     } else {
 
-        int id = Integer.parseInt(request.getParameter("projectId"));
-        System.out.println("id=" + id);
-        ProjectComponentBO pcbo2 = new ProjectComponentBO();
-        List<ProjectComponenthbm> componentList2 = pcbo2.getProjectComponentList(id);
         out.println("<table border='0'>");
-        for (int i = 0; i < componentList2.size(); i++) {
-            ProjectComponenthbm pc = (ProjectComponenthbm) componentList2.get(i);
+        for (int i = 0; i < componentList.size(); i++) {
+            ProjectComponenthbm pc = (ProjectComponenthbm) componentList.get(i);
 %>
 <tr>
     <td>
@@ -47,10 +43,10 @@ a new component
                         out.println("(负责人: </b>" + pc.getLeader() + "<b>)");
                     }
                     out.println("</b> </td>");
-                    out.println("<td><a href='/pm/jsp/backend/project/component/deleteProjectComponent.jsp?idd="
-                            + pc.getId() + "&id=" + id
-                            + "'>(删除</a>|<a href='/pm/jsp/backend/project/component/updateProjectComponent.jsp?idd="
-                            + pc.getId() + "&id=" + id + "'>编辑)</a></td></tr>");
+                    out.println("<td><a href='/pmhb/jsp/backend/project/component/deleteProjectComponent.jsp?idd="
+                            + pc.getId() + "&id=" + pid2
+                            + "'>(删除</a>|<a href='/pmhb/jsp/backend/project/component/updateProjectComponent.jsp?idd="
+                            + pc.getId() + "&id=" + pid2 + "'>编辑)</a></td></tr>");
                 }
                 out.println("</table>");
             }

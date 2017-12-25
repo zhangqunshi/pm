@@ -12,39 +12,71 @@
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <html>
 <body>
-    <h3 class="formtitle">View Statuses</h3>
-    <p>The table below shows the statuses used</p>
-    <table border='1' width='100%'>
-        <tr>
-            <th>Status Details</th>
-            <th>操作</th>
-        </tr>
-        <%
-            IssueStatusBO issueStatusBO = new IssueStatusBO();
-            List<IssueStatushbm> list = issueStatusBO.getIssueStatusList();
-            for (int i = 0; i < list.size(); i++) {
-                IssueStatushbm issueStatus = list.get(i);
-                out.println("<tr><td>");
-                out.println("<img src='" + request.getContextPath() + issueStatus.getIconUrl() + "' />");
-                out.println("<b>" + issueStatus.getName() + "</b><br>");
-                out.println(issueStatus.getDescription());
-                out.println("</td>");
-                out.println("<td width='100'>");
-                out.println("<a href='updateIssueStatus.jsp?id=" + issueStatus.getId() + "' >编辑</a>");
-                //如果是系统默认的状态，则不可以删除
-                int sid = issueStatus.getId();
-                if (sid == Global.OPEN || sid == Global.CLOSE || sid == Global.IN_PROGRESS || sid == Global.REOPEN
-                        || sid == Global.RESOLVED) {
-                    out.println("");
-                } else {
-                    out.println("|<a href='deleteIssueStatus.jsp?id=" + issueStatus.getId() + "'>删除</a>");
 
-                }
+    <div class="container">
 
-                out.println("</td></tr>");
-            }
-        %>
-    </table>
-    <%@include file="/jsp/backend/issue/status/addIssueStatus.jsp"%>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="formtitle">View Statuses</h3>
+                <p>The table below shows the statuses used</p>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Status Details</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            IssueStatusBO issueStatusBO = new IssueStatusBO();
+                            List<IssueStatushbm> list = issueStatusBO.getIssueStatusList();
+                            for (int i = 0; i < list.size(); i++) {
+                                IssueStatushbm issueStatus = list.get(i);
+                                out.println("<tr><td>");
+                                out.println("<img src='" + request.getContextPath() + issueStatus.getIconUrl() + "' />");
+                                out.println("<b>" + issueStatus.getName() + "</b><br>");
+                                out.println(issueStatus.getDescription());
+                                out.println("</td>");
+                                out.println("<td width='100'>");
+                                out.println("<a href='updateIssueStatus.jsp?id=" + issueStatus.getId() + "' >编辑</a>");
+                                //如果是系统默认的状态，则不可以删除
+                                int sid = issueStatus.getId();
+                                if (sid == Global.OPEN || sid == Global.CLOSE || sid == Global.IN_PROGRESS || sid == Global.REOPEN
+                                        || sid == Global.RESOLVED) {
+                                    out.println("");
+                                } else {
+                                    out.println("|<a href='deleteIssueStatus.jsp?id=" + issueStatus.getId() + "'>删除</a>");
+
+                                }
+
+                                out.println("</td></tr>");
+                            }
+                        %>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"><%@include file="/jsp/backend/issue/status/addIssueStatus.jsp"%></div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
 </body>
 </html>

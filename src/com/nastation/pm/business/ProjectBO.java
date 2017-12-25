@@ -9,23 +9,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nastation.pm.bean.Project;
-import com.nastation.pm.bean.User;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import com.nastation.pm.bean.Project;
+import com.nastation.pm.beanhbm.Projecthbm;
+import com.nastation.pm.beanhbm.Userhbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
-
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-
-import org.hibernate.query.*;
-
-import com.nastation.pm.beanhbm.*;
 
 public class ProjectBO {
 
@@ -137,7 +132,7 @@ public class ProjectBO {
             tx = session.beginTransaction();
             Projecthbm proj = (Projecthbm) session.createQuery("from Projecthbm where name=:name")
                     .setString("name", name).uniqueResult();
-            
+
             id = proj.getId();
             tx.commit();
 
@@ -158,16 +153,16 @@ public class ProjectBO {
      * @return true if exist, otherwise return false.
      */
 
-    public boolean existName(Project project) {
+    public boolean existName(Projecthbm project) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            List<Projecthbm> pList = session.createQuery("from Projecthbm where name=:name")
-                    .setString("name", project.getName()).list();
+            Projecthbm p = (Projecthbm) session.createQuery("from Projecthbm where name=:name")
+                    .setString("name", project.getName()).setMaxResults(1).uniqueResult();
             tx.commit();
-            if (pList.size() > 1) {
+            if (p != null) {
                 flag = true;
             }
         } catch (Exception e) {
@@ -186,16 +181,16 @@ public class ProjectBO {
      * @return
      */
 
-    public boolean existKey(Project project) {
+    public boolean existKey(Projecthbm project) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            List<Projecthbm> pList = session.createQuery("form Projecthbm where projectKey=:key")
-                    .setString("key", project.getProjectKey()).list();
+            Projecthbm p = (Projecthbm) session.createQuery("form Projecthbm where projectKey=:key")
+                    .setString("key", project.getProjectKey()).setMaxResults(1).uniqueResult();
             tx.commit();
-            if (pList.size() > 1) {
+            if (p != null) {
                 flag = true;
             }
         } catch (Exception e) {
@@ -239,7 +234,7 @@ public class ProjectBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(session.load(Projecthbm.class, id));
+            session.createQuery("delete from Projecthbm as p where p.id=:id").setInteger("id", id).executeUpdate();
             tx.commit();
         } catch (Exception e) {
             if (tx != null)
@@ -386,6 +381,11 @@ public class ProjectBO {
         } finally {
             DBConn.closeConn(conn);
         }
+    }
+
+    public static void main(String[] args) {
+        ProjectBO pBO = new ProjectBO();
+        pBO.deleteProject(10);
     }
 
 }

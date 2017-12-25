@@ -26,44 +26,61 @@
 %>
 
 <body>
-    <%@include file="/jsp/showErrorMessage.jsp"%>
-    <form action="doUpdateResolution.jsp" method="post">
-        <table class="simpleform maxWidth">
-            <tbody>
-                <tr>
-                    <td class="simpleformheader" colspan="2">
-                        <h3 class="formtitle">
-                            Edit Resolution:
-                            <%=resolution.getName()%>
-                        </h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="fieldLabelArea">名称:</td>
-                    <td class="fieldValueArea" bgcolor="#ffffff">
-                        <input type="text" value="<%=resolution.getName()%>" size="30" name="name" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="fieldLabelArea">描述:</td>
-                    <td class="fieldValueArea" bgcolor="#ffffff">
-                        <input type="text" value="<%=resolution.getDescription()%>" size="60" name="description" />
-                    </td>
-                </tr>
-                <tr class="hidden">
-                    <td>
-                        <input id="id" type="hidden" value="<%=resolution.getId()%>" name="id" />
-                        <input id="isDefault" type="hidden" value="<%=resolution.getIsDefault()%>" name="isDefault" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="fullyCentered simpleformfooter" colspan="2">
-                        <input id="更新" class="spaced" type="submit" title="按 Alt+S 提交" accesskey="S" value="更新" name="更新" />
-                        <input id="cancelButton" type="button" onclick="location.href='viewResolutions.jsp'" value="取消" title="取消 (Alt + `)" accesskey="`" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    Edit Resolution:
+                    <%=resolution.getName()%>
+                </h3>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <%@include file="/jsp/showErrorMessage.jsp"%>
+                <form action="doUpdateResolution.jsp" method="post" class="bs-example bs-example-form" role="form">
+
+
+
+                    <div class="input-group">
+                        <span class="input-group-addon">名称</span>
+                        <input type="text" value="<%=resolution.getName()%>" size="30" name="name" class="form-control" placeholder="twitterhandle" />
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">描述</span>
+                        <input type="text" value="<%=resolution.getDescription()%>" size="60" name="description" class="form-control" placeholder="twitterhandle" />
+                    </div>
+
+
+                    <input id="id" type="hidden" value="<%=resolution.getId()%>" name="id" />
+                    <input id="isDefault" type="hidden" value="<%=resolution.getIsDefault()%>" name="isDefault" />
+
+
+                    <input id="更新" class="btn btn-info btn-block" type="submit" title="按 Alt+S 提交" accesskey="S" value="更新" name="更新" />
+                    <input id="cancelButton" type="button" onclick="location.href='viewResolutions.jsp'" value="取消" title="取消 (Alt + `)" accesskey="`" class="btn btn-warning btn-block" />
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
 </body>
 </html>

@@ -17,8 +17,6 @@
     // Get parameters
 			String element = request.getParameter("element");
 			String defaultColor = request.getParameter("defaultColor");
-			System.out.println(element);
-			System.out.println(defaultColor);
 %>
 
 <p>

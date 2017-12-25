@@ -10,6 +10,8 @@
 <%@ page import="com.nastation.pm.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 
+
+
 <%
     ProjectBO pb = new ProjectBO();
     List<Projecthbm> list = pb.getProjectList();
@@ -42,7 +44,7 @@
             <br>
             <b>过滤问题: </b>
             <br>
-            <a href='<%=request.getContextPath()%>/jsp/frontend/issue/issueNavigator.jsp?action=all&projectId=<%=project.getProjectId()%>&projectName=<%=project.getName()%>'>全部</a>
+            <a class="btn btn-primary btn-xs btn-block" href='<%=request.getContextPath()%>/jsp/frontend/issue/issueNavigator.jsp?action=all&projectId=<%=project.getProjectId()%>&projectName=<%=project.getName()%>'>全部</a>
 
             <%
                 //显示有关这个项目和这个人的过滤器
@@ -74,3 +76,4 @@
 
     } //endelse
 %>
+

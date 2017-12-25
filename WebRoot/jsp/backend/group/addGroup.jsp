@@ -12,34 +12,19 @@
         exitName = "";
     }
 %>
-<form method="post" action="doAddGroup.jsp">
-    <table id="add_group" class="grid" border="0" bgcolor="#666666" width="100%">
-        <tbody>
-            <tr>
-                <td bgcolor="#f0f0f0">
+<form method="post" action="doAddGroup.jsp" class="bs-example bs-example-form" role="form">
+    
                     <h3 class="formtitle">Add Group</h3>
-                </td>
-            </tr>
-            <tr>
-                <td>
+             
                     <font color='red'>
                         <b><%=exitName%></b>
                     </font>
-                </td>
-            </tr>
-            <tr>
-                <td class="fieldLabelAreaTop" colspan="2">名称:</td>
-            </tr>
-            <tr class="" style="">
-                <td class="fieldValueArea" bgcolor="#ffffff">
-                    <input type="text" size="20" name="groupName" />
-                </td>
-            </tr>
-            <tr>
-                <td bgcolor="#f0f0f0" align="center">
-                    <input type="submit" value="Add Group" name="add_group" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        
+                <div class="input-group">
+                    <span class="input-group-addon">名称</span>
+                    <input type="text" name="groupName" class="form-control" placeholder="twitterhandle" />
+                    </div>
+            
+                    <input type="submit" value="Add Group" name="add_group" class="btn btn-info btn-block"/>
+       
 </form>

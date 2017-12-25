@@ -21,23 +21,30 @@
     <p>The User Browser allows you to browse all the users in the system. Filters allow you to limit the users that you see.</p>
 
     <p>
-        <img height="8" border="0" width="8" src="<%=request.getContextPath()%>/images/icons/bullet_creme.gif" />
+       <!--  <img height="8" border="0" width="8" src="<%=request.getContextPath()%>/images/icons/bullet_creme.gif" />  -->
         <b>
-            <a href='<c:url value="/jsp/backend/user/addUser.jsp"/>'>Add User</a>
+            <a href='<c:url value="/jsp/backend/user/addUser.jsp" />' class="btn btn-info btn-block" >Add User</a>
         </b>
     </p>
-
+    
+    
+    
+    
+    
     <%@ include file="/jsp/showErrorMessage.jsp"%>
 
-    <table border="1" width="100%">
+    <table class="table table-hover">
+    <thead>
         <tr>
             <th>用户名</th>
             <th>邮件</th>
             <th>全名</th>
             <th>组</th>
-            <th clospan="2">操作</th>
+            <th>操作</th>
 
         </tr>
+        </thead>
+        <tbody>
         <%
             UserBO userBO = new UserBO();
             GroupBO groupBO = new GroupBO();
@@ -121,7 +128,7 @@
                 }
             }
         %>
-
+        </tbody>
     </table>
 </body>
 </html>

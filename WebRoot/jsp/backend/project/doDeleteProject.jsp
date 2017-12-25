@@ -11,15 +11,11 @@
 <html>
 <body>
     <%
-        //删除项目中添加的模块
         String id = (String) request.getParameter("projectId");
         int projectId = Integer.parseInt(id);
-        ProjectComponentBO pcbo = new ProjectComponentBO();
-        if (pcbo.checkProjectComponent2(projectId)) {
-            pcbo.deleteAllProjectComponents(projectId);
-        }
 
         //删除项目中的用户
+
         UserBO userBO = new UserBO();
         if (userBO.checkProjectUser(projectId)) {
             userBO.deleteAllProjectUser(projectId);
@@ -31,12 +27,6 @@
             pis.deleteAllProjectIssueSequence(projectId);
         }
 
-        //删除项目中的Issue
-        IssueBO ib = new IssueBO();
-        List list = ib.getAllIssue(projectId);
-        if (list.size() > 0) {
-            ib.deleteAllIssueByLinkProject(projectId);
-        }
         //删除项目
         ProjectBO pb = new ProjectBO();
         pb.deleteProject(projectId);

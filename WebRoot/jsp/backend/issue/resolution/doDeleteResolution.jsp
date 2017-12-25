@@ -13,8 +13,6 @@
     //转化参数
     int resolutionId = Integer.parseInt(id);
     int resolutionNewId = Integer.parseInt(newId);
-    System.out.println(id);
-    System.out.println(newId);
 
     //
     ResolutionBO rb = new ResolutionBO();

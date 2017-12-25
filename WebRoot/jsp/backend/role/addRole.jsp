@@ -30,32 +30,45 @@
     }
 </script>
 </head>
-<div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-    <h3>Add Project Role</h3>
-    <%
-        out.println("<p><font color=red>" + error + "</font></p>");
-    %>
-    <form action="doAddRole.jsp" name="myForm" onsubmit="return test();">
-        <table border="0">
-            <tr>
-                <td align="right">* 名称：</td>
-                <td>
-                    <input type="text" name="name" size="20" />
-                </td>
-            </tr>
-            <tr>
-                <td align="right">描述：</td>
-                <td>
-                    <input type="text" name="desc" size="50" />
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td align="right">
-                    <input type="submit" value="AddProjectRole" />
-                </td>
-            </tr>
-        </table>
-    </form>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Add Project Role</h3>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <%
+                out.println("<p><font color=red>" + error + "</font></p>");
+            %>
+            <form action="doAddRole.jsp" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
+
+                <div class="input-group">
+                    <span class="input-group-addon">* 名称</span>
+                    <input type="text" name="name" class="form-control" placeholder="name" />
+                </div>
+
+
+                <div class="input-group">
+                    <span class="input-group-addon">描述</span>
+                    <input type="text" name="desc" class="form-control" placeholder="descript" />
+                </div>
+
+                <input type="submit" value="AddProjectRole" class="btn btn-info btn-block" />
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
+
+
+
+
+
 </html>

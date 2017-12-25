@@ -1,16 +1,10 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.nastation.pm.util.DBConn;
-import org.hibernate.*;
-import org.hibernate.cfg.*;
-import org.hibernate.query.*;
-
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.beanhbm.ProjectIssueSequencehbm;
+import com.nastation.pm.util.SessionF;
 
 public class ProjectIssueSequenceBO {
 
@@ -58,6 +52,10 @@ public class ProjectIssueSequenceBO {
             session.close();
         }
         return flag;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

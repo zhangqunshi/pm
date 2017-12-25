@@ -36,18 +36,24 @@
 %>
 <html>
 <head>
+<script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/includes/js/calendar/calendar-min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/includes/js/calendar/calendar-setup-min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/includes/js/calendar/calendar-zh.js" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/includes/js/calendar/skins/aqua/calendar.css" media="all" rel="styleSheet" type="text/css" />
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<body>
-    <table cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" width="100%">
-        <tr>
 
-            <!-- 左侧导航 -->
-            <td valign="top" width=20%>
+
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <!-- 左侧导航 -->
                 <%@include file="/jsp/frontend/issue/searchIssueTopMenu.jsp"%>
                 <%@include file="/jsp/frontend/issue/filterDetailLeftMenu.jsp"%>
                 <%
@@ -58,13 +64,21 @@
                 <%
                     } //endif
                 %>
-            </td>
 
-            <!-- 右侧问题列表 -->
-            <td valign="top" width=80%>
+
+            </div>
+
+            <div class="col-md-8">
+                <!-- 右侧问题列表 -->
                 <%@include file="/jsp/frontend/issue/issueNavigatorR.jsp"%>
-            </td>
-        </tr>
-    </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
 </body>
 </html>

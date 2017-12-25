@@ -32,9 +32,8 @@
         p.setUrl(url);
         p.setDescription(description);
         p.setLeader(leaderId);
-        Project project = new Project();
-        project.setName(p.getName());
-        boolean exist = pb.existName(project);
+
+        boolean exist = pb.existName(p);
         if (exist) {
             hasError = true;
             errMsg += "项目名已存在！请重新命名。";

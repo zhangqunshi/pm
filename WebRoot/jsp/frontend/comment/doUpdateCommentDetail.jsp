@@ -24,7 +24,6 @@
         int commentId = Integer.parseInt(id);
 
         if (StringUtils.isBlank(CommentContent)) {
-            System.out.println("备注不能为空");
     %>
     <jsp:forward page="updateCommentDetail.jsp">
         <jsp:param name="commentId" value="<%=commentId%>" />

@@ -6,33 +6,52 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <p></p>
-<div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-    <h3>Add New Resolution</h3>
-    <form action="doAddResolution.jsp">
-        <%
-            String error = (String) request.getAttribute("error");
-            if (error != null) {
-                out.println("<font color=red>" + error + "</font>");
-            }
-        %>
-        <table border="0">
-            <tr>
-                <td align="right">* 名称：</td>
-                <td>
-                    <input type="text" name="name" size="20" />
-                </td>
-            </tr>
-            <tr>
-                <td align="right">描述：</td>
-                <td>
-                    <input type="text" name="description" size="50" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="right">
-                    <input type="submit" value="增加" />
-                </td>
-            </tr>
-        </table>
-    </form>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Add New Resolution</h3>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <form action="doAddResolution.jsp" class="bs-example bs-example-form" role="form">
+                <%
+                    String error = (String) request.getAttribute("error");
+                    if (error != null) {
+                        out.println("<font color=red>" + error + "</font>");
+                    }
+                %>
+
+                <div class="input-group">
+                    <span class="input-group-addon">* 名称</span>
+                    <input type="text" name="name" class="form-control" placeholder="name" />
+                </div>
+
+
+
+                <div class="input-group">
+                    <span class="input-group-addon">描述</span>
+                    <input type="text" name="description" class="form-control" placeholder="description" />
+                </div>
+
+                <input type="submit" value="增加" class="btn btn-info btn-block" />
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
+
+
+
+
+

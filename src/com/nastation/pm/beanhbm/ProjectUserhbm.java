@@ -1,33 +1,18 @@
 package com.nastation.pm.beanhbm;
 
-/**
- * 项目成员
- * 
- * @author Kris
- */
 public class ProjectUserhbm {
-
-    private int projectUserId;
+    private int id;
     private int projectId;
     private int userId;
-    private String username;
     private int roleId;
-    private String createDate;
+    private java.util.Date createDate;
 
-    public int getProjectUserId() {
-        return projectUserId;
+    public int getId() {
+        return id;
     }
 
-    public void setProjectUserId(int projectUserId) {
-        this.projectUserId = projectUserId;
-    }
-
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserId() {
@@ -38,6 +23,14 @@ public class ProjectUserhbm {
         this.userId = userId;
     }
 
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+
     public int getRoleId() {
         return roleId;
     }
@@ -46,19 +39,12 @@ public class ProjectUserhbm {
         this.roleId = roleId;
     }
 
-    public String getCreateDate() {
+    public java.util.Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(java.util.Date createDate) {
         this.createDate = createDate;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
