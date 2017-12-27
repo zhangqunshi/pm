@@ -1,6 +1,7 @@
 package com.nastation.pm.beanhbm;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author 孙重阳 User bean
@@ -14,6 +15,15 @@ public class Userhbm {
     private String email;
     private java.util.Date createDate;
     private boolean admin;
+    private Set<Grouphbm> groups = new HashSet<>();
+
+    public Set<Grouphbm> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Grouphbm> groups) {
+        this.groups = groups;
+    }
 
     public java.util.Date getCreateDate() {
         return createDate;

@@ -34,13 +34,14 @@
 </script>
 
 <style type="text/css">
-
-.top { margin-top: 200px; }
+.top {
+    margin-top: 200px;
+}
 </style>
 
 
 </head>
-<body style="background-image: url(/pmhb/images/bg3.jpg); background-repeat: no-repeat;background-size: 100% 100%; background-size: 50xp 50xp;">
+<body>
     <div>&nbsp;</div>
 
 
@@ -78,7 +79,7 @@
                 <form class="form-horizontal" action="<%=path%>/jsp/checkLogin.jsp" method="post" name="myForm" onsubmit="return check()">
                     <%@include file="/jsp/showErrorMessage.jsp"%>
                     <div class="form-group">
-                        <input type="text" id="inputSuccess" class="form-control " name="username" placeholder="用户名">
+                        <input type="text" id="inputSuccess" class="form-control" name="username" placeholder="用户名">
                     </div>
                     <div class="form-group">
                         <input type="password" id="inputWarning" class="form-control" name="password" placeholder="密码">

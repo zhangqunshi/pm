@@ -36,10 +36,11 @@
         <mapping resource="com/nastation/pm/hbm/Comment.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Issue.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Group.hbm.xml" />
+        <mapping resource="com/nastation/pm/hbm/ProjectUser.hbm.xml" />
+        <mapping resource="com/nastation/pm/hbm/GroupUser.hbm.xml" />
 
 
-
-        <!-- <mapping resource="com/nastation/pm/hbm/ProjectUser.hbm.xml" /> -->
+        <!-- -->
 
 
 
