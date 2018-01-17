@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
     "http://struts.apache.org/dtds/struts-2.5.dtd">
-
-
-
 <struts>
 
-
-
-
-
     <package name="backendProject" extends="struts-default">
-
-
+    
         <action name="addProject" class="com.nastation.pm.struts.backend.project.AddProjectAction" method="execute">
             <result name="success">/jsp/backend/project/viewProjectDetail.jsp</result>
             <result name="error">/jsp/backend/project/addProject.jsp</result>
@@ -61,54 +52,41 @@
 
     <package name="backendProjectComponent" extends="struts-default">
 
-
     </package>
 
     <package name="backendProjectUser" extends="struts-default">
-
 
     </package>
 
     <package name="backendGroup" extends="struts-default">
 
-
     </package>
 
-
-
     <package name="backendPermission" extends="struts-default">
-
 
     </package>
 
     <package name="backendRole" extends="struts-default">
 
-
     </package>
 
     <package name="backendUser" extends="struts-default">
 
-
     </package>
 
-
     <package name="backendIssuePriority" extends="struts-default">
-
 
     </package>
 
     <package name="backendIssueResolution" extends="struts-default">
 
-
     </package>
 
     <package name="backendIssuestatus" extends="struts-default">
 
-
     </package>
 
     <package name="backendIssueType" extends="struts-default">
-
 
     </package>
 
