@@ -13,7 +13,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <script language="javascript">
     function confirmDelete() {
@@ -26,12 +25,8 @@
 </script>
 </head>
 <body>
-
-
     <h3 class="formtitle">View Project Categories</h3>
     <p>The table below shows the project categories usable to categorise projects.</p>
-
-
     <table class="table table-hover">
         <thead>
             <tr>
@@ -42,7 +37,6 @@
             </tr>
         </thead>
         <tbody>
-
             <s:if test="#pcList!=null">
                 <s:iterator value="#pcList" var="pc">
                     <tr>
@@ -65,25 +59,16 @@
                         <s:else>
                             <td>&nbsp;</td>
                         </s:else>
-
                         <td>
                             <a href="deleteCategory.jsp?id=<s:property value="#pc.id" />">删除</a>
                             |
                             <a href="updateCategory.jsp?id=<s:property value="#pc.id" />">编辑</a>
-
                         </td>
                     </tr>
                 </s:iterator>
             </s:if>
-
         </tbody>
     </table>
     <jsp:include page="addProjectCategory.jsp"></jsp:include>
-
-
-
-
-
-
 </body>
 </html>

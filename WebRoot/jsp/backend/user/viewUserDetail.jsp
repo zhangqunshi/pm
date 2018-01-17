@@ -13,7 +13,6 @@
 <head>
 <link href="<%=request.getContextPath()%>/includes/css/main.css" media="all" rel="StyleSheet" type="text/css" />
 </head>
-
 <%
     request.setCharacterEncoding("UTF-8");
 
@@ -32,10 +31,7 @@
         return;
     }
 %>
-
 <body>
-
-
     <form action="#" method="post">
         <table cellspacing="6" cellpadding="0" border="0" width="100%" class="centred borderedBoxBlack">
             <tr>
@@ -46,7 +42,6 @@
                     </h3>
                 </td>
             </tr>
-
             <%
                 out.println("<tr><td align='left'><b>用户名: </b>" + u.getName() + "</td></tr>");
                 out.println("<tr><td align='left'><b>全名: </b>" + u.getFullName() + "</td></tr>");
@@ -78,9 +73,6 @@
             </tr>
 
         </table>
-
-
-
         <p align="center">
             <b>
                 <a href="../../frontend/issue/userDeploy.jsp?name=<%=u.getName()%>">View Public Profile</a>

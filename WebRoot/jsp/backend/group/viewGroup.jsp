@@ -15,9 +15,7 @@
     GroupBO groupBO = new GroupBO();
     List<Grouphbm> groupList = groupBO.getViewGroups();
 %>
-
 <table class="table table-hover">
-
     <thead>
         <tr>
             <th>Group Name</th>

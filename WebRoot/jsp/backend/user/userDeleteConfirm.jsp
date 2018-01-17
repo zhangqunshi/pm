@@ -13,7 +13,6 @@
 <head>
 </head>
 <body>
-   
     <form action="deleteUser.jsp" method="post">
         <table>
             <tbody>
@@ -41,13 +40,15 @@
                 <tr>
                     <td align="right" width="50%">Assigned Issues:</td>
                     <td>
-                        <a align="left"><s:property value="assigneeCount"/></a>
+                        <a align="left">
+                            <s:property value="assigneeCount" />
+                        </a>
                     </td>
                 </tr>
                 <tr>
                     <td align="right" width="50%">Reported Issues:</td>
                     <td align="left">
-                        <s:property value="reporterCount"/>
+                        <s:property value="reporterCount" />
                     </td>
                 </tr>
                 <tr>

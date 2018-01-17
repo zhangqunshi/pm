@@ -12,18 +12,13 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <body>
-
     <div class="container">
-
         <div class="row">
             <div class="col-md-12">
                 <h3 class="formtitle">View Resolutions</h3>
                 <p>The table below shows the resolutions used</p>
-
             </div>
-
         </div>
-
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-hover">
@@ -43,7 +38,7 @@
                                     </b>
                                     <s:if test="#r.idDefault==resolutionDefault">
                                         <br>(Default)
-                        </s:if>
+                                    </s:if>
                                 </td>
                                 <td>
                                     <s:property value="#r.description" />
@@ -53,32 +48,18 @@
                                     |
                                     <a href="deleteResolution.jsp?id=<s:property value="r.id"/>">删除</a>
                                     <s:if test="#r.idDefault==resolutionDefault">
-                        |<a href="MakeDefaultResolution.jsp?make=<s:property value="r.id"/>">Default</a>
+                                    |<a href="MakeDefaultResolution.jsp?make=<s:property value="r.id"/>">Default</a>
                                     </s:if>
                                 </td>
                             </tr>
-
-
                         </s:iterator>
                     </tbody>
                 </table>
-
             </div>
-
         </div>
-
         <div class="row">
             <div class="col-md-12"><%@include file="/jsp/backend/issue/resolution/addResolution.jsp"%></div>
-
         </div>
-
     </div>
-
-
-
-
-
-
-
 </body>
 </html>

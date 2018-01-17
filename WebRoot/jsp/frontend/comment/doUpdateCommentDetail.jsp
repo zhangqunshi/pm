@@ -11,9 +11,7 @@
 
 <html>
 <head>
-
 </head>
-
 <body>
     <h1>操作修改备注</h1>
     <%
@@ -36,7 +34,7 @@
         Comment comm = new Comment();
         comm.setCommentContent(StringUtils.removeHtmlTag(CommentContent));
         comm.setId(commentId);
-        
+
         c.setCommentContent(StringUtils.removeHtmlTag(CommentContent));
         c.setId(commentId);
         commbo.updateComment(c);
@@ -44,6 +42,5 @@
         issueRCKey = java.net.URLEncoder.encode(issueRCKey, "UTF-8");
         response.sendRedirect("../issue/issueDetailLayout.jsp?issueKey=" + issueRCKey);
     %>
-
 </body>
 </html>

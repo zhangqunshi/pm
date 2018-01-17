@@ -56,10 +56,18 @@ public class ViewIssueStatusAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        
+        setOpen(Global.OPEN);
+        setClose(Global.CLOSE);
+        setInProgress(Global.IN_PROGRESS);
+        setReopen(Global.REOPEN);
+        setResolved(Global.RESOLVED);
                 
         IssueStatusBO issueStatusBO = IssueStatusBO.getIssueStatusBO();
         List<IssueStatushbm> list = issueStatusBO.getIssueStatusList();
-
+        ActionContext cx = ActionContext.getContext();
+        cx.put("issueStatus",list);
+    
         return SUCCESS;
     }
 

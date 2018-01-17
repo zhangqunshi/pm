@@ -11,10 +11,8 @@
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!-- 功能：删除项目类型-->
-
 <html>
 <body>
-
     <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
         <table border="0">
             <tr>
@@ -34,12 +32,9 @@
                 <td colspan="2" align="right">
                     <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/project/category/doDeleteCategory.jsp"/>?id=<s:property value="id"/>'" value="删除" id="删除" name="删除" />
                     <input type="button" onclick="location.href='<c:url value="/jsp/backend/project/category/viewProjectCategory.jsp"/>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
-
                 </td>
             </tr>
         </table>
     </div>
 </body>
 </html>
-
-

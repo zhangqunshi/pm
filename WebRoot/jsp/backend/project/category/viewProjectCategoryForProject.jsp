@@ -9,7 +9,6 @@
 <head>
 </head>
 <body>
-
     <table cellspacing="0" cellpadding="10" border="1" width="100%">
         <tbody>
             <tr>
@@ -32,9 +31,9 @@
                                             <option value="-1">
 													None
 												</option>
-                                             <s:iterator value="#pcList" var="pc">
-                                             <option value="<s:property value="#pc.id"/>"><s:property value="#pc.name"/></option>
-                                            
+                                            <s:iterator value="#pcList" var="pc">
+                                                <option value="<s:property value="#pc.id"/>"><s:property value="#pc.name"/></option>
+
                                             </s:iterator>
                                         </select>
                                         <span id="pcid_summary" class="selectDescription" />

@@ -60,26 +60,20 @@
         }
     }
 </script>
-
 </head>
-
 <body>
-
-
     <div class="container">
-
         <div class="row">
             <div class="col-md-12">
                 <h3 class="formtitle">Create New User</h3>
                 <p>Enter the new user's details below.</p>
             </div>
-
         </div>
-
         <div class="row">
             <div class="col-md-12">
-            <font color="red"><s:property value="fail"/></font>
-                
+                <font color="red">
+                    <s:property value="fail" />
+                </font>
                 <form action="doAddUser.jsp" method="post" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
 
                     <div class="input-group">
@@ -112,15 +106,8 @@
                         <input type="button" onclick="location.href='viewUser.jsp'" value="取消" class="btn btn-info btn-block" />
                     </div>
                 </form>
-
             </div>
-
         </div>
-
     </div>
-
-
-
-
 </body>
 </html>

@@ -13,43 +13,28 @@
 
 <html>
 <head>
-
 </head>
-
 <body>
-
-
     <div class="container">
-
         <div class="row">
             <div class="col-md-12">
                 <h3 class="formtitle">User Browser</h3>
-
                 <p>The User Browser allows you to browse all the users in the system. Filters allow you to limit the users that you see.</p>
             </div>
-
         </div>
-
         <div class="row">
             <div class="col-md-12">
-
                 <p>
                     <!--  <img height="8" border="0" width="8" src="<%=request.getContextPath()%>/images/icons/bullet_creme.gif" />  -->
                     <b>
                         <a href='<c:url value="/jsp/backend/user/addUser.jsp" />' class="btn btn-info btn-block">Add User</a>
                     </b>
                 </p>
-
             </div>
-
         </div>
-
-
         <div class="row">
             <div class="col-md-12">
-
                 <%@ include file="/jsp/showErrorMessage.jsp"%>
-
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -58,7 +43,6 @@
                             <th>全名</th>
                             <th>组</th>
                             <th>操作</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -147,23 +131,8 @@
                         %>
                     </tbody>
                 </table>
-
-
             </div>
-
         </div>
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

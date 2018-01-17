@@ -10,10 +10,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-
-
 </head>
-
 <body>
     <%
         String name = request.getParameter("name");
@@ -23,7 +20,8 @@
             <tr>
                 <td class="simpleformheader" colspan="2">
                     <h3 class="formtitle">
-                        Successfully set new password for:<s:property value="name"/>
+                        Successfully set new password for:
+                        <s:property value="name" />
                     </h3>
                 </td>
             </tr>

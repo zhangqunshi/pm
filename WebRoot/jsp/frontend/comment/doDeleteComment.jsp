@@ -10,7 +10,6 @@
 <html>
 <head>
 </head>
-
 <body>
     <h1>册除一条备注</h1>
     <%
@@ -23,7 +22,5 @@
         issueRCKey = java.net.URLEncoder.encode(issueRCKey, "UTF-8");
         response.sendRedirect("../issue/issueDetailLayout.jsp?issueKey=" + issueRCKey);
     %>
-
-
 </body>
 </html>

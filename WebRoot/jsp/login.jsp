@@ -32,18 +32,12 @@
         }
     }
 </script>
-
-
 </head>
 <body>
     <div>&nbsp;</div>
-
-
-
     <%
-        String choice = (String)request.getAttribute("choice");
+        String choice = (String) request.getAttribute("choice");
     %>
-
     <div class="container top">
         <div class="row">
             <div class="form-group">
@@ -88,12 +82,8 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript" language="javascript">
-                    document.loginform.elements[0].focus();
-                </script>
-
-
+         document.loginform.elements[0].focus();
+    </script>
 </body>
 </html>
-

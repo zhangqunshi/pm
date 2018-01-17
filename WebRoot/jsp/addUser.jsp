@@ -64,11 +64,8 @@
         }
     }
 </script>
-
 </head>
-
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -85,10 +82,10 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="fullname" class="form-control"  placeholder="全名">
+                        <input type="text" name="fullname" class="form-control" placeholder="全名">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control"  placeholder="邮箱">
+                        <input type="text" name="email" class="form-control" placeholder="邮箱">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary col-md-12">注册</button>
@@ -98,11 +95,10 @@
         </div>
     </div>
     <script language="javascript">
-                    try {
-                        document.simpleform.elements[0].focus();
-                    } catch (e) {
-                    }
-                </script>
-
+         try {
+              document.simpleform.elements[0].focus();
+         } catch (e) {
+         }
+    </script>
 </body>
 </html>

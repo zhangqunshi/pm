@@ -15,8 +15,6 @@
 <a href="<c:url value='/jsp/backend/project/component/addProjectComponent.jsp'/>?projectId=<s:property value="#project.projectId" />">Add</a>
 a new component
 <br>
-
-
 <s:set var="size" value="#components.size()" />
 <s:if test="size==0">
         There are no components at the moment.
@@ -33,7 +31,6 @@ a new component
                 </td>
 
                 <td>
-
                     <s:set var="leader" value="#component.leader" />
                     <s:if test="leader == \"\"">   
                     无
@@ -41,17 +38,13 @@ a new component
                     <s:else>
                         负责人: <s:property value="#component.leader" />
                     </s:else>
-
                 </td>
                 <td>
                     <a href="/pmhb/jsp/backend/project/component/deleteProjectComponent.jsp?idd=<s:property value="#component.id" />&id=<s:property value="#project.projectId" />">删除</a>
                     |
                     <a href="/pmhb/jsp/backend/project/component/updateProjectComponent.jsp?idd=<s:property value="#component.id" />&id=<s:property value="#project.projectId" />">编辑</a>
-
                 </td>
             </tr>
         </s:iterator>
-
     </table>
 </s:else>
-

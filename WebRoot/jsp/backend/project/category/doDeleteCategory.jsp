@@ -4,16 +4,13 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-<%@taglib prefix="s" uri="/struts-tags"%> 
-<%
-
-%>
-
+<%@taglib prefix="s" uri="/struts-tags"%>
 <table>
     <tr>
         <td colspan="2">
             <h3 class="formtitle">
-                Delete Project Category:<s:property value="name"/>
+                Delete Project Category:
+                <s:property value="name" />
             </h3>
         </td>
     </tr>
@@ -34,6 +31,3 @@
         </td>
     </tr>
 </table>
-
-
-

@@ -7,7 +7,6 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!-- 功能：删除选定的问题状态-->
 <!-- @author 许希光 -->
-
 <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
     <table>
         <tr>
@@ -35,7 +34,6 @@
             <td colspan="2">
                 <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/issue/status/doDeleteIssueStatus.jsp"/>?IssueStatusId=<s:property value="id"/>'" value="删除" id="删除" name="删除" />
                 <input type="button" onclick="location.href='<c:url value="/jsp/backend/issue/status/viewIssueStatus.jsp"/>?IssueStatusId=<s:property value="id"/>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
-
             </td>
         </tr>
     </table>

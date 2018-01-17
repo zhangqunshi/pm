@@ -14,10 +14,8 @@
 <html>
 <head>
 <script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
-
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-
 <body>
     <%@include file="/jsp/showErrorMessage.jsp"%>
     <form action="doAddPermissionScheme.jsp" method="post" class="bs-example bs-example-form" role="form">
@@ -25,13 +23,10 @@
             <tbody>
                 <tr>
                     <td>
-
                         <h3>Add Permission Scheme</h3>
-
                     </td>
                 </tr>
                 <tr>
-
                     <td>
                         <div class="input-group">
                             <span class="input-group-addon">名称</span>
@@ -40,7 +35,6 @@
                     </td>
                 </tr>
                 <tr>
-
                     <td class="fieldValueArea" bgcolor="#ffffff">
                         <div class="input-group">
                             <span class="input-group-addon">描述</span>

@@ -10,7 +10,7 @@
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body >
+<body>
 
 
     <%

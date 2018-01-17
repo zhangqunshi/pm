@@ -56,9 +56,6 @@
 
         <input type="submit" value="更新" class="btn btn-info btn-block">
         <input type="button" onclick="location.href='<c:url value="viewRoles.jsp"/>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" class="btn btn-warning btn-block" />
-
     </form>
-
 </body>
 </html>
-

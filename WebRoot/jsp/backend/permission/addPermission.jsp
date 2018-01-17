@@ -13,28 +13,23 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
-
-
 <script>
-			function openWindow(element)
-				{
-   				 var vWinUsers = window.open('<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element=' + element, 'UserPicker', 'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
-    			 vWinUsers.opener = self;
-				 vWinUsers.focus();
-				}
-			function setFocus() {  
-			   var option =   document.all.permissions.options;  
-			   for(var   i=0;i<option.length;i++) {  
-			       if(option[i].selected) {  
-			           option[i].focus();
-			       }  
-			  }  
+	function openWindow(element){
+   		var vWinUsers = window.open('<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element=' + element, 'UserPicker', 'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+    	WinUsers.opener = self;
+		vWinUsers.focus();
+	}
+	function setFocus() {  
+		var option =   document.all.permissions.options;  
+		 for(var   i=0;i<option.length;i++) {  
+			 if(option[i].selected) {  
+			     option[i].focus();
+			   }  
+			 }  
   		   } 
   		   
-		</script>
+</script>
 </head>
-
 <body>
     <script>
      function load() 
@@ -47,8 +42,7 @@
 	             opt.focus();
 	          }
 	     } 
-    }
-     
+    }   
     </script>
     <%
         //get parameters.
@@ -76,13 +70,11 @@
         //get group list.
         List<Grouphbm> groupList = groupBO.getViewGroups();
     %>
-
     <form name="simpleform" action="doAddPermission.jsp">
         <table width="100%">
             <tr>
                 <td class="instructions" colspan="2">
                     <h3 class="formtitle">Add New Permission</h3>
-
                 </td>
             </tr>
             <tr>
@@ -95,7 +87,6 @@
                 </td>
             </tr>
             <tr>
-
                 <td><%@include file="/jsp/showErrorMessage.jsp"%>
                     <div>
                         <table class="leftColumn grid" width="100%">
@@ -124,10 +115,8 @@
                                 </tr>
                             </tbody>
                         </table>
-
                         <table class="rightColumn grid" width="100%">
                             <tbody>
-
                                 <tr>
                                     <td width="5%" align="center">
                                         <input id="type" type="radio" value="Group" name="type" />
@@ -140,13 +129,10 @@
                                             <option value="">
 													Anyone
 												</option>
-                                                <s:iterator value="#groupList" var="g">
-                                                
-                                       
+                                                <s:iterator value="#groupList" var="g">                
                                             <option value="<s:property value="#g.name"/>">
 													<s:property value="#g.name"/>
-												</option>
-                                          
+												</option>        
                                             </s:iterator>
                                         </select>
                                     </td>
@@ -159,7 +145,6 @@
                                         <label for="type_user"> Single User </label>
                                     </td>
                                     <td>
-
                                         <div id="user_container" class="ajax_autocomplete">
                                             <input id="user" type="text" name="SingleUser" autocomplete="off" onclick="document.forms['simpleform'].type[1].checked = true;" />
                                             <a href="javascript:openWindow('user');" onclick="document.forms['simpleform'].type[1].checked = true;">
@@ -167,8 +152,6 @@
                                             </a>
                                     </td>
                                 </tr>
-
-
                                 <tr class="rowAlternate">
                                     <td width="5%" align="center">
                                         <input id="type" type="radio" value="ProjectRole" name="type" />
@@ -181,17 +164,14 @@
                                             <option value="">
 													Choose a project role
 												</option>
-                                                <s:iterator value="#roleList" var="r">
-                                           
+                                                <s:iterator value="#roleList" var="r">          
                                             <option value="<s:property value="#r.roleName"/>">
 													<s:property value="#r.roleName"/>
-												</option>
-                                           
+												</option>               
                                             </s:iterator>
                                         </select>
                                     </td>
                                 </tr>
-
                                 <input id="schemeId" type="hidden" value="<%=ps.getId()%>" name="schemeId" />
                             </tbody>
                         </table>
@@ -204,7 +184,6 @@
                     <input id="cancelButton" type="button" onclick="location.href='editPermissions.jsp?schemeId=<s:property value="schemeId"/>'" value="取消" name="Cancel" title="取消 (Alt + `)" accesskey="`" />
                 </td>
             </tr>
-
         </table>
     </form>
 </body>

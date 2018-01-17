@@ -10,15 +10,11 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
 </head>
-
 <body>
-
     <form action="changeProjectPermissionScheme.jsp">
         <table class="simpleform maxWidth">
             <tbody>
@@ -38,8 +34,7 @@
 
                             <option value="<s:property value="#ps.id"/>">
 									<s:property value="ps.name"/>
-								</option>
-                          
+								</option>         
                             </s:iterator>
                         </select>
                         <span id="schemeId" class="selectDescription" />
@@ -55,6 +50,5 @@
             </tbody>
         </table>
     </form>
-
 </body>
 </html>

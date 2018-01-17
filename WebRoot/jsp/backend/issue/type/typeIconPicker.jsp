@@ -23,9 +23,10 @@
     }
     
     function sendText(){
- 	   window.opener.document.getElementById("<%=element%>").value=document.form1.text.value;
- 	   window.close();
-     }
+ 	   window.opener.document.getElementById("<%=element%>
+    ").value = document.form1.text.value;
+        window.close();
+    }
 </script>
 </head>
 <body>

@@ -10,8 +10,6 @@
 <%@ page import="com.nastation.pm.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 
-
-
 <%
     ProjectBO pb = new ProjectBO();
     List<Projecthbm> list = pb.getProjectList();
@@ -76,4 +74,3 @@
 
     } //endelse
 %>
-

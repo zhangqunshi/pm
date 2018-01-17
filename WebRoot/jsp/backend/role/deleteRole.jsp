@@ -13,10 +13,8 @@
 
 <html>
 <body>
-
     <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
         <table border=0>
-
             <tr>
                 <td>
                     <form action="doDeleteRole.jsp">
@@ -36,4 +34,3 @@
     </div>
 </body>
 </html>
-

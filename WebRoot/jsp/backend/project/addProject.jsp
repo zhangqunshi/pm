@@ -80,7 +80,6 @@
         }
     }
 </script>
-
 </head>
 <body>
     <br />
@@ -102,8 +101,6 @@
                     </span>
                 </td>
             </tr>
-
-
             <tr>
                 <td align="right" valign="top" bgcolor="#FFFFD7">
                     <!-- 名称 -->
@@ -142,17 +139,13 @@
                 </td>
             </tr>
             <script>
-                                                    function openWindow(element) {
-                                                        var vWinUsers = window
-                                                                .open(
-                                                                        '<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element='
-                                                                                + element,
-                                                                        'UserPicker',
-                                                                        'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
-                                                        vWinUsers.opener = self;
-                                                        vWinUsers.focus();
-                                                    }
-                                                </script>
+               function openWindow(element) {
+                   var vWinUsers = window.open('<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element='+ element,
+                                               'UserPicker','status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+                   vWinUsers.opener = self;
+                   vWinUsers.focus();
+               }
+            </script>
             <tr>
                 <td align="right" valign="top" bgcolor="#FFFFD7">
                     <!-- 项目负责人 -->
@@ -189,11 +182,11 @@
                 <td>
                     <select name="permission_scheme_id">
                         <s:iterator value="#psList" var="ps">
-                       
-                        <option value="<s:property value="#ps.id"/>">
+
+                            <option value="<s:property value="#ps.id"/>">
 								<s:property value="#ps.name"/>
 							</option>
-                      
+
                         </s:iterator>
                     </select>
                     <br>

@@ -13,7 +13,6 @@
 <html>
 <head>
 </head>
-
 <body>
     <%
         String groupName = request.getParameter("groupName");

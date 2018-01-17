@@ -13,14 +13,12 @@
 
 <html>
 <head>
-
 </head>
 <body>
     <s:if test="flag">
         <p>项目ID不能为空</p>
     </s:if>
     <s:else>
-
         <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
             <h3>
                 Manage Project Role Membership for Project:
@@ -42,7 +40,6 @@
                 <th width="200">Role</th>
                 <th>Users</th>
             </tr>
-
             <s:if test="!flag">
                 <s:iterator value="#vpList" var="vp">
                     <tr>
@@ -67,7 +64,6 @@
                     </tr>
                 </s:iterator>
             </s:if>
-
         </table>
     </s:else>
 </body>

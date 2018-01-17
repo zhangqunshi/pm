@@ -11,8 +11,6 @@
 
 <html>
 	<body>
-		
-
 		<form action="doDeleteProjectUser.jsp">
 			<H2>
 				删除开发人员

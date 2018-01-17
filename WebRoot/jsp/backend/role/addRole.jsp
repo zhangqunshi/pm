@@ -31,14 +31,11 @@
 </script>
 </head>
 <div class="container">
-
     <div class="row">
         <div class="col-md-12">
             <h3>Add Project Role</h3>
         </div>
-
     </div>
-
     <div class="row">
         <div class="col-md-12">
             <%
@@ -50,25 +47,13 @@
                     <span class="input-group-addon">* 名称</span>
                     <input type="text" name="name" class="form-control" placeholder="name" />
                 </div>
-
-
                 <div class="input-group">
                     <span class="input-group-addon">描述</span>
                     <input type="text" name="desc" class="form-control" placeholder="descript" />
                 </div>
-
                 <input type="submit" value="AddProjectRole" class="btn btn-info btn-block" />
-
             </form>
-
         </div>
-
     </div>
-
 </div>
-
-
-
-
-
 </html>

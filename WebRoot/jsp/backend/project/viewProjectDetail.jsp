@@ -14,7 +14,6 @@
 <%
     String path = request.getContextPath();
 %>
-
 <body>
     <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
         <table border="0">
@@ -72,9 +71,7 @@
                         <s:property value="#category.name" />
                         <a href="<%=request.getContextPath()%>/jsp/backend/project/category/viewProjectCategoryForProject.jsp?projectId=<s:property value="#project.projectId" />"> Select Category</a>
                     </s:else>
-
                 </td>
-
             </tr>
         </table>
     </div>
@@ -89,13 +86,11 @@
             </td>
         </tr>
     </table>
-
     <table>
         <tr>
             <td><%@ include file="/jsp/backend/project/component/viewComponents.jsp"%>
             </td>
         </tr>
     </table>
-
 </body>
 </html>

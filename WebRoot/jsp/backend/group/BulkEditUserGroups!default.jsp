@@ -12,10 +12,8 @@
 
 <html>
 <head>
-
 </head>
 <body>
-
     <table cellspacing="0" cellpadding="10" border="0" width="100%">
         <tbody>
             <tr>

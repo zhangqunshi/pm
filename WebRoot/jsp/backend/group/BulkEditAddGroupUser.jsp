@@ -9,7 +9,7 @@
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="java.util.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-
+<%@taglib prefix="s" uri="/struts-tags"%>
 
 <form action="doBulkEditAddGroupUser.jsp">
     <table>
@@ -25,28 +25,21 @@
         </tr>
         <tr>
             <script>
-                                                    function openWindow(element) {
-                                                        var vWinUsers = window
-                                                                .open(
-                                                                        '<c:url value="/jsp/backend/project/user/UserPickerForOneProject.jsp"/>?element='
-                                                                                + element,
-                                                                        'UserPicker',
-                                                                        'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
-                                                        vWinUsers.opener = self;
-                                                        vWinUsers.focus();
+                function openWindow(element) {
+                    var vWinUsers = window.open('<c:url value="/jsp/backend/project/user/UserPickerForOneProject.jsp"/>?element='+ element,
+                                               'UserPicker','status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+                    vWinUsers.opener = self;
+                    vWinUsers.focus();
                                                     }
-                                                </script>
+            </script>
             <td>
                 <br>
-                <%
-                    String addGroupName = request.getParameter("groupName");
-                    if (StringUtils.isBlank(addGroupName)) {
-
-                        out.println("<input type='hidden' name='groupName'/>");
-                    } else {
-                        out.println("<input type='hidden' name='groupName' value='" + addGroupName + "'/>");
-                    }
-                %>
+                <s:if test="flag">
+                    <input type="hidden" name="groupName" />
+                </s:if>
+                <s:else>
+                    <input type="hidden" name="groupName" value="<s:property value="groupName"/>" />
+                </s:else>
                 <textarea name='users' id='users' cols='50'></textarea>
                 <a href="javascript:openWindow('users');">
                     <img src="<%=request.getContextPath()%>/images/icons/filter_public.gif" border="0" alt='选择用户' />
@@ -55,4 +48,3 @@
         </tr>
     </table>
 </form>
-

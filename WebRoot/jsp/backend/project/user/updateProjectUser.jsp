@@ -11,7 +11,6 @@
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <body>
@@ -23,7 +22,9 @@
         <br>
         User Name:
         <s:if test="ul">
-            <select name="userId"><option></option></select>
+            <select name="userId">
+                <option></option>
+            </select>
             <a href='../../user/addUser.jsp'>Add User</a>
         </s:if>
         <s:else>
@@ -31,8 +32,8 @@
                 <s:iterator value="#uList" var="u">
                     <s:if test="#u.id==projectUserOfUserId">
                         <option selected value="<s:property value="#u.id"/>">
-								<s:property value="#u.name"/>
-                                </option selected>
+							<s:property value="#u.name"/>
+                        </option selected>
                     </s:if>
                     <s:else>
                         <option value="<s:property value="#u.id"/>"><s:property value="#u.name"/></option>
@@ -40,12 +41,13 @@
                 </s:iterator>
             </select>
         </s:else>
-        
         <br>
         <br>
         Role Name:
         <s:if test="rl">
-            <select name='roleId'><option></option></select>
+            <select name='roleId'>
+                <option></option>
+            </select>
             <a href='../../user/addRole.jsp'>Add Role</a>
         </s:if>
         <s:else>
@@ -60,7 +62,6 @@
                 </s:iterator>
             </select>
         </s:else>
-       
         <br>
         <br>
         <input type="hidden" value=<s:property value="projectUserId"/> name="projectUserId">

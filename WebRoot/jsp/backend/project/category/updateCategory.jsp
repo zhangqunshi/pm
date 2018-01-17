@@ -25,33 +25,22 @@
 </script>
 </head>
 <body>
-
     <h2 class="formtitle">
         Edit ProjectCategory:
-        <s:property value="name"/>
+        <s:property value="name" />
     </h2>
-
-
-
     <form action="doUpdateCategory.jsp" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
-
         <div class="input-group">
             <span class="input-group-addon">名称</span>
             <input type="text" name="name" value=<s:property value="name"/> class="form-control" placeholder="twitterhandle"></input>
         </div>
-
-
         <div class="input-group">
             <span class="input-group-addon">描述</span>
             <input type="text" name="desc" value=<s:property value="description"/> class="form-control" placeholder="twitterhandle"></input>
         </div>
-
         <input type="hidden" value=<s:property value="id"/> name="id">
         <input type="submit" value="更新" class="btn btn-info btn-block">
-
         <input type="button" value="取消" onclick="location.href='viewProjectCategory.jsp'" class="btn btn-warning btn-block">
     </form>
-
 </body>
 </html>
-
