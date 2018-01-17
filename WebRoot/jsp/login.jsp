@@ -33,12 +33,6 @@
     }
 </script>
 
-<style type="text/css">
-.top {
-    margin-top: 200px;
-}
-</style>
-
 
 </head>
 <body>
@@ -47,7 +41,7 @@
 
 
     <%
-        String choice = request.getParameter("choice");
+        String choice = (String)request.getAttribute("choice");
     %>
 
     <div class="container top">
@@ -76,7 +70,7 @@
                     } else {
                 %>
 
-                <form class="form-horizontal" action="<%=path%>/jsp/checkLogin.jsp" method="post" name="myForm" onsubmit="return check()">
+                <form class="form-horizontal" action="Login.action" method="post" name="myForm" onsubmit="return check()">
                     <%@include file="/jsp/showErrorMessage.jsp"%>
                     <div class="form-group">
                         <input type="text" id="inputSuccess" class="form-control" name="username" placeholder="用户名">

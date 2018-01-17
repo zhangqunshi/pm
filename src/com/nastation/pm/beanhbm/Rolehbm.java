@@ -8,7 +8,7 @@ public class Rolehbm {
     int id;// 角色ID
     String roleName;// 角色名称
     String roleDesc;// 角色描述
-    String createDate;// 创建角色日期
+    java.util.Date createDate;// 创建角色日期
 
     public int getId() {
         return id;
@@ -18,11 +18,11 @@ public class Rolehbm {
         this.id = id;
     }
 
-    public String getCreateDate() {
+    public java.util.Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(java.util.Date createDate) {
         this.createDate = createDate;
     }
 

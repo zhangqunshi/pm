@@ -4,22 +4,16 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!-- 功能：删除选定的问题优先级-->
 <!-- @author 许希光 -->
-<%
-    String id = request.getParameter("id");
-    int issuePriorityId = Integer.parseInt(id);
 
-    IssuePriorityBO issuePriorityBO = new IssuePriorityBO();
-    IssuePriorityhbm ip = issuePriorityBO.getIssuePriority(issuePriorityId);
-    String name = ip.getName();
-%>
 <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
     <table>
         <tr>
             <td colspan="2">
                 <h3 class="formtitle">
-                    Delete IssuePriority:<%=name%>
+                    Delete IssuePriority:<s:property value="name"/>
                 </h3>
             </td>
         </tr>
@@ -35,12 +29,12 @@
                 </p>
             </td>
         </tr>
-        <input type="hidden" value="<%=id%>" name="issuePriorityId" id="issuePriorityId" />
+        <input type="hidden" value="<s:property value="id"/>" name="issuePriorityId" id="issuePriorityId" />
         <input type="hidden" value="true" name="confirm" />
         <tr>
             <td colspan="2" align="center">
-                <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/issue/priority/doDeteleIssuePriority.jsp"/>?IssuePriorityId=<%=id%>'" value="删除" id="删除" name="删除" />
-                <input type="button" onclick="location.href='<c:url value="/jsp/backend/issue/priority/viewIssuePriority.jsp"/>?IssuePriorityId=<%=id%>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
+                <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/issue/priority/doDeteleIssuePriority.jsp"/>?IssuePriorityId=<s:property value="id"/>'" value="删除" id="删除" name="删除" />
+                <input type="button" onclick="location.href='<c:url value="/jsp/backend/issue/priority/viewIssuePriority.jsp"/>?IssuePriorityId=<s:property value="id"/>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
 
             </td>
         </tr>

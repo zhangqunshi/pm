@@ -13,13 +13,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.nastation.pm.bean.IssueType;
 import com.nastation.pm.beanhbm.Iconhbm;
 import com.nastation.pm.beanhbm.IssueTypehbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 
 public class IssueTypeBO {
+
+    public static IssueTypeBO getIssueTypeBO() {
+        return new IssueTypeBO();
+    }
 
     /**
      * 向数据库中添加记录 IssueType 对象
@@ -177,7 +180,7 @@ public class IssueTypeBO {
     /**
      * 检查是否创建了同名IssueType
      */
-    public boolean exist(IssueType issueType) {
+    public boolean exist(IssueTypehbm issueType) {
         Connection conn = DBConn.getConnection();
         try {
             String sql = "select id from t_issue_type where name=? and id!=?";

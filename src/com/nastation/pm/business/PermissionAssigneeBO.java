@@ -8,7 +8,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.nastation.pm.bean.PermissionAssignee;
 import com.nastation.pm.beanhbm.PermissionAssigneehbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
@@ -20,6 +19,10 @@ import com.nastation.pm.util.SessionF;
  *
  */
 public class PermissionAssigneeBO {
+
+    public static PermissionAssigneeBO getPermissionAssigneeBO() {
+        return new PermissionAssigneeBO();
+    }
 
     /**
      * 获得指定权限模板中指定权限的分配列表。
@@ -171,15 +174,15 @@ public class PermissionAssigneeBO {
      * @author sun
      * @param list
      */
-    public void addAllPermissionAssignee(List<PermissionAssignee> list, int schemeId) {
+    public void addAllPermissionAssignee(List<PermissionAssigneehbm> list, int schemeId) {
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "insert t_permission_assignee(permission_id,assignee_type,assignee,scheme_id,create_time)"
                 + "values(?,?,?," + schemeId + ",curdate())";
         try {
             pstmt = conn.prepareStatement(sql);
-            for (PermissionAssignee pa : list) {
-                pstmt.setInt(1, pa.getPermissionId());
+            for (PermissionAssigneehbm pa : list) {
+                pstmt.setInt(1, pa.getPermission().getId());
                 pstmt.setString(2, pa.getAssigneeType());
                 pstmt.setString(3, pa.getAssignee());
                 pstmt.executeUpdate();

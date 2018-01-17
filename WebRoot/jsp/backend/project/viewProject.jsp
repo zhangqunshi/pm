@@ -9,6 +9,7 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 
@@ -62,44 +63,50 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%
-                            ProjectBO pb = new ProjectBO();
-                            List<Projecthbm> list = pb.getProjectList();
-                            if (list != null) {
-                                for (int i = 0; i < list.size(); i++) {
-                                    Projecthbm p = list.get(i);
-                                    Project project = new Project();
-                                    project.setProjectId(p.getId());
-                                    project.setName(p.getName());
-                                    project.setProjectKey(p.getProjectKey());
-                                    project.setUrl(p.getUrl());
-                                    project.setLeader(p.getLeader());
-                                    project.setCreateDate(p.getCreateDate());
 
-                                    //判断URL是否是初始值，是的话把url的值改为'没有网页'
-                                    String url = project.getUrl();
-                                    out.println("<tr><td>");
-                                    out.println("<a href='viewProjectDetail.jsp?projectId=" + project.getProjectId() + "'>"
-                                            + project.getName() + "</a>");
-                                    out.println("</td>");
-                                    out.println("<td>" + project.getProjectKey() + "</td>");
-                                    if (url.equals("http://")) {
-                                        out.println("<td>没有网址</td>");
-                                    } else {
-                                        out.println("<td><a href='" + project.getUrl() + "'>" + project.getUrl() + "</a></td>");
-                                    }
 
-                                    out.println("<td><a href='#'>" + project.getLeader() + "</a></td>");
-                                    out.println("<td>" + project.getCreateDate() + "</td>");
-                                    out.println("<td width='150'>");
-                                    out.println("<a href='viewProjectDetail.jsp?projectId=" + project.getProjectId() + "'>查看</a> | ");
-                                    out.println("<a href='deleteProject.jsp?projectId=" + project.getProjectId()
-                                            + "' onclick='return confirmDelete();'>删除</a> | ");
-                                    out.println("<a href='updateProject.jsp?projectId=" + project.getProjectId() + "'>编辑</a>");
-                                    out.println("</td></tr>");
-                                }
-                            } //endif
-                        %>
+                        <s:iterator value="#projList" var="proj">
+                            <tr>
+                                <td>
+                                    <a href="detailProject.action?projectId=<s:property value="#proj.projectId" />">
+                                        <s:property value="#proj.name " />
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <s:property value="#proj.projectKey" />
+                                </td>
+                                <s:set var="url" value="#proj.url" />
+                                <s:set var="http" value="http://" />
+                                <s:if test="url == http">
+                                    <td>没有网址</td>
+                                </s:if>
+                                <s:else>
+                                    <td>
+                                        <a href="#proj.url">
+                                            <s:property value="#proj.url" />
+                                        </a>
+                                    </td>
+                                </s:else>
+                                <td>
+                                    <a href='#'>
+                                        <s:property value="#proj.leader" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <s:property value="#proj.createDate" />
+                                </td>
+                                <td>
+                                    <a href="detailProject.action?projectId=<s:property value="#proj.projectId" />">查看</a>
+
+                                    <a href="deleteProject.action?projectId=<s:property value="#proj.projectId" />" onclick="return confirmDelete();">删除</a>
+
+                                    <a href="aupdateProject.action?projectId=<s:property value="#proj.projectId" />">编辑</a>
+
+                                </td>
+                            </tr>
+                        </s:iterator>
+
                     </tbody>
                 </table>
 

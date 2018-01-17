@@ -5,6 +5,7 @@
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.nastation.pm.util.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <title>创建新用户</title>
@@ -77,13 +78,8 @@
 
         <div class="row">
             <div class="col-md-12">
-                <%
-                    String fail = request.getParameter("fail");
-                    if (StringUtils.isBlank(fail)) {
-                        fail = "";
-                    }
-                    out.println("<font color='red'>" + fail + "</font>");
-                %>
+            <font color="red"><s:property value="fail"/></font>
+                
                 <form action="doAddUser.jsp" method="post" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
 
                     <div class="input-group">

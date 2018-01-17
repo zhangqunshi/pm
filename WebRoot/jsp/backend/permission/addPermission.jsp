@@ -9,6 +9,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib prefix="s" uri="/struts-tags"%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -88,7 +89,7 @@
                 <td class="instructions" colspan="2">
                     Permission Scheme:
                     <strong>
-                        <%=ps.getName()%>
+                        <s:property value="name"/>
                     </strong>
                     <p>Please select the type of permission you wish to add to this Permission Scheme</p>
                 </td>
@@ -103,24 +104,19 @@
                                     <td class="fieldLabelArea">Permissions:</td>
                                     <td class="fieldValueArea" bgcolor="#ffffff">
                                         <select id="permission" size="7" name="permissions">
-                                            <%
-                                                //print permissions ,if the permission id equals the request parameter permissionId set the optino selected.
-                                                for (Permissionhbm per : list) {
-                                                    if (per.getId() == permissionId) {
-                                            %>
-                                            <option selected value="<%=per.getId()%>">
-													<%=per.getName()%>
-												</option>
-                                            <%
-                                                } else {
-                                            %>
-                                            <option value="<%=per.getId()%>">
-													<%=per.getName()%>
-												</option>
-                                            <%
-                                                } //endelse
-                                                } //endfor
-                                            %>
+                                            <s:iterator value="#permissionList" var="p">
+                                            <s:if test="#p.id==permissionId">
+                                                <option selected value="<s:property value="#p.id"/>">
+                                                	<p><s:property value="#p.name"/></p>
+                                                </option>
+                                            </s:if>
+                                            <s:else>
+                                                <option value="<s:property value="#p.id"/>">
+                                                    <p><s:property value="#p.name"/></p>
+                                                </option>
+                                            </s:else>
+                                           
+                                            </s:iterator>
                                         </select>
                                         <br />
                                         <font size="1"> (Select the permissions that you want to assign). </font>
@@ -144,16 +140,14 @@
                                             <option value="">
 													Anyone
 												</option>
-                                            <%
-                                                //print the group list
-                                                for (Grouphbm group : groupList) {
-                                            %>
-                                            <option value="<%=group.getName()%>">
-													<%=group.getName()%>
+                                                <s:iterator value="#groupList" var="g">
+                                                
+                                       
+                                            <option value="<s:property value="#g.name"/>">
+													<s:property value="#g.name"/>
 												</option>
-                                            <%
-                                                } //endfor
-                                            %>
+                                          
+                                            </s:iterator>
                                         </select>
                                     </td>
                                 </tr>
@@ -187,16 +181,13 @@
                                             <option value="">
 													Choose a project role
 												</option>
-                                            <%
-                                                //print the role list.
-                                                for (Rolehbm role : roleList) {
-                                            %>
-                                            <option value="<%=role.getRoleName()%>">
-													<%=role.getRoleName()%>
+                                                <s:iterator value="#roleList" var="r">
+                                           
+                                            <option value="<s:property value="#r.roleName"/>">
+													<s:property value="#r.roleName"/>
 												</option>
-                                            <%
-                                                } //endfor
-                                            %>
+                                           
+                                            </s:iterator>
                                         </select>
                                     </td>
                                 </tr>
@@ -210,7 +201,7 @@
             <tr align="center">
                 <td class="fullyCentered simpleformfooter" colspan="2">
                     <input id="增加" class="spaced" type="submit" title="按 Alt+S 提交" accesskey="S" value="增加" name=" 增加 " />
-                    <input id="cancelButton" type="button" onclick="location.href='editPermissions.jsp?schemeId=<%=ps.getId()%>'" value="取消" name="Cancel" title="取消 (Alt + `)" accesskey="`" />
+                    <input id="cancelButton" type="button" onclick="location.href='editPermissions.jsp?schemeId=<s:property value="schemeId"/>'" value="取消" name="Cancel" title="取消 (Alt + `)" accesskey="`" />
                 </td>
             </tr>
 

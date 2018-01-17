@@ -46,7 +46,7 @@
                         if (user.isAdmin()) {
                     %>
                     <li>
-                        <a href="<%=request.getContextPath()%>/jsp/backend/project/viewProject.jsp">管理</a>
+                        <a href="<%=request.getContextPath()%>/jsp/backend/project/viewProject.action">管理</a>
                     </li>
                     <%
                         }

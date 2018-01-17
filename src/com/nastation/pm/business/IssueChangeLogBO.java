@@ -12,6 +12,10 @@ import com.nastation.pm.util.StringUtils;
 
 public class IssueChangeLogBO {
 
+    public static IssueChangeLogBO getIssueChangeLogBO() {
+        return new IssueChangeLogBO();
+    }
+
     /**
      * 保存问题改编log
      * 

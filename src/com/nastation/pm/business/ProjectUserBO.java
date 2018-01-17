@@ -13,6 +13,10 @@ import com.nastation.pm.util.DBConn;
 
 public class ProjectUserBO {
 
+    public static ProjectUserBO getProjectUserBO() {
+        return new ProjectUserBO();
+    }
+
     // add new project user
 
     public void addProjectUser(ProjectUser projectUser) throws SQLException {

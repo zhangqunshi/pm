@@ -7,17 +7,17 @@
 
 <hibernate-mapping>
 
-    <class name="com.nastation.pm.beanhbm.Rolehbm" table="t_role"
-        lazy="false">
+    <class name="com.nastation.pm.beanhbm.Rolehbm" table="t_role" lazy="false">
 
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
 
 
-        <property name="roleName" type="string" column="role_name"
-            not-null="true" />
+        <property name="roleName" type="string" column="role_name" not-null="true" />
         <property name="roleDesc" type="string" column="role_desc" />
+
+        <property name="createDate" type="timestamp" column="create_date" />
 
 
 

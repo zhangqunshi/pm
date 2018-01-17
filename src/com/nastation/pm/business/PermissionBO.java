@@ -26,6 +26,10 @@ import com.nastation.pm.util.SessionF;
 
 public class PermissionBO {
 
+    public static PermissionBO getPermissionBO() {
+        return new PermissionBO();
+    }
+
     public Permissionhbm idGetPermission(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;

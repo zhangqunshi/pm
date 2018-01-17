@@ -4,11 +4,8 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-<%
-    IssuePriorityBO issuePriorityBO = new IssuePriorityBO();
-			int issuePriorityId = Integer.parseInt(request.getParameter("id"));
-			IssuePriorityhbm issuePriority = issuePriorityBO.getIssuePriority(issuePriorityId);
-%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+
 
 <script language="JavaScript">
     function openWindow(element) {
@@ -43,7 +40,7 @@
         <div class="col-md-12">
             <h3>
                 Edit Priority:
-                <%=issuePriority.getName()%>
+                <s:property value="name"/>
             </h3>
         </div>
 
@@ -52,21 +49,21 @@
     <div class="row">
         <div class="col-md-12">
             <form onsubmit="if (this.submitted) return false; this.submitted = true; return true" name="simpleform" method="post" action="doUpdateIssuePriority.jsp" class="bs-example bs-example-form" role="form">
-                <input id="id" type="hidden" value="<%=issuePriority.getId()%>" name="id" />
+                <input id="id" type="hidden" value="<s:property value="id"/>" name="id" />
 
                 <div class="input-group">
                     <span class="input-group-addon">名称</span>
-                    <input type="text" value="<%=issuePriority.getName()%>" size="30" name="name" class="form-control" placeholder="twitterhandle" />
+                    <input type="text" value="<s:property value="name"/>" size="30" name="name" class="form-control" placeholder="twitterhandle" />
                 </div>
 
                 <div class="input-group">
                     <span class="input-group-addon">描述</span>
-                    <input type="text" value="<%=issuePriority.getDescription()%>" size="60" name="desc" class="form-control" placeholder="twitterhandle" />
+                    <input type="text" value="<s:property value="description"/>" size="60" name="desc" class="form-control" placeholder="twitterhandle" />
                 </div>
 
                 <div class="input-group">
                     <span class="input-group-addon">Icon URL</span>
-                    <input type="text" value="<%=issuePriority.getIconUrl()%>" size="60" name="iconUrl" id="filename" class="form-control" placeholder="relative to the simple web application e.g /images/icons OR starting with http://" />
+                    <input type="text" value="<s:property value="iconUrl"/>" size="60" name="iconUrl" id="filename" class="form-control" placeholder="relative to the simple web application e.g /images/icons OR starting with http://" />
                     <span class="input-group-addon">
                         <a href="javascript:openWindow('filename');">select image</a>
                     </span>
@@ -74,7 +71,7 @@
 
                 <div class="input-group">
                     <span class="input-group-addon">Priority Color</span>
-                    <input type="text" value="<%=issuePriority.getPriorityColor()%>" size="40" name="color" id="color" class="form-control" placeholder="twitterhandle" />
+                    <input type="text" value="<s:property value="priorityColor"/>" size="40" name="color" id="color" class="form-control" placeholder="twitterhandle" />
                     <span class="input-group-addon">
                         <a href="javascript:openWindowColor('color','myColor');">
                             <img alt="" src="<%=request.getContextPath()%>/images/border/spacer.gif" />

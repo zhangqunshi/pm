@@ -9,81 +9,66 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
-<%
-    String projectIdStr = request.getParameter("projectId");
-    if (projectIdStr == null || projectIdStr.equals("")) {
-        out.println("项目ID不能为空");
-        return;
-    }
-    int projectId = Integer.parseInt(projectIdStr);
-    ProjectBO projectbo = new ProjectBO();
-    Project project = new Project();
-    Projecthbm p = new Projecthbm();
-    p = projectbo.getProject(projectId);
-%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+
 <html>
 <head>
 
 </head>
 <body>
-    <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-        <h3>
-            Manage Project Role Membership for Project:
-            <%=project.getName()%></h3>
-        <p>
-            On this page you can manage project role membership for the
-            <a href="<%=request.getContextPath()%>/jsp/backend/project/viewProjectDetail.jsp?projectId=<%=projectId%>">
-                <b><%=project.getName()%></b>
-            </a>
-            project.
-        </p>
-    </div>
-    <p></p>
-    <table border='1' width='100%'>
-        <tr>
-            <th width="200">Role</th>
-            <th>Users</th>
-        </tr>
-        <%
-            //get all roles
-            RoleBO rb = new RoleBO();
-            List<Rolehbm> list = rb.getRoleList();
+    <s:if test="flag">
+        <p>项目ID不能为空</p>
+    </s:if>
+    <s:else>
 
-            if (list != null) {
+        <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
+            <h3>
+                Manage Project Role Membership for Project:
+                <s:property value="name" />
+            </h3>
+            <p>
+                On this page you can manage project role membership for the
+                <a href="<%=request.getContextPath()%>/jsp/backend/project/viewProjectDetail.jsp?projectId=<s:property value="projectId"/>">
+                    <b>
+                        <s:property value="name" />
+                    </b>
+                </a>
+                project.
+            </p>
+        </div>
+        <p></p>
+        <table border='1' width='100%'>
+            <tr>
+                <th width="200">Role</th>
+                <th>Users</th>
+            </tr>
 
-                //显示所有的角色
-                for (int i = 0; i < list.size(); i++) {
-                    Rolehbm role = list.get(i);
-                    out.println("<tr>");
-                    out.println("<td><b>" + role.getRoleName() + "</b>");
-                    out.println("<br>" + role.getRoleDesc() + "</td>");
-                    out.println("<td>");
+            <s:if test="!flag">
+                <s:iterator value="#vpList" var="vp">
+                    <tr>
+                        <td>
+                            <b>
+                                <s:property value="#vp.roleName" />
+                            </b>
+                            <br>
+                            <s:property value="#vp.roleDesc" />
+                        </td>
+                        <td>
+                            <s:if test="flag2">
+                                <p>None selected.</p>
+                            </s:if>
+                            <s:else>
+                                <s:iterator value="#vpList.projectUserList" var="pu">
+                                    <s:property value="#pu.username" />
+                                </s:iterator>
+                            </s:else>
+                            <a href="addProjectUser.jsp?projectId=<s:property value="projectId"/>&roleId=<s:property value="#vp.roleId"/>">编辑</a>
+                        </td>
+                    </tr>
+                </s:iterator>
+            </s:if>
 
-                    //根据角色查找 属于这个项目的 用户
-                    ProjectUserBO projectUserBO = new ProjectUserBO();
-                    List<ProjectUser> projectUserList = projectUserBO
-                            .getProjectUserByProjectIdRoleId(project.getProjectId(), role.getId());
-
-                    if (projectUserList == null || projectUserList.size() == 0) {
-                        out.println("None selected. ");
-                    } else {
-
-                        //显示所有属于这个项目的用户
-                        for (int j = 0; j < projectUserList.size(); j++) {
-                            ProjectUser projectUser = projectUserList.get(j);
-                            if (j == 0) {
-                                out.println(projectUser.getUsername());
-                            } else {
-                                out.println("," + projectUser.getUsername());
-                            }
-                        }
-                    }
-                    out.println("<a href='addProjectUser.jsp?projectId=" + project.getProjectId() + "&roleId="
-                            + role.getId() + "'>编辑</a>");
-                    out.println("</td></tr>");
-                }
-            } //endif
-        %>
-    </table>
+        </table>
+    </s:else>
 </body>
 </html>

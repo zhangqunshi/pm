@@ -2,18 +2,60 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	<filter>
+	
+    
+   
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>
-			com.opensymphony.module.sitemesh.filter.PageFilter
+			com.opensymphony.sitemesh.webapp.SiteMeshFilter
 		</filter-class>
 	</filter>
-	<filter>
+    
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>struts2-execute</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsExecuteFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>struts2-execute</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    
+	
+     <filter>
 		<filter-name>SetCharacterEncoding</filter-name>
 		<filter-class>
 			com.nastation.pm.web.filter.SetCharacterEncodingFilter
 		</filter-class>
 	</filter>
+    
+    <filter-mapping>
+        <filter-name>SetCharacterEncoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    
 	<filter>
 		<filter-name>LoginValid</filter-name>
 		<filter-class>
@@ -29,18 +71,14 @@
 		<filter-name>LoginValid</filter-name>
 		<url-pattern>/jsp/frontend/*</url-pattern>
 	</filter-mapping>
+    
+    
 	<filter-mapping>
 		<filter-name>LoginValid</filter-name>
 		<url-pattern>/jsp/backend/*</url-pattern>
 	</filter-mapping>
-	<filter-mapping>
-		<filter-name>sitemesh</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SetCharacterEncoding</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	
+	
 	
 	<session-config>
 		<session-timeout>60</session-timeout>
@@ -53,4 +91,10 @@
 	<login-config>
 		<auth-method>BASIC</auth-method>
 	</login-config>
+    
+    
+    
+    
+    
+    
 </web-app>

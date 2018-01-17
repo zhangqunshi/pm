@@ -33,8 +33,8 @@ public class LoginAction extends ActionSupport {
         ActionContext ctx = ActionContext.getContext();
         String name = getUsername();
         String ps = getPassword();
-        UserBO userBO = new UserBO();
-        Userhbm u = new UserBO().login(name, ps);
+        UserBO userBO = UserBO.getUserBO();
+        Userhbm u = userBO.login(name, ps);
         if (u != null) {
             User user = new User();
             user.setAdmin(u.isAdmin());
@@ -49,7 +49,8 @@ public class LoginAction extends ActionSupport {
             ctx.getSession().put(Global.SESSION_USER, user);
             return SUCCESS;
         } else {
-            return LOGIN;
+            ActionContext.getContext().put("choice", "ok");
+            return INPUT;
         }
 
     }

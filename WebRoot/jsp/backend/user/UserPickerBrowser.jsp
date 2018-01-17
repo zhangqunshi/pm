@@ -7,6 +7,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.User"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%
     String element = request.getParameter("element");
 %>
@@ -26,31 +27,27 @@
 </head>
 
 <body>
-    <%
-        UserBO userBO = new UserBO();
-        List list = userBO.viewUsers();
-        if (list == null || list.size() == 0) {
-            out.println("还没有用户，请创建新用户。");
-        } else {
-            out.println("<table border=1 width='100%'><tr><td>用户名</td><td>全名</td><td>E-mail</td></tr>");
-            for (int i = 0; i < list.size(); i++) {
-                User user = (User) list.get(i);
-    %>
+    <s:if test="flag">
+        <p>还没有用户，请创建新用户。</p>
+    </s:if>
+    <s:else>
+    <table border=1 width='100%'><tr><td>用户名</td><td>全名</td><td>E-mail</td></tr>  
+    <s:iterator value="#userList" var="ul">
+         
     <tr>
         <td>
-            <a href='#' onclick="return sendTo('<%=user.getName()%>');"><%=user.getName()%></a>
+            <a href='#' onclick="return sendTo('<s:property value="#ul.name"/>');"><s:property value="#ul.name"/></a>
         </td>
         <td>
-            <a href='#' onclick="return sendTo('<%=user.getName()%>');"><%=user.getFullName()%></a>
+            <a href='#' onclick="return sendTo('<s:property value="#ul.name"/>');"><s:property value="#ul.fullname"/>%></a>
         </td>
         <td>
-            <a href='#' onclick="return sendTo('<%=user.getName()%>');"><%=user.getEmail()%></a>
+            <a href='#' onclick="return sendTo('<s:property value="#ul.name"/>');"><s:property value="#ul.email"/></a>
         </td>
     </tr>
-    <%
-        } //end for
-            out.println("</table>");
-        }
-    %>
+    
+    </s:iterator>
+    </table>
+    </s:else>
 </body>
 </html>

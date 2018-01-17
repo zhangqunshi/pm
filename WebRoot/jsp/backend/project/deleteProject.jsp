@@ -9,21 +9,15 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
-<%
-    String pid = request.getParameter("projectId");
-    int proId = Integer.parseInt(pid);
-    ProjectBO pb = new ProjectBO();
-    Projecthbm project = pb.getProject(proId);
-    String name = project.getName();
-%>
 
 <div class="container">
 
     <div class="row">
         <div class="col-md-12">
             <h3>
-                Delete Project:<%=name%>
+                Delete Project:<s:property value="#project.name"/>
             </h3>
         </div>
 
@@ -46,10 +40,10 @@
 
     <div class="row">
         <div class="col-md-12">
-            <input type="hidden" value="<%=proId%>" name="projectId" id="projectId" />
+            <input type="hidden" value="<s:property value="#project.id"/>" name="projectId" id="projectId" />
             <input type="hidden" value="true" name="confirm" />
 
-            <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/project/doDeleteProject.jsp"/>?projectId=<%=proId%>'" value="删除" id="删除" name="删除" />
+            <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/project/doDeleteProject.action"/>?projectId=<s:property value="#project.id"/>'" value="删除" id="删除" name="删除" />
             <input type="button" onclick="window.history.back();" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
 
 

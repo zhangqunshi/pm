@@ -4,6 +4,7 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -15,15 +16,7 @@
 <head>
 
 </head>
-<%
-    String idStr = request.getParameter("id");
-    int id = 0;
-    if (StringUtils.isNotBlank(idStr)) {
-        id = Integer.parseInt(idStr);
-    }
-    ResolutionBO resolutionBO = new ResolutionBO();
-    Resolutionhbm resolution = resolutionBO.getResolution(id);
-%>
+
 
 <body>
 
@@ -34,7 +27,7 @@
             <div class="col-md-12">
                 <h3>
                     Edit Resolution:
-                    <%=resolution.getName()%>
+                    <s:property value="name"/>
                 </h3>
             </div>
 
@@ -51,17 +44,17 @@
 
                     <div class="input-group">
                         <span class="input-group-addon">名称</span>
-                        <input type="text" value="<%=resolution.getName()%>" size="30" name="name" class="form-control" placeholder="twitterhandle" />
+                        <input type="text" value="<s:property value="name"/>" size="30" name="name" class="form-control" placeholder="twitterhandle" />
                     </div>
 
                     <div class="input-group">
                         <span class="input-group-addon">描述</span>
-                        <input type="text" value="<%=resolution.getDescription()%>" size="60" name="description" class="form-control" placeholder="twitterhandle" />
+                        <input type="text" value="<s:property value="description"/>" size="60" name="description" class="form-control" placeholder="twitterhandle" />
                     </div>
 
 
-                    <input id="id" type="hidden" value="<%=resolution.getId()%>" name="id" />
-                    <input id="isDefault" type="hidden" value="<%=resolution.getIsDefault()%>" name="isDefault" />
+                    <input id="id" type="hidden" value="<s:property value="id"/>" name="id" />
+                    <input id="isDefault" type="hidden" value="<s:property value="isDefault"/>" name="isDefault" />
 
 
                     <input id="更新" class="btn btn-info btn-block" type="submit" title="按 Alt+S 提交" accesskey="S" value="更新" name="更新" />

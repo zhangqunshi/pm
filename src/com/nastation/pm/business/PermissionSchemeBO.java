@@ -24,6 +24,10 @@ import com.nastation.pm.util.StringUtils;
  */
 public class PermissionSchemeBO {
 
+    public static PermissionSchemeBO getPermissionSchemeBO() {
+        return new PermissionSchemeBO();
+    }
+
     /**
      * 添加一个权限模板
      * 

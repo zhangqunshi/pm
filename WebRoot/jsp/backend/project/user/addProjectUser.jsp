@@ -10,47 +10,32 @@
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-<%
-    String projectIdStr = request.getParameter("projectId");
-			String roleIdStr = request.getParameter("roleId");
+<%@taglib prefix="s" uri="/struts-tags"%>
 
-			if (StringUtils.isBlank(projectIdStr)) {
-				out.println("项目ID不能为空");
-				return;
-			}
-			if (StringUtils.isBlank(roleIdStr)) {
-				out.println("角色ID不能为空");
-				return;
-			}
-
-			int projectId = Integer.parseInt(projectIdStr);
-			int roleId = Integer.parseInt(roleIdStr);
-
-			ProjectBO projectbo = new ProjectBO();
-			Projecthbm project = projectbo.getProject(projectId);
-
-			RoleBO rb = new RoleBO();
-			Rolehbm role = rb.getRole(roleId);
-%>
 <html>
 <head>
 
 </head>
 <body>
+
+    <s:if test="flag">
+        <p>项目或角色ID不能为空</p>
+    </s:if>
+    <s:else>
     <h3>
         Assign Users to Project Role:
-        <%=role.getRoleName()%>
+        <s:property value="roleName"/>
     </h3>
     <p>
         You can add and remove users from the project role
-        <strong><%=role.getRoleName()%></strong>
+        <strong><s:property value="roleName"/></strong>
         for the project
-        <strong><%=project.getName()%></strong>
+        <strong><s:property value="projectName"/></strong>
         by using the 'Add' and 'Remove' buttons below.
     </p>
     <p align="center">
         <b>
-            <a href="viewProjectUser.jsp?projectId=<%=projectId%>"> Return to Project Role Browser</a>
+            <a href="viewProjectUser.jsp?projectId=<s:property value="projectId"/>"> Return to Project Role Browser</a>
         </b>
     </p>
 
@@ -63,8 +48,8 @@
             <td valign="top">
                 <b>Add User</b>
                 <form action='doAddProjectUser.jsp'>
-                    <input type='hidden' name='projectId' value="<%=projectId%>" />
-                    <input type='hidden' name='roleId' value="<%=roleId%>" />
+                    <input type='hidden' name='projectId' value="<s:property value="projectId"/>" />
+                    <input type='hidden' name='roleId' value="<s:property value="roleId"/>" />
                     <table border='0'>
                         <tr>
                             <td>Enter one or more usernames in the form below. Separate usernames by a comma ",".</td>
@@ -105,5 +90,6 @@
             </td>
         </tr>
     </table>
+    </s:else>
 </body>
 </html>

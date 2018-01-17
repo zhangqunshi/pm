@@ -9,31 +9,10 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <%
     String path = request.getContextPath();
-    String projectId = request.getParameter("projectId");
-    int pid = Integer.parseInt(projectId);
-
-    ProjectBO pb = new ProjectBO();
-    Projecthbm ph = pb.getProject(pid);
-
-    PermissionSchemeBO psBO = new PermissionSchemeBO();
-    PermissionSchemehbm ps = psBO.getScheme(ph.getPermissionScheme().getId());
-
-    Project project = new Project();
-    project.setProjectId(ph.getId());
-    project.setName(ph.getName());
-    project.setProjectKey(ph.getProjectKey());
-    project.setUrl(ph.getLeader());
-    project.setDescription(ph.getDescription());
-    project.setLeader(ph.getLeader());
-
-    if (ph.getCategory() == null) {
-        project.setCategoryId(0);
-    } else {
-        project.setCategoryId(ph.getCategory().getId());
-    }
 %>
 
 <body>
@@ -43,51 +22,57 @@
                 <td>
                     <h3 class="formtitle">
                         项目:
-                        <%=project.getName()%></h3>
+                        <s:property value="#project.name" />
+                    </h3>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <b>Key: </b><%=project.getProjectKey()%>
+                    <b>Key: </b>
+                    <s:property value="#project.projectKey" />
+
                     <br>
                     <b>网址: </b>
-                    <%
-                        String url = project.getUrl();
-                        if (url.equals("http://")) {
-                            out.println("没有网址");
-                        } else {
-                            out.println("<a href='" + project.getUrl() + "'>" + project.getUrl() + "</a>");
-                        }
-                    %><br>
-                    <b>负责人: </b><%=project.getLeader()%>
+
+                    <s:if test="#project.url == http://">
+                        没有网址
+                    </s:if>
+                    <s:else>
+                        <a href="#project.url">
+                            <s:property value="#project.url" />
+                        </a>
+                    </s:else>
+
+                    <br>
+                    <b>负责人: </b>
+                    <s:property value="#project.leader" />
+
                     <br>
                     <b>Project Roles : </b>
-                    <a href="<%=request.getContextPath()%>/jsp/backend/project/user/viewProjectUser.jsp?projectId=<%=pid%>"> View members </a>
+                    <a href="<%=request.getContextPath()%>/jsp/backend/project/user/viewProjectUser.jsp?projectId=<s:property value="#project.projectId" />"> View members </a>
                     <br>
                     <b>Permission Scheme: </b>
-                    <%=ps.getName()%>
+                    <s:property value="#ps.name" />
                     (
-                    <a href="<%=path%>/jsp/backend/permission/selectProjectPermissionScheme.jsp?projectId=<%=pid%>">选择</a>
+                    <a href="<%=path%>/jsp/backend/permission/selectProjectPermissionScheme.jsp?projectId=<s:property value="#project.projectId" />">选择</a>
                     |
-                    <a href="<%=path%>/jsp/backend/permission/editPermissions.jsp?schemeId=<%=ps.getId()%>">编辑</a>
+                    <a href="<%=path%>/jsp/backend/permission/editPermissions.jsp?schemeId=<s:property value="#ps.id" />">编辑</a>
                     )
                     <br />
-                    <b>描述: </b><%=project.getDescription()%>
+                    <b>描述: </b>
+                    <s:property value="#project.description" />
                     <br>
-                    <%
-                        //判断项目类型是否为空
-                        if (project.getCategoryId() == 0) {
-                            out.println("<b>Category: </b> 无(<a href='" + path
-                                    + "/jsp/backend/project/category/viewProjectCategoryForProject.jsp?projectId="
-                                    + project.getProjectId() + "'> Select Category</a>)");
-                        } else {
-                            ProjectCategoryBO pc = new ProjectCategoryBO();
-                            ProjectCategoryhbm category = pc.getProjectCategory(project.getCategoryId());
-                            out.println("<b>Project Category: </b>" + category.getName() + "(<a href='" + path
-                                    + "/jsp/backend/project/category/viewProjectCategoryForProject.jsp?projectId="
-                                    + project.getProjectId() + "'> Select Category</a>)");
-                        }
-                    %>
+
+                    <s:if test="#project.categoryId == 0">
+                        <b>Category: </b>
+                        <a href="<%=request.getContextPath()%>/jsp/backend/project/category/viewProjectCategoryForProject.jsp?projectId=<s:property value="#project.projectId" />"> Select Category</a>
+                    </s:if>
+                    <s:else>
+                        <b>Project Category: </b>
+                        <s:property value="#category.name" />
+                        <a href="<%=request.getContextPath()%>/jsp/backend/project/category/viewProjectCategoryForProject.jsp?projectId=<s:property value="#project.projectId" />"> Select Category</a>
+                    </s:else>
+
                 </td>
 
             </tr>
@@ -98,9 +83,9 @@
             <td>
                 <a href="<%=path%>/jsp/backend/project/viewProject.jsp">浏览项目</a>
                 |
-                <a href="<c:url value='/jsp/backend/project/updateProject.jsp'/>?projectId=<%=projectId%>">Edit Project</a>
+                <a href="<c:url value='/jsp/backend/project/updateProject.jsp'/>?projectId=<s:property value="#project.projectId" />">Edit Project</a>
                 |
-                <a href="<c:url value='/jsp/backend/project/deleteProject.jsp'/>?projectId=<%=projectId%>">Delete Project</a>
+                <a href="<c:url value='/jsp/backend/project/deleteProject.jsp'/>?projectId=<s:property value="#project.projectId" />">Delete Project</a>
             </td>
         </tr>
     </table>

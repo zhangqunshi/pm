@@ -26,6 +26,11 @@ import com.nastation.pm.util.StringUtils;
  * 
  */
 public class IssueFilterBO {
+
+    public static IssueFilterBO getIssueFilterBO() {
+        return new IssueFilterBO();
+    }
+
     /**
      * 添加一个filter信息
      * 

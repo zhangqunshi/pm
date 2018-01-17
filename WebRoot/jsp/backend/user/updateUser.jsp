@@ -4,6 +4,7 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <script language=javascript>
@@ -36,14 +37,7 @@
     }
 </script>
 </head>
-<%
-    String path = request.getContextPath();
-    request.setCharacterEncoding("UTF-8");
-    int id = Integer.parseInt(request.getParameter("id"));
 
-    UserBO userBO = new UserBO();
-    Userhbm user = userBO.getUser(id);
-%>
 
 <body>
 
@@ -54,7 +48,7 @@
             <div class="col-md-12">
                 <h2 class="formtitle">
                     Edit Project User:
-                    <%=user.getName()%></h2>
+                    <s:property value="name"/></h2>
                 Update the user's details below.
             </div>
 
@@ -63,19 +57,19 @@
         <div class="row">
             <div class="col-md-12">
                 <form action="doUpdateUser.jsp" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
-                    <input type="hidden" value="<%=user.getId()%>" name="id">
+                    <input type="hidden" value="<s:property value="id"/>" name="id">
 
 
 
                     <div class="input-group">
                         <span class="input-group-addon">全名</span>
-                        <input name='fullname' type='text' size="50" value="<%=user.getFullName()%>" class="form-control" placeholder="twitterhandle">
+                        <input name='fullname' type='text' size="50" value="<s:property value="name"/>" class="form-control" placeholder="twitterhandle">
                     </div>
 
 
                     <div class="input-group">
                         <span class="input-group-addon">邮箱地址</span>
-                        <input name='email' type='text' size="50" value="<%=user.getEmail()%>" class="form-control" placeholder="twitterhandle">
+                        <input name='email' type='text' size="50" value="<s:property value="email"/>" class="form-control" placeholder="twitterhandle">
                     </div>
 
 

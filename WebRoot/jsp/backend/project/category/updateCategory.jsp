@@ -3,10 +3,7 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
-<%
-    ProjectCategoryBO rb = new ProjectCategoryBO();
-			ProjectCategoryhbm category = rb.getProjectCategory(Integer.parseInt(request.getParameter("id")));
-%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <script language=javascript>
@@ -31,32 +28,25 @@
 
     <h2 class="formtitle">
         Edit ProjectCategory:
-        <%=category.getName()%>
+        <s:property value="name"/>
     </h2>
 
-    <%
-        String errMsg = (String) request.getAttribute("error");
-        if (errMsg != null && errMsg != "") {
-    %>
-    <%=errMsg%>
-    <%
-        }
-    %>
+
 
     <form action="doUpdateCategory.jsp" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
 
         <div class="input-group">
             <span class="input-group-addon">名称</span>
-            <input type="text" name="name" value=<%=category.getName()%> class="form-control" placeholder="twitterhandle"></input>
+            <input type="text" name="name" value=<s:property value="name"/> class="form-control" placeholder="twitterhandle"></input>
         </div>
 
 
         <div class="input-group">
             <span class="input-group-addon">描述</span>
-            <input type="text" name="desc" value=<%=category.getDescription()%> class="form-control" placeholder="twitterhandle"></input>
+            <input type="text" name="desc" value=<s:property value="description"/> class="form-control" placeholder="twitterhandle"></input>
         </div>
 
-        <input type="hidden" value=<%=category.getId()%> name="id">
+        <input type="hidden" value=<s:property value="id"/> name="id">
         <input type="submit" value="更新" class="btn btn-info btn-block">
 
         <input type="button" value="取消" onclick="location.href='viewProjectCategory.jsp'" class="btn btn-warning btn-block">

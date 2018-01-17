@@ -9,22 +9,12 @@
 
 <struts>
 
+    <include file="struts-login.xml" />
+    <include file="struts-backend.xml" />
+    <include file="struts-frontend.xml" />
 
 
-
-    <constant name="struts.devMode" value="true" />
-    <package name="signin" extends="struts-default">
-
-
-        <action name="Login" class="com.nastation.pm.struts.LoginAction" method="execute">
-            <result name="success">/welcome.jsp</result>
-            <result name="error">/error.jsp</result>
-            <result name="input">/login.jsp</result>
-        </action>
-        
-
-
-    </package>
+    
 
 </struts>
 

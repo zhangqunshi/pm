@@ -7,64 +7,64 @@ package com.nastation.pm.beanhbm;
  * 
  */
 public class PermissionAssigneehbm {
-	
-	private int id;// 权限分配ID
-	private Permissionhbm permission;// 权限id
-	private String assigneeType;
-	private String assignee;
-	private PermissionSchemehbm scheme;// 权限模块id
-	private java.util.Date createTime;// 权限分配创建时间
 
-	public PermissionAssigneehbm() {
+    private int id;// 权限分配ID
+    private Permissionhbm permission;// 权限
+    private String assigneeType;
+    private String assignee;
+    private PermissionSchemehbm scheme;// 权限模块
+    private java.util.Date createTime;// 权限分配创建时间
 
-	}
+    public PermissionAssigneehbm() {
 
-	public int getId() {
-		return id;
-	}
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public Permissionhbm getPermission() {
-		return permission;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPermission(Permissionhbm permission) {
-		this.permission = permission;
-	}
+    public Permissionhbm getPermission() {
+        return permission;
+    }
 
-	public String getAssigneeType() {
-		return assigneeType;
-	}
+    public void setPermission(Permissionhbm permission) {
+        this.permission = permission;
+    }
 
-	public void setAssigneeType(String assigneeType) {
-		this.assigneeType = assigneeType;
-	}
+    public String getAssigneeType() {
+        return assigneeType;
+    }
 
-	public String getAssignee() {
-		return assignee;
-	}
+    public void setAssigneeType(String assigneeType) {
+        this.assigneeType = assigneeType;
+    }
 
-	public void setAssignee(String assignee) {
-		this.assignee = assignee;
-	}
+    public String getAssignee() {
+        return assignee;
+    }
 
-	public PermissionSchemehbm getScheme() {
-		return scheme;
-	}
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
+    }
 
-	public void setScheme(PermissionSchemehbm scheme) {
-		this.scheme = scheme;
-	}
+    public PermissionSchemehbm getScheme() {
+        return scheme;
+    }
 
-	public java.util.Date getCreateTime() {
-		return createTime;
-	}
+    public void setScheme(PermissionSchemehbm scheme) {
+        this.scheme = scheme;
+    }
 
-	public void setCreateTime(java.util.Date createTime) {
-		this.createTime = createTime;
-	}
+    public java.util.Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
+    }
 
 }

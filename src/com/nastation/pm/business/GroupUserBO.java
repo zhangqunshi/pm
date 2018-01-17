@@ -12,6 +12,10 @@ import com.nastation.pm.util.SessionF;
 
 public class GroupUserBO {
 
+    public static GroupUserBO getGroupUserBO() {
+        return new GroupUserBO();
+    }
+
     /**
      * 添加用户组
      */

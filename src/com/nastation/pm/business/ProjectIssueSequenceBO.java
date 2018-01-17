@@ -8,6 +8,10 @@ import com.nastation.pm.util.SessionF;
 
 public class ProjectIssueSequenceBO {
 
+    public static ProjectIssueSequenceBO getProjectIssueSequenceBO() {
+        return new ProjectIssueSequenceBO();
+    }
+
     /**
      * 删除所有项目模块
      */

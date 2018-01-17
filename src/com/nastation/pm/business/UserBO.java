@@ -25,6 +25,10 @@ public class UserBO {
 
     public static final String columnNames = "username, password, fullname, email, create_date";
 
+    public static UserBO getUserBO() {
+        return new UserBO();
+    }
+
     /**
      * This method is use to insert the user's information into database;
      * 

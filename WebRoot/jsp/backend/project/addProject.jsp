@@ -8,6 +8,7 @@
 <%@ page import="com.nastation.pm.bean.*,java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
 <html>
 <head>
@@ -84,12 +85,12 @@
 <body>
     <br />
     <%
-        String errMsg = (String) request.getAttribute("error");
+        //String errMsg = (String) request.getAttribute("error");
     			PermissionSchemeBO psBO = new PermissionSchemeBO();
     			List<PermissionSchemehbm> list = psBO.getSchemeList();
     %>
     <%@include file="/jsp/showErrorMessage.jsp"%>
-    <form action="doAddProject.jsp" name="myForm" onsubmit="return test();">
+    <form action="addProject.action" name="myForm" onsubmit="return test();">
         <table border="0" cellspacing="0">
             <tr>
                 <td height="65" colspan="2" align="left" valign="middle" bgcolor="#E8E8E8">
@@ -187,17 +188,13 @@
                 <td>* Permission Scheme:</td>
                 <td>
                     <select name="permission_scheme_id">
-                        <%
-                            for (PermissionSchemehbm psh : list) {
-                                PermissionScheme ps = new PermissionScheme();
-                                ps.setId(psh.getId());
-                                ps.setName(psh.getName());
-                        %>
-                        <option value="<%=ps.getId()%>"><%=ps.getName()%>
+                        <s:iterator value="#psList" var="ps">
+                       
+                        <option value="<s:property value="#ps.id"/>">
+								<s:property value="#ps.name"/>
 							</option>
-                        <%
-                            } //endfor
-                        %>
+                      
+                        </s:iterator>
                     </select>
                     <br>
                     The Permission Scheme determines who has permissions to view or change the project.

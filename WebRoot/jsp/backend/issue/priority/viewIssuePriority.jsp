@@ -8,6 +8,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
@@ -39,31 +40,24 @@
         </tr>
         </thead>
         <tbody>
-        <%
-            IssuePriorityBO issuePriorityBO = new IssuePriorityBO();
-            List<IssuePriorityhbm> list = issuePriorityBO.getIssuePriorityList();
-            for (int i = 0; i < list.size(); i++) {
-                IssuePriorityhbm issuePriority = list.get(i);
-                out.println("<tr><td>" + issuePriority.getName() + "</td>");
-                out.println("<td>" + issuePriority.getDescription() + "</td>");
-                out.println("<td><img src='" + request.getContextPath() + issuePriority.getIconUrl() + "' /></td>");
-                //显示优先级颜色
-        %>
+        <s:iterator value="#issuePriorityList" var="ip">
+        <tr><td><s:property value="#ip.name"/></td>
+        <td><s:property value="#ip.description"/></td>
+        <td><img src='" + request.getContextPath() + issuePriority.getIconUrl() + "' /></td>
+        
         <td>
             <table>
                 <tr>
-                    <td bgcolor="<%=issuePriority.getPriorityColor()%>">
+                    <td bgcolor="<s:property value="#ip.priorityColor"/>">
                         <img height="16" border="0" width="16" alt="" src="<%=request.getContextPath()%>/images/border/spacer.gif" />
                     </td>
                 </tr>
             </table>
         </td>
-        <%
-            out.println("<td><a href='deleteIssuePriority.jsp?id=" + issuePriority.getId()
-                        + "' >删除</a> | <a href='updateIssuePriority.jsp?id=" + issuePriority.getId()
-                        + "' >编辑</a></td></tr>");
-            }
-        %>
+        <td><a href="deleteIssuePriority.jsp?id=<s:property value="ip.id"/>">删除</a> | <a href="updateIssuePriority.jsp?id=<s:property value="ip.id"/>">编辑</a></td>
+        </tr>
+       
+        </s:iterator>
         </tbody>
     </table>
       

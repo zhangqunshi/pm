@@ -24,6 +24,10 @@ import com.nastation.pm.util.SessionF;
 
 public class ProjectBO {
 
+    public static ProjectBO getProjectBO() {
+        return new ProjectBO();
+    }
+
     /**
      * 添加一个项目
      * 

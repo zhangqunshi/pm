@@ -36,22 +36,22 @@
 
     <h2 class="formtitle">
         Edit Project Role:
-        <%=role.getRoleName()%></h2>
+        <s:property value="name"/></h2>
     <%
         out.println("<p><font color='red'>" + error + "</font></p>");
     %>
     <form action="doUpdateRole.jsp" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
-        <input type="hidden" value="<%=role.getId()%>" name="id">
+        <input type="hidden" value="<s:property value="id"/>" name="id">
 
 
         <div class="input-group">
             <span class="input-group-addon">名称</span>
-            <input type="text" name="name" value="<%=role.getRoleName()%>" class="form-control" placeholder="twitterhandle" />
+            <input type="text" name="name" value="<s:property value="name"/>" class="form-control" placeholder="twitterhandle" />
         </div>
 
         <div class="input-group">
             <span class="input-group-addon">描述</span>
-            <input type="text" size="80" name="desc" value="<%=role.getRoleDesc()%>" class="form-control" placeholder="twitterhandle" />
+            <input type="text" size="80" name="desc" value="<s:property value="desc"/>" class="form-control" placeholder="twitterhandle" />
         </div>
 
         <input type="submit" value="更新" class="btn btn-info btn-block">

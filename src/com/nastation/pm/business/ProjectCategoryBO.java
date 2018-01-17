@@ -10,6 +10,11 @@ import com.nastation.pm.beanhbm.Projecthbm;
 import com.nastation.pm.util.SessionF;
 
 public class ProjectCategoryBO {
+
+    public static ProjectCategoryBO getProjectCategoryBO() {
+        return new ProjectCategoryBO();
+    }
+
     /**
      * 创建一个项目类型
      */

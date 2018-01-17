@@ -8,7 +8,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.nastation.pm.bean.Role;
 import com.nastation.pm.beanhbm.Rolehbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
@@ -19,6 +18,11 @@ import com.nastation.pm.util.SessionF;
  * 
  */
 public class RoleBO {
+
+    public static RoleBO getRoleBO() {
+        return new RoleBO();
+    }
+
     /**
      * 创建一个角色
      */
@@ -64,7 +68,7 @@ public class RoleBO {
     /**
      * 检查是否创建了同名角色
      */
-    public boolean checkRole(Role role) {
+    public boolean checkRole(Rolehbm role) {
         boolean flag = false;
         Connection conn = DBConn.getConnection();
         try {

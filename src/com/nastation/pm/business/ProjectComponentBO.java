@@ -23,6 +23,10 @@ public class ProjectComponentBO {
     Connection conn = DBConn.getConnection();
     PreparedStatement pstmt = null;
 
+    public static ProjectComponentBO getProjectComponentBO() {
+        return new ProjectComponentBO();
+    }
+
     /**
      * 添加项目模块
      */

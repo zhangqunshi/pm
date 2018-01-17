@@ -8,6 +8,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,17 +50,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%
-                            RoleBO rb = new RoleBO();
-                            List<Rolehbm> list = rb.getRoleList();
-                            for (int i = 0; i < list.size(); i++) {
-                                Rolehbm role = list.get(i);
-                                out.println("<tr><td>" + role.getRoleName() + "</td><td>" + role.getRoleDesc()
-                                        + "</td><td><a href='deleteRole.jsp?id=" + role.getId()
-                                        + "'>删除</a> | <a href='updateRole.jsp?id=" + role.getId() + "' >编辑</a></td></tr>");
-                            }
-                        %>
-
+                    <s:iterator value="#roleList" var="rs">
+                        <tr>
+                        <td><s:property value="#rs.roleName"/></td>
+                        <td><s:property value="#rs.roleDesc"/></td>
+                        <td><a href="deleteRole.jsp?id=<s:property value="#rs.roleId"/>">删除</a> | <a href="updateRole.jsp?id=<s:property value="#rs.roleId"/>">编辑</a></td>
+                                    </tr>
+                        
+                       
+                    </s:iterator>
                     </tbody>
                 </table>
 

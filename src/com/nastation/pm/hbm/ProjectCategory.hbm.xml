@@ -7,8 +7,7 @@
 
 <hibernate-mapping>
 
-    <class name="com.nastation.pm.beanhbm.ProjectCategoryhbm"
-        table="t_project_category" lazy="false">
+    <class name="com.nastation.pm.beanhbm.ProjectCategoryhbm" table="t_project_category" lazy="false">
 
         <id name="id" type="int" column="id">
             <generator class="native" />
@@ -16,13 +15,16 @@
 
 
 
-        <property name="name" type="string" column="name"
-            not-null="true" />
+        <property name="name" type="string" column="name" not-null="true" />
         <property name="description" type="string" column="description" />
         <property name="createDate" type="timestamp" column="create_date" />
 
 
+        <set name="projects" cascade="delete" lazy="false">
 
+            <key column="category_id" />
+            <one-to-many class="com.nastation.pm.beanhbm.Projecthbm" />
+        </set>
 
 
 

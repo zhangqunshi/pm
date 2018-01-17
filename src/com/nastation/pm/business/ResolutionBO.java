@@ -24,6 +24,10 @@ import com.nastation.pm.util.SessionF;
  */
 public class ResolutionBO {
 
+    public static ResolutionBO getResolutionBO() {
+        return new ResolutionBO();
+    }
+
     /**
      * 向数据库中添加Resolution 对象
      */

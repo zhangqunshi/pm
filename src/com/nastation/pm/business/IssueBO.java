@@ -30,6 +30,10 @@ public class IssueBO {
             + " end_time, plan_end_time, component_id, assignee_id, reporter_id, "
             + " environment, description, project_id, last_update_date, create_date, " + " issue_status";
 
+    public static IssueBO getIssueBO() {
+        return new IssueBO();
+    }
+
     /**
      * 向数据库中添加记录 Issue对象
      */

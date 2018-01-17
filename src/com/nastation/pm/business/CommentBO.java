@@ -16,6 +16,10 @@ import com.nastation.pm.util.SessionF;
  */
 public class CommentBO {
 
+    public static CommentBO getCommentBO() {
+        return new CommentBO();
+    }
+
     /**
      * 添加一个备注信息
      * 

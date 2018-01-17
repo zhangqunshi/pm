@@ -13,14 +13,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.nastation.pm.bean.Icon;
-import com.nastation.pm.bean.IssueStatus;
 import com.nastation.pm.beanhbm.Iconhbm;
 import com.nastation.pm.beanhbm.IssueStatushbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 
 public class IssueStatusBO {
+
+    public static IssueStatusBO getIssueStatusBO() {
+        return new IssueStatusBO();
+    }
 
     /**
      * 向数据库中添加记录 IssueStatus 对象
@@ -152,7 +154,7 @@ public class IssueStatusBO {
     /**
      * 检查是否创建了同名IssueStatus
      */
-    public boolean exist(IssueStatus is) {
+    public boolean exist(IssueStatushbm is) {
         Connection conn = DBConn.getConnection();
         try {
             String sql = "select id from t_issue_status where name=? and id!=?";
@@ -199,7 +201,7 @@ public class IssueStatusBO {
      * 根据icon 获得问题类型列表 List
      */
 
-    public List<IssueStatushbm> getIssueStatusListByIcon(Icon icon) {
+    public List<IssueStatushbm> getIssueStatusListByIcon(Iconhbm icon) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         List<IssueStatushbm> l = null;

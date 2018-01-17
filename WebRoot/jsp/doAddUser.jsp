@@ -48,7 +48,7 @@
                 Userhbm secondUser = userBO.getUser(userName);
 
                 GroupUserBO groupUserBO = new GroupUserBO();
-                GroupUser groupUser = new GroupUser();
+                GroupUserhbm groupUser = new GroupUserhbm();
                 groupUser.setGroupId(group.getId());
                 groupUser.setUserId(secondUser.getId());
                 groupUserBO.addGroupUser(groupUser);

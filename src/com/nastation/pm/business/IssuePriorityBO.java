@@ -6,12 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.nastation.pm.bean.Icon;
-import com.nastation.pm.bean.IssuePriority;
 import com.nastation.pm.beanhbm.Iconhbm;
 import com.nastation.pm.beanhbm.IssuePriorityhbm;
 import com.nastation.pm.util.SessionF;
 
 public class IssuePriorityBO {
+
+    public static IssuePriorityBO getIssuePriorityBO() {
+        return new IssuePriorityBO();
+    }
 
     /**
      * 向数据库中添加记录 IssuePriority 对象
@@ -145,7 +148,7 @@ public class IssuePriorityBO {
      * 检查是否创建了同名IssuePriority
      */
 
-    public boolean exist(IssuePriority ip) {
+    public boolean exist(IssuePriorityhbm ip) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         boolean flag = false;

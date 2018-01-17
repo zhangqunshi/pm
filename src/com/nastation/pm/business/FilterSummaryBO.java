@@ -20,6 +20,11 @@ import com.nastation.pm.util.SessionF;
  * 
  */
 public class FilterSummaryBO {
+
+    public static FilterSummaryBO getFilterSummaryBO() {
+        return new FilterSummaryBO();
+    }
+
     /**
      * 添加一个概要信息
      * 
