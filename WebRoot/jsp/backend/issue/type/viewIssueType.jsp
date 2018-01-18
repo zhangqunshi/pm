@@ -14,7 +14,6 @@
 </head>
 <body>
     <div class="container">
-
         <div class="row">
             <div class="col-md-12">
                 <h3 class="formtitle">Manage Issue Types</h3>
@@ -52,7 +51,6 @@
                                     <a href="updateIssueType.jsp?id=<s:property value="#it.id"/>">编辑</a>
                                 </td>
                             </tr>
-
                         </s:iterator>
                     </tbody>
                 </table>
