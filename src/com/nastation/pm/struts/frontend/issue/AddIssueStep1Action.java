@@ -21,7 +21,7 @@ public class AddIssueStep1Action extends ActionSupport {
 
         ActionContext cx = ActionContext.getContext();
         cx.put("projs", projectList);
-        cx.put("issueType", issueTypeList);
+        cx.put("issueTypes", issueTypeList);
 
         return SUCCESS;
     }

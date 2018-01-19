@@ -41,7 +41,7 @@
                         </td>
                     </tr>
                     <tr class="hidden">
-                        <td>
+                         <td>
                             <input id="name" type="hidden" value="<s:property value="groupName"/>" name="groupName" />
                         </td>
                     </tr>

@@ -35,7 +35,7 @@
 </script>
 </head>
 <body>
-    <form name="myForm" action="doChangePassword.jsp" method="post" onsubmit="return test();">
+    <form name="myForm" action ="doChangePassword.jsp" method="post" onsubmit="return test();">
         <input type="hidden" name="id" value="<s:property value="id"/>" />
         新密码：
         <input type="password" name="newpwd">

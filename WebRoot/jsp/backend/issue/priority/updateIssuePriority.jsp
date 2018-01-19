@@ -59,7 +59,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">Priority Color</span>
-                    <input type="text" value="<s:property value="priorityColor"/>" size="40" name="color" id="color" class="form-control" placeholder="twitterhandle" />
+                    <input type="text" value="<s:property value="priorityColor"/>" size="40" name="color" id="color" class="form-control" placeholder="twitterhandle" /> 
                     <span class="input-group-addon">
                         <a href="javascript:openWindowColor('color','myColor');">
                             <img alt="" src="<%=request.getContextPath()%>/images/border/spacer.gif" />

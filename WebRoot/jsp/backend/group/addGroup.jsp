@@ -20,4 +20,4 @@
         <input type="text" name="groupName" class="form-control" placeholder="twitterhandle" />
     </div>
     <input type="submit" value="Add Group" name="add_group" class="btn btn-info btn-block" />
-</form>
+</form> 

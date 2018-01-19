@@ -62,7 +62,7 @@
                     </div>
                     <input type='submit' value='更新' class="btn btn-info btn-block">
                     <input type="button" onclick="window.history.back();" value="取消" class="btn btn-warning btn-block" />
-                </form>
+                </form >
             </div>
         </div>
     </div>

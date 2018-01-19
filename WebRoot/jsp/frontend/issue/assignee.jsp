@@ -10,9 +10,9 @@
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="com.nastation.pm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-
 </head>
 <%
     User user = (User) session.getAttribute(Global.SESSION_USER);
@@ -34,7 +34,6 @@
 			List<ProjectUser> projectUsers = projectUserBO.getProjectUserByProjectId(projectId);
 %>
 <body>
-
     <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tbody>
             <tr>
@@ -64,71 +63,62 @@
                                             </td>
                                             <td valign="top">
                                                 <b>
-                                                    <a href="#" id="issue_key_TT-9"><%=issue.getIssueKey()%></a>
+                                                    <a href="#" id="issue_key_TT-9"><s:property value="#issue.issueKey"/></a>
                                                 </b>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td valign="top">
                                                 <b>类型:</b>
                                             </td>
                                             <td valign="top">
-                                                <img height="16" border="0" align="absmiddle" width="16" title="Task - A task that needs to be done." alt="Task" src="<%=request.getContextPath()%><%=issue.getIssueTypeIcon()%>" />
-                                                <%=issue.getIssueTypeName()%>
+                                                <img height="16" border="0" align="absmiddle" width="16" title="Task - A task that needs to be done." alt="Task" src="<%=request.getContextPath()%><s:property value="#issue.issueTypeIcon"/>" />
+                                                <s:property value="#issue.issueTypeName"/>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td valign="top">
                                                 <b>状态:</b>
                                             </td>
                                             <td valign="top">
-                                                <img height="16" border="0" align="absmiddle" width="16" title="In Progress - This issue is being actively worked on at the moment by the assignee." alt="In Progress" src="<%=request.getContextPath()%><%=issue.getIssueStatusIcon()%>" />
-                                                <%=issue.getIssueStatusName()%>
+                                                <img height="16" border="0" align="absmiddle" width="16" title="In Progress - This issue is being actively worked on at the moment by the assignee." alt="In Progress" src="<%=request.getContextPath()%><s:property value="#issue.issueStatusIcon"/>" />
+                                                <s:property value="#issue.issueStatusName"/>
                                             </td>
                                         </tr>
-                                        <%
-                                            if (issue.getIssueStatus() == Global.CLOSE || issue.getIssueStatus() == Global.RESOLVED) {
-                                        %>
+                                       
+                                        <s:if test="issueStatus==true">
                                         <tr>
                                             <td valign="top">
                                                 <b>解决:</b>
                                             </td>
                                             <td valign="top">
-
-                                                <%=issue.getResolution()%>
+                                                <s:property value="#issue.resolution"/>
                                             </td>
                                         </tr>
-                                        <%
-                                            }
-                                        %>
+                                        </s:if>
                                         <tr>
                                             <td valign="top">
                                                 <b>优先级:</b>
                                             </td>
                                             <td valign="top">
-                                                <img height="16" border="0" align="absmiddle" width="16" title="Major - Major loss of function." alt="Major" src="<%=request.getContextPath()%><%=issue.getPriorityLevelIcon()%>" />
-                                                <%=issue.getPriorityLevel()%>
+                                                <img height="16" border="0" align="absmiddle" width="16" title="Major - Major loss of function." alt="Major" src="<%=request.getContextPath()%><s:property value="#issue.priorityLevelIcon"/>" />
+                                                <s:property value="#issue.priorityLevel"/>
                                             </td>
                                         </tr>
-
-
                                         <tr>
                                             <td valign="top">
                                                 <b>开发者:</b>
                                             </td>
                                             <td valign="top">
-                                                <a href="userDeploy.jsp?name=<%=issue.getAssignee()%>"><%=issue.getAssignee()%></a>
+                                                <a href="userDeploy.jsp?name=<s:property value="#issue.assignee"/>"><s:property value="#issue.assignee"/></a>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td valign="top">
                                                 <b>报告人:</b>
                                             </td>
                                             <td valign="top">
-                                                <a href="userDeploy.jsp?name=<%=issue.getReporter()%>"><%=issue.getReporter()%></a>
+                                                <a href="userDeploy.jsp?name=<s:property value="#issue.reporter"/>"><s:property value="#issue.reporter"/></a>
                                             </td>
                                         </tr>
                                     </table>
@@ -146,7 +136,7 @@
                                         <td class="simpleformheader" colspan="2" bgcolor="#f0f0f0">
                                             <h3 class="formtitle">分配问题</h3>
                                             <br>
-                                            利用这个表单你可以把此问题分配给另外的开发者.
+                                                                                        利用这个表单你可以把此问题分配给另外的开发者.
                                         </td>
                                     </tr>
                                     <tr>
@@ -180,10 +170,8 @@
                                             				out.println("</select>");
                                             			}
                                             %>
-
                                         </td>
                                     </tr>
-
                                     <tr>
                                         <td bgcolor="#f0f0f0" colspan="2" width="100%">
                                             <b>备注</b>
@@ -198,11 +186,10 @@
                                             <textarea name="content" rows="5" cols="60"></textarea>
                                         </td>
                                     </tr>
-
                                     <tr class="hidden">
                                         <td>
-                                            <input type="hidden" value="<%=projectId%>" name="projectId" />
-                                            <input type="hidden" value="<%=issueId%>" name="issueId" />
+                                            <input type="hidden" value="<s:property value="projId"/>" name="projectId" />
+                                            <input type="hidden" value="<s:property value="issueId"/>" name="issueId" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -215,12 +202,11 @@
                             </table>
                         </form>
                         <script language="javascript">
-                                                                                                    try {
-                                                                                                        document.simpleform.elements[0]
-                                                                                                                .focus();
-                                                                                                    } catch (e) {
-                                                                                                    }
-                                                                                                </script>
+                        try {
+                            document.simpleform.elements[0].focus();
+                        } catch (e) {
+                        }                                                                       
+                        </script>
                     </div>
                 </td>
             </tr>

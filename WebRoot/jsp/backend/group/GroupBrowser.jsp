@@ -25,7 +25,7 @@
                 <a id="bulk_edit_groups" href="BulkEditUserGroups!default.jsp" class="btn btn-info btn-block">Bulk Edit Group Members</a>
             </div>
         </div>
-        <div class="row">
+        <div class=" row">
             <div class="col-md-12"><%@ include file="viewGroup.jsp"%></div>
         </div>
         <div class="row">

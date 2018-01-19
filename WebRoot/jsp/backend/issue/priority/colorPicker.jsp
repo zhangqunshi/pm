@@ -34,7 +34,7 @@ function colorIn(color) {
 		');
 				//openerEl.value = color;
 				document.f.colorVal.value = color;
-			}
+			} 
 		}
 		function accept() {
 			choice = true;

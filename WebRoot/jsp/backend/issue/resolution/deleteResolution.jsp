@@ -57,7 +57,7 @@
                             </tr>
                             <tr>
                                 <td class="fullyCentered simpleformfooter" colspan="2">
-                                    <input id="删除" class="spaced" type="submit" title="按 Alt+S 提交" accesskey="S" value="删除" name="删除" />
+                                    <input id="删除" class="spaced" type="submit" title="按 Alt+S 提交"  accesskey="S" value="删除" name="删除" />
                                     <input id="cancelButton" type="button" onclick="window.history.back();" value="取消" name="ViewResolutions.jspa" title="取消 (Alt + `)" accesskey="`" />
                                 </td>
                             </tr>

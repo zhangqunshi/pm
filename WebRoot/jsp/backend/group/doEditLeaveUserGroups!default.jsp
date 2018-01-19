@@ -28,7 +28,7 @@
         response.sendRedirect("EditUserGroups!default.jsp?name=" + user.getName());
         return;
     }
-    int groupId = Integer.parseInt(groupIdStr);
+    int groupId = Integer.parseInt(groupIdStr); 
 
     groupUser.setUserId(userId);
     groupUser.setGroupId(groupId);

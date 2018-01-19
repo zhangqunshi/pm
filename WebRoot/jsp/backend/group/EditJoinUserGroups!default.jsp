@@ -31,7 +31,7 @@
             out.println("<p><form action='doEditJoinUserGroups!default.jsp'>");
             out.println("<input type='submit' value='Join >>'/><div><br>");
             out.println("<input type='hidden' name='userId' value='" + joinUser.getId() + "'/>");
-            out.println("<select size='5' name='groupId'>");
+            out.println("<select size='5' name='grou pId'>");
 
             for (int i = 0; i < joinGroupList.size(); i++) {
                 Grouphbm joinGroup = joinGroupList.get(i);

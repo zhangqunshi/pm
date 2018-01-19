@@ -52,7 +52,7 @@
                                     </s:if>
                                 </td>
                             </tr>
-                        </s:iterator>
+                        </s :iterator>
                     </tbody>
                 </table>
             </div>

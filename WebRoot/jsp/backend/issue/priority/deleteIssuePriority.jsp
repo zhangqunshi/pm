@@ -22,7 +22,7 @@
                 <p>Confirm that you want to delete this project and all its issues, components and versions.</p>
                 <p>
                     <font color="#cc0000">
-                        WARNING: This operation cannot be undone. If you wish to save the project data, it is recommended that you
+                         WARNING: This operation cannot be undone. If you wish to save the project data, it is recommended that you
                         <a href="#">back it up first</a>
                         .
                     </font>

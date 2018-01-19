@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="hidden" value="<s:property value="id"/>" name="id" />
+                        <input type="hidden" value="<s:property value="id"/>" name="id " />
                     </td>
                 </tr>
                 <tr>
