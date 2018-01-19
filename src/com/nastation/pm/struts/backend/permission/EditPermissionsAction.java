@@ -45,17 +45,11 @@ public class EditPermissionsAction extends ActionSupport {
         HashMap<String, List> hm = pBO.getAllTypeList(getSchemeId());
         setName(scheme.getName());
         List<EditPermissions> epList = new ArrayList<>();
-<<<<<<< Updated upstream
         Set<String> keySet = hm.keySet();
-=======
-
-        Set keySet = hm.keySet();
->>>>>>> Stashed changes
         for (Iterator<String> it = keySet.iterator(); it.hasNext();) {
             EditPermissions ep = new EditPermissions();
             String type = it.next();
             ep.setType(type);
-<<<<<<< Updated upstream
 
             List<Permission> permissionlist = (List) hm.get(type);
             ep.setPermissionList(permissionlist);
@@ -69,15 +63,7 @@ public class EditPermissionsAction extends ActionSupport {
         }
         ActionContext.getContext().put("permissions", epList);
 
-=======
-            List<Permission> permissionlist = (List) hm.get(type);
-            ep.setPermissionList(permissionlist);
-            for (Permission p : permissionlist) {
-                List<PermissionAssigneehbm> list = paBO.getAssigneeTypeList(p.getId(), getSchemeId());
-                ep.setList(list);
-            }
-        }
->>>>>>> Stashed changes
         return SUCCESS;
     }
+
 }

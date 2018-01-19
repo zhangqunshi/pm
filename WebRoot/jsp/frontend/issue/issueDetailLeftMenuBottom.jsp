@@ -55,7 +55,7 @@
         <td>
             <%
                 if (currentUser.validate(issueLCMB.getProjectId(), PermissionConstants.EDIT_ISSUES)) {
-            %>
+            %>      
             <img height="8" border="0" align="absmiddle" width="8" src="<%=path%>/images/icons/bullet_creme.gif" />
             <strong>
                 <a href="cloneIssueDetails!default.jsp?issueKey=<%=issueLCMB.getIssueKey()%>" id="clone_issue">复制</a>
