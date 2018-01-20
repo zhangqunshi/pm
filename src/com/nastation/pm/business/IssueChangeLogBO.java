@@ -2,6 +2,25 @@ package com.nastation.pm.business;
 
 import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.beanhbm.IssueChangeLoghbm;
+import com.nastation.pm.beanhbm.Issuehbm;
+import com.nastation.pm.util.SessionF;
+import com.nastation.pm.util.StringUtils;
+
+public class IssueChangeLogBO {
+
+    public static IssueChangeLogBO getIssueChangeLogBO() {
+        return new IssueChangeLogBO();
+    }
+
+    /**
+     * 保存问题改编log
+     * 
+=======
 import com.nastation.pm.util.StringUtils;
 
 import org.hibernate.*;
@@ -14,6 +33,7 @@ public class IssueChangeLogBO {
     /**
      * 保存问题改编log
      *
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
      */
     public void addIssueChangeLog(IssueChangeLoghbm log) {
         Session session = SessionF.sessionFactory.openSession();
@@ -23,18 +43,32 @@ public class IssueChangeLogBO {
             session.save(log);
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            if (session != null)
+                session.close();
+=======
             if (tx != null) {
                 tx.rollback();
             }
         } finally {
             session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
     }
 
     /**
+<<<<<<< HEAD
+     * 
+     * 通过id获取对象
+     * 
+=======
      *
      * 通过id获取对象
      *
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
      */
     public IssueChangeLoghbm getIssueChangeLog(int id) {
         Session session = SessionF.sessionFactory.openSession();
@@ -45,11 +79,19 @@ public class IssueChangeLogBO {
             i = session.load(IssueChangeLoghbm.class, id);
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            if (session != null)
+                session.close();
+=======
             if (tx != null) {
                 tx.rollback();
             }
         } finally {
             session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
         return i;
     }
@@ -63,11 +105,19 @@ public class IssueChangeLogBO {
             l = session.createQuery("from IssueChangeLoghbm as i where i.issueId.id=:id").setInteger("id", id).list();
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
+            if (tx != null)
+                tx.rollback();
+        } finally {
+            if (session != null)
+                session.close();
+=======
             if (tx != null) {
                 tx.rollback();
             }
         } finally {
             session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
         return l;
     }

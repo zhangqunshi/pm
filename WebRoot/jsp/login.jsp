@@ -32,22 +32,13 @@
         }
     }
 </script>
-<style type="text/css">
-.bs-example {
-    margin: 20px;
-}
-</style>
 </head>
 <body>
     <div>&nbsp;</div>
-
-
-
     <%
-        String choice = request.getParameter("choice");
+        String choice = (String) request.getAttribute("choice");
     %>
-
-    <div class="container">
+    <div class="container top">
         <div class="row">
             <div class="form-group">
                 <h3 class="form-title text-center">项目管理软件</h3>
@@ -66,17 +57,17 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <%
-                    if(choice != null){
+                    if (choice != null) {
                 %>
-                    <jsp:include page="${path}/jsp/addUser.jsp" />
+                <jsp:include page="${path}/jsp/addUser.jsp" />
                 <%
-                    }else{
+                    } else {
                 %>
-               
-                <form class="form-horizontal" action="<%=path%>/jsp/checkLogin.jsp" method="post" name="myForm" onsubmit="return check()">
+
+                <form class="form-horizontal" action="Login.action" method="post" name="myForm" onsubmit="return check()">
                     <%@include file="/jsp/showErrorMessage.jsp"%>
                     <div class="form-group">
-                        <input type="text" id="inputSuccess" class="form-control " name="username" placeholder="用户名">
+                        <input type="text" id="inputSuccess" class="form-control" name="username" placeholder="用户名">
                     </div>
                     <div class="form-group">
                         <input type="password" id="inputWarning" class="form-control" name="password" placeholder="密码">
@@ -85,18 +76,14 @@
                         <button type="submit" class="btn btn-primary col-md-12">Login</button>
                     </div>
                 </form>
-               <%
+                <%
                     }
-               %>
+                %>
             </div>
         </div>
     </div>
-
     <script type="text/javascript" language="javascript">
-                    document.loginform.elements[0].focus();
-                </script>
-
-
+         document.loginform.elements[0].focus();
+    </script>
 </body>
 </html>
-

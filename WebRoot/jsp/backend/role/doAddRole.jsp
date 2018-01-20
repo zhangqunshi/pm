@@ -22,7 +22,6 @@
     role.setRoleName(name);
     role.setRoleDesc(desc);
     role.setCreateDate(roleTime);
-    role.setRoleName(name);
     if (!rb.checkRole(r)) {
         rb.addRole(role);
 %>

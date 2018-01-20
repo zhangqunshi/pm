@@ -2,6 +2,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="com.nastation.pm.business.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -12,14 +13,6 @@
 <head>
 </head>
 <body>
-    <%
-        String idStr = request.getParameter("id");
-        int id = 0;
-        if (StringUtils.isNotBlank(idStr)) {
-            id = Integer.parseInt(idStr);
-        }
-        IssueBO issueBO = new IssueBO();
-    %>
     <form action="deleteUser.jsp" method="post">
         <table>
             <tbody>
@@ -41,19 +34,21 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="hidden" value="<%=id%>" name="id" />
+                        <input type="hidden" value="<s:property value="id"/>" name="id " />
                     </td>
                 </tr>
                 <tr>
                     <td align="right" width="50%">Assigned Issues:</td>
                     <td>
-                        <a align="left"><%=issueBO.assigneeCount(id)%></a>
+                        <a align="left">
+                            <s:property value="assigneeCount" />
+                        </a>
                     </td>
                 </tr>
                 <tr>
                     <td align="right" width="50%">Reported Issues:</td>
                     <td align="left">
-                        <%=issueBO.reporterCount(id)%>
+                        <s:property value="reporterCount" />
                     </td>
                 </tr>
                 <tr>

@@ -10,7 +10,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 
-
 <html>
 <body>
     <%
@@ -24,7 +23,7 @@
         }
         int id = Integer.parseInt(commentId);
         CommentBO commentBO = new CommentBO();
-        Commenthbm comment = commentBO.getComment(id);
+        Commenthbm comment = new commentBO().getComment(id);
     %>
     <style>
 td#TopMenu {

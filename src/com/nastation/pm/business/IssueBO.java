@@ -15,12 +15,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+=======
 import org.hibernate.*;
 import com.nastation.pm.util.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
-import com.nastation.pm.bean.*;
-
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.bean.Issue;
+import com.nastation.pm.beanhbm.Issuehbm;
+import com.nastation.pm.beanhbm.Userhbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 
 public class IssueBO {
 
@@ -30,6 +37,10 @@ public class IssueBO {
     public static final String columnNames = "issue_key, issue_type_id, name, priority_level_id, start_time,"
             + " end_time, plan_end_time, component_id, assignee_id, reporter_id, "
             + " environment, description, project_id, last_update_date, create_date, " + " issue_status";
+
+    public static IssueBO getIssueBO() {
+        return new IssueBO();
+    }
 
     /**
      * 向数据库中添加记录 Issue对象
@@ -46,7 +57,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -65,7 +77,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -86,7 +99,8 @@ public class IssueBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return i;
     }
@@ -108,7 +122,8 @@ public class IssueBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -130,7 +145,8 @@ public class IssueBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return i;
     }
@@ -151,7 +167,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return il;
     }
@@ -175,7 +192,8 @@ public class IssueBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return i;
     }
@@ -265,7 +283,11 @@ public class IssueBO {
 
             String sql = "select * from v_issue_detail where project_id=? order by issue_key desc";
 
+<<<<<<< HEAD
+            pstmt = conn.prepareStatement(sql.toString());
+=======
             pstmt = conn.prepareStatement(sql);
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
             pstmt.setInt(1, project_id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -342,7 +364,8 @@ public class IssueBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
 
@@ -598,7 +621,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return count;
     }
@@ -623,7 +647,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return count;
     }
@@ -649,7 +674,8 @@ public class IssueBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -704,7 +730,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -758,7 +785,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -773,7 +801,7 @@ public class IssueBO {
             String str = format.format(dt);
             return time.equals(str);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return false;
     }
@@ -793,7 +821,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -812,7 +841,8 @@ public class IssueBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 

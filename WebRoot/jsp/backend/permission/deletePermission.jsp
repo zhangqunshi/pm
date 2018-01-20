@@ -8,28 +8,18 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
 </head>
-
 <body>
-    <%
-        String idStr = request.getParameter("id");
-        int id = Integer.parseInt(idStr);
-        String schemeId = request.getParameter("schemeId");
-        PermissionAssigneeBO paBO = new PermissionAssigneeBO();
-        PermissionAssigneehbm pa = paBO.getPermissionAssignee(id);
-    %>
-
     <form action="doDeletePermission.jsp">
         <table class="simpleform maxWidth">
             <tbody>
@@ -40,13 +30,13 @@
                 </tr>
                 <tr>
                     <td class="simpleformheader" colspan="2">
-                        <input type="hidden" value="<%=id%>" name="id" />
-                        <input type="hidden" value="<%=schemeId%>" name="schemeId" />
+                        <input type="hidden" value="<s:property value="id"/>" name="id" />
+                        <input type="hidden" value="<s:property value="schemeId"/>" name="schemeId" />
                         Are you sure you want to delete
                         <b>
-                            <%=pa.getAssigneeType()%></b>
-                        (<%=pa.getAssignee()%>) for permission:
-                        <b><%=pa.getPermission().getName()%></b>
+                            <s:property value="#permissionAssignee.assigneeType"/></b>
+                        (<s:property value="#permissionAssignee.assignee"/>) for permission:
+                        <b><s:property value="#permissionAssignee.permission.name"/></b>
                         <br />
                     </td>
                 </tr>
@@ -59,6 +49,5 @@
             </tbody>
         </table>
     </form>
-
 </body>
 </html>

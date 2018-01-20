@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <package name="backendProject" extends="struts-default">
+    
+        <action name="addProject" class="com.nastation.pm.struts.backend.project.AddProjectAction" method="execute">
+            <result name="success">/jsp/backend/project/viewProjectDetail.jsp</result>
+            <result name="error">/jsp/backend/project/addProject.jsp</result>
+        </action>
+
+        <action name="deleteProject" class="com.nastation.pm.struts.backend.project.DeleteProjectAction" method="execute">
+            <result name="success">/jsp/backend/project/deleteProject.jsp</result>
+        </action>
+
+        <action name="doDeleteProject" class="com.nastation.pm.struts.backend.project.DoDeleteProjectAction" method="execute">
+            <result name="success">/jsp/backend/project/viewProject.jsp</result>
+        </action>
+
+        <action name="updateProject" class="com.nastation.pm.struts.backend.project.UpdateProjectAction" method="execute">
+            <result name="success">/jsp/backend/project/viewProjectDetail.jsp</result>
+            <result name="error">/jsp/backend/project/updateProject.jsp</result>
+        </action>
+
+        <action name="aupdateProject" class="com.nastation.pm.struts.backend.project.AupdateProjectAction" method="execute">
+            <result name="success">/jsp/backend/project/updateProject.jsp</result>
+        </action>
+
+        <action name="viewProject" class="com.nastation.pm.struts.backend.project.ViewProjectAction" method="execute">
+            <result name="success">/jsp/backend/project/viewProject.jsp</result>
+        </action>
+
+        <action name="aDetailProject" class="com.nastation.pm.struts.backend.project.ADetailProjectAction" method="execute">
+            <result name="success">/jsp/backend/project/viewProjectDetail.jsp</result>
+        </action>
+
+        <action name="detailProject" class="com.nastation.pm.struts.backend.project.viewProjectDetailAction" method="execute">
+            <result name="success">/jsp/backend/project/viewProjectDetail.jsp</result>
+        </action>
+
+    </package>
+
+    <package name="backendProjectCategory" extends="struts-default">
+
+        <action name="viewProjectCategory" class="com.nastation.pm.struts.backend.project.category.ViewProjectCategoryAction" method="execute">
+            <result name="success">/jsp/backend/project/category/viewProjectCategory.jsp</result>
+        </action>
+
+    </package>
+
+    <package name="backendProjectComponent" extends="struts-default">
+
+    </package>
+
+    <package name="backendProjectUser" extends="struts-default">
+
+    </package>
+
+    <package name="backendGroup" extends="struts-default">
+
+    </package>
+
+    <package name="backendPermission" extends="struts-default">
+
+    </package>
+
+    <package name="backendRole" extends="struts-default">
+
+    </package>
+
+    <package name="backendUser" extends="struts-default">
+
+    </package>
+
+    <package name="backendIssuePriority" extends="struts-default">
+
+    </package>
+
+    <package name="backendIssueResolution" extends="struts-default">
+
+    </package>
+
+    <package name="backendIssuestatus" extends="struts-default">
+
+    </package>
+
+    <package name="backendIssueType" extends="struts-default">
+
+    </package>
+
+</struts>

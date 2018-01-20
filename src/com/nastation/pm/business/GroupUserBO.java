@@ -5,143 +5,192 @@
  */
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.nastation.pm.bean.GroupUser;
-import com.nastation.pm.util.DBConn;
+import com.nastation.pm.beanhbm.GroupUserhbm;
+import com.nastation.pm.util.SessionF;
 
 public class GroupUserBO {
+
+    public static GroupUserBO getGroupUserBO() {
+        return new GroupUserBO();
+    }
 
     /**
      * 添加用户组
      */
+<<<<<<< HEAD
+
+    public void addGroupUser(GroupUserhbm groupUser) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+=======
     public void addGroupUser(GroupUser groupUser) throws SQLException {
         Connection conn = DBConn.getConnection();
         String sql = "insert into t_group_user(user_id,group_id) values(?,?)";
 
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, groupUser.getUserId());
-            pstmt.setInt(2, groupUser.getGroupId());
-            pstmt.executeUpdate();
+            tx = session.beginTransaction();
+            session.save(groupUser);
+            tx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            if (tx != null)
+                tx.rollback();
         } finally {
-            DBConn.closeConn(conn);
+            if (session != null)
+                session.close();
         }
-
     }
 
     /**
      * 判断用户组是否存在
      */
+<<<<<<< HEAD
+
+    public boolean groupUserExit(GroupUserhbm groupUser) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+=======
     public boolean groupUserExit(GroupUser groupUser) {
         boolean flag = false;
         Connection conn = DBConn.getConnection();
         String sql = "select * from t_group_user where user_id=? and group_id=?";
 
         PreparedStatement pst;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         try {
-            pst = conn.prepareStatement(sql);
-            pst.setInt(1, groupUser.getUserId());
-            pst.setInt(2, groupUser.getGroupId());
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                flag = true;
+            tx = session.beginTransaction();
+            GroupUserhbm g = (GroupUserhbm) session
+                    .createQuery("from GroupUserhbm as g where g.userId=:uid and g.groupId=:gid")
+                    .setInteger("uid", groupUser.getUserId()).setInteger("gid", groupUser.getGroupId()).uniqueResult();
+            if (g != null) {
+                return true;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
         } finally {
-            DBConn.closeConn(conn);
+            if (session != null)
+                session.close();
         }
-        return flag;
+        return false;
     }
 
     /**
      * 判断组ID为groupId的用户组是否存在
      */
-    public boolean groupUserExit(int groupId) {
-        boolean flag = false;
-        Connection conn = DBConn.getConnection();
-        PreparedStatement pstmt = null;
-        String sql = "select * from t_group_user where group_id=?";
 
+    public boolean groupUserExit(int groupId) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
         try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, groupId);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                flag = true;
+            tx = session.beginTransaction();
+            GroupUserhbm g = (GroupUserhbm) session.createQuery("from GroupUserhbm as g where g.groupId=:gid")
+                    .setInteger("gid", groupId).setMaxResults(1).uniqueResult();
+            if (g != null) {
+                return true;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
         } finally {
-            DBConn.closeConn(conn);
+            if (session != null)
+                session.close();
         }
-        return flag;
+        return false;
     }
 
     /**
      * 删除组ID为groupId的用户组
      */
+
     public void deleteGroupUser(int groupId) {
+<<<<<<< HEAD
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+=======
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "delete from t_group_user where id=?";
 
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, groupId);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx = session.beginTransaction();
+            session.createQuery("delete from GroupUserhbm as g where g.groupId=:gid").setInteger("gid", groupId)
+                    .executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
         } finally {
-            DBConn.closeConn(conn);
+            if (session != null)
+                session.close();
         }
-
     }
 
     /**
      * 删除用户组用户
      */
+<<<<<<< HEAD
+
+    public void deleteUserGroup(GroupUserhbm userGroup) {
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+=======
     public void deleteUserGroup(GroupUser userGroup) {
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "delete from t_group_user where user_id=? and group_id=?";
 
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, userGroup.getUserId());
-            pstmt.setInt(2, userGroup.getGroupId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx = session.beginTransaction();
+            session.createQuery("delete from GroupUserhbm as g where g.userId=:uid and g.groupId=:gid")
+                    .setInteger("uid", userGroup.getUserId()).setInteger("gid", userGroup.getGroupId()).executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
         } finally {
-            DBConn.closeConn(conn);
+            if (session != null)
+                session.close();
         }
-
     }
 
+    /**
+     * 获得用户组ID
+     * 
+     */
     public int userGroupId(int groupId, int userId) {
         int ugId = 0;
+<<<<<<< HEAD
+        Session session = SessionF.sessionFactory.openSession();
+        Transaction tx = null;
+=======
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "select id from t_group_user where group_id=? and user_id=?";
 
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, groupId);
-            pstmt.setInt(2, userId);
-            ResultSet rs = pstmt.executeQuery();
-            rs.next();
-            ugId = rs.getInt("id");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx = session.beginTransaction();
+            GroupUserhbm g = (GroupUserhbm) session
+                    .createQuery("from GroupUserhbm as g where g.userId=:uid and g.groupId=:gid")
+                    .setInteger("uid", userId).setInteger("gid", groupId).uniqueResult();
+
+            ugId = g.getId();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
         } finally {
-            DBConn.closeConn(conn);
+            if (session != null)
+                session.close();
         }
         return ugId;
     }

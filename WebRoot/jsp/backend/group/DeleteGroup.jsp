@@ -20,7 +20,7 @@
         if (StringUtils.isBlank(groupName)) {
             return;
         }
-        GroupBO groupBO = new GroupBO();
+        GroupBO groupBO = new GroupBO(); 
         GroupUserBO groupUserBO = new GroupUserBO();
 
         Grouphbm moveGroup = groupBO.getGroupInformation(groupName);

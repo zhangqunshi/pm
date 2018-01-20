@@ -13,8 +13,11 @@
     //转化参数
     int resolutionId = Integer.parseInt(id);
     int resolutionNewId = Integer.parseInt(newId);
+<<<<<<< HEAD
+=======
     
     
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
     //
     ResolutionBO rb = new ResolutionBO();

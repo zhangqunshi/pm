@@ -9,44 +9,30 @@
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="java.util.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <table>
-        <tr>
-            <td width="100%" style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-                <table>
-                    <tr bgcolor="#f0f0f0">
-                        <td>
-                            <h3 class="formtitle">Group Browser</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="simpleformbody">
-                            <p>The Group Browser allows you to browse all the groups in the system. You can also add and remove groups from here.</p>
-                            <p>Only System Administrators are allowed to delete or edit members of groups with the 'System Administrators' permission.</p>
-                            <p />
-                            <ul class="square">
-                                <li>
-                                    <b>
-                                        <a id="bulk_edit_groups" href="BulkEditUserGroups!default.jsp">Bulk Edit Group Members</a>
-                                    </b>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-
-            </td>
-        </tr>
-        <tr>
-            <td><%@ include file="viewGroup.jsp"%>
-            </td>
-        </tr>
-        <tr>
-            <td width="50%"><%@ include file="addGroup.jsp"%></td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Group Browser</h3>
+                <p>The Group Browser allows you to browse all the groups in the system. You can also add and remove groups from here.</p>
+                <p>Only System Administrators are allowed to delete or edit members of groups with the 'System Administrators' permission.</p>
+                <a id="bulk_edit_groups" href="BulkEditUserGroups!default.jsp" class="btn btn-info btn-block">Bulk Edit Group Members</a>
+            </div>
+        </div>
+        <div class=" row">
+            <div class="col-md-12"><%@ include file="viewGroup.jsp"%></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <%@ include file="addGroup.jsp"%>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -14,7 +14,10 @@
     String userName = request.getParameter("name");
 
     if (StringUtils.isBlank(userName)) {
+<<<<<<< HEAD
+=======
         
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         return;
     }
 
@@ -32,7 +35,7 @@
             out.println("<p><form action='doEditJoinUserGroups!default.jsp'>");
             out.println("<input type='submit' value='Join >>'/><div><br>");
             out.println("<input type='hidden' name='userId' value='" + joinUser.getId() + "'/>");
-            out.println("<select size='5' name='groupId'>");
+            out.println("<select size='5' name='grou pId'>");
 
             for (int i = 0; i < joinGroupList.size(); i++) {
                 Grouphbm joinGroup = joinGroupList.get(i);

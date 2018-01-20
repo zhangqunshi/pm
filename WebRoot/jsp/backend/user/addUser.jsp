@@ -5,6 +5,7 @@
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.nastation.pm.util.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <title>创建新用户</title>
@@ -59,62 +60,54 @@
         }
     }
 </script>
-
 </head>
-
 <body>
-    <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-        <h3 class="formtitle">Create New User</h3>
-        <p>Enter the new user's details below.</p>
-        <%
-            String fail = request.getParameter("fail");
-            if (StringUtils.isBlank(fail)) {
-                fail = "";
-            }
-            out.println("<font color='red'>" + fail + "</font>");
-        %>
-        <form action="doAddUser.jsp" method="post" name="myForm" onsubmit="return test();">
-            <table border="0" align="center">
-                <tr>
-                    <td align="right">用户名：</td>
-                    <td>
-                        <input type="text" name="username">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">密码：</td>
-                    <td>
-                        <input type="password" name="password">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">确认：</td>
-                    <td>
-                        <input type="password" name="confirm">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">全名：</td>
-                    <td>
-                        <input type="text" name="fullname">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right" valign="top">Email：</td>
-                    <td>
-                        <input type="text" name="email" size="30">
-                        如：zhangqunshi@126.com
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="submit" value="创建">
-                        <input type="button" onclick="location.href='viewUser.jsp'" value="取消" />
-                    </td>
-                </tr>
-            </table>
-        </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="formtitle">Create New User</h3>
+                <p>Enter the new user's details below.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <font color="red">
+                    <s:property value="fail" />
+                </font>
+                <form action="doAddUser.jsp" method="post" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
+
+                    <div class="input-group">
+                        <span class="input-group-addon">用户名</span>
+                        <input type="text" name="username" class="form-control" placeholder="username">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">密码</span>
+                        <input type="password" name="password" class="form-control" placeholder="password">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">确认密码</span>
+                        <input type="password" name="confirm" class="form-control" placeholder="confirm">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">全名</span>
+                        <input type="text" name="fullname" class="form-control" placeholder="fullname">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">@邮箱地址</span>
+                        <input type="text" name="email" size="30" class="form-control" placeholder="email">
+                    </div>
+
+                    <div>
+                        <input type="submit" value="创建" class="btn btn-info btn-block" />
+                        <input type="button" onclick="location.href='viewUser.jsp'" value="取消" class="btn btn-info btn-block" />
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

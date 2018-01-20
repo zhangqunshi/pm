@@ -31,7 +31,10 @@
 
     Issue issueLCMB = (Issue) request.getAttribute("issue");
     if (issueLCMB == null) {
+<<<<<<< HEAD
+=======
         
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         return;
     }
     User currentUser = (User) session.getAttribute(Global.SESSION_USER);
@@ -56,7 +59,7 @@
         <td>
             <%
                 if (currentUser.validate(issueLCMB.getProjectId(), PermissionConstants.EDIT_ISSUES)) {
-            %>
+            %>      
             <img height="8" border="0" align="absmiddle" width="8" src="<%=path%>/images/icons/bullet_creme.gif" />
             <strong>
                 <a href="cloneIssueDetails!default.jsp?issueKey=<%=issueLCMB.getIssueKey()%>" id="clone_issue">复制</a>

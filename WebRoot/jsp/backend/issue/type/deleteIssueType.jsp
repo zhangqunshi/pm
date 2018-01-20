@@ -3,19 +3,14 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
     <table>
         <tr>
             <td colspan="2">
                 <h3 class="formtitle">
                     Delete Issue Type:
-                    <%
-                    IssueTypeBO issueTypeBO = new IssueTypeBO();
-                    String id = request.getParameter("id");
-                    int issueTypeId = Integer.parseInt(id);
-                    IssueTypehbm issueType = issueTypeBO.getIssueType(issueTypeId);
-                    out.println(issueType.getName());
-                %>
+                    <s:property value="name" />
                 </h3>
             </td>
         </tr>
@@ -25,12 +20,10 @@
                 <p>There are currently no matching issues</p>
             </td>
         </tr>
-
         <tr>
             <td colspan="2" align="right">
-                <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/issue/type/doDeleteIssueType.jsp"/>?id=<%=id%>'" value="删除" id="删除" name="删除" />
+                <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/issue/type/doDeleteIssueType.jsp"/>?id=<s:property value="id"/>'" value="删除" id="删除" name="删除" />
                 <input type="button" onclick="location.href='<c:url value="/jsp/backend/issue/type/viewIssueType.jsp"/>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
-
             </td>
         </tr>
     </table>

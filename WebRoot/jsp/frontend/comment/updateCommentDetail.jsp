@@ -10,7 +10,6 @@
 <html>
 <head>
 </head>
-
 <body>
     <%
         String commentId = request.getParameter("commentId");
@@ -27,7 +26,6 @@
         CommentBO commbo = new CommentBO();
         Commenthbm comm = commbo.getComment(id);
     %>
-
     <table border="0" width="100%">
         <tr>
             <td valign="top" width="20%">
@@ -70,7 +68,6 @@
                         </tr>
                     </table>
                 </form>
-
             </td>
         </tr>
     </table>

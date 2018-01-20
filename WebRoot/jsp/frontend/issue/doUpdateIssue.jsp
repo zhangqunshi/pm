@@ -53,7 +53,11 @@
         errMsg += "Please choose reporter!";
     }
     if (hasError) {
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         request.setAttribute("errMsg", errMsg);
 %>
 <jsp:forward page="updateIssue.jsp">

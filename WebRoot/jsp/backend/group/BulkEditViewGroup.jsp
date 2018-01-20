@@ -10,16 +10,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
-<%
-    String viewGroupName = request.getParameter("groupName");
-			if (StringUtils.isBlank(viewGroupName)) {
-
-				viewGroupName = "";
-			}
-			GroupBO viewGroupBO = new GroupBO();
-			List<Grouphbm> groupList = viewGroupBO.getViewGroups();
-%>
 <script>
      function load() 
      { 
@@ -33,18 +25,16 @@
 	          }
 	     } 
     }
-     
-    </script>
-
+</script>
 <form action="BulkEditUserGroups!default.jsp" name="viewform">
     <table>
         <tr>
             <td align="center">
                 <b>
                     Selected 1 of
-                    <%=groupList.size()%>
+                    <s:property value="groupCount" />
                     Groups
-                    <b>
+                <b>
             </td>
         </tr>
         <tr>
@@ -58,21 +48,16 @@
             <td align="center">
                 <br>
                 <select id="fatherid" size="5" name="groupName">
-                    <%
-                        for (int i = 0; i < groupList.size(); i++) {
-                            Grouphbm group = groupList.get(i);
-                            if (group.getName().equals(viewGroupName)) {
-                                out.println("<option selected value='" + group.getName() + "'>" + group.getName() + "</option>");
-                            } else {
-                                out.println("<option value='" + group.getName() + "'>" + group.getName() + "</option>");
-                            }
-
-                        }
-                    %>
+                    <s:iterator value="#gourpList" var="g">
+                        <s:if test="#g.flag">
+                            <option selected value="<s:property value="#g.name"/>"><s:property value="#g.name"/></option>
+                        </s:if>
+                        <s:else>
+                            <option value="<s:property value="#g.name"/>"><s:property value="#g.name"/></option>
+                        </s:else>
+                    </s:iterator>
                 </select>
             </td>
         </tr>
-
     </table>
 </form>
-

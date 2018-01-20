@@ -1,14 +1,29 @@
 package com.nastation.pm.business;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.bean.PermissionScheme;
+import com.nastation.pm.beanhbm.PermissionSchemehbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+import com.nastation.pm.util.StringUtils;
+=======
 import com.nastation.pm.bean.PermissionScheme;
 import com.nastation.pm.util.*;
 
 import org.hibernate.*;
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 权限模板的业务逻辑类
@@ -16,6 +31,10 @@ import com.nastation.pm.beanhbm.*;
  * @author sun
  */
 public class PermissionSchemeBO {
+
+    public static PermissionSchemeBO getPermissionSchemeBO() {
+        return new PermissionSchemeBO();
+    }
 
     /**
      * 添加一个权限模板
@@ -35,7 +54,8 @@ public class PermissionSchemeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -57,7 +77,8 @@ public class PermissionSchemeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -79,7 +100,8 @@ public class PermissionSchemeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -101,7 +123,8 @@ public class PermissionSchemeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return psList;
     }
@@ -125,7 +148,8 @@ public class PermissionSchemeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return ps;
     }
@@ -151,7 +175,8 @@ public class PermissionSchemeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return ps.getId();
     }
@@ -209,7 +234,8 @@ public class PermissionSchemeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }

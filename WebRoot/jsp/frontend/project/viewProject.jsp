@@ -37,6 +37,5 @@
         }
         out.println("</table>");
     %>
-
 </body>
 </html>

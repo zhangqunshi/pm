@@ -1,12 +1,26 @@
 package com.nastation.pm.business;
 
-import java.util.*;
-import java.sql.*;
-import com.nastation.pm.bean.*;
-import com.nastation.pm.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.bean.Permission;
+import com.nastation.pm.beanhbm.Permissionhbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+=======
 import org.hibernate.*;
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * Permission business object.
@@ -15,6 +29,10 @@ import com.nastation.pm.beanhbm.*;
  *
  */
 public class PermissionBO {
+
+    public static PermissionBO getPermissionBO() {
+        return new PermissionBO();
+    }
 
     public Permissionhbm idGetPermission(int id) {
         Session session = SessionF.sessionFactory.openSession();
@@ -29,7 +47,8 @@ public class PermissionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return p;
     }
@@ -52,7 +71,8 @@ public class PermissionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

@@ -7,20 +7,31 @@ package com.nastation.pm.business;
  *
  */
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+=======
 import com.nastation.pm.bean.IssueType;
 import com.nastation.pm.util.DBConn;
 
 import org.hibernate.*;
 import com.nastation.pm.util.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
-import com.nastation.pm.beanhbm.*;
+import com.nastation.pm.beanhbm.Iconhbm;
+import com.nastation.pm.beanhbm.IssueTypehbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
 
 public class IssueTypeBO {
+
+    public static IssueTypeBO getIssueTypeBO() {
+        return new IssueTypeBO();
+    }
 
     /**
      * 向数据库中添加记录 IssueType 对象
@@ -37,7 +48,8 @@ public class IssueTypeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -56,7 +68,8 @@ public class IssueTypeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -76,7 +89,8 @@ public class IssueTypeBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -98,7 +112,8 @@ public class IssueTypeBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return it;
     }
@@ -121,7 +136,8 @@ public class IssueTypeBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return it2;
     }
@@ -142,7 +158,8 @@ public class IssueTypeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return it2List;
     }
@@ -166,7 +183,8 @@ public class IssueTypeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return true;
     }
@@ -174,7 +192,7 @@ public class IssueTypeBO {
     /**
      * 检查是否创建了同名IssueType
      */
-    public boolean exist(IssueType issueType) {
+    public boolean exist(IssueTypehbm issueType) {
         Connection conn = DBConn.getConnection();
         try {
             String sql = "select id from t_issue_type where name=? and id!=?";
@@ -212,7 +230,8 @@ public class IssueTypeBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -235,7 +254,8 @@ public class IssueTypeBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

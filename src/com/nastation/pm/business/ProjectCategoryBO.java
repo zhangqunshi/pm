@@ -2,12 +2,28 @@ package com.nastation.pm.business;
 
 import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.beanhbm.ProjectCategoryhbm;
+import com.nastation.pm.beanhbm.Projecthbm;
+import com.nastation.pm.util.SessionF;
+
+public class ProjectCategoryBO {
+
+    public static ProjectCategoryBO getProjectCategoryBO() {
+        return new ProjectCategoryBO();
+    }
+
+=======
 import org.hibernate.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
 
 public class ProjectCategoryBO {
 
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     /**
      * 创建一个项目类型
      */
@@ -23,7 +39,8 @@ public class ProjectCategoryBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -44,7 +61,8 @@ public class ProjectCategoryBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pc2;
     }
@@ -72,7 +90,8 @@ public class ProjectCategoryBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -93,7 +112,8 @@ public class ProjectCategoryBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pcList;
     }
@@ -114,7 +134,8 @@ public class ProjectCategoryBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -133,7 +154,8 @@ public class ProjectCategoryBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -156,7 +178,8 @@ public class ProjectCategoryBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return category;
     }
@@ -179,7 +202,8 @@ public class ProjectCategoryBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pList;
     }
@@ -214,7 +238,8 @@ public class ProjectCategoryBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -229,8 +254,9 @@ public class ProjectCategoryBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            ProjectCategoryhbm pc = (ProjectCategoryhbm) session.createQuery("from ProjectCategoryhbm as p where p.name=:name")
-                    .setString("name", name).setMaxResults(1).uniqueResult();
+            ProjectCategoryhbm pc = (ProjectCategoryhbm) session
+                    .createQuery("from ProjectCategoryhbm as p where p.name=:name").setString("name", name)
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
             if (pc != null) {
                 flag = true;
@@ -241,7 +267,8 @@ public class ProjectCategoryBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }

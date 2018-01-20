@@ -5,21 +5,45 @@
 
 <hibernate-mapping>
 
+<<<<<<< HEAD
+    <class name="com.nastation.pm.beanhbm.Userhbm" table="t_user" lazy="false">
+=======
     <class name="com.nastation.pm.beanhbm.Userhbm" table="t_user"
            lazy="false">
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
 
+<<<<<<< HEAD
+
+        <property name="name" type="string" column="username" not-null="true" />
+        <property name="password" type="string" column="password" not-null="true" />
+=======
         <property name="name" type="string" column="username"
                   not-null="true" />
         <property name="password" type="string" column="password"
                   not-null="true" />
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         <property name="fullName" type="string" column="fullname" />
         <property name="email" type="string" column="email" />
         <property name="createDate" type="timestamp" column="create_date" />
 
+<<<<<<< HEAD
+
+        <set name="groups" table="t_group_user" lazy="false" cascade="save-update">
+
+            <key column="user_id" />
+            <many-to-many class="com.nastation.pm.beanhbm.Grouphbm" column="group_id" />
+
+
+        </set>
+
+
+
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     </class>
 
 </hibernate-mapping>

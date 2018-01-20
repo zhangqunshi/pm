@@ -73,7 +73,6 @@ function selectAll(){
     }
 </script>
 </head>
-
 <body>
     <%
         UserBO userBO = new UserBO();
@@ -116,7 +115,6 @@ function selectAll(){
                 out.println("</table>");
                     out.println("</form>");
                 }
-            %>
-        
+            %>    
 </body>
 </html>

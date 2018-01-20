@@ -1,11 +1,23 @@
 package com.nastation.pm.business;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.beanhbm.ProjectIssueSequencehbm;
+import com.nastation.pm.util.SessionF;
+=======
 import org.hibernate.*;
 
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 public class ProjectIssueSequenceBO {
+
+    public static ProjectIssueSequenceBO getProjectIssueSequenceBO() {
+        return new ProjectIssueSequenceBO();
+    }
 
     /**
      * 删除所有项目模块
@@ -23,7 +35,8 @@ public class ProjectIssueSequenceBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -48,7 +61,8 @@ public class ProjectIssueSequenceBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }

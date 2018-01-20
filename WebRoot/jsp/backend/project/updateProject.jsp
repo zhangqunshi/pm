@@ -9,20 +9,13 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
-
-<%
-    ProjectBO pb = new ProjectBO();
-			Projecthbm p = pb.getProject(Integer.parseInt(request.getParameter("projectId")));
-			Project project = new Project();
-			project.setProjectId(p.getId());
-			project.setName(p.getName());
-			project.setUrl(p.getUrl());
-			project.setLeader(p.getLeader());
-			project.setDescription(p.getDescription());
-%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
 <html>
 <head>
+<script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script language=javascript>
     function isNull(str) {
         if (str == "")
@@ -74,71 +67,57 @@
 </script>
 </head>
 <body>
-    <h3 class="formtitle">
-        Edit Project:
-        <%=project.getName()%></h3>
-    <br />
-    Use this page to update your project details.
+    <div class="container">
 
-    <%@include file="/jsp/showErrorMessage.jsp"%>
-
-    <form action="doUpdateProject.jsp" name="myForm" onsubmit="return test();">
-        <input type="hidden" name="projectId" value=<%=project.getProjectId()%>></input>
-        <table border="0" align="left" width="90%">
-            <tr>
-                <td align="right">
-                    <i> *名称: </i>
-                </td>
-                <td>
-                    <input type="text" name="name" size="50" value=<%=project.getName()%>></input>
-                </td>
-            </tr>
-
-            <tr>
-                <td align="right">网址:</td>
-                <td>
-                    <input type="text" name="url" size="50" value=<%=project.getUrl()%>></input>
-                </td>
-            </tr>
-            <script>
-                                                    function openWindow(element) {
-                                                        var vWinUsers = window
-                                                                .open(
-                                                                        '<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element='
-                                                                                + element,
-                                                                        'UserPicker',
-                                                                        'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
-                                                        vWinUsers.opener = self;
-                                                        vWinUsers.focus();
-                                                    }
-                                                </script>
-            <tr>
-                <td align="right">
-                    <i> *项目负责人: </i>
-                </td>
-                <td>
-                    <label>
-                        <input type="text" id="lead" name="lead" size="50" autocomplete="off" value=<%=project.getLeader()%>></input>
-                        <a href="javascript:openWindow('lead');">
-                            <img hspace="0" height="16" border="0" width="16" style="vertical-align: top;" src="<c:url value='/images/icons/filter_public.gif'/>" name="assigneeImage" alt="选择一个用户" title="选择一个用户">
-                        </a>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top">描述:</td>
-                <td>
-                    <textarea style="width: 90%;" warp="virtual" name="description" cols="150" rows="6" title=<%=project.getDescription()%>><%=project.getDescription()%></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <br />
-                    <input type="submit" value="更新">
-                    <input type="button" onclick="location.href='viewProjectDetail.jsp?projectId=<%=project.getProjectId()%>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
-                </td>
-            </tr>
-        </table>
-    </form>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="formtitle">
+                    Edit Project:
+                    <s:property value="#project.name" />
+                </h3>
+                <br />
+                Use this page to update your project details.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <%@include file="/jsp/showErrorMessage.jsp"%>
+                <form action="updateProject.action" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
+                    <input type="hidden" name="projectId" value="<s:property value="#project.id"/>" class="form-control" placeholder="twitterhandle"></input>
+                    <div class="input-group">
+                        <span class="input-group-addon">名称</span>
+                        <input type="text" name="name" value="<s:property value="#project.name"/>" class="form-control" placeholder="name"></input>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">网址</span>
+                        <input type="text" name="url" value="<s:property value="#project.url"/>" class="form-control" placeholder="url"></input>
+                    </div>
+                    <script>
+                       function openWindow(element) {
+                          var vWinUsers = window.open('<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element='+ element,'UserPicker',
+                                                      'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+                          vWinUsers.opener = self;
+                          vWinUsers.focus();
+                       }
+                     </script>
+                    <div class="input-group">
+                        <span class="input-group-addon">*项目负责人</span>
+                        <input type="text" id="lead" name="lead" autocomplete="off" value="<s:property value="#project.leader"/>" class="form-control" placeholder="leader"></input>
+                        <span class="input-group-addon">
+                            <a href="javascript:openWindow('lead');">
+                                <img hspace="0" height="16" border="0" width="16" style="vertical-align: top;" src="<c:url value='/images/icons/filter_public.gif'/>" name="assigneeImage" alt="选择一个用户" title="选择一个用户">
+                            </a>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">描述</span>
+                        <textarea warp="virtual" name="description" cols="150" rows="6" title="<s:property value="#project.description"/>" class="form-control" placeholder="description"><s:property value="#project.description"/></textarea>
+                    </div>
+                    <input type="submit" value="更新" class="btn btn-primary btn-block">
+                    <input type="button" onclick="location.href='viewProjectDetail.jsp?projectId=<s:property value="#project.id"/>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" class="btn btn-warning btn-block" />
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

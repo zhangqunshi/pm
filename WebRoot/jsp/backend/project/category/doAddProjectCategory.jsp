@@ -15,13 +15,10 @@
     }
     ProjectCategoryBO pb = new ProjectCategoryBO();
 
-    ProjectCategory category = new ProjectCategory();
-    category.setName(name);
-    category.setDescription(desc);
     ProjectCategoryhbm p = new ProjectCategoryhbm();
     p.setName(name);
     p.setDescription(desc);
-    
+
     if (pb.checkProjectCategory(p)) {
         pb.addProjectCategory(p);
         response.sendRedirect("viewProjectCategory.jsp");

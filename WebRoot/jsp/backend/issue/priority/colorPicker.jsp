@@ -17,8 +17,11 @@
     // Get parameters
 			String element = request.getParameter("element");
 			String defaultColor = request.getParameter("defaultColor");
+<<<<<<< HEAD
+=======
 			
 			
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 %>
 
 <p>
@@ -36,7 +39,7 @@ function colorIn(color) {
 		');
 				//openerEl.value = color;
 				document.f.colorVal.value = color;
-			}
+			} 
 		}
 		function accept() {
 			choice = true;

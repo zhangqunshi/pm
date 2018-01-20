@@ -13,6 +13,10 @@ import com.nastation.pm.util.DBConn;
 
 public class ProjectUserBO {
 
+    public static ProjectUserBO getProjectUserBO() {
+        return new ProjectUserBO();
+    }
+
     // add new project user
     public void addProjectUser(ProjectUser projectUser) throws SQLException {
         Connection conn = DBConn.getConnection();
@@ -96,9 +100,13 @@ public class ProjectUserBO {
                 projectUser.setProjectId(rs.getInt("project_id"));
                 projectList.add(projectUser);
             }
+<<<<<<< HEAD
+
+=======
             for (ProjectUser pUser : projectList) {
 
             }
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

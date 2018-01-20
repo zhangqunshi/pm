@@ -15,7 +15,7 @@
     boolean hasError = false;
     String errMsg = "";
     if (StringUtils.isBlank(name)) {
-        hasError = true;
+        hasError = true;  
         errMsg += "<li>Project Category name can't be empty!</li>";
     }
 

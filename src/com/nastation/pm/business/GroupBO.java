@@ -5,13 +5,30 @@
  */
 package com.nastation.pm.business;
 
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.beanhbm.Grouphbm;
+import com.nastation.pm.beanhbm.Userhbm;
+import com.nastation.pm.util.SessionF;
+=======
 import com.nastation.pm.util.*;
 
 import org.hibernate.*;
 import java.util.*;
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 public class GroupBO {
+
+    public static GroupBO getGroupBO() {
+        return new GroupBO();
+    }
 
     /**
      * 添加组
@@ -30,7 +47,8 @@ public class GroupBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -50,7 +68,8 @@ public class GroupBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return gList;
     }
@@ -80,7 +99,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return gList;
     }
@@ -94,7 +114,8 @@ public class GroupBO {
         Grouphbm g = null;
         try {
             tx = session.beginTransaction();
-            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName).uniqueResult();
+            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName)
+                    .uniqueResult();
 
             tx.commit();
         } catch (Exception e) {
@@ -103,7 +124,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }
@@ -130,7 +152,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -146,8 +169,8 @@ public class GroupBO {
         Grouphbm g = null;
         try {
             tx = session.beginTransaction();
-            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName).setMaxResults(1)
-                    .uniqueResult();
+            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName)
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
 
         } catch (Exception e) {
@@ -156,7 +179,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }
@@ -172,8 +196,8 @@ public class GroupBO {
         Grouphbm g = null;
         try {
             tx = session.beginTransaction();
-            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName).setMaxResults(1)
-                    .uniqueResult();
+            g = (Grouphbm) session.createQuery("from Grouphbm where name=:name").setString("name", groupName)
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
 
         } catch (Exception e) {
@@ -182,7 +206,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }
@@ -204,7 +229,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -233,7 +259,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return gList;
     }
@@ -253,7 +280,8 @@ public class GroupBO {
             }
             throw e;
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return g;
     }

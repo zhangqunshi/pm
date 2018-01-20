@@ -1,5 +1,22 @@
 package com.nastation.pm.business;
 
+<<<<<<< HEAD
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.bean.User;
+import com.nastation.pm.beanhbm.Userhbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+=======
 import com.nastation.pm.bean.User;
 
 import com.nastation.pm.util.*;
@@ -9,6 +26,7 @@ import java.util.*;
 
 import org.hibernate.*;
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  *
@@ -18,6 +36,10 @@ import com.nastation.pm.beanhbm.*;
 public class UserBO {
 
     public static final String columnNames = "username, password, fullname, email, create_date";
+
+    public static UserBO getUserBO() {
+        return new UserBO();
+    }
 
     /**
      * This method is use to insert the user's information into database;
@@ -37,7 +59,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -62,7 +85,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -85,7 +109,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -107,7 +132,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return user;
     }
@@ -128,7 +154,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return u2;
     }
@@ -148,7 +175,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -237,7 +265,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return uList;
     }
@@ -261,7 +290,8 @@ public class UserBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return u;
     }
@@ -425,11 +455,14 @@ public class UserBO {
         }
         return flag;
     }
+<<<<<<< HEAD
+=======
 
     public static void main(String[] args) {
         UserBO uBO = new UserBO();
         Userhbm u = uBO.login("admin", "123");
 
     }
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 }

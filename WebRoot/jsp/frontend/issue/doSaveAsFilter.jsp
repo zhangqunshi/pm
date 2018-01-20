@@ -34,7 +34,10 @@
     //保存filter到数据库中
     IssueFilterBO filterBO = new IssueFilterBO();
     boolean exist = filterBO.checkFilterName(newFilterName);
+<<<<<<< HEAD
+=======
     
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     if (exist) { //判断重名
         hasErr = true;
         errMsg += "The filter name already exist!";

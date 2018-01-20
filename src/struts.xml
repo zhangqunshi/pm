@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <include file="struts-login.xml" />
+    <include file="struts-backend.xml" />
+    <include file="struts-frontend.xml" />
+</struts>
+
+

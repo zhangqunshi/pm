@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html;chaset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -9,10 +10,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-
-
 </head>
-
 <body>
     <%
         String name = request.getParameter("name");
@@ -22,7 +20,8 @@
             <tr>
                 <td class="simpleformheader" colspan="2">
                     <h3 class="formtitle">
-                        Successfully set new password for:<%=name%>
+                        Successfully set new password for:
+                        <s:property value="name" />
                     </h3>
                 </td>
             </tr>
@@ -31,7 +30,7 @@
             </tr>
             <tr>
                 <td class="fullyCentered simpleformfooter" colspan="2" align="center">
-                    <input id="ok" type="button" onclick="window.location='<%=path%>/jsp/backend/user/viewUserDetail.jsp?name=<%=name%>'" value="OK" />
+                    <input id="ok" type="button" onclick="window.location='<%=path%>/jsp/backend/user/viewUserDetail.jsp?name=<s:property value="name"/>'" value="OK" />
                 </td>
             </tr>
         </tbody>

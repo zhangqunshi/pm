@@ -1,5 +1,8 @@
 package com.nastation.pm.beanhbm;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*
  * 定义个projectCategory的bean;
  */
@@ -9,6 +12,15 @@ public class ProjectCategoryhbm {
     private String name;// 项目类型名字
     private String description;// 项目类型描述
     private java.util.Date createDate;// 项目类型创建日期
+    private Set<Projecthbm> projects = new HashSet<>();
+
+    public Set<Projecthbm> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Projecthbm> projects) {
+        this.projects = projects;
+    }
 
     public int getId() {
         return id;

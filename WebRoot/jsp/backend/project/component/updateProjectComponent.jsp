@@ -35,16 +35,13 @@
 <body>
 
     <script>
-                    function openWindow(element) {
-                        var vWinUsers = window
-                                .open(
-                                        '<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element='
-                                                + element, 'UserPicker',
-                                        'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
-                        vWinUsers.opener = self;
-                        vWinUsers.focus();
-                    }
-                </script>
+      function openWindow(element) {
+      	var vWinUsers = window.open('<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element='+ element, 'UserPicker',
+								  'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+      	vWinUsers.opener = self;
+      	vWinUsers.focus();
+      }
+    </script>
     <h2 class="formtitle">
         Edit Component:
         <%=pc.getName()%>
@@ -89,4 +86,3 @@
     </form>
 </body>
 </html>
-

@@ -4,18 +4,13 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-<%
-    ProjectCategoryBO rb = new ProjectCategoryBO();
-    String id = request.getParameter("id");
-    int i = Integer.parseInt(id);
-    ProjectCategoryhbm category = rb.getProjectCategory(i);
-    if (rb.checkLinkProject(i)) {
-%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <table>
     <tr>
         <td colspan="2">
             <h3 class="formtitle">
-                Delete Project Category:<%=category.getName()%>
+                Delete Project Category:
+                <s:property value="name" />
             </h3>
         </td>
     </tr>
@@ -31,17 +26,8 @@
     </tr>
     <tr>
         <td colspan="2">
-            <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/project/category/doDeleteProjectByCategory.jsp"/>?id=<%=i%>'" value="删除" id="删除" name="删除" />
+            <input type="submit" class="spaced" title="按 Alt+S 提交" accesskey="S" onclick="location.href='<c:url value="/jsp/backend/project/category/doDeleteProjectByCategory.jsp"/>?id=<s:property value="id"/>'" value="删除" id="删除" name="删除" />
             <input type="button" onclick="location.href='<c:url value="/jsp/backend/project/category/viewProjectCategory.jsp"/>'" value="取消" title="取消 (Alt + `)" accesskey="`" id="cancelButton" />
         </td>
     </tr>
 </table>
-<%
-    } else {
-        rb.deleteCategory(i);
-%>
-<jsp:forward page="viewProjectCategory.jsp"></jsp:forward>
-<%
-    }
-%>
-

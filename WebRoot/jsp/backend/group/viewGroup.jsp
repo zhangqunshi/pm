@@ -15,15 +15,16 @@
     GroupBO groupBO = new GroupBO();
     List<Grouphbm> groupList = groupBO.getViewGroups();
 %>
-
-<table id="group_browser_table" class="grid" border="0" width="100%">
-    <tbody>
-        <tr bgcolor="#f0f0f0">
-            <th width="40%">Group Name</th>
-            <th width="20%">Users</th>
-            <th width="30%">Permission Schemes</th>
-            <th nowrap="" width="10%">操作</th>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Group Name</th>
+            <th>Users</th>
+            <th>Permission Schemes</th>
+            <th>操作</th>
         </tr>
+    </thead>
+    <tbody>
         <%
             if (groupList == null || groupList.size() == 0) {
 
@@ -44,8 +45,12 @@
             </td>
             <td>
                 <%
+<<<<<<< HEAD
+                    PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
+=======
                     
                             PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
                             List<PermissionScheme> permissionSchemeList = permissionSchemeBO.getPermissionSchemeList("Group",
                                     groupView.getName());
                             for (int j = 0; j < permissionSchemeList.size(); j++) {

@@ -9,12 +9,14 @@
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
-
 <%
     //由于在其他页面也需要issue信息，所以把issue信息保存在request中，供所有页面使用
 			Issue issueRC = (Issue) request.getAttribute("issue");
 			if (issueRC == null) {
+<<<<<<< HEAD
+=======
 				
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 				return;
 			}
 %>
@@ -59,9 +61,6 @@
             for (int i = 0; i < commentlist.size(); i++) {
                 Commenthbm comm = commentlist.get(i);
     %>
-
-
-
     <div id="comment-<%=comm.getId()%>-open" style="display: block;">
         <div class="actionContainer">
             <div class="action-links subText smallgrey">
@@ -85,7 +84,6 @@
             </div>
         </div>
     </div>
-
     <div id="comment-<%=comm.getId()%>-closed" style="display: none;">
         <div class="actionContainer">
             <div class="action-links subText smallgrey">
@@ -106,9 +104,7 @@
             </div>
         </div>
     </div>
-
     <br />
-
     <%
         } //endfor
         } //endif

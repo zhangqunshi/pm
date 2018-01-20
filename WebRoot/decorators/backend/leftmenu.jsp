@@ -8,10 +8,10 @@
             <h3 class="text-primary">项目</h3>
             <ul class="nav nav-pills nav-stacked">
                 <li >
-                    <a href='<c:url value="/jsp/backend/project/viewProject.jsp" />'>项目浏览</a>
+                    <a href='<c:url value="/jsp/backend/project/viewProject.action" />'>项目浏览</a>
                 </li>
                 <li>
-                    <a href='<c:url value="/jsp/backend/project/category/viewProjectCategory.jsp" />'>项目分类</a>
+                    <a href='<c:url value="/jsp/backend/project/category/viewProjectCategory.action" />'>项目分类</a>
                 </li>
 
             </ul>

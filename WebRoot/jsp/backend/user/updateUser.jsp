@@ -4,6 +4,7 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <script language=javascript>
@@ -36,43 +37,34 @@
     }
 </script>
 </head>
-<%
-    String path = request.getContextPath();
-    request.setCharacterEncoding("UTF-8");
-    int id = Integer.parseInt(request.getParameter("id"));
-
-    UserBO userBO = new UserBO();
-    Userhbm user = userBO.getUser(id);
-%>
-
 <body>
-    <h2 class="formtitle">
-        Edit Project User:
-        <%=user.getName()%></h2>
-    Update the user's details below.
-    <form action="doUpdateUser.jsp" name="myForm" onsubmit="return test();">
-        <input type="hidden" value="<%=user.getId()%>" name="id">
-
-        <table border="0" align="left" width="90%">
-            <tr>
-                <td align="right">全名:</td>
-                <td>
-                    <input name='fullname' type='text' size="50" value="<%=user.getFullName()%>">
-                </td>
-            </tr>
-            <tr>
-                <td align="right">E-mail:</td>
-                <td>
-                    <input name='email' type='text' size="50" value="<%=user.getEmail()%>">
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <input type='submit' value='更新'>
-                    <input type="button" onclick="window.history.back();" value="取消" />
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="formtitle">
+                    Edit Project User:
+                    <s:property value="name" />
+                </h2>
+                Update the user's details below.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="doUpdateUser.jsp" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
+                    <input type="hidden" value="<s:property value="id"/>" name="id">
+                    <div class="input-group">
+                        <span class="input-group-addon">全名</span>
+                        <input name='fullname' type='text' size="50" value="<s:property value="name"/>" class="form-control" placeholder="twitterhandle">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮箱地址</span>
+                        <input name='email' type='text' size="50" value="<s:property value="email"/>" class="form-control" placeholder="twitterhandle">
+                    </div>
+                    <input type='submit' value='更新' class="btn btn-info btn-block">
+                    <input type="button" onclick="window.history.back();" value="取消" class="btn btn-warning btn-block" />
+                </form >
+            </div>
+        </div>
+    </div>
 </body>
 </html>

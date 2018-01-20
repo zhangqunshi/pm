@@ -10,25 +10,14 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-
-<%
-    String moveGroupName = request.getParameter("groupName");
-    if (StringUtils.isBlank(moveGroupName)) {
-        moveGroupName = "";
-    }
-    GroupUserBO guBO = new GroupUserBO();
-    GroupBO moveGroupBO = new GroupBO();
-    Grouphbm groupUser = moveGroupBO.getUserGroup(moveGroupName);
-    int groupId = groupUser.getId();
-    List<Userhbm> groupUserList = new ArrayList<>(groupUser.getUsers());
-%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
 <form action="doMoveGroupUser.jsp">
     <table>
         <tr>
             <td bgcolor="#fffff0" align="center">
                 <b>
-                    <%=groupUserList.size()%>
+                    <s:property value="userCount" />
                     Group Member(s)
                 </b>
             </td>
@@ -36,32 +25,30 @@
         <tr>
             <td align="center">
                 <input type="submit" value="Leave >>" />
-                <input type="hidden" name="groupName" value="<%=moveGroupName%>" />
+                <input type="hidden" name="groupName" value="<s:property value="groupName"/>" />
             </td>
         </tr>
         <tr>
             <td align="center">
                 <br>
-                <%
-                    if (groupUserList == null || groupUserList.size() == 0) {
-                        out.println("No users in selected group(s) ");
-                    } else {
+                <s:if test="flag">
+                    <b>No users in selected group(s)</b>
+                </s:if>
+                <s:else>
+                    <select id="usersToUnassign" size="20" name="groupUserId">
+                        <optgroup label=<s:property value="groupName"/>>
 
-                        out.println("<select id='usersToUnassign' size='20' name='groupUserId'>");
-                        out.println("<optgroup label='" + moveGroupName + "'>");
-                        for (int i = 0; i < groupUserList.size(); i++) {
-                            Userhbm moveGroup = groupUserList.get(i);
-                            int groupUserId = guBO.userGroupId(groupId, moveGroup.getId());
-                            if (StringUtils.isBlank(moveGroup.getName())) {
-
-                            } else {
-                                out.println("<option value='" + groupUserId + "'>" + moveGroup.getName() + "</option>");
-                            }
-                        }
-                        out.println("</optgroup>");
-                        out.println("</select>");
-                    }
-                %>
+                            <s:iterator value="#bmgu" var="b">
+                                <s:if test="#b.flag">
+                                    <b>nothing</b>
+                                </s:if>
+                                <s:else>
+                                    <option value="<s:property value="#b.groupUserId"/>"><s:property value="#b.groupName"/></option>
+                                </s:else>
+                            </s:iterator>
+                        </optgroup>
+                    </select>
+                </s:else>
             </td>
         </tr>
     </table>

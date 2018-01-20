@@ -8,28 +8,22 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%> 
 <!-- 功能：删除项目类型-->
 
 <html>
 <body>
-    <%
-        String id = request.getParameter("id");
-        int i = Integer.parseInt(id);
-        RoleBO rb = new RoleBO();
-        Rolehbm role = rb.getRole(i);
-    %>
     <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
         <table border=0>
-
             <tr>
                 <td>
                     <form action="doDeleteRole.jsp">
                         <H3 class="formtitle">
-                            Delete Role:<%=role.getRoleName()%></H3>
+                            Delete Role:<s:property value="name"/></H3>
                         <pre> 
        Confirm that you want to delete this project category.
      </pre>
-                        <input type="hidden" name="id" value="<%=i%>" />
+                        <input type="hidden" name="id" value="<s:property value="id"/>" />
                         <input type="submit" value="删除" />
                         <input type="button" value="取消" onclick="window.history.back();" />
                     </form>
@@ -40,4 +34,3 @@
     </div>
 </body>
 </html>
-

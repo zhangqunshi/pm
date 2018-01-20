@@ -18,6 +18,16 @@
         <property name="projectId" type="int" column="project_id" />
         <property name="request_content" type="text" column="request_content" />
 
+<<<<<<< HEAD
+        
+
+
+
+
+
+
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     </class>
 
 </hibernate-mapping>

@@ -13,7 +13,6 @@
 <html>
 <head>
 </head>
-
 <body>
     <%
         String groupName = request.getParameter("groupName");
@@ -55,7 +54,7 @@
                                         </font>
                                         <br />
                                         <br />
-                                        <b>Permission Schemes:</b>
+                                        <b>Permission Sc hemes:</b>
                                         <br />
                                         <%
                                             PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();

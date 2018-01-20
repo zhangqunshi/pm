@@ -11,6 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nastation.pm.beanhbm.Iconhbm;
+import com.nastation.pm.beanhbm.IssueStatushbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+=======
 import com.nastation.pm.bean.Icon;
 import com.nastation.pm.bean.IssueStatus;
 import com.nastation.pm.util.DBConn;
@@ -18,8 +27,13 @@ import com.nastation.pm.util.DBConn;
 import org.hibernate.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 public class IssueStatusBO {
+
+    public static IssueStatusBO getIssueStatusBO() {
+        return new IssueStatusBO();
+    }
 
     /**
      * 向数据库中添加记录 IssueStatus 对象
@@ -36,7 +50,8 @@ public class IssueStatusBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -55,7 +70,8 @@ public class IssueStatusBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -75,7 +91,8 @@ public class IssueStatusBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return issue2;
     }
@@ -89,15 +106,16 @@ public class IssueStatusBO {
         IssueStatushbm is = null;
         try {
             tx = session.beginTransaction();
-            is = (IssueStatushbm) session.createQuery("from IssueStatushbm as i where i.name=:name").setString("name", name)
-                    .uniqueResult();
+            is = (IssueStatushbm) session.createQuery("from IssueStatushbm as i where i.name=:name")
+                    .setString("name", name).uniqueResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return is;
     }
@@ -117,7 +135,8 @@ public class IssueStatusBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -137,7 +156,8 @@ public class IssueStatusBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return is;
     }
@@ -145,7 +165,7 @@ public class IssueStatusBO {
     /**
      * 检查是否创建了同名IssueStatus
      */
-    public boolean exist(IssueStatus is) {
+    public boolean exist(IssueStatushbm is) {
         Connection conn = DBConn.getConnection();
         try {
             String sql = "select id from t_issue_status where name=? and id!=?";
@@ -182,7 +202,8 @@ public class IssueStatusBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -190,21 +211,27 @@ public class IssueStatusBO {
     /**
      * 根据icon 获得问题类型列表 List
      */
+<<<<<<< HEAD
+
+    public List<IssueStatushbm> getIssueStatusListByIcon(Iconhbm icon) {
+=======
     public List<IssueStatushbm> getIssueStatusListByIcon(Icon icon) {
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         List<IssueStatushbm> l = null;
         try {
             tx = session.beginTransaction();
-            l = session.createQuery("from IssueStatushbm as i where i.iconUrl=:name").setString("name", icon.getFileName())
-                    .list();
+            l = session.createQuery("from IssueStatushbm as i where i.iconUrl=:name")
+                    .setString("name", icon.getFileName()).list();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

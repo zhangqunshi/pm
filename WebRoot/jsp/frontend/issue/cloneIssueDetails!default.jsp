@@ -4,6 +4,7 @@
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%
     String issueKey = request.getParameter("issueKey");
 			if (StringUtils.isBlank(issueKey)) {
@@ -39,10 +40,10 @@
                             </tr>
                             <tr>
                                 <td class="simpleformheader" colspan="2">
-                                    输入复制问题的标题
+                                                                         输入复制问题的标题
                                     <p>
                                         <span class="warning">注意:</span>
-                                        复制链接类型 "Cloners" 不存在. 到原问题的链接不会创建.
+                                                                        复制链接类型 "Cloners" 不存在. 到原问题的链接不会创建.
                                     </p>
                                 </td>
                             </tr>
@@ -51,17 +52,17 @@
                                     <label for="summary">
                                         <span class="required" title="斜体字是必填的">
                                             <sup> * </sup>
-                                            概要:
+                                                                                 概要:
                                         </span>
                                     </label>
                                 </td>
                                 <td class="fieldValueArea">
-                                    <input id="issueName" class="textfield" type="text" maxlength="255" value="<%=issueName%>" name="issueName" />
+                                    <input id="issueName" class="textfield" type="text" maxlength="255" value="<s:property value="issueName"/>" name="issueName" />
                                 </td>
                             </tr>
                             <tr class="hidden">
                                 <td>
-                                    <input id="id" type="hidden" value="<%=issue.getId()%>" name="issueId" />
+                                    <input id="id" type="hidden" value="<s:property value="issueId"/>" name="issueId" />
                                 </td>
                             </tr>
                             <tr>

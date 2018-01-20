@@ -27,6 +27,13 @@ import com.nastation.pm.util.StringUtils;
  */
 public class IssueFilterBO {
 
+<<<<<<< HEAD
+    public static IssueFilterBO getIssueFilterBO() {
+        return new IssueFilterBO();
+    }
+
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     /**
      * 添加一个filter信息
      *
@@ -44,7 +51,8 @@ public class IssueFilterBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -94,7 +102,8 @@ public class IssueFilterBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -179,7 +188,8 @@ public class IssueFilterBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -201,7 +211,8 @@ public class IssueFilterBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -226,7 +237,8 @@ public class IssueFilterBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -249,7 +261,8 @@ public class IssueFilterBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -279,7 +292,8 @@ public class IssueFilterBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return false;
     }

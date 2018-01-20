@@ -4,13 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-import com.nastation.pm.bean.ProjectComponent;
-import com.nastation.pm.util.DBConn;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import com.nastation.pm.bean.ProjectComponent;
+import com.nastation.pm.beanhbm.ProjectComponenthbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+
+<<<<<<< HEAD
+=======
 import org.hibernate.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
 
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 /**
  * 新建项目模块
  *
@@ -21,6 +29,10 @@ public class ProjectComponentBO {
 
     Connection conn = DBConn.getConnection();
     PreparedStatement pstmt = null;
+
+    public static ProjectComponentBO getProjectComponentBO() {
+        return new ProjectComponentBO();
+    }
 
     /**
      * 添加项目模块
@@ -37,7 +49,8 @@ public class ProjectComponentBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -50,10 +63,11 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            List<ProjectComponent> pList = session.createQuery("from ProjectComponenthbm where name=:name")
-                    .setString("name", pc.getName()).list();
+            ProjectComponenthbm p = (ProjectComponenthbm) session
+                    .createQuery("from ProjectComponenthbm as p where p.name=:name").setString("name", pc.getName())
+                    .setMaxResults(1).uniqueResult();
             tx.commit();
-            if (pList.size() > 1) {
+            if (p != null) {
                 flag = false;
             }
         } catch (Exception e) {
@@ -61,7 +75,8 @@ public class ProjectComponentBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -76,7 +91,7 @@ public class ProjectComponentBO {
 
         try {
             tx = session.beginTransaction();
-            pList = session.createQuery("from ProjectComponenthbm as p where p.projectId.projectId=:id")
+            pList = session.createQuery("from ProjectComponenthbm as p where p.project.projectId=:id")
                     .setInteger("id", id).list();
             tx.commit();
         } catch (Exception e) {
@@ -84,7 +99,8 @@ public class ProjectComponentBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return pList;
     }
@@ -97,14 +113,16 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(session.load(ProjectComponenthbm.class, id));
+            session.createQuery("delete from ProjectComponenthbm as a where a.id=:id").setInteger("id", id)
+                    .executeUpdate();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -116,15 +134,16 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.createQuery("delete from ProjectComponenthbm where project.id=:id")
-                    .setInteger("id", projectId).executeUpdate();
+            session.createQuery("delete from ProjectComponenthbm where project.id=:id").setInteger("id", projectId)
+                    .executeUpdate();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -136,9 +155,8 @@ public class ProjectComponentBO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            ProjectComponent c = (ProjectComponent) session
-                    .createQuery("from ProjectComponenthbm where project.id=:id").setInteger("id", projectId)
-                    .setMaxResults(1).uniqueResult();
+            ProjectComponent c = (ProjectComponent) session.createQuery("from ProjectComponenthbm where project.id=:id")
+                    .setInteger("id", projectId).setMaxResults(1).uniqueResult();
             if (c != null) {
                 return true;
             }
@@ -148,7 +166,8 @@ public class ProjectComponentBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return false;
     }
@@ -168,7 +187,8 @@ public class ProjectComponentBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -188,7 +208,8 @@ public class ProjectComponentBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return p2;
     }

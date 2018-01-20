@@ -1,14 +1,22 @@
 package com.nastation.pm.business;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
 
-import com.nastation.pm.bean.*;
-import com.nastation.pm.util.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+<<<<<<< HEAD
+import com.nastation.pm.beanhbm.PermissionAssigneehbm;
+import com.nastation.pm.util.DBConn;
+import com.nastation.pm.util.SessionF;
+=======
 import org.hibernate.*;
 
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 权限分配业务逻辑类。
@@ -17,6 +25,10 @@ import com.nastation.pm.beanhbm.*;
  *
  */
 public class PermissionAssigneeBO {
+
+    public static PermissionAssigneeBO getPermissionAssigneeBO() {
+        return new PermissionAssigneeBO();
+    }
 
     /**
      * 获得指定权限模板中指定权限的分配列表。
@@ -38,7 +50,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -61,7 +74,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -83,7 +97,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -106,7 +121,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return p;
     }
@@ -152,7 +168,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -163,15 +180,15 @@ public class PermissionAssigneeBO {
      * @author sun
      * @param list
      */
-    public void addAllPermissionAssignee(List<PermissionAssignee> list, int schemeId) {
+    public void addAllPermissionAssignee(List<PermissionAssigneehbm> list, int schemeId) {
         Connection conn = DBConn.getConnection();
         PreparedStatement pstmt = null;
         String sql = "insert t_permission_assignee(permission_id,assignee_type,assignee,scheme_id,create_time)"
                 + "values(?,?,?," + schemeId + ",curdate())";
         try {
             pstmt = conn.prepareStatement(sql);
-            for (PermissionAssignee pa : list) {
-                pstmt.setInt(1, pa.getPermissionId());
+            for (PermissionAssigneehbm pa : list) {
+                pstmt.setInt(1, pa.getPermission().getId());
                 pstmt.setString(2, pa.getAssigneeType());
                 pstmt.setString(3, pa.getAssignee());
                 pstmt.executeUpdate();
@@ -208,7 +225,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return false;
     }
@@ -233,7 +251,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }
@@ -258,7 +277,8 @@ public class PermissionAssigneeBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return l;
     }

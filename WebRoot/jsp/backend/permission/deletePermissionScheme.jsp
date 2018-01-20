@@ -8,32 +8,18 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
 </head>
-
 <body>
-    <%
-        String idStr = request.getParameter("schemeId");
-        int schemeId = 0;
-        if (StringUtils.isNotBlank(idStr)) {
-            schemeId = Integer.parseInt(idStr);
-        }
-        PermissionSchemeBO schemeBO = new PermissionSchemeBO();
-        PermissionSchemehbm scheme = schemeBO.getScheme(schemeId);
-        ProjectBO projectBO = new ProjectBO();
-        List<Project> list = projectBO.getProjectListByScheme(schemeId);
-    %>
-
     <form action="doDeletePermissionScheme.jsp">
         <table class="simpleform maxWidth">
             <tbody>
@@ -44,35 +30,34 @@
                 </tr>
                 <tr>
                     <td class="simpleformheader" colspan="2">
-                        <input type="hidden" value="<%=schemeId%>" name="schemeId" />
+                        <input type="hidden" value="<s:property value="schemeId"/>" name="schemeId" />
                         <p>
                             Are you sure you want to delete
-                            <u><%=scheme.getName()%></u>
+                            <u>
+                                <s:property value="name" />
+                            </u>
                             ?
                             <br />
-                            "<%=scheme.getDescription()%>"
+                            "
+                            <s:property value="desc" />
+                            "
                         </p>
-                        <%
-                            if (list.size() > 0) {
-                        %>
-                        <p>
-                            Note: Test Permission Scheme is currently associated with:
-                            <%
-                            for (Project p : list) {
-                        %>
-                            <a href="/jsp/backend/project/viewProjectDetail.jsp?projectId=<%=p.getProjectId()%>">
-                                <%=p.getName()%></a>
+                        <s:if test="flag">
+
+                            <p>
+                                Note: Test Permission Scheme is currently associated with:
+                                <s:iterator value="#project" var="p">
+                                    <a href="/jsp/backend/project/viewProjectDetail.jsp?projectId=<s:property value="#p.projectId"/>">
+                                        <s:property value="#p.name" />
+                                    </a>
                             .
                             <br />
-                            <%
-                                } //end for
-                            %>
-                            <br />
-                            If you delete this scheme all associated projects will be associated with the Default Permission Scheme
-                        </p>
-                        <%
-                            } //end if
-                        %>
+
+                                </s:iterator>
+                                <br />
+                                If you delete this scheme all associated projects will be associated with the Default Permission Scheme
+                            </p>
+                        </s:if>
                     </td>
                 </tr>
                 <tr>
@@ -84,6 +69,5 @@
             </tbody>
         </table>
     </form>
-
 </body>
 </html>

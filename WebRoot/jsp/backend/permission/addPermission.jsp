@@ -9,28 +9,27 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib prefix="s" uri="/struts-tags"%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <script>
-			function openWindow(element)
-				{
-   				 var vWinUsers = window.open('<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element=' + element, 'UserPicker', 'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
-    			 vWinUsers.opener = self;
-				 vWinUsers.focus();
-				}
-			function setFocus() {  
-			   var option =   document.all.permissions.options;  
-			   for(var   i=0;i<option.length;i++) {  
-			       if(option[i].selected) {  
-			           option[i].focus();
-			       }  
-			  }  
+	function openWindow(element){
+   		var vWinUsers = window.open('<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element=' + element, 'UserPicker', 'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+    	WinUsers.opener = self;
+		vWinUsers.focus();
+	}
+	function setFocus() {  
+		var option =   document.all.permissions.options;  
+		 for(var   i=0;i<option.length;i++) {  
+			 if(option[i].selected) {  
+			     option[i].focus();
+			   }  
+			 }  
   		   } 
   		   
-		</script>
+</script>
 </head>
-
 <body>
     <script>
      function load() 
@@ -43,8 +42,7 @@
 	             opt.focus();
 	          }
 	     } 
-    }
-     
+    }   
     </script>
     <%
         //get parameters.
@@ -72,26 +70,23 @@
         //get group list.
         List<Grouphbm> groupList = groupBO.getViewGroups();
     %>
-
     <form name="simpleform" action="doAddPermission.jsp">
         <table width="100%">
             <tr>
                 <td class="instructions" colspan="2">
                     <h3 class="formtitle">Add New Permission</h3>
-
                 </td>
             </tr>
             <tr>
                 <td class="instructions" colspan="2">
                     Permission Scheme:
                     <strong>
-                        <%=ps.getName()%>
+                        <s:property value="name"/>
                     </strong>
                     <p>Please select the type of permission you wish to add to this Permission Scheme</p>
                 </td>
             </tr>
             <tr>
-
                 <td><%@include file="/jsp/showErrorMessage.jsp"%>
                     <div>
                         <table class="leftColumn grid" width="100%">
@@ -100,24 +95,19 @@
                                     <td class="fieldLabelArea">Permissions:</td>
                                     <td class="fieldValueArea" bgcolor="#ffffff">
                                         <select id="permission" size="7" name="permissions">
-                                            <%
-                                                //print permissions ,if the permission id equals the request parameter permissionId set the optino selected.
-                                                for (Permissionhbm per : list) {
-                                                    if (per.getId() == permissionId) {
-                                            %>
-                                            <option selected value="<%=per.getId()%>">
-													<%=per.getName()%>
-												</option>
-                                            <%
-                                                } else {
-                                            %>
-                                            <option value="<%=per.getId()%>">
-													<%=per.getName()%>
-												</option>
-                                            <%
-                                                } //endelse
-                                                } //endfor
-                                            %>
+                                            <s:iterator value="#permissionList" var="p">
+                                            <s:if test="#p.id==permissionId">
+                                                <option selected value="<s:property value="#p.id"/>">
+                                                	<p><s:property value="#p.name"/></p>
+                                                </option>
+                                            </s:if>
+                                            <s:else>
+                                                <option value="<s:property value="#p.id"/>">
+                                                    <p><s:property value="#p.name"/></p>
+                                                </option>
+                                            </s:else>
+                                           
+                                            </s:iterator>
                                         </select>
                                         <br />
                                         <font size="1"> (Select the permissions that you want to assign). </font>
@@ -125,10 +115,8 @@
                                 </tr>
                             </tbody>
                         </table>
-
                         <table class="rightColumn grid" width="100%">
                             <tbody>
-
                                 <tr>
                                     <td width="5%" align="center">
                                         <input id="type" type="radio" value="Group" name="type" />
@@ -141,16 +129,11 @@
                                             <option value="">
 													Anyone
 												</option>
-                                            <%
-                                                //print the group list
-                                                for (Grouphbm group : groupList) {
-                                            %>
-                                            <option value="<%=group.getName()%>">
-													<%=group.getName()%>
-												</option>
-                                            <%
-                                                } //endfor
-                                            %>
+                                                <s:iterator value="#groupList" var="g">                
+                                            <option value="<s:property value="#g.name"/>">
+													<s:property value="#g.name"/>
+												</option>        
+                                            </s:iterator>
                                         </select>
                                     </td>
                                 </tr>
@@ -162,7 +145,6 @@
                                         <label for="type_user"> Single User </label>
                                     </td>
                                     <td>
-
                                         <div id="user_container" class="ajax_autocomplete">
                                             <input id="user" type="text" name="SingleUser" autocomplete="off" onclick="document.forms['simpleform'].type[1].checked = true;" />
                                             <a href="javascript:openWindow('user');" onclick="document.forms['simpleform'].type[1].checked = true;">
@@ -170,8 +152,6 @@
                                             </a>
                                     </td>
                                 </tr>
-
-
                                 <tr class="rowAlternate">
                                     <td width="5%" align="center">
                                         <input id="type" type="radio" value="ProjectRole" name="type" />
@@ -184,20 +164,14 @@
                                             <option value="">
 													Choose a project role
 												</option>
-                                            <%
-                                                //print the role list.
-                                                for (Rolehbm role : roleList) {
-                                            %>
-                                            <option value="<%=role.getRoleName()%>">
-													<%=role.getRoleName()%>
-												</option>
-                                            <%
-                                                } //endfor
-                                            %>
+                                                <s:iterator value="#roleList" var="r">          
+                                            <option value="<s:property value="#r.roleName"/>">
+													<s:property value="#r.roleName"/>
+												</option>               
+                                            </s:iterator>
                                         </select>
                                     </td>
                                 </tr>
-
                                 <input id="schemeId" type="hidden" value="<%=ps.getId()%>" name="schemeId" />
                             </tbody>
                         </table>
@@ -207,10 +181,9 @@
             <tr align="center">
                 <td class="fullyCentered simpleformfooter" colspan="2">
                     <input id="增加" class="spaced" type="submit" title="按 Alt+S 提交" accesskey="S" value="增加" name=" 增加 " />
-                    <input id="cancelButton" type="button" onclick="location.href='editPermissions.jsp?schemeId=<%=ps.getId()%>'" value="取消" name="Cancel" title="取消 (Alt + `)" accesskey="`" />
+                    <input id="cancelButton" type="button" onclick="location.href='editPermissions.jsp?schemeId=<s:property value="schemeId"/>'" value="取消" name="Cancel" title="取消 (Alt + `)" accesskey="`" />
                 </td>
             </tr>
-
         </table>
     </form>
 </body>

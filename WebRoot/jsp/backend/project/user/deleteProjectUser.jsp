@@ -11,10 +11,6 @@
 
 <html>
 	<body>
-		<%
-			String id = request.getParameter("projectUserId");
-		%>
-
 		<form action="doDeleteProjectUser.jsp">
 			<H2>
 				删除开发人员
@@ -23,7 +19,7 @@
 			<pre> 
        请确认你要删除这条记录吗？<br>
      </pre>
-			<input type="hidden" name="projectUserId" value="<%=id%>" />
+			<input type="hidden" name="projectUserId" value="<s:property value="projectUserId"/>" />
 			<input type="submit" value="提交" />
 			<input type="button" value="取消" onclick="window.history.back();" />
 		</form>

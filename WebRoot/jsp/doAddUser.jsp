@@ -7,7 +7,10 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
+<<<<<<< HEAD
+=======
     
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 %>
 
 <!-- 用于判断新建用户是否符合添加条件，添加成功后显示新建用户详细信息 -->
@@ -37,21 +40,19 @@
         user.setEmail(email);
         user.setFullName(fullName);
         user.setPassword(password);
-        
+
         u.setName(userName);
         u.setEmail(email);
         u.setFullName(fullName);
         u.setPassword(password);
-        
-        
-        
+
         if (userBO.addUser(u)) {
             if (groupBO.groupNameExit("users")) {
                 Grouphbm group = groupBO.getGroup("users");
                 Userhbm secondUser = userBO.getUser(userName);
 
                 GroupUserBO groupUserBO = new GroupUserBO();
-                GroupUser groupUser = new GroupUser();
+                GroupUserhbm groupUser = new GroupUserhbm();
                 groupUser.setGroupId(group.getId());
                 groupUser.setUserId(secondUser.getId());
                 groupUserBO.addGroupUser(groupUser);

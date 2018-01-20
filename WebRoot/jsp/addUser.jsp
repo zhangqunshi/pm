@@ -13,7 +13,7 @@
 <title>创建新用户</title>
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="<%=request.getContextPath()%>/includes/css/main.css" media="all" rel="StyleSheet" type="text/css" />
-<script language=javascript>
+<script language="javascript">
     function isNull(str) {
         if (str == "")
             return true;
@@ -64,31 +64,28 @@
         }
     }
 </script>
-
 </head>
-
 <body>
-
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <form class="form-horizontal" action="<%=path%>/jsp/doAddUser.jsp" method="post" name="myForm" onsubmit="return test()">
+            <div class="col-md-12">
+                <form class="form-horizontal" action="addUser.action" method="post" name="myForm" onsubmit="return test()">
                     <%@include file="/jsp/showErrorMessage.jsp"%>
                     <div class="form-group">
-                        <input type="text" class="form-control " name="username" placeholder="用户名">
+                        <input type="text" name="username" class="form-control" placeholder="用户名">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="密码">
+                        <input type="password" name="password" class="form-control" placeholder="密码">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="密码">
+                        <input type="password" name="confirm" class="form-control" placeholder="密码">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="fullname" placeholder="全名">
+                        <input type="text" name="fullname" class="form-control" placeholder="全名">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="邮箱">
+                        <input type="text" name="email" class="form-control" placeholder="邮箱">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary col-md-12">注册</button>
@@ -98,11 +95,10 @@
         </div>
     </div>
     <script language="javascript">
-                    try {
-                        document.simpleform.elements[0].focus();
-                    } catch (e) {
-                    }
-                </script>
-
+         try {
+              document.simpleform.elements[0].focus();
+         } catch (e) {
+         }
+    </script>
 </body>
 </html>

@@ -7,12 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.nastation.pm.bean.Resolution;
+import com.nastation.pm.beanhbm.Resolutionhbm;
 import com.nastation.pm.util.DBConn;
+<<<<<<< HEAD
+import com.nastation.pm.util.SessionF;
+=======
 
 import org.hibernate.*;
 import com.nastation.pm.util.*;
 import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 问题Resolution的业务逻辑类
@@ -22,6 +30,10 @@ import com.nastation.pm.beanhbm.*;
  * @see Resolution
  */
 public class ResolutionBO {
+
+    public static ResolutionBO getResolutionBO() {
+        return new ResolutionBO();
+    }
 
     /**
      * 向数据库中添加Resolution 对象
@@ -38,7 +50,8 @@ public class ResolutionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 
@@ -60,7 +73,8 @@ public class ResolutionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return r2List;
     }
@@ -121,7 +135,8 @@ public class ResolutionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return r2;
     }
@@ -143,7 +158,8 @@ public class ResolutionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return resolution;
     }
@@ -172,7 +188,8 @@ public class ResolutionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
         return flag;
     }
@@ -229,7 +246,8 @@ public class ResolutionBO {
                 tx.rollback();
             }
         } finally {
-            session.close();
+            if (session != null)
+                session.close();
         }
     }
 

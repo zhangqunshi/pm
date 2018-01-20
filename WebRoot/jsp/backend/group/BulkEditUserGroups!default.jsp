@@ -12,10 +12,8 @@
 
 <html>
 <head>
-
 </head>
 <body>
-
     <table cellspacing="0" cellpadding="10" border="0" width="100%">
         <tbody>
             <tr>
@@ -53,7 +51,10 @@
                                             errMsg = "";
                                         }
                                         out.println("<font color='red'><b>" + errMsg + "</b></font>");
+<<<<<<< HEAD
+=======
                                         
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
                                     %>
                                 </td>
                             </tr>

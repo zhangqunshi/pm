@@ -9,39 +9,57 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <body>
-    <h3 class="formtitle">View Resolutions</h3>
-    <p>The table below shows the resolutions used</p>
-    <table border='1' width='100%'>
-        <tr>
-            <th>名称</th>
-            <th>描述</th>
-            <th>操作</th>
-        </tr>
-        <%
-            ResolutionBO bo = new ResolutionBO();
-            List<Resolutionhbm> list = bo.getAllResolutions();
-            for (int i = 0; i < list.size(); i++) {
-                Resolutionhbm r = list.get(i);
-                out.println("<tr><td>");
-                out.println("<b>" + r.getName() + "</b>");
-                if (r.getIsDefault() == Global.RESOLUTION_DEFAULT) {
-                    out.println("<br>(Default)");
-                }
-                out.println("</td><td>");
-                out.println(r.getDescription());
-                out.println("</td>");
-                out.println("<td width='150'>");
-                out.println("<a href='updateResolution.jsp?id=" + r.getId() + "' >编辑</a>");
-                out.println("|<a href='deleteResolution.jsp?id=" + r.getId() + "'>删除</a>");
-                if (r.getIsDefault() != Global.RESOLUTION_DEFAULT) {
-                    out.println("|<a href='MakeDefaultResolution.jsp?make=" + r.getId() + "'>Default</a>");
-                }
-                out.println("</td></tr>");
-            }
-        %>
-    </table>
-    <%@include file="/jsp/backend/issue/resolution/addResolution.jsp"%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="formtitle">View Resolutions</h3>
+                <p>The table below shows the resolutions used</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>描述</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <s:iterator value="#resolutionList" var=" r">
+                            <tr>
+                                <td>
+                                    <b>
+                                        <s:property value="#r.name" />
+                                    </b>
+                                    <s:if test="#r.idDefault==resolutionDefault">
+                                        <br>(Default)
+                                    </s:if>
+                                </td>
+                                <td>
+                                    <s:property value="#r.description" />
+                                </td>
+                                <td width="150">
+                                    <a href="updateResolution.jsp?id=<s:property value="r.id"/>">编辑</a>
+                                    |
+                                    <a href="deleteResolution.jsp?id=<s:property value="r.id"/>">删除</a>
+                                    <s:if test="#r.idDefault==resolutionDefault">
+                                    |<a href="MakeDefaultResolution.jsp?make=<s:property value="r.id"/>">Default</a>
+                                    </s:if>
+                                </td>
+                            </tr>
+                        </s :iterator>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><%@include file="/jsp/backend/issue/resolution/addResolution.jsp"%></div>
+        </div>
+    </div>
 </body>
 </html>

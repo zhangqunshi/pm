@@ -13,14 +13,11 @@
 <html>
 <head>
 <link href="<%=request.getContextPath()%>/includes/css/main.css" media="all" rel="StyleSheet" type="text/css" />
-
 <script type="text/javascript">
-
     function sendTo(filename){
 	   window.opener.document.getElementById("<%=element%>").value=filename;
 	   window.close();
-    }
-    
+    }    
     function sendText(){
 	   window.opener.document.getElementById("<%=element%>
 	").value = document.form1.text.value;

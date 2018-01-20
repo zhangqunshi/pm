@@ -11,9 +11,7 @@
 
 <html>
 <head>
-
 </head>
-
 <body>
     <h1>操作修改备注</h1>
     <%
@@ -24,7 +22,10 @@
         int commentId = Integer.parseInt(id);
 
         if (StringUtils.isBlank(CommentContent)) {
+<<<<<<< HEAD
+=======
             
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     %>
     <jsp:forward page="updateCommentDetail.jsp">
         <jsp:param name="commentId" value="<%=commentId%>" />
@@ -37,7 +38,7 @@
         Comment comm = new Comment();
         comm.setCommentContent(StringUtils.removeHtmlTag(CommentContent));
         comm.setId(commentId);
-        
+
         c.setCommentContent(StringUtils.removeHtmlTag(CommentContent));
         c.setId(commentId);
         commbo.updateComment(c);
@@ -45,6 +46,5 @@
         issueRCKey = java.net.URLEncoder.encode(issueRCKey, "UTF-8");
         response.sendRedirect("../issue/issueDetailLayout.jsp?issueKey=" + issueRCKey);
     %>
-
 </body>
 </html>

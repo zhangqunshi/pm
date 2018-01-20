@@ -4,13 +4,10 @@
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!-- 功能：更新问题状态-->
 <!-- @author 许希光 -->
-<%
-    IssueStatusBO issueStatusBO = new IssueStatusBO();
-			int issueStatusId = Integer.parseInt(request.getParameter("id"));
-			IssueStatushbm issueStatus = issueStatusBO.getIssueStatus(issueStatusId);
-%>
+
 <html>
 <head>
 <script language=javascript>
@@ -31,63 +28,49 @@
     }
 </script>
 </head>
-
 <body>
-    <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-        <h2 class="formtitle">
-            Edit Status:
-            <%=issueStatus.getName()%>
-        </h2>
-
-        <%@include file="/jsp/showErrorMessage.jsp"%>
-
-        <form action="doUpdateIssueStatus.jsp" name="myForm" onsubmit="return test();">
-            <input type="hidden" name="id" value="<%=issueStatus.getId()%>" />
-
-            <table border="0">
-                <tr>
-                    <td align="right">* 名称：</td>
-                    <td>
-                        <input type="text" name="name" value="<%=issueStatus.getName()%>" />
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">描述：</td>
-                    <td>
-                        <input type="text" size="50" name="desc" value="<%=issueStatus.getDescription()%>" />
-                    </td>
-                </tr>
-                <script>
-                                                                    function openWindow(
-                                                                            element) {
-                                                                        var vWinUsers = window
-                                                                                .open(
-                                                                                        '<c:url value="/jsp/backend/issue/status/statusIconPicker.jsp"/>?element='
-                                                                                                + element,
-                                                                                        'UserPicker',
-                                                                                        'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
-                                                                        vWinUsers.opener = self;
-                                                                        vWinUsers
-                                                                                .focus();
-                                                                    }
-                                                                </script>
-                <tr>
-                    <td align="right">* Icon URL:</td>
-                    <td>
-                        <input type="text" name="filename" id="filename" size="50" value="<%=issueStatus.getIconUrl()%>" />
-                        [
-                        <a href="javascript:openWindow('filename');">select image</a>
-                        ]
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="right">
-                        <input type="submit" value="更新" />
-                        <input type="button" onclick="location.href='viewIssueStatus.jsp?'" value="取消" />
-                    </td>
-                </tr>
-            </table>
-        </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="formtitle">
+                    Edit Status:
+                    <s:property value="name" />
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <%@include file="/jsp/showErrorMessage.jsp"%>
+                <form action="doUpdateIssueStatus.jsp" name="myForm" onsubmit="return test();" class="bs-example bs-example-form" role="form">
+                    <input type="hidden" name="id" value="<s:property value="id"/>" />
+                    <div class="input-group">
+                        <span class="input-group-addon">名称</span>
+                        <input type="text" name="name" value="<s:property value="name"/>" class="form-control" placeholder="twitterhandle" />
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">描述</span>
+                        <input type="text" name="desc" value="<s:property value="description"/>" class="form-control" placeholder="twitterhandle" />
+                    </div>
+                    <script>
+                       function openWindow(element) {
+                          var vWinUsers = window.open('<c:url value="/jsp/backend/issue/status/statusIconPicker.jsp"/>?element='+ element,
+                                                      'UserPicker','status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+                          vWinUsers.opener = self;
+                          vWinUsers.focus();
+                       }
+                    </script>
+                    <div class="input-group">
+                        <span class="input-group-addon">* Icon URL</span>
+                        <input type="text" name="filename" id="filename" size="50" value="<s:property value="iconUrl"/>" class="form-control" placeholder="twitterhandle" />
+                        <span class="input-group-addon">
+                            <a href="javascript:openWindow('filename');">select image</a>
+                        </span>
+                    </div>
+                    <input type="submit" value="更新" class="btn btn-info btn-block" />
+                    <input type="button" onclick="location.href='viewIssueStatus.jsp?'" value="取消" class="btn btn-warning btn-block" />
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

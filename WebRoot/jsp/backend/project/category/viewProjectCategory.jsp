@@ -9,8 +9,11 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.nastation.pm.bean.*"%>
 <%@ page import="com.nastation.pm.beanhbm.*"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <script language="javascript">
     function confirmDelete() {
         var x = confirm("是否要删除此条记录");
@@ -22,43 +25,49 @@
 </script>
 </head>
 <body>
-    <div style="border: 1px solid rgb(187, 187, 187); padding: 2px;">
-        <h3 class="formtitle">View Project Categories</h3>
-        <p>The table below shows the project categories usable to categorise projects.</p>
-    </div>
-    <p></p>
-    <table border='1' width='100%'>
-        <tr>
-            <th>名称</th>
-            <th>描述</th>
-            <th>项目</th>
-            <th>操作</th>
-        </tr>
-        <%
-            ProjectCategoryBO rb = new ProjectCategoryBO();
-            List<ProjectCategoryhbm> list = rb.getCategoryList();
-            if (list != null) {
-                for (int i = 0; i < list.size(); i++) {
-                    ProjectCategoryhbm category = list.get(i);
-                    out.println("<tr><td>" + category.getName() + "</td>");
-                    out.println("<td>" + category.getDescription() + "</td>");
-                    if (rb.checkLinkProject(category.getId())) {
-                        List<Projecthbm> list1 = rb.getAllProject(category.getId());
-                        out.println("<td>");
-                        for (int j = 0; j < list1.size(); j++) {
-                            Projecthbm project = list1.get(j);
-                            out.println("<a href='../viewProjectDetail.jsp?projectId=" + project.getId() + "'>"
-                                    + project.getName() + "</a><br>");
-                        }
-                        out.println("</td>");
-                    } else {
-                        out.println("<td>&nbsp;</td>");
-                    }
-                    out.println("<td><a href='deleteCategory.jsp?id=" + category.getId()
-                            + "'>删除</a> | <a href='updateCategory.jsp?id=" + category.getId() + "' >编辑</a></td></tr>");
-                }
-            }
-        %>
+    <h3 class="formtitle">View Project Categories</h3>
+    <p>The table below shows the project categories usable to categorise projects.</p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>描述</th>
+                <th>项目</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <s:if test="#pcList!=null">
+                <s:iterator value="#pcList" var="pc">
+                    <tr>
+                        <td>
+                            <s:property value="#pc.name" />
+                        </td>
+                        <td>
+                            <s:property value="#pc.description" />
+                        </td>
+                        <s:if test="#pcBO.checkLingProject(#pc.id)">
+                            <td>
+                                <s:iterator value="#pc.projects" var="ps">
+                                    <a href="../viewProjectDetail.jsp?projectId=<s:property value="#ps.projectId" />">
+                                        <s:property value="#ps.name" />
+                                    </a>
+                                </s:iterator>
+                            </td>
+
+                        </s:if>
+                        <s:else>
+                            <td>&nbsp;</td>
+                        </s:else>
+                        <td>
+                            <a href="deleteCategory.jsp?id=<s:property value="#pc.id" />">删除</a>
+                            |
+                            <a href="updateCategory.jsp?id=<s:property value="#pc.id" />">编辑</a>
+                        </td>
+                    </tr>
+                </s:iterator>
+            </s:if>
+        </tbody>
     </table>
     <jsp:include page="addProjectCategory.jsp"></jsp:include>
 </body>
