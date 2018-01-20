@@ -5,14 +5,35 @@
 
 <hibernate-mapping>
     <class name="com.nastation.pm.beanhbm.Commenthbm" table="t_comment"
+<<<<<<< HEAD
         lazy="false">
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
+=======
+           lazy="false">
+
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
+
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         <property name="commentContent" type="text" column="comment_content" />
         <property name="author" type="string" column="author" />
         <property name="createDate" type="timestamp" column="create_date" />
+<<<<<<< HEAD
         <many-to-one name="issue" column="issue_id"
             class="com.nastation.pm.beanhbm.Issuehbm" cascade="save-update" />
     </class>
 </hibernate-mapping>
+=======
+
+        <many-to-one name="issue" column="issue_id"
+                     class="com.nastation.pm.beanhbm.Issuehbm" cascade="save-update" />
+
+    </class>
+
+</hibernate-mapping>
+
+ 
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9

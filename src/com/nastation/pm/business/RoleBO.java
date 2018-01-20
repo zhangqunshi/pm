@@ -12,13 +12,21 @@ import com.nastation.pm.beanhbm.Rolehbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 
+<<<<<<< HEAD
+=======
+import org.hibernate.*;
+import com.nastation.pm.util.*;
+import com.nastation.pm.beanhbm.*;
+
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 /**
- * 
+ *
  * @author zhanglei
- * 
+ *
  */
 public class RoleBO {
 
+<<<<<<< HEAD
     public static RoleBO getRoleBO() {
         return new RoleBO();
     }
@@ -27,6 +35,11 @@ public class RoleBO {
      * 创建一个角色
      */
 
+=======
+    /**
+     * 创建一个角色
+     */
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     public void addRole(Rolehbm role) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -35,18 +48,29 @@ public class RoleBO {
             session.save(role);
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
             if (tx != null)
                 tx.rollback();
         } finally {
             if (session != null)
                 session.close();
+=======
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
     }
 
     /**
      * 通过一个ID获得对应的角色
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     public Rolehbm getRole(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -56,11 +80,19 @@ public class RoleBO {
             r2 = session.load(Rolehbm.class, id);
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
             if (tx != null)
                 tx.rollback();
         } finally {
             if (session != null)
                 session.close();
+=======
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
         return r2;
     }
@@ -68,7 +100,11 @@ public class RoleBO {
     /**
      * 检查是否创建了同名角色
      */
+<<<<<<< HEAD
     public boolean checkRole(Rolehbm role) {
+=======
+    public boolean checkRole(Role role) {
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         boolean flag = false;
         Connection conn = DBConn.getConnection();
         try {
@@ -90,7 +126,10 @@ public class RoleBO {
     /**
      * 获得数据库中所有的角色信息
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     public List<Rolehbm> getRoleList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -100,11 +139,19 @@ public class RoleBO {
             r2List = session.createQuery("from Rolehbm").list();
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
             if (tx != null)
                 tx.rollback();
         } finally {
             if (session != null)
                 session.close();
+=======
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
         return r2List;
     }
@@ -112,7 +159,10 @@ public class RoleBO {
     /**
      * 删除对应ID的角色
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     public void deleteRole(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -121,18 +171,29 @@ public class RoleBO {
             session.delete(session.load(Rolehbm.class, id));
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
             if (tx != null)
                 tx.rollback();
         } finally {
             if (session != null)
                 session.close();
+=======
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
     }
 
     /**
      * 更新角色
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     public void updateRole(Rolehbm role) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -141,11 +202,19 @@ public class RoleBO {
             session.update(role);
             tx.commit();
         } catch (Exception e) {
+<<<<<<< HEAD
             if (tx != null)
                 tx.rollback();
         } finally {
             if (session != null)
                 session.close();
+=======
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         }
     }
 

@@ -3,7 +3,6 @@ package com.nastation.pm.beanhbm;
 /**
  * @author weiboyuan 项目模块java bean
  */
-
 public class ProjectComponenthbm {
 
     public int id;

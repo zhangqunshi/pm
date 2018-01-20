@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,10 +17,17 @@ import com.nastation.pm.beanhbm.PermissionSchemehbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 import com.nastation.pm.util.StringUtils;
+=======
+import com.nastation.pm.bean.PermissionScheme;
+import com.nastation.pm.util.*;
+
+import org.hibernate.*;
+import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 权限模板的业务逻辑类
- * 
+ *
  * @author sun
  */
 public class PermissionSchemeBO {
@@ -30,11 +38,10 @@ public class PermissionSchemeBO {
 
     /**
      * 添加一个权限模板
-     * 
+     *
      * @param PermissionSchemehbm
      * @author sun
      */
-
     public void addPermissionScheme(PermissionSchemehbm scheme) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -43,8 +50,9 @@ public class PermissionSchemeBO {
             session.save(scheme);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -53,11 +61,10 @@ public class PermissionSchemeBO {
 
     /**
      * 更新一个权限模板
-     * 
+     *
      * @param PermissionSchemehbm
      * @author sun
      */
-
     public void updatePermissionScheme(PermissionSchemehbm scheme) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -66,8 +73,9 @@ public class PermissionSchemeBO {
             session.update(scheme);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -76,11 +84,10 @@ public class PermissionSchemeBO {
 
     /**
      * 删除一个权限模板
-     * 
+     *
      * @param id
      * @author sun
      */
-
     public void deletePermissionScheme(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -89,8 +96,9 @@ public class PermissionSchemeBO {
             session.delete(session.load(PermissionSchemehbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -99,10 +107,9 @@ public class PermissionSchemeBO {
 
     /**
      * 获得一个所有权限模板列表，每个权限模板包括模板信息以及使用这个模板的项目信息。
-     * 
+     *
      * @author sun
      */
-
     public List<PermissionSchemehbm> getSchemeList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -112,8 +119,9 @@ public class PermissionSchemeBO {
             psList = session.createQuery("from PermissionSchemehbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -123,11 +131,10 @@ public class PermissionSchemeBO {
 
     /**
      * 获得一个 Scheme
-     * 
+     *
      * @param id
      * @author sun
      */
-
     public PermissionSchemehbm getScheme(int schemeId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -137,8 +144,9 @@ public class PermissionSchemeBO {
             ps = session.load(PermissionSchemehbm.class, schemeId);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -148,11 +156,10 @@ public class PermissionSchemeBO {
 
     /**
      * 通过名称获得模板id
-     * 
+     *
      * @param name
      * @author sun
      */
-
     public int getId(String name) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -164,8 +171,9 @@ public class PermissionSchemeBO {
             tx.commit();
 
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -175,7 +183,7 @@ public class PermissionSchemeBO {
 
     /**
      * 用于命名copy的新scheme名字。
-     * 
+     *
      * @param name
      * @return
      */
@@ -205,10 +213,9 @@ public class PermissionSchemeBO {
 
     /**
      * 判断一个模板名是否已经存在
-     * 
+     *
      * @author sun
      */
-
     public boolean exist(String name) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -223,8 +230,9 @@ public class PermissionSchemeBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -234,7 +242,7 @@ public class PermissionSchemeBO {
 
     /**
      * 获得在组为groupName中的所有权限模板列表。
-     * 
+     *
      * @author liuliehui
      * @throws ParseException
      */

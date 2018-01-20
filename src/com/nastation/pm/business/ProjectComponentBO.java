@@ -12,11 +12,18 @@ import com.nastation.pm.beanhbm.ProjectComponenthbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 
+<<<<<<< HEAD
+=======
+import org.hibernate.*;
+import com.nastation.pm.util.*;
+import com.nastation.pm.beanhbm.*;
+
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 /**
  * 新建项目模块
- * 
+ *
  * @author weiboyuan
- * 
+ *
  */
 public class ProjectComponentBO {
 
@@ -30,7 +37,6 @@ public class ProjectComponentBO {
     /**
      * 添加项目模块
      */
-
     public void addProjectComponent(ProjectComponenthbm pc) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -39,8 +45,9 @@ public class ProjectComponentBO {
             session.save(pc);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -50,7 +57,6 @@ public class ProjectComponentBO {
     /**
      * 检查项目模块名称是否相等
      */
-
     public boolean checkProjectComponent(ProjectComponenthbm pc) {
         boolean flag = true;
         Session session = SessionF.sessionFactory.openSession();
@@ -65,8 +71,9 @@ public class ProjectComponentBO {
                 flag = false;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -77,7 +84,6 @@ public class ProjectComponentBO {
     /**
      * 获取模块表中数据
      */
-
     public List<ProjectComponenthbm> getProjectComponentList(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -89,8 +95,9 @@ public class ProjectComponentBO {
                     .setInteger("id", id).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -101,7 +108,6 @@ public class ProjectComponentBO {
     /**
      * 删除项目模块
      */
-
     public void deleteProjectComponent(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -111,8 +117,9 @@ public class ProjectComponentBO {
                     .executeUpdate();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -122,7 +129,6 @@ public class ProjectComponentBO {
     /**
      * 删除所有项目模块
      */
-
     public void deleteAllProjectComponents(int projectId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -132,8 +138,9 @@ public class ProjectComponentBO {
                     .executeUpdate();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -143,7 +150,6 @@ public class ProjectComponentBO {
     /**
      * 判断t_component表里是否存在projectId 如果存在就返回true，反之则返回false
      */
-
     public boolean checkProjectComponent2(int projectId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -156,8 +162,9 @@ public class ProjectComponentBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -168,7 +175,6 @@ public class ProjectComponentBO {
     /**
      * 更新项目模块
      */
-
     public void updateProjectComponent(ProjectComponenthbm pc) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -177,8 +183,9 @@ public class ProjectComponentBO {
             session.update(pc);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -188,7 +195,6 @@ public class ProjectComponentBO {
     /**
      * Id查找数据
      */
-
     public ProjectComponenthbm getProjectComponent(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -198,8 +204,9 @@ public class ProjectComponentBO {
             p2 = session.load(ProjectComponenthbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();

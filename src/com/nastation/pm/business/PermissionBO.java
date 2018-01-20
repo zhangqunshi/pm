@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+<<<<<<< HEAD
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,14 +17,17 @@ import com.nastation.pm.bean.Permission;
 import com.nastation.pm.beanhbm.Permissionhbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
+=======
+import org.hibernate.*;
+import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * Permission business object.
- * 
+ *
  * @author sun
  *
  */
-
 public class PermissionBO {
 
     public static PermissionBO getPermissionBO() {
@@ -39,8 +43,9 @@ public class PermissionBO {
             p = session.load(Permissionhbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -50,10 +55,9 @@ public class PermissionBO {
 
     /**
      * get all permission
-     * 
+     *
      * @return list
      */
-
     public List<Permissionhbm> getAllPermission() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -63,8 +67,9 @@ public class PermissionBO {
             l = session.createQuery("from Permissionhbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -74,7 +79,7 @@ public class PermissionBO {
 
     /**
      * 获得所有权限，按权限类型分类。以类型名为Key，该类型下的所有权限列表为Value.
-     * 
+     *
      * @author sun
      * @return
      */

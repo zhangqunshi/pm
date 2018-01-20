@@ -8,13 +8,19 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+<<<<<<< HEAD
 import com.nastation.pm.beanhbm.PermissionAssigneehbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
+=======
+import org.hibernate.*;
+
+import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 权限分配业务逻辑类。
- * 
+ *
  * @author sun
  *
  */
@@ -26,11 +32,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 获得指定权限模板中指定权限的分配列表。
-     * 
+     *
      * @author sun
      * @param permissionId,schemeId
      */
-
     public List<PermissionAssigneehbm> getAssigneeTypeList(int permissionId, int schemeId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -41,8 +46,9 @@ public class PermissionAssigneeBO {
                     .setInteger("pid", permissionId).setInteger("sid", schemeId).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -52,11 +58,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 添加一个权限分配
-     * 
+     *
      * @author sun
      * @param assignee
      */
-
     public void addPermissionAssignee(PermissionAssigneehbm assignee) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -65,8 +70,9 @@ public class PermissionAssigneeBO {
             session.save(assignee);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -75,11 +81,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 删除一个权限分配
-     * 
+     *
      * @author sun
      * @param id
      */
-
     public void deletePermission(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -88,8 +93,9 @@ public class PermissionAssigneeBO {
             session.delete(session.load(PermissionAssigneehbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -98,11 +104,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 获得一个权限分配的详细信息
-     * 
+     *
      * @author sun
      * @param id
      */
-
     public PermissionAssigneehbm getPermissionAssignee(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -112,8 +117,9 @@ public class PermissionAssigneeBO {
             p = session.load(PermissionAssigneehbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -123,7 +129,7 @@ public class PermissionAssigneeBO {
 
     /**
      * 删除一个模板下的所有权限分配。
-     * 
+     *
      * @author sun
      * @param schemeId
      */
@@ -144,11 +150,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 获得指定权限模板下的所有权限分配列表
-     * 
+     *
      * @param schemeId
      * @author sun
      */
-
     public List<PermissionAssigneehbm> getAllPermissionAssignee(int schemeId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -159,8 +164,9 @@ public class PermissionAssigneeBO {
                     .list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -170,7 +176,7 @@ public class PermissionAssigneeBO {
 
     /**
      * 用于复制模板，将被复制模板的所有权限分配记录插入到数据库中。
-     * 
+     *
      * @author sun
      * @param list
      */
@@ -196,11 +202,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 判断一个权限分配是否已经存在
-     * 
+     *
      * @author sun
      * @param permissionAssignee
      */
-
     public boolean exist(PermissionAssigneehbm pa) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -216,8 +221,9 @@ public class PermissionAssigneeBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -227,11 +233,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 获得指定权限模板中指定权限的分配列表。
-     * 
+     *
      * @author liuliehui
      * @param schemeId
      */
-
     public List<PermissionAssigneehbm> getPermissionAssigneeList(int schemeId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -242,8 +247,9 @@ public class PermissionAssigneeBO {
                     .list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -253,12 +259,10 @@ public class PermissionAssigneeBO {
 
     /**
      * 获得指定组中指定权限的分配列表信息。
-     * 
+     *
      * @author liuliehui
-     * @param assigneeType
-     *            ,assignee
+     * @param assigneeType ,assignee
      */
-
     public List<PermissionAssigneehbm> getGroupInPermissionAssigneeList(String assigneeType, String assignee) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -269,8 +273,9 @@ public class PermissionAssigneeBO {
                     .setString("at", assigneeType).setString("a", assignee).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();

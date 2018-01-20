@@ -14,7 +14,11 @@
     String commentStr = request.getParameter("comment");
 
     if (StringUtils.isBlank(issueKeyCommnt)) {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         return;
     }
     if (StringUtils.isBlank(commentStr)) {

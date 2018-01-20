@@ -67,6 +67,7 @@
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+<<<<<<< HEAD
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-5">
@@ -178,6 +179,144 @@
                         <span class="input-group-addon">环境</span>
                         <textarea name="environment" rows="6" cols="100" class="form-control" placeholder="例如操作系统，软件环境或者相关硬件"></textarea>
                     </div>
+=======
+    <%@include file="/jsp/showErrorMessage.jsp"%>
+    <form action="doAddIssue.jsp">
+        <table border="0" width="80%">
+            <tr>
+                <td colspan="2">
+                    <h3>创建问题</h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">步骤2（共2）：填写问题的详细信息</td>
+            </tr>
+            <tr>
+                <td align="right">
+                    项目:
+                    <input type="hidden" name="projectId" value="<%=project.getId()%>">
+                    <input type="hidden" name="projectkey" value="<%=project.getProjectKey()%>">
+                </td>
+                <td><%=project.getName()%></td>
+            </tr>
+            <tr>
+                <td align="right">
+                    问题类型:
+                    <input type="hidden" name="issueTypeId" value="<%=issueType.getId()%>">
+                </td>
+                <td><%=issueType.getName()%></td>
+            </tr>
+            <tr>
+                <td align="right">概要：</td>
+                <td>
+                    <input type="text" name="summary" size="50" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">优先级:</td>
+                <td>
+                    <select name="priorityLevelId">
+                        <%
+                            for (int i = 0; i < issuePriorityList.size(); i++) {
+                        				IssuePriorityhbm issuePriority = issuePriorityList.get(i);
+                        				if (issuePriority.getName().equals("Major")) {
+                        					out.println("<option selected value='" + issuePriority.getId() + "'>" + issuePriority.getName()
+                        							+ "</option selected>");
+                        				} else {
+                        					out.println(
+                        							"<option value='" + issuePriority.getId() + "'>" + issuePriority.getName() + "</option>");
+                        				}
+                        			}
+                        %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">逾期日期：</td>
+                <td>
+                    <input type="text" id="planEndTime" name="planEndTime" size="20" />
+
+                    <img height="16" border="0" width="16" title="选择日期" alt="选择日期" src="<c:url value='/images/icons/cal.gif'/>" id="duedate_trigger_c" />
+
+                    <script type="text/javascript">
+                                                                                    Calendar
+                                                                                            .setup({
+                                                                                                firstDay : 0, // first day of the week
+                                                                                                inputField : "planEndTime", // id of the input field
+                                                                                                button : "duedate_trigger_c", // trigger for the calendar (button ID)
+                                                                                                align : "Tl", // alignment (defaults to "Bl")
+                                                                                                singleClick : true,
+                                                                                                ifFormat : "%Y-%m-%e" // our date only format
+                                                                                            });
+                                                                                </script>
+                </td>
+
+            </tr>
+            <tr>
+                <td align="right">模块：</td>
+                <td>
+                    <%
+                        if (projectComponentList == null || projectComponentList.size() <= 0) {
+                    				out.println("未知");
+                    			} else {
+                    				out.println("<select name='componentId' size='5' />");
+                    				for (int i = 0; i < projectComponentList.size(); i++) {
+                    					ProjectComponent projectComponent = (ProjectComponent) projectComponentList.get(i);
+                    %>
+                    <option value="<%=projectComponent.getId()%>"><%=projectComponent.getName()%></option>
+                    <%
+                        } //endfor
+                    				out.println("</select>");
+                    			} //endif
+                    %>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="right">开发者：</td>
+                <td>
+                    <select name="developerId" />
+                    <%
+                        if (projectUserList != null) {
+                    				
+                    				for (int i = 0; i < projectUserList.size(); i++) {
+                    					ProjectUser projectUser = projectUserList.get(i);
+                    %>
+                    <option value="<%=projectUser.getUserId()%>"><%=projectUser.getUsername()%></option>
+                    <%
+                        } //endfor
+                    			} //endif
+                    %>
+                    </select>
+                </td>
+            </tr>
+            <script>
+                                                    function openWindow(element) {
+                                                        var vWinUsers = window
+                                                                .open(
+                                                                        '<c:url value="/jsp/backend/user/UserPickerBrowser.jsp"/>?element='
+                                                                                + element,
+                                                                        'UserPicker',
+                                                                        'status=yes,resizable=yes,top=100,left=200,width=580,height=600,scrollbars=yes');
+                                                        vWinUsers.opener = self;
+                                                        vWinUsers.focus();
+                                                    }
+                                                </script>
+            <tr>
+                <td align="right">报告人：</td>
+                <td>
+                    <input type="text" name="reporter" id="reporter" autocomplete="off" />
+
+                    <a href="javascript:openWindow('reporter');">
+                        <img hspace="0" height="16" border="0" width="16" style="vertical-align: top;" src="<c:url value='/images/icons/filter_public.gif'/>" name="assigneeImage" alt="选择一个用户" title="选择一个用户">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">环境：</td>
+                <td>
+                    <textarea name="environment" rows="6" cols="100"></textarea>
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
                     <br>
                     <div class="input-group">
                         <span class="input-group-addon">描述</span>

@@ -30,6 +30,7 @@ a new component
                     <s:property value="#component.name" />
                 </td>
 
+<<<<<<< HEAD
                 <td>
                     <s:set var="leader" value="#component.leader" />
                     <s:if test="leader == \"\"">   
@@ -48,3 +49,34 @@ a new component
         </s:iterator>
     </table>
 </s:else>
+=======
+        int id = Integer.parseInt(request.getParameter("projectId"));
+        
+        ProjectComponentBO pcbo2 = new ProjectComponentBO();
+        List<ProjectComponenthbm> componentList2 = pcbo2.getProjectComponentList(id);
+        out.println("<table border='0'>");
+        for (int i = 0; i < componentList2.size(); i++) {
+            ProjectComponenthbm pc = (ProjectComponenthbm) componentList2.get(i);
+%>
+<tr>
+    <td>
+        <img hspace="0" height="16" border="0" width="16" style="vertical-align: top;" src="<c:url value='/images/icons/component.gif'/>" name="assigneeImage" alt="项目模块" title="
+		<%out.println(pc.getName());%>-<%out.println(pc.getDescription());%>
+		">
+        <%
+            out.println("</td><td>" + pc.getName() + "</td><td><b>");
+                    if (StringUtils.isEmpty(pc.getLeader())) {
+                        out.println(" ");
+                    } else {
+                        out.println("(负责人: </b>" + pc.getLeader() + "<b>)");
+                    }
+                    out.println("</b> </td>");
+                    out.println("<td><a href='/pm/jsp/backend/project/component/deleteProjectComponent.jsp?idd="
+                            + pc.getId() + "&id=" + id
+                            + "'>(删除</a>|<a href='/pm/jsp/backend/project/component/updateProjectComponent.jsp?idd="
+                            + pc.getId() + "&id=" + id + "'>编辑)</a></td></tr>");
+                }
+                out.println("</table>");
+            }
+        %>
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9

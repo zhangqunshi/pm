@@ -22,20 +22,20 @@ insert t_issue_status values(5, "Closed", "The issue is considered finished, the
 /*==============================================================*/
 /* Table: t_icon                                        */
 /*==============================================================*/
-/* 问题状态icon */
+/* 闂鐘舵�乮con */
 insert t_icon values(1, "/images/icons/status/status_open.gif", 1);
 insert t_icon values(2, "/images/icons/status/status_inprogress.gif", 1);
 insert t_icon values(3, "/images/icons/status/status_reopened.gif", 1);
 insert t_icon values(4, "/images/icons/status/status_resolved.gif", 1);
 insert t_icon values(5, "/images/icons/status/status_closed.gif", 1);
 
-/* 问题类型icon */
+/* 闂绫诲瀷icon */
 insert t_icon values(6, "/images/icons/issuetype/bug.gif", 2);
 insert t_icon values(7, "/images/icons/issuetype/improvement.gif", 2);
 insert t_icon values(8, "/images/icons/issuetype/newfeature.gif", 2);
 insert t_icon values(9, "/images/icons/issuetype/task.gif", 2);
 
-/* 问题优先级icon */
+/* 闂浼樺厛绾con */
 insert t_icon values(10, "/images/icons/priority/priority_blocker.gif", 3);
 insert t_icon values(11, "/images/icons/priority/priority_critical.gif", 3);
 insert t_icon values(12, "/images/icons/priority/priority_major.gif", 3);

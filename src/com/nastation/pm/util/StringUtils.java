@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * 字串处理类
- * 
+ *
  * @author Kris zhang.kris@gmail.com
  * @version 2008-12-17
  */
@@ -18,7 +18,7 @@ public class StringUtils {
 
     /**
      * 采用参数指定的pattern, 把日期转成字符串
-     * 
+     *
      * @param date
      * @param pattern
      * @return
@@ -30,7 +30,7 @@ public class StringUtils {
 
     /**
      * 采用默认的pattern, 把日期转成字符串
-     * 
+     *
      * @see StringUtils#DEFAULT_DATE_PATTERN
      * @param date
      * @return
@@ -41,7 +41,7 @@ public class StringUtils {
 
     /**
      * 采用参数指定的pattern, 把字符串转成日期
-     * 
+     *
      * @param date
      * @param pattern
      * @return
@@ -54,7 +54,7 @@ public class StringUtils {
 
     /**
      * 采用默认的pattern, 把字符串转成日期
-     * 
+     *
      * @see StringUtils#DEFAULT_DATE_PATTERN
      * @param date
      * @return
@@ -66,17 +66,17 @@ public class StringUtils {
 
     /**
      * 判断是否为空
-     * 
+     *
      * <pre>
      * Checks if a String is empty (&quot;&quot;) or null.
-     * 
+     *
      * StringUtils.isEmpty(null)      = true
      * StringUtils.isEmpty(&quot;&quot;)        = true
      * StringUtils.isEmpty(&quot; &quot;)       = false
      * StringUtils.isEmpty(&quot;bob&quot;)     = false
      * StringUtils.isEmpty(&quot;  bob  &quot;) = false
      * </pre>
-     * 
+     *
      * @param str
      * @return
      */
@@ -92,7 +92,7 @@ public class StringUtils {
 
     /**
      * check if the string is not empty.
-     * 
+     *
      * @param str
      * @return
      * @see #isEmpty(String)
@@ -103,11 +103,11 @@ public class StringUtils {
 
     /**
      * 比较两个字符串是否相等.
-     * 
+     *
      * <pre>
      * Compares two Strings, returning true if they are equal.
      * nulls are handled without exceptions. Two null references are considered to be equal. The comparison is case sensitive.
-     * 
+     *
      * StringUtils.equals(null, null)   = false
      * StringUtils.equals(null, &quot;abc&quot;)  = false
      * StringUtils.equals(&quot;abc&quot;, null)  = false
@@ -115,7 +115,7 @@ public class StringUtils {
      * StringUtils.equals(&quot;abc&quot;, &quot;ABC&quot;) = false
      * StringUtils.equals(&quot;abc&quot;, &quot; abc &quot;) = false
      * </pre>
-     * 
+     *
      * @param str1
      * @param str2
      * @return true if the Strings are equal, case sensitive
@@ -132,7 +132,7 @@ public class StringUtils {
 
     /**
      * 判断一个字符串的长度是否大于指定值
-     * 
+     *
      * <pre>
      * lengthGreaterThan(null, 3) == false
      * lengthGreaterThan(&quot;kris&quot;, -1) == false
@@ -140,10 +140,10 @@ public class StringUtils {
      * lengthGreaterThan(&quot;kris&quot;, 5) == false
      * lengthGreaterThan(&quot; &quot;, 0) == true
      * lengthGreaterThan(&quot;&quot;, 0) == false
-     * 
-     * 
+     *
+     *
      * </pre>
-     * 
+     *
      * @param str
      * @param size
      * @return
@@ -163,7 +163,7 @@ public class StringUtils {
 
     /**
      * 是否为<b>合法</b>的Email
-     * 
+     *
      * @return
      */
     public static boolean isValidateEmail(String email) {
@@ -177,7 +177,7 @@ public class StringUtils {
 
     /**
      * 是否为<b>不合法</b>的Email
-     * 
+     *
      * @return
      */
     public static boolean isNotValidateEmail(String email) {
@@ -186,15 +186,15 @@ public class StringUtils {
 
     /**
      * 判断是否为空
-     * 
+     *
      * <pre>
      * Checks if a String is empty (&quot;&quot;) or null.
      * 与isEmpty()方法的不同在于：
      * StringUtils.isEmpty(&quot; &quot;)       = false
-     * 
+     *
      * StringUtils.isBlank(&quot; &quot;)       = true
      * </pre>
-     * 
+     *
      * @param str
      * @return
      */
@@ -231,7 +231,7 @@ public class StringUtils {
 
     /**
      * 返回当前日期的字符串形式，格式为默认格式。
-     * 
+     *
      * @return
      * @see StringUtils#DEFAULT_DATE_PATTERN
      */
@@ -248,7 +248,7 @@ public class StringUtils {
 
     /**
      * 把回车替换成&lt;br&gt;html标签
-     * 
+     *
      * @return
      */
     public static String replaceNewLineToBr(String str) {
@@ -260,7 +260,7 @@ public class StringUtils {
 
     /**
      * 去掉html的>和<
-     * 
+     *
      * @param str
      * @return
      */
@@ -288,7 +288,7 @@ public class StringUtils {
 
     /**
      * 字符转解析成日期类型
-     * 
+     *
      */
     public static java.util.Date parseDate(String time) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-d");
@@ -306,9 +306,8 @@ public class StringUtils {
     }
 
     public static void main(String[] args) {
-        // System.out.println("==" +
+
         // replaceNewLineToBr("hello\\\r\\\n\nkris\r\n"));
-        System.out.println("==" + removeHtmlTag("<<<<a>> href=\"index.html\">主页</a>"));
     }
 
 }

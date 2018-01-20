@@ -34,6 +34,10 @@
             String[] type1 = (typeStr).split(",");
             String type = "";
             for (int i = 0; i < type1.length; i++) {
+<<<<<<< HEAD
+=======
+                
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
                 type = type1[i];
 
                 UserBO userBo = new UserBO();

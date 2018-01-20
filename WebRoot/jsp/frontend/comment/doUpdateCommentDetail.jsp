@@ -22,6 +22,10 @@
         int commentId = Integer.parseInt(id);
 
         if (StringUtils.isBlank(CommentContent)) {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     %>
     <jsp:forward page="updateCommentDetail.jsp">
         <jsp:param name="commentId" value="<%=commentId%>" />

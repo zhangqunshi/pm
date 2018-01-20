@@ -1,36 +1,39 @@
 package com.nastation.pm.beanhbm;
+
 /**
  * icon
+ *
  * @author LuckyStar
  *
  */
 public class Iconhbm {
-	private int id;// 编号
-	private String fileName;//图片地址
-	private int iconType;//图片类型
 
-	public int getId() {
-		return id;
-	}
+    private int id;// 编号
+    private String fileName;//图片地址
+    private int iconType;//图片类型
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getFileName() {
-		return fileName;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    public String getFileName() {
+        return fileName;
+    }
 
-	public int getIconType() {
-		return iconType;
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-	public void setIconType(int iconType) {
-		this.iconType = iconType;
-	}
+    public int getIconType() {
+        return iconType;
+    }
+
+    public void setIconType(int iconType) {
+        this.iconType = iconType;
+    }
 
 }

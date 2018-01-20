@@ -4,10 +4,11 @@ import java.util.*;
 
 /**
  * javabean for PermissionScheme
- * 
+ *
  * @author sun
  */
 public class PermissionScheme {
+
     private int id;
     private String name;
     private String description;

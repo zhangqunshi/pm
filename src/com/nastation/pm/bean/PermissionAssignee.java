@@ -2,9 +2,9 @@ package com.nastation.pm.bean;
 
 /**
  * Permission Assignee bean
- * 
+ *
  * @author sun
- * 
+ *
  */
 public class PermissionAssignee {
 

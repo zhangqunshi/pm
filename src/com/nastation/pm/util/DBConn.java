@@ -1,8 +1,7 @@
 package com.nastation.pm.util;
 
 /**
- * @author 许希光
- * 作用: 数据库连接类
+ * @author 许希光 作用: 数据库连接类
  */
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DBConn {
+
     private static String className;
     private static String url;
     private static String user;
@@ -32,9 +32,6 @@ public class DBConn {
         user = p.getProperty("user");
         passwd = p.getProperty("password");
 
-        System.out.println("DB className: " + className);
-        System.out.println("DB url: " + url);
-        System.out.println("DB user: " + user);
     }
 
     public static Connection getConnection() { // 获得数据库连接对象

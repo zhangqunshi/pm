@@ -3,67 +3,66 @@ package com.nastation.pm.bean;
 /**
  * @author weiboyuan 项目模块java bean
  */
-
 public class ProjectComponent {
 
-	public int id;
+    public int id;
 
-	public String name;
+    public String name;
 
-	public int  projectId;
+    public int projectId;
 
-	public String description;
+    public String description;
 
-	public String leaderId;
+    public String leaderId;
 
-	public java.util.Date createDate;
+    public java.util.Date createDate;
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public int  getProjectId() {
-		return projectId;
-	}
+    public int getProjectId() {
+        return projectId;
+    }
 
-	public void setProjectId(int  projectId) {
-		this.projectId = projectId;
-	}
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getLeaderId() {
-		return leaderId;
-	}
+    public String getLeaderId() {
+        return leaderId;
+    }
 
-	public void setLeaderId(String leaderId) {
-		this.leaderId = leaderId;
-	}
+    public void setLeaderId(String leaderId) {
+        this.leaderId = leaderId;
+    }
 
-	public java.util.Date getCreateDate() {
-		return createDate;
-	}
+    public java.util.Date getCreateDate() {
+        return createDate;
+    }
 
-	public void setCreateDate(java.util.Date createDate) {
-		this.createDate = createDate;
-	}
+    public void setCreateDate(java.util.Date createDate) {
+        this.createDate = createDate;
+    }
 
 }

@@ -2,6 +2,7 @@ package com.nastation.pm.business;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,10 +16,17 @@ public class ProjectCategoryBO {
         return new ProjectCategoryBO();
     }
 
+=======
+import org.hibernate.*;
+import com.nastation.pm.util.*;
+import com.nastation.pm.beanhbm.*;
+
+public class ProjectCategoryBO {
+
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     /**
      * 创建一个项目类型
      */
-
     public void addProjectCategory(ProjectCategoryhbm category) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -27,8 +35,9 @@ public class ProjectCategoryBO {
             session.save(category);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -38,7 +47,6 @@ public class ProjectCategoryBO {
     /**
      * 通过一个ID获得对应的项目类型
      */
-
     public ProjectCategoryhbm getProjectCategory(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -48,8 +56,10 @@ public class ProjectCategoryBO {
             pc2 = session.load(ProjectCategoryhbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
+            throw e;
         } finally {
             if (session != null)
                 session.close();
@@ -60,7 +70,6 @@ public class ProjectCategoryBO {
     /**
      * 检查是否创建了同名项目种类
      */
-
     public boolean checkProjectCategory(ProjectCategoryhbm category) {
         boolean flag = true;
         Session session = SessionF.sessionFactory.openSession();
@@ -76,8 +85,10 @@ public class ProjectCategoryBO {
                 flag = false;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
+            throw e;
         } finally {
             if (session != null)
                 session.close();
@@ -88,7 +99,6 @@ public class ProjectCategoryBO {
     /**
      * 获得数据库中所有的项目种类信息
      */
-
     public List<ProjectCategoryhbm> getCategoryList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -98,8 +108,9 @@ public class ProjectCategoryBO {
             pcList = session.createQuery("from ProjectCategoryhbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -110,7 +121,6 @@ public class ProjectCategoryBO {
     /**
      * 删除对应ID的项目种类
      */
-
     public void deleteCategory(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -119,8 +129,10 @@ public class ProjectCategoryBO {
             session.delete(session.load(ProjectCategoryhbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
+            throw e;
         } finally {
             if (session != null)
                 session.close();
@@ -130,7 +142,6 @@ public class ProjectCategoryBO {
     /**
      * 更新项目种类
      */
-
     public void updateCategory(ProjectCategoryhbm category) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -139,8 +150,9 @@ public class ProjectCategoryBO {
             session.update(category);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -149,9 +161,8 @@ public class ProjectCategoryBO {
 
     /**
      * 通过名字获得一个项目分类
-     * 
+     *
      */
-
     public ProjectCategoryhbm getProjectCategory(String name) {
         ProjectCategoryhbm category = null;
         Session session = SessionF.sessionFactory.openSession();
@@ -162,8 +173,10 @@ public class ProjectCategoryBO {
                     .setString("name", name).uniqueResult();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
+            throw e;
         } finally {
             if (session != null)
                 session.close();
@@ -174,7 +187,6 @@ public class ProjectCategoryBO {
     /**
      * 查询与此分类有关的所有项目
      */
-
     public List<Projecthbm> getAllProject(int categoryId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -185,8 +197,10 @@ public class ProjectCategoryBO {
                     .list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
+            throw e;
         } finally {
             if (session != null)
                 session.close();
@@ -197,7 +211,6 @@ public class ProjectCategoryBO {
     /**
      * 删除与项目有关联的项目分类
      */
-
     public void deleteProjectCategoryForLinkProject(int id) {
         this.deleteCategory(id);
     }
@@ -205,7 +218,6 @@ public class ProjectCategoryBO {
     /**
      * 判断此分类是否与其他项目有关联
      */
-
     public boolean checkLinkProject(int categoryId) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -221,8 +233,10 @@ public class ProjectCategoryBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
+            throw e;
         } finally {
             if (session != null)
                 session.close();
@@ -232,9 +246,8 @@ public class ProjectCategoryBO {
 
     /**
      * 判断名字是否已经存在
-     * 
+     *
      */
-
     public boolean exists(String name) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -249,8 +262,10 @@ public class ProjectCategoryBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
+            throw e;
         } finally {
             if (session != null)
                 session.close();

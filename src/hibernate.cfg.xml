@@ -6,7 +6,7 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/projectmanagement</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">1111</property>
+        <property name="connection.password">123456</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
 
@@ -30,8 +30,12 @@
         <mapping resource="com/nastation/pm/hbm/Comment.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Issue.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Group.hbm.xml" />
+<<<<<<< HEAD
         <mapping resource="com/nastation/pm/hbm/ProjectUser.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/GroupUser.hbm.xml" />
+=======
+
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
     </session-factory>
 </hibernate-configuration>

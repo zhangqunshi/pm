@@ -13,6 +13,10 @@
     //由于在其他页面也需要issue信息，所以把issue信息保存在request中，供所有页面使用
 			Issue issueRC = (Issue) request.getAttribute("issue");
 			if (issueRC == null) {
+<<<<<<< HEAD
+=======
+				
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 				return;
 			}
 %>

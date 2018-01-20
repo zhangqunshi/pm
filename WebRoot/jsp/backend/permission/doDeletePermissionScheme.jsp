@@ -33,7 +33,11 @@
             for (Project project : list) {
                 
                 projectBO.changeScheme(project.getProjectId(), 1);
+<<<<<<< HEAD
              
+=======
+                
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
             }
         }
         PermissionAssigneeBO paBO = new PermissionAssigneeBO();

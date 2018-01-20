@@ -1,10 +1,12 @@
 /**
  * 描述:组和用户关联的javaBean
+ *
  * @author liuliehui
  */
 package com.nastation.pm.bean;
 
 public class GroupUser {
+
     private int id; // 用户组ID
     private int userId; // 用户ID
     private int groupId; // 组ID

@@ -13,11 +13,18 @@ import org.hibernate.Transaction;
 import com.nastation.pm.bean.Resolution;
 import com.nastation.pm.beanhbm.Resolutionhbm;
 import com.nastation.pm.util.DBConn;
+<<<<<<< HEAD
 import com.nastation.pm.util.SessionF;
+=======
+
+import org.hibernate.*;
+import com.nastation.pm.util.*;
+import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 问题Resolution的业务逻辑类
- * 
+ *
  * @author Kris
  * @version 2008-12-27
  * @see Resolution
@@ -31,7 +38,6 @@ public class ResolutionBO {
     /**
      * 向数据库中添加Resolution 对象
      */
-
     public void addResolution(Resolutionhbm resolution) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -40,8 +46,9 @@ public class ResolutionBO {
             session.save(resolution);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -50,10 +57,9 @@ public class ResolutionBO {
 
     /**
      * Get all resolution
-     * 
+     *
      * @return
      */
-
     public List<Resolutionhbm> getAllResolutions() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -63,8 +69,9 @@ public class ResolutionBO {
             r2List = session.createQuery("from Resolutionhbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -74,7 +81,7 @@ public class ResolutionBO {
 
     /**
      * 更改resolution的一条记录为默认
-     * 
+     *
      * @return
      */
     public void updateResolutionDefault(int isDefault) {
@@ -112,10 +119,9 @@ public class ResolutionBO {
 
     /**
      * get resolution by id
-     * 
+     *
      * @param id
      */
-
     public Resolutionhbm getResolution(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -125,8 +131,9 @@ public class ResolutionBO {
             r2 = session.load(Resolutionhbm.class, id);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -136,10 +143,9 @@ public class ResolutionBO {
 
     /**
      * update resolution
-     * 
+     *
      * @param resolution
      */
-
     public Resolutionhbm updateResolution(Resolutionhbm resolution) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -148,8 +154,9 @@ public class ResolutionBO {
             session.update(resolution);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -159,10 +166,9 @@ public class ResolutionBO {
 
     /**
      * check resolution
-     * 
+     *
      * @return
      */
-
     public boolean checkExistResolution(Resolutionhbm resolution) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -178,8 +184,9 @@ public class ResolutionBO {
                 flag = true;
             }
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -189,7 +196,7 @@ public class ResolutionBO {
 
     /**
      * check all resolution
-     * 
+     *
      * @return
      */
     public List getIssueByLinkIssue(int id) {
@@ -227,7 +234,6 @@ public class ResolutionBO {
     /**
      * 向数据库中删除Resolution 对象
      */
-
     public void deleteResolution(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -236,8 +242,9 @@ public class ResolutionBO {
             session.delete(session.load(Resolutionhbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();

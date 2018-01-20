@@ -1,9 +1,25 @@
 package com.nastation.pm.business;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+=======
+/**
+ * 功能：问题的业务逻辑类
+ *
+ * @author 许希光
+ *
+ */
+import java.util.List;
+
+import com.nastation.pm.bean.Icon;
+import com.nastation.pm.bean.IssuePriority;
+
+import org.hibernate.*;
+import com.nastation.pm.util.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 import com.nastation.pm.bean.Icon;
 import com.nastation.pm.beanhbm.Iconhbm;
@@ -19,7 +35,6 @@ public class IssuePriorityBO {
     /**
      * 向数据库中添加记录 IssuePriority 对象
      */
-
     public void addIssuePriority(IssuePriorityhbm issuePriority) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -28,8 +43,9 @@ public class IssuePriorityBO {
             session.save(issuePriority);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -39,7 +55,6 @@ public class IssuePriorityBO {
     /**
      * 更新已知的记录
      */
-
     public void updateIssuePriority(IssuePriorityhbm issuePriority) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -48,8 +63,9 @@ public class IssuePriorityBO {
             session.update(issuePriority);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -59,7 +75,6 @@ public class IssuePriorityBO {
     /**
      * 根据已知的 id ，获得IssuePriority对象
      */
-
     public IssuePriorityhbm getIssuePriority(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -70,8 +85,9 @@ public class IssuePriorityBO {
 
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -82,7 +98,6 @@ public class IssuePriorityBO {
     /**
      * 根据已知的 name ，获得IssuePriority对象
      */
-
     public IssuePriorityhbm getIssuePriority(String name) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -93,8 +108,9 @@ public class IssuePriorityBO {
                     .setString("name", name).uniqueResult();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -105,7 +121,6 @@ public class IssuePriorityBO {
     /**
      * 删除对应ID的IssuePriority 对象
      */
-
     public void deleteIssuePriority(int id) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -114,8 +129,9 @@ public class IssuePriorityBO {
             session.delete(session.load(IssuePriorityhbm.class, id));
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -125,7 +141,6 @@ public class IssuePriorityBO {
     /**
      * 获得问题优先级列表 List
      */
-
     public List<IssuePriorityhbm> getIssuePriorityList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -135,8 +150,9 @@ public class IssuePriorityBO {
             ipList = session.createQuery("from IssuePriorityhbm").list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -147,8 +163,12 @@ public class IssuePriorityBO {
     /**
      * 检查是否创建了同名IssuePriority
      */
+<<<<<<< HEAD
 
     public boolean exist(IssuePriorityhbm ip) {
+=======
+    public boolean exist(IssuePriority ip) {
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         boolean flag = false;
@@ -162,8 +182,9 @@ public class IssuePriorityBO {
             }
 
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -173,10 +194,9 @@ public class IssuePriorityBO {
 
     /**
      * 获得此图片类型的list
-     * 
+     *
      * @return
      */
-
     public List<Iconhbm> getIconList() {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -186,8 +206,9 @@ public class IssuePriorityBO {
             l = session.createQuery("from Iconhbm where iconType=:it").setInteger("it", 3).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -198,7 +219,6 @@ public class IssuePriorityBO {
     /**
      * 根据icon 获得问题优先级列表 List
      */
-
     public List<IssuePriorityhbm> getIssuePriorityListByIcon(Icon icon) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -209,8 +229,9 @@ public class IssuePriorityBO {
                     .list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();

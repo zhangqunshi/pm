@@ -1,10 +1,17 @@
 package com.nastation.pm.business;
 
+<<<<<<< HEAD
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.nastation.pm.beanhbm.ProjectIssueSequencehbm;
 import com.nastation.pm.util.SessionF;
+=======
+import org.hibernate.*;
+
+import com.nastation.pm.util.*;
+import com.nastation.pm.beanhbm.*;
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 public class ProjectIssueSequenceBO {
 
@@ -15,7 +22,6 @@ public class ProjectIssueSequenceBO {
     /**
      * 删除所有项目模块
      */
-
     public void deleteAllProjectIssueSequence(int projectId) {
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -25,8 +31,9 @@ public class ProjectIssueSequenceBO {
                     .setInteger("id", projectId).executeUpdate();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();
@@ -36,7 +43,6 @@ public class ProjectIssueSequenceBO {
     /**
      * 判断t_project_user表里是否存在projectId 如果存在就返回true，反之则返回false
      */
-
     public boolean checkProjectLinkProjectIssueSequence(int projectId) {
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
@@ -51,8 +57,9 @@ public class ProjectIssueSequenceBO {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx != null)
+            if (tx != null) {
                 tx.rollback();
+            }
         } finally {
             if (session != null)
                 session.close();

@@ -8,6 +8,7 @@
 <%@ page import="com.nastation.pm.business.*"%>
 <%@ page import="com.nastation.pm.util.*"%>
 <%@ page import="java.util.*"%>
+<<<<<<< HEAD
 
 <%
     String projectId = request.getParameter("projectId");
@@ -27,6 +28,28 @@
         pb.deleteProjectUser(projectUserId);
     }
 %>
+=======
+ 
+    <%
+			String projectId = request.getParameter("projectId");
+			String roleId = request.getParameter("roleId");
+			int pId = Integer.parseInt(projectId);
+			int rId = Integer.parseInt(roleId);
+			
+			
+            String[] type = (request.getParameter("allid")).split(",");
+            for (int i = 0; i < type.length; i++) {
+                
+                if(type[i] == null ||type[i].equals("")){
+                    return ;
+                }
+                int projectUserId = Integer.parseInt(type[i]);
+			    ProjectUserBO pb = new ProjectUserBO();	
+			    
+			    pb.deleteProjectUser(projectUserId);
+			}    
+          %>
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 <jsp:forward page="addProjectUser.jsp">
     <jsp:param name="projectId" value="<%=pId%>" />
     <jsp:param name="roleId" value="<%=rId%>" />

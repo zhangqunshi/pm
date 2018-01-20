@@ -10,7 +10,9 @@ public interface Global {
     int RESOLVED = 4;
     int CLOSE = 5;
 
-    /** 如果值为1，即为resolution默认选项 */
+    /**
+     * 如果值为1，即为resolution默认选项
+     */
     int RESOLUTION_DEFAULT = 1;
 
     // ---------- key in session -------------

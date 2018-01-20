@@ -192,10 +192,17 @@
                                                         <optgroup label="---------------">
                                                             <%
                                                                 ProjectUserBO pub = new ProjectUserBO();
+<<<<<<< HEAD
 
                                                                 UserBO ub = new UserBO();
                                                                 List userList = pub.getProjectUserByProjectId(issue.getProjectId());
 
+=======
+                                                                
+                                                                UserBO ub = new UserBO();
+                                                                List userList = pub.getProjectUserByProjectId(issue.getProjectId());
+                                                                
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
                                                                 for (int j = 0; j < userList.size(); j++) {
                                                                     ProjectUser projectUser = (ProjectUser) userList.get(j);
                                                                     Userhbm puser = ub.getUser(projectUser.getUserId());

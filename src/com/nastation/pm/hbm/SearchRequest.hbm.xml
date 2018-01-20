@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <!DOCTYPE hibernate-mapping PUBLIC  
  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-
 <hibernate-mapping>
 
     <class name="com.nastation.pm.beanhbm.SearchRequesthbm" table="t_search_request"
-        lazy="false">
+           lazy="false">
 
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
-
 
         <property name="filterName" type="string" column="filter_name" />
         <property name="authorName" type="string" column="author_name" />
@@ -22,6 +18,7 @@
         <property name="projectId" type="int" column="project_id" />
         <property name="request_content" type="text" column="request_content" />
 
+<<<<<<< HEAD
         
 
 
@@ -29,8 +26,8 @@
 
 
 
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     </class>
-
-
 
 </hibernate-mapping>

@@ -64,7 +64,11 @@
         error += "Please choose reporter!<br>";
     }
     if (hasError) {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         request.setAttribute("error", error);
 %>
 <jsp:forward page="addIssueStep2.jsp" />
@@ -119,6 +123,10 @@
     String nextPage = request.getContextPath()
             + "/jsp/frontend/issue/issueDetailLayout.jsp?action=all&issueKey="
             + java.net.URLEncoder.encode(issueKey, "UTF-8");
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     response.sendRedirect(nextPage);
 %>

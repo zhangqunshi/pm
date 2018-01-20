@@ -46,7 +46,11 @@
         querySql += " and project_id= " + pid;
         ProjectBO projectBO = new ProjectBO();
         Projecthbm tempP = projectBO.getProject(Integer.parseInt(pid));
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         if (tempP != null) {
 
             item.put(IssueFilter.pid, tempP.getName());
@@ -198,6 +202,11 @@
     }
     sql += " order by id desc";
 
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     //根据查询得到issue列表	
     IssueBO issueBO = new IssueBO();
     List issueList = issueBO.getIssueSearchList(sql, paramValues);

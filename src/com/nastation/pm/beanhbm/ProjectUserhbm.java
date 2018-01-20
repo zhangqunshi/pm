@@ -1,5 +1,13 @@
 package com.nastation.pm.beanhbm;
 
+<<<<<<< HEAD
+=======
+/**
+ * 项目成员
+ *
+ * @author Kris
+ */
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 public class ProjectUserhbm {
     private int id;
     private int projectId;

@@ -1,12 +1,15 @@
 package com.nastation.pm.beanhbm;
 
 /**
- * 
+ *
  * @author Zhangbo 该类是项目javabean
  */
+<<<<<<< HEAD
 import java.util.HashSet;
 import java.util.Set;
 
+=======
+>>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 public class Projecthbm {
 
     private int id;

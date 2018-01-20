@@ -17,7 +17,7 @@ import com.nastation.pm.bean.User;
 
 /**
  * 检查用户是否登陆, session是否过期
- * 
+ *
  * @author Kris
  * @version 2009-1-13
  */
