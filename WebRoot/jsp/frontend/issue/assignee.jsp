@@ -15,23 +15,7 @@
 <head>
 </head>
 <%
-    User user = (User) session.getAttribute(Global.SESSION_USER);
-			String issueIdStr = request.getParameter("issueId");
-			String error = request.getParameter("error");
-
-			int issueId = 0;
-			if (StringUtils.isBlank(issueIdStr)) {
-				return;
-			}
-			if (StringUtils.isBlank(error)) {
-				error = "";
-			}
-
-			issueId = Integer.parseInt(issueIdStr);
-			Issue issue = new IssueBO().getIssueDetail(issueId);
-			int projectId = issue.getProjectId();
-			ProjectUserBO projectUserBO = new ProjectUserBO();
-			List<ProjectUser> projectUsers = projectUserBO.getProjectUserByProjectId(projectId);
+	String error = request.getParameter("error");
 %>
 <body>
     <table cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -151,25 +135,22 @@
                                     </tr>
                                     <tr id="assigneeFieldArea" class="fieldArea">
                                         <td class="fieldLabelArea">
-
                                             <label for="assignee"> 开发者: </label>
                                         </td>
                                         <td class="fieldValueArea">
-                                            <%
-                                                if (projectUsers == null || projectUsers.size() == 0) {
-
-                                            			} else {
-                                            				out.println("<select name='assigneeId'>");
-                                            				for (ProjectUser pUser : projectUsers) {
-                                            					if (pUser.getUsername().equals(issue.getAssignee())) {
-                                            						out.println("<option  selected value='" + pUser.getUserId() + "'>" + pUser.getUsername()
-                                            								+ "</option>");
-                                            					}
-                                            					out.println("<option value='" + pUser.getUserId() + "'>" + pUser.getUsername() + "</option>");
-                                            				}
-                                            				out.println("</select>");
-                                            			}
-                                            %>
+                                            <s:if test="projUsers==true">
+                                                
+                                            </s:if>
+                                            <s:else>
+                                                <select name="assigneeId">
+                                                <s:iterator value="#projUsers" var="#pus">
+                                                    <s:if test="#pus.userName==#issue.assignee">
+                                                        <option  selected value="<s:property value="#pus.userId"/>"><s:property value="#pus.userName"/></option>
+                                                    </s:if>
+                                                    <option value="<s:property value="#pus.userId"/>"><s:property value="#pus.userName"/></option>
+                                                </s:iterator>
+                                                </select>
+                                            </s:else>                    
                                         </td>
                                     </tr>
                                     <tr>
@@ -195,7 +176,7 @@
                                     <tr>
                                         <td class="fullyCentered simpleformfooter" colspan="2">
                                             <input id="分配" class="spaced" type="submit" title="按 Alt+S 提交" accesskey="S" value="分配" name="分配" />
-                                            <input value="取消" type="button" onclick="location.href='<c:url value="/jsp/frontend/issue/issueDetailLayout.jsp"/>?issueKey=<%=issue.getIssueKey()%>'" />
+                                            <input value="取消" type="button" onclick="location.href='<c:url value="/jsp/frontend/issue/issueDetailLayout.jsp"/>?issueKey=<s:property value="#issue.issueKey"/>'" />
                                         </td>
                                     </tr>
                                 </tbody>

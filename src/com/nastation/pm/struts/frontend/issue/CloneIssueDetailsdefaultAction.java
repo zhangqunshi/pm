@@ -2,12 +2,22 @@ package com.nastation.pm.struts.frontend.issue;
 
 import com.nastation.pm.beanhbm.Issuehbm;
 import com.nastation.pm.business.IssueBO;
+import com.nastation.pm.util.StringUtils;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CloneIssueDetailsdefaultAction extends ActionSupport {
-    private String issueKey;
+    private Stri  ng issueKey;
     private String issueName;
     private int issueId;
+    private boolean over;
+
+    public boolean isOver() {
+        return over;
+    }
+
+    public void setOver(boolean over) {
+        this.over = over;
+    }
 
     public int getIssueId() {
         return issueId;
@@ -37,8 +47,11 @@ public class CloneIssueDetailsdefaultAction extends ActionSupport {
     public String execute() throws Exception {
         IssueBO issueBo = IssueBO.getIssueBO();
         Issuehbm issue = issueBo.getIssueByKey(getIssueKey());
+        if (StringUtils.isBlank(getIssueKey())) {
+            setOver(true);
+        }
         if (issue == null) {
-            return ERROR;
+            setOver(true);
         }
         String issueName = "CLONE-" + issue.getName();
         setIssueName(issueName);
