@@ -198,7 +198,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="fullyCentered simpleformfooter" colspan="2">
-                                                            <input id="下一步 >>" class="spaced" type="submit" title="按 Alt+S 提交" accesskey="S" value="下一步 >>" name="下一步 >>" />
+                                                            <input class="spaced" type="submit" title="按 Alt+S 提交" accesskey="S" value="下一步 >>" name="下一步 >>" />
                                                             <input id="cancelButton" type="button" onclick="location.href='<c:url value="/jsp/frontend/issue/issueDetailLayout.jsp"/>?issueKey=<%=issue.getIssueKey()%>'" value="取消" name="/browse/TT-2" title="取消 (Alt + `)" accesskey="`" />
                                                         </td>
                                                     </tr>
