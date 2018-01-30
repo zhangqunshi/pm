@@ -6,28 +6,14 @@ package com.nastation.pm.business;
  * @author 许希光
  *
  */
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
-
-<<<<<<< HEAD
+import java.sql.*;
+import java.util.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.nastation.pm.beanhbm.Iconhbm;
 import com.nastation.pm.beanhbm.IssueStatushbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
-=======
-import com.nastation.pm.bean.Icon;
-import com.nastation.pm.bean.IssueStatus;
-import com.nastation.pm.util.DBConn;
-
-import org.hibernate.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 public class IssueStatusBO {
 
@@ -211,12 +197,8 @@ public class IssueStatusBO {
     /**
      * 根据icon 获得问题类型列表 List
      */
-<<<<<<< HEAD
 
     public List<IssueStatushbm> getIssueStatusListByIcon(Iconhbm icon) {
-=======
-    public List<IssueStatushbm> getIssueStatusListByIcon(Icon icon) {
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         List<IssueStatushbm> l = null;
@@ -226,9 +208,8 @@ public class IssueStatusBO {
                     .setString("name", icon.getFileName()).list();
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) {
+            if (tx != null)
                 tx.rollback();
-            }
         } finally {
             if (session != null)
                 session.close();

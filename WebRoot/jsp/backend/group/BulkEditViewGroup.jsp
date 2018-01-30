@@ -34,7 +34,7 @@
                     Selected 1 of
                     <s:property value="groupCount" />
                     Groups
-                <b>
+                </b>
             </td>
         </tr>
         <tr>

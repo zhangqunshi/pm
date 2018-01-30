@@ -6,7 +6,7 @@ import com.nastation.pm.util.StringUtils;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CloneIssueDetailsdefaultAction extends ActionSupport {
-    private Stri  ng issueKey;
+    private String issueKey;
     private String issueName;
     private int issueId;
     private boolean over;

@@ -4,23 +4,12 @@
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
-    <class name="com.nastation.pm.beanhbm.FilterSummaryhbm" table="t_filter_summary"
-           lazy="false">
-
+    <class name="com.nastation.pm.beanhbm.FilterSummaryhbm" table="t_filter_summary" lazy="false">
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
-
-        <property name="filterSummaryKey" type="string"
-                  column="filter_summary_key" />
-
-        <property name="filterSummaryValue" type="string"
-                  column="filter_summary_value" />
-
-        <many-to-one name="request" column="request_id"
-                     class="com.nastation.pm.beanhbm.SearchRequesthbm" cascade="save-update" />
-
+        <property name="filterSummaryKey" type="string" column="filter_summary_key" />
+        <property name="filterSummaryValue" type="string" column="filter_summary_value" />
+        <many-to-one name="request" column="request_id" class="com.nastation.pm.beanhbm.SearchRequesthbm" cascade="save-update" />
     </class>
-
 </hibernate-mapping>

@@ -1,26 +1,13 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.sql.*;
+import java.util.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.nastation.pm.bean.Resolution;
 import com.nastation.pm.beanhbm.Resolutionhbm;
 import com.nastation.pm.util.DBConn;
-<<<<<<< HEAD
 import com.nastation.pm.util.SessionF;
-=======
-
-import org.hibernate.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 问题Resolution的业务逻辑类

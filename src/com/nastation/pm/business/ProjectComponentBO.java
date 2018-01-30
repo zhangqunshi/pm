@@ -3,22 +3,13 @@ package com.nastation.pm.business;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.nastation.pm.bean.ProjectComponent;
 import com.nastation.pm.beanhbm.ProjectComponenthbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
 
-<<<<<<< HEAD
-=======
-import org.hibernate.*;
-import com.nastation.pm.util.*;
-import com.nastation.pm.beanhbm.*;
-
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 /**
  * 新建项目模块
  *

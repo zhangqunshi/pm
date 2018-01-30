@@ -100,13 +100,7 @@ public class ProjectUserBO {
                 projectUser.setProjectId(rs.getInt("project_id"));
                 projectList.add(projectUser);
             }
-<<<<<<< HEAD
 
-=======
-            for (ProjectUser pUser : projectList) {
-
-            }
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

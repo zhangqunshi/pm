@@ -51,10 +51,6 @@
                                             errMsg = "";
                                         }
                                         out.println("<font color='red'><b>" + errMsg + "</b></font>");
-<<<<<<< HEAD
-=======
-                                        
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
                                     %>
                                 </td>
                             </tr>

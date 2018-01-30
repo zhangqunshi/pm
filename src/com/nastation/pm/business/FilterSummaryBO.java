@@ -1,22 +1,10 @@
 package com.nastation.pm.business;
 
-import com.nastation.pm.util.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-<<<<<<< HEAD
-
+import java.sql.*;
+import java.util.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import com.nastation.pm.util.DBConn;
-import com.nastation.pm.util.SessionF;
-=======
-import org.hibernate.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
+import com.nastation.pm.util.*;
 
 /**
  * 写一个过滤器概要的逻辑类
@@ -26,13 +14,10 @@ import org.hibernate.*;
  */
 public class FilterSummaryBO {
 
-<<<<<<< HEAD
     public static FilterSummaryBO getFilterSummaryBO() {
         return new FilterSummaryBO();
     }
 
-=======
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
     /**
      * 添加一个概要信息
      *

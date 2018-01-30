@@ -35,7 +35,7 @@
     i.setIconUrl(iconUrl);
 
     IssueStatusBO issueStatusBO = new IssueStatusBO();
-    if (!issueStatusBO.exist(issueStatus)) {
+    if (!issueStatusBO.exist(i)) {
         issueStatusBO.addIssueStatus(i);
         out.println("添加成功");
 %>

@@ -45,12 +45,7 @@
             </td>
             <td>
                 <%
-<<<<<<< HEAD
                     PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
-=======
-                    
-                            PermissionSchemeBO permissionSchemeBO = new PermissionSchemeBO();
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
                             List<PermissionScheme> permissionSchemeList = permissionSchemeBO.getPermissionSchemeList("Group",
                                     groupView.getName());
                             for (int j = 0; j < permissionSchemeList.size(); j++) {

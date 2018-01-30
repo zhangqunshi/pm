@@ -4,22 +4,12 @@
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
-    <class name="com.nastation.pm.beanhbm.IssueStatushbm" table="t_issue_status"
-           lazy="false">
-
+    <class name="com.nastation.pm.beanhbm.IssueStatushbm" table="t_issue_status" lazy="false">
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
-
-        <property name="name" type="string" column="name"
-                  not-null="true" />
-
+        <property name="name" type="string" column="name" not-null="true" />
         <property name="description" type="string" column="description" />
-
         <property name="iconUrl" type="string" column="icon_url" />
-
-
     </class>
-
 </hibernate-mapping>

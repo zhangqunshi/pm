@@ -1,22 +1,12 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
-
+import java.sql.*;
+import java.util.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-<<<<<<< HEAD
 import com.nastation.pm.beanhbm.PermissionAssigneehbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
-=======
-import org.hibernate.*;
-
-import com.nastation.pm.beanhbm.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 权限分配业务逻辑类。
@@ -261,7 +251,8 @@ public class PermissionAssigneeBO {
      * 获得指定组中指定权限的分配列表信息。
      *
      * @author liuliehui
-     * @param assigneeType ,assignee
+     * @param assigneeType
+     *            ,assignee
      */
     public List<PermissionAssigneehbm> getGroupInPermissionAssigneeList(String assigneeType, String assignee) {
         Session session = SessionF.sessionFactory.openSession();

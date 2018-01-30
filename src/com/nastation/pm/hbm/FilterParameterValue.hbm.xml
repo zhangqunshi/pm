@@ -4,22 +4,12 @@
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
-    <class name="com.nastation.pm.beanhbm.FilterParameterValuehbm"
-           table="t_filter_parameter_value" lazy="false">
-
+    <class name="com.nastation.pm.beanhbm.FilterParameterValuehbm" table="t_filter_parameter_value" lazy="false">
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
-
         <property name="paramValue" type="text" column="param_value" />
         <property name="paramOrder" type="int" column="param_order" />
-
-        <many-to-one name="filter" column="filter_id"
-                     class="com.nastation.pm.beanhbm.SearchRequesthbm" cascade="save-update" />
-
+        <many-to-one name="filter" column="filter_id" class="com.nastation.pm.beanhbm.SearchRequesthbm" cascade="save-update" />
     </class>
-
 </hibernate-mapping>
-
- 

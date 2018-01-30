@@ -5,24 +5,12 @@
  */
 package com.nastation.pm.business;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
+import java.util.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.nastation.pm.beanhbm.Grouphbm;
 import com.nastation.pm.beanhbm.Userhbm;
 import com.nastation.pm.util.SessionF;
-=======
-import com.nastation.pm.util.*;
-
-import org.hibernate.*;
-import java.util.*;
-import com.nastation.pm.beanhbm.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 public class GroupBO {
 

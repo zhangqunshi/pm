@@ -17,12 +17,7 @@
         String schemeIdStr = request.getParameter("schemeId");
         int projectId = Integer.parseInt(pid);
         int schemeId = Integer.parseInt(schemeIdStr);
-<<<<<<< HEAD
 
-=======
-        
-        
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         ProjectBO projectBO = new ProjectBO();
         projectBO.changeScheme(projectId, schemeId);
     %>

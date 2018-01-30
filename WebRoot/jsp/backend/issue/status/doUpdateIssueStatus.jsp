@@ -29,7 +29,7 @@
     i.setName(name2);
     i.setDescription(desc2);
     i.setIconUrl(iconUrl);
-    if (issueStatusBO.exist(i)) {
+    if (issueStatusBO.exist(issueStatus)) {
         String error = "错误：该名称已存在，请重新命名！";
         request.setAttribute("error", error);
 %>

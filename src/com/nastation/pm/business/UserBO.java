@@ -1,32 +1,13 @@
 package com.nastation.pm.business;
 
-<<<<<<< HEAD
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
+import java.sql.*;
+import java.util.*;
 import com.nastation.pm.bean.User;
 import com.nastation.pm.beanhbm.Userhbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
-=======
-import com.nastation.pm.bean.User;
-
 import com.nastation.pm.util.*;
-
-import java.sql.*;
-import java.util.*;
-
 import org.hibernate.*;
-import com.nastation.pm.beanhbm.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  *
@@ -249,8 +230,8 @@ public class UserBO {
     }
 
     /**
-     * This method is use to view all user's details. All user's informations
-     * are reserved in a List class.
+     * This method is use to view all user's details. All user's informations are
+     * reserved in a List class.
      */
     public List<Userhbm> viewUsers() {
         Session session = SessionF.sessionFactory.openSession();
@@ -455,14 +436,5 @@ public class UserBO {
         }
         return flag;
     }
-<<<<<<< HEAD
-=======
-
-    public static void main(String[] args) {
-        UserBO uBO = new UserBO();
-        Userhbm u = uBO.login("admin", "123");
-
-    }
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 }

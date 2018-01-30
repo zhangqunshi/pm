@@ -5,34 +5,15 @@
  */
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.ArrayList;
-import java.util.List;
-
-<<<<<<< HEAD
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-=======
-import com.nastation.pm.bean.Project;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
-
+import java.sql.*;
+import java.util.*;
 import com.nastation.pm.bean.Project;
 import com.nastation.pm.beanhbm.Projecthbm;
 import com.nastation.pm.beanhbm.Userhbm;
 import com.nastation.pm.util.DBConn;
 import com.nastation.pm.util.SessionF;
-
-<<<<<<< HEAD
-=======
 import org.hibernate.*;
 
-import com.nastation.pm.beanhbm.*;
-
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 public class ProjectBO {
 
     public static ProjectBO getProjectBO() {
@@ -42,7 +23,8 @@ public class ProjectBO {
     /**
      * 添加一个项目
      *
-     * @param project 把项目相关信息存入数据库表中
+     * @param project
+     *            把项目相关信息存入数据库表中
      */
     public void addProject(Project project) {
         Connection conn = DBConn.getConnection();
@@ -167,12 +149,7 @@ public class ProjectBO {
      * @param projectKey
      * @return true if exist, otherwise return false.
      */
-<<<<<<< HEAD
-
     public boolean existName(Projecthbm project) {
-=======
-    public boolean existName(Project project) {
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
@@ -201,12 +178,7 @@ public class ProjectBO {
      * @param key
      * @return
      */
-<<<<<<< HEAD
-
     public boolean existKey(Projecthbm project) {
-=======
-    public boolean existKey(Project project) {
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         boolean flag = false;
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;

@@ -1,11 +1,7 @@
 package com.nastation.pm.beanhbm;
 
-<<<<<<< HEAD
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-=======
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 /**
  * @author 孙重阳 User bean
  */

@@ -12,17 +12,13 @@
 </head>
 <body>
     <h1>册除一条备注</h1>
-    <%
+        <%
         String id = request.getParameter("commentId");
         String issueRCKey = request.getParameter("issueRCKey");
         int commentId = Integer.parseInt(id);
 
         CommentBO commbo = new CommentBO();
         commbo.deleteComment(commentId);
-<<<<<<< HEAD
-=======
-        
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         issueRCKey = java.net.URLEncoder.encode(issueRCKey, "UTF-8");
         response.sendRedirect("../issue/issueDetailLayout.jsp?issueKey=" + issueRCKey);
     %>

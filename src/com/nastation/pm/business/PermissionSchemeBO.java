@@ -1,29 +1,12 @@
 package com.nastation.pm.business;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-
-<<<<<<< HEAD
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
+import java.util.*;
+import org.hibernate.*;
 import com.nastation.pm.bean.PermissionScheme;
 import com.nastation.pm.beanhbm.PermissionSchemehbm;
-import com.nastation.pm.util.DBConn;
-import com.nastation.pm.util.SessionF;
-import com.nastation.pm.util.StringUtils;
-=======
-import com.nastation.pm.bean.PermissionScheme;
 import com.nastation.pm.util.*;
-
-import org.hibernate.*;
-import com.nastation.pm.beanhbm.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
 
 /**
  * 权限模板的业务逻辑类

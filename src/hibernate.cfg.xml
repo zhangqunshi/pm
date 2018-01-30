@@ -30,12 +30,7 @@
         <mapping resource="com/nastation/pm/hbm/Comment.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Issue.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/Group.hbm.xml" />
-<<<<<<< HEAD
         <mapping resource="com/nastation/pm/hbm/ProjectUser.hbm.xml" />
         <mapping resource="com/nastation/pm/hbm/GroupUser.hbm.xml" />
-=======
-
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
-
     </session-factory>
 </hibernate-configuration>

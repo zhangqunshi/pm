@@ -1,26 +1,14 @@
 package com.nastation.pm.business;
 
-<<<<<<< HEAD
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-=======
 /**
  * 功能：问题的业务逻辑类
  *
  * @author 许希光
  *
  */
-import java.util.List;
-
-import com.nastation.pm.bean.Icon;
-import com.nastation.pm.bean.IssuePriority;
-
-import org.hibernate.*;
-import com.nastation.pm.util.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
-
+import java.util.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import com.nastation.pm.bean.Icon;
 import com.nastation.pm.beanhbm.Iconhbm;
 import com.nastation.pm.beanhbm.IssuePriorityhbm;
@@ -163,12 +151,7 @@ public class IssuePriorityBO {
     /**
      * 检查是否创建了同名IssuePriority
      */
-<<<<<<< HEAD
-
     public boolean exist(IssuePriorityhbm ip) {
-=======
-    public boolean exist(IssuePriority ip) {
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
         Session session = SessionF.sessionFactory.openSession();
         Transaction tx = null;
         boolean flag = false;
@@ -182,9 +165,8 @@ public class IssuePriorityBO {
             }
 
         } catch (Exception e) {
-            if (tx != null) {
+            if (tx != null)
                 tx.rollback();
-            }
         } finally {
             if (session != null)
                 session.close();

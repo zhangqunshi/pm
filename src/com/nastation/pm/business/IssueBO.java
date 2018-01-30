@@ -6,23 +6,12 @@ package com.nastation.pm.business;
  * @author 许希光
  *
  */
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.List;
-
-<<<<<<< HEAD
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-=======
-import org.hibernate.*;
-import com.nastation.pm.util.*;
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
-
 import com.nastation.pm.bean.Issue;
 import com.nastation.pm.beanhbm.Issuehbm;
 import com.nastation.pm.beanhbm.Userhbm;
@@ -280,14 +269,9 @@ public class IssueBO {
         List<Issue> list = new ArrayList();
         ResultSet rs = null;
         try {
-
             String sql = "select * from v_issue_detail where project_id=? order by issue_key desc";
-
-<<<<<<< HEAD
             pstmt = conn.prepareStatement(sql.toString());
-=======
             pstmt = conn.prepareStatement(sql);
->>>>>>> f483d34e679984b11c23ea8a44763ccc5f32c2a9
             pstmt.setInt(1, project_id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
