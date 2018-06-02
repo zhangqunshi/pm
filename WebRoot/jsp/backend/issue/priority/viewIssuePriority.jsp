@@ -11,7 +11,6 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>

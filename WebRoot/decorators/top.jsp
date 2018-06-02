@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.nastation.pm.bean.User"%>
 <%@ page import="com.nastation.pm.*"%>
+<%
+    String basePath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 
-<script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
+<script src="<%=basePath%>/includes/js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -62,7 +65,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/pmhb/images/su1.jpg" height="30" width=30>
+                            <img src="<%=basePath%>/images/icons/user.png" height="30" width="30">
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">

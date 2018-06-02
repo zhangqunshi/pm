@@ -15,7 +15,6 @@
 <html>
 <head>
 <title>Add Issue</title>
-<script src="/pmhb/includes/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/includes/js/calendar/calendar-min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/includes/js/calendar/calendar-setup-min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/includes/js/calendar/calendar-zh.js" type="text/javascript"></script>
