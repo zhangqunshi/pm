@@ -61,7 +61,7 @@
                                         out.println("<td><a href='viewUserDetail.jsp?name=" + user.getName() + "'>" + user.getName()
                                                 + "</a></td>");
                                         out.println("<td><a href='#'>" + user.getEmail() + "</a></td>");
-                                        out.println("<td>" + user.g etFullName() + "</td>");
+                                        out.println("<td>" + user.getFullName() + "</td>");
 
                                         out.println("<td>");
 
